@@ -1,0 +1,87 @@
+#!/bin/bash
+
+########### Base  ###########
+RED='\033[0;31m'
+NC='\033[0m'
+sep="                "
+prev_str=""
+
+while :
+do
+    ########### Bar ###########
+    make_bar () {
+	bar="$1 ["
+	for i in {1..100..5}
+	do
+	    if [ $i -le $2 ]; then
+		bar="$bar#"
+	    else
+		bar="$bar   "
+	    fi
+	done
+	bar="$bar] $2%"
+    }
+
+
+    ########### Date ###########
+    date1=$(date "+%m-%d-%Y %r")
+
+    ########### Volume ###########
+    # Level
+    str=$(amixer -D pulse sget Master | grep % | awk '{print $5}'|sed -e 's/[^0-9/%]//g')
+    index=$(( (${#str}+1)/2 ))
+    index2=$(( $index - 2 ))
+    n_vol=${str:index:index2}
+    vol_sep=$sep
+    if [ $n_vol == 100 ]; then
+	vol_sep=${sep:0:$(( ${#sep} - 4))}
+    elif [ $n_vol -ge 10 ]; then
+	vol_sep=${sep:0:$(( ${#sep} - 2 ))}
+    fi
+
+    # State
+    str2=$(amixer -D pulse sget Master | grep % | awk '{print $6}')
+    index=$(( (${#str2} + 3)/2))
+    index2=$(( (${#str2} - 5)/2  ))
+    state=${str2:index:index2}
+
+    # Bar
+    bar=""
+    color=$NC
+    if [ "$state" == "off" ]; then
+	color=$RED
+    fi
+    make_bar "VOL $state" $n_vol
+    vol=$bar
+
+    ########### Power battery ###########
+    # Level
+    str=$(upower -i /org/freedesktop/UPower/devices/battery_BAT1 | grep -E "percentage" | sed -e 's/[^0-9/]//g')
+
+    # State
+    str2=$(upower -i /org/freedesktop/UPower/devices/battery_BAT1 | grep -E "state")
+    set -- $str2
+    state="CHR"
+    if [ "$2" == "discharging" ]; then
+	state="DIS"
+    fi
+    bat="$state $str%"
+
+    ########### Brightness ###########
+    bright=$(cat /sys/class/backlight/intel_backlight/brightness)
+    max_bright=$(cat /sys/class/backlight/intel_backlight/max_brightness)
+    step=$(($max_bright / 10 ))
+    bri=-10
+    for (( i=0; i <= $bright; i=(($i + $step)) ))
+    do
+	bri=$(( $bri + 10 ))
+    done
+    br="BR $bri%"
+
+    ########### Echo block ###########
+    str=""$vol" $vol_sep | $br | $bat | $date1"
+    if [ "$str" == "$prev_str" ]; then
+	echo -e "$str"
+    fi
+    prev_str=$str
+done
