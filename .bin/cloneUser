@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Clones a git for a certain given name
+input=$1
+mkdir notes
+while IFS= read -r line
+do
+    git clone https://github.com/$line/$2 && mv $2 $line-$2 \
+    && cd $line-$2 && pandoc -s -o README.html README.md && \
+    cd .. && cp $3 notes/$line-$3
+done < "$input"

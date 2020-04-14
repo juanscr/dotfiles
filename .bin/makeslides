@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Creates generic template for slides
+cp ~/juanscr/jsc/jsc/templates/slides.tex .
+NAME="$(basename $PWD)"
+mv slides.tex ${NAME}-slides.tex
+
