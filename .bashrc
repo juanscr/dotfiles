@@ -2,10 +2,8 @@
 ### Path changes
 export PATH=$PATH:/usr/local/bin
 export PATH=$PATH:/home/juanscr/.bin
-export PATH=$PATH:/opt/pycharm-community/bin
+export PATH=$PATH:/opt/pycharm/bin
 export PATH=$PATH:/opt/popcorntime
-export PATH=$PATH:/opt/natron
-export PATH=$PATH:/opt/netlogo
 export PATH=$PATH:/opt/eclipse
 
 ### Clean-up
