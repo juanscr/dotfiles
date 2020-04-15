@@ -129,8 +129,9 @@ assign [class="Emacs"]          $w2
 assign [class="Gnome-terminal"] $w2
 
 # Viewers and media editors
-assign [class="Evince"] $w3
-assign [class="okular"] $w3
+assign [class="Evince"]   $w3
+assign [class="okular"]   $w3
+assign [class="Inkscape"] $w3
 
 # IDEs
 assign [class="jetbrains-pycharm-ce"] $w4
