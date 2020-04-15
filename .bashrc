@@ -91,4 +91,4 @@ if ! shopt -oq posix; then
 fi
 
 # GHCUP file
-[ -f "${XDG_XDG_DATA_HOME}/ghcup/env" ] && source "${XDG_DATA_HOME}/.ghcup/env"
+[ -f "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env" ] && source "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env"
