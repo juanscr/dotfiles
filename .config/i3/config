@@ -136,6 +136,7 @@ assign [class="Inkscape"] $w3
 # IDEs
 assign [class="jetbrains-pycharm-ce"] $w4
 assign [class="java-lang-Thread"]     $w4
+assign [class="Eclipse"]              $w4
 
 # Media and social
 assign [class="discord"]                   $w5
