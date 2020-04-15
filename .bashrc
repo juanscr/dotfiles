@@ -6,11 +6,6 @@ export PATH=$PATH:/opt/pycharm/bin
 export PATH=$PATH:/opt/popcorntime
 export PATH=$PATH:/opt/eclipse
 
-# https://wiki.archlinux.org/index.php/XDG_Base_Directory
-# Some variables are defined at environment
-export ICEAUTHORITY="$XDG_CACHE_HOME"/ICEauthority
-alias nvidia-settings='nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings'
-
 ### Aliases
 alias c="emacs ~/.config/i3/config"
 alias e="emacs"
