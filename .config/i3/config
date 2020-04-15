@@ -121,24 +121,25 @@ bindsym $mod+Shift+0 move container to workspace $w10
 
 ######### Apps for Workspaces #########
 # Browser
-assign [class="Google-chrome"]                 $w1
+assign [class="Google-chrome"] $w1
 
 # Terminal and editors
-assign [class="Gedit"]                         $w2
-assign [class="Emacs"]                         $w2
-assign [class="Gnome-terminal"]                $w2
+assign [class="Gedit"]          $w2
+assign [class="Emacs"]          $w2
+assign [class="Gnome-terminal"] $w2
 
 # Viewers and media editors
-assign [class="Evince"]                        $w3
-assign [class="okular"]                        $w3
+assign [class="Evince"] $w3
+assign [class="okular"] $w3
 
 # IDEs
-assign [class="jetbrains-pycharm-ce"]          $w4
-assign [class="java-lang-Thread"]              $w4
+assign [class="jetbrains-pycharm-ce"] $w4
+assign [class="java-lang-Thread"]     $w4
 
 # Media and social
-assign [class="discord"]                       $w5
-assign [class="vlc"]                           $w5
+assign [class="discord"]                   $w5
+assign [class="vlc"]                       $w5
+assign [class="Microsoft Teams - Preview"] $w5
 
 # Installers of media
 assign [class="Chromium-browser"]              $w6
