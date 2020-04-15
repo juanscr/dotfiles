@@ -6,17 +6,10 @@ export PATH=$PATH:/opt/pycharm/bin
 export PATH=$PATH:/opt/popcorntime
 export PATH=$PATH:/opt/eclipse
 
-### Clean-up
-export XDG_CACHE_HOME=/home/juanscr/.cache/
-export XDG_CONFIG_HOME=/home/juanscr/.config/
-export XDG_DATA_HOME=$HOME/.local/share
-
 # https://wiki.archlinux.org/index.php/XDG_Base_Directory
-export GNUPGHOME="$XDG_DATA_HOME"/gnupg
-export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
+# Some variables are defined at environment
 export ICEAUTHORITY="$XDG_CACHE_HOME"/ICEauthority
 alias nvidia-settings='nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings'
-alias gpg2='gpg2 --homedir "$XDG_DATA_HOME"/gnupg'
 
 ### Aliases
 alias c="emacs ~/.config/i3/config"
@@ -96,4 +89,6 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-[ -f "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env" ] && source "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env"
+
+# GHCUP file
+[ -f "${XDG_XDG_DATA_HOME}/ghcup/env" ] && source "${XDG_DATA_HOME}/.ghcup/env"
