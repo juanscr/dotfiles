@@ -1,9 +1,11 @@
 ############ PERSONAL COMMANDS ###################
+# Autocd
+shopt -s autocd
+
 ### Path changes
 export PATH=$PATH:/usr/local/bin
 export PATH=$PATH:/home/juanscr/.bin
 export PATH=$PATH:/opt/pycharm/bin
-export PATH=$PATH:/opt/popcorntime
 export PATH=$PATH:/opt/eclipse
 
 ### Aliases
