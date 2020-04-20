@@ -148,8 +148,8 @@ assign [class="vlc"]                       $w5
 assign [class="Microsoft Teams - Preview"] $w5
 
 # Installers of media
-assign [class="Chromium-browser"] $w6
-assign [class="Stremio"]          $w6
+assign [class="Popcorn-Time"] $w6
+assign [class="Stremio"]      $w6
 
 # Background apps
 for_window [class="Spotify"] move to workspace $w10
@@ -158,7 +158,7 @@ for_window [class="Spotify"] move to workspace $w10
 bindsym $mod+i exec google-chrome
 bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+s exec spotify
-bindsym $mod+m exec stremio
+bindsym $mod+m exec $(cat /home/juanscr/.bin/movies | dmenu)
 bindsym $mod+p exec /opt/pycharm/bin/pycharm.sh
 
 ######## Applications Startup ########
