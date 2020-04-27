@@ -1,22 +1,19 @@
 ############ PERSONAL COMMANDS ###################
-# Autocd
-shopt -s autocd
-
-### Path changes
+# Path changes
 export PATH=$PATH:/usr/local/bin
 export PATH=$PATH:/home/juanscr/.bin
 export PATH=$PATH:/opt/pycharm/bin
 export PATH=$PATH:/opt/eclipse
 
-### Aliases
+# Aliases
 alias cgfi="emacs ~/.config/i3/config"
 alias e="emacs"
 alias lmk="latexmk -pdf"
 
-### Dotfiles backup
+# Dotfiles backup
 alias dfiles='/usr/bin/git --git-dir=$HOME/juanscr/dotfiles --work-tree=$HOME'
 
-### Show last directory
+# Show user and last directory
 PS1='${debian_chroot:+($debian_chroot)}[\[\033[01;32m\]\u \[\033[00m\]\[\033[01;34m\]\W\[\033[00m\]] '
 
 ############ Automatic Stuff ############
