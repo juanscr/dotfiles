@@ -123,7 +123,7 @@ bindsym $mod+Shift+0 move container to workspace $w10
 # Browser
 assign [class="Google-chrome"] $w1
 
-# Terminal and editors
+# Terminal and text editors
 assign [class="Gedit"]          $w2
 assign [class="Emacs"]          $w2
 assign [class="Gnome-terminal"] $w2
@@ -137,6 +137,7 @@ assign [class="(?i)libreoffice-calc"]    $w3
 assign [class="(?i)soffice"]             $w3
 assign [class="(?i)libreoffice.*"]       $w3
 assign [class="Ntcardvt"]                $w3
+assign [class="Audacity"]                $w3
 
 # IDEs
 assign [class="jetbrains-pycharm-ce"] $w4
@@ -147,11 +148,16 @@ assign [class="Eclipse"]              $w4
 # Media and social
 assign [class="discord"]                   $w5
 assign [class="vlc"]                       $w5
+assign [class="mpv"]                       $w5
 assign [class="Microsoft Teams - Preview"] $w5
 
 # Installers of media
 assign [class="Popcorn-Time"] $w6
 assign [class="Stremio"]      $w6
+
+# Configuration apps
+assign [class="Pavucontrol"] $w7
+assign [class="Arandr"]      $w7
 
 # Background apps
 for_window [class="Spotify"] move to workspace $w10
