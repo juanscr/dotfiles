@@ -4,13 +4,12 @@
 
 ;; Melpa
 (require 'package)
-(add-to-list 'package-archives
-             '("melpa-stable" . "https://stable.melpa.org/packages/"))
+(add-to-list 'package-archives ' ("melpa-stable" . "https://stable.melpa.org/packages/"))
 
 ;;;;;;;;;;;;;;;;;;;;; MODES ;;;;;;;;;;;;;;;;;;;;;;;
 ;; Agda mode
-;;(load-file (let ((coding-system-for-read 'utf-8))
-;;                (shell-command-to-string "agda-mode locate")))
+(load-file (let ((coding-system-for-read 'utf-8))
+                (shell-command-to-string "agda-mode locate")))
 
 ;;;;;;;;;;;;;;;;;;;;; EDITOR ;;;;;;;;;;;;;;;;;;;;;;;
 ;; Trailing Whitespace
@@ -29,5 +28,5 @@
 ;; Dismiss startup
 (custom-set-variables
  '(inhibit-startup-screen t)
- '(package-selected-packages (quote (haskell-mode auctex))))
+ '(package-selected-packages (quote (ein haskell-mode auctex))))
 (custom-set-faces)
