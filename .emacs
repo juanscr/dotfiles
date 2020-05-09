@@ -9,7 +9,11 @@
 ;;;;;;;;;;;;;;;;;;;;; MODES ;;;;;;;;;;;;;;;;;;;;;;;
 ;; Agda mode
 (load-file (let ((coding-system-for-read 'utf-8))
-                (shell-command-to-string "agda-mode locate")))
+	     (shell-command-to-string "agda-mode locate")))
+
+;; Spell check
+(add-hook 'text-mode-hook 'flyspell-mode)
+(add-hook 'prog-mode-hook 'flyspell-prog-mode)
 
 ;;;;;;;;;;;;;;;;;;;;; EDITOR ;;;;;;;;;;;;;;;;;;;;;;;
 ;; Trailing Whitespace
@@ -21,14 +25,10 @@
 ;; Column number
 (setq column-number-mode t)
 
-;; Spell check
-(add-hook 'text-mode-hook 'flyspell-mode)
-(add-hook 'prog-mode-hook 'flyspell-prog-mode)
-
 ;; Dismiss startup
 (custom-set-variables
  '(inhibit-startup-screen t)
- '(package-selected-packages (quote (ein haskell-mode auctex))))
+ '(package-selected-packages (quote (haskell-mode auctex))))
 (custom-set-faces)
 
 ;; Open big files easier
