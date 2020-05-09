@@ -27,6 +27,14 @@
 ; https://superuser.com/questions/127420/how-can-i-hide-the-tool-bar-in-emacs-persistently
 (tool-bar-mode -1)
 
+;; Hide Scroll bar
+; https://www.emacswiki.org/emacs/ScrollBar
+(scroll-bar-mode -1)
+
+;; Hide menu bar
+; https://stackoverflow.com/questions/53958292/remove-the-emacs-menu-bar
+(menu-bar-mode -1)
+
 ;; Math mode
 ; https://www.gnu.org/software/auctex/manual/auctex/Mathematics.html
 (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
@@ -46,12 +54,7 @@
 ;;;;;;; BASIC ;;;;;;;
 ;; Dismiss startup
 (custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
  '(LaTeX-math-abbrev-prefix "#")
- '(LaTeX-math-menu-unicode t)
  '(inhibit-startup-screen t)
  '(package-selected-packages (quote (haskell-mode auctex))))
 
@@ -61,20 +64,29 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 107 :width normal :foundry "PfEd" :family "DejaVu Sans Mono"))))
+ '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white"
+		 :inverse-video nil :box nil :strike-through nil :overline nil
+		 :underline nil :slant normal :weight normal :height 107 :width normal
+		 :foundry "PfEd" :family "DejaVu Sans Mono"))))
  '(cursor ((t (:background "lime green"))))
- '(custom-button ((t (:background "dark slate gray" :foreground "white" :box (:line-width 2 :style released-button)))))
- '(custom-button-mouse ((t (:background "slate gray" :foreground "white" :box (:line-width 2 :style released-button)))))
- '(custom-button-pressed ((t (:background "dark slate gray" :foreground "white" :box (:line-width 2 :style pressed-button)))))
- '(font-lock-comment-delimiter-face ((t (:inherit font-lock-comment-face :foreground "deep sky blue"))))
+ '(custom-button ((t (:background "dark slate gray" :foreground "white"
+		      :box (:line-width 2 :style released-button)))))
+ '(custom-button-mouse ((t (:background "slate gray" :foreground "white"
+			    :box (:line-width 2 :style released-button)))))
+ '(custom-button-pressed ((t (:background "dark slate gray" :foreground "white"
+			      :box (:line-width 2 :style pressed-button)))))
+ '(font-lock-comment-delimiter-face ((t (:inherit font-lock-comment-face
+					 :foreground "deep sky blue"))))
  '(font-lock-comment-face ((t (:foreground "deep sky blue"))))
  '(font-lock-function-name-face ((t (:foreground "gold"))))
  '(font-lock-keyword-face ((t (:foreground "dark orange"))))
  '(font-lock-string-face ((t (:foreground "deep pink"))))
  '(font-lock-type-face ((t (:inherit bold :foreground "yellow"))))
- '(line-number-current-line ((t (:inherit line-number :background "black" :foreground "blue"))))
+ '(line-number-current-line ((t (:inherit line-number :background "black"
+				 :foreground "blue"))))
  '(link ((t (:foreground "magenta" :underline t))))
- '(mode-line ((t (:background "dark slate gray" :foreground "white" :box (:line-width -1 :style released-button))))))
+ '(mode-line ((t (:background "dark slate gray" :foreground "white"
+		  :box (:line-width -1 :style released-button))))))
 
 
 ;;;;;;;;;;;;;;;;;;;;; Packages ;;;;;;;;;;;;;;;;;;;;;;;
