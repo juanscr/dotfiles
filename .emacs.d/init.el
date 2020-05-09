@@ -11,8 +11,8 @@
 ;;;;;;; STYLE ;;;;;;;
 ;; Set transparency
 ; https://emacs.stackexchange.com/questions/5944/is-there-a-transparent-theme
-(set-frame-parameter (selected-frame) 'alpha '(70 70))
-(add-to-list 'default-frame-alist '(alpha 70 70))
+(set-frame-parameter (selected-frame) 'alpha '(80 80))
+(add-to-list 'default-frame-alist '(alpha 80 80))
 
 ;; Trailing Whitespace
 (setq-default show-trailing-whitespace t)
