@@ -25,6 +25,10 @@
 ;; Column number
 (setq column-number-mode t)
 
+;; Hide tool bar
+; https://superuser.com/questions/127420/how-can-i-hide-the-tool-bar-in-emacs-persistently
+(tool-bar-mode -1)
+
 ;; Dismiss startup
 (custom-set-variables
  '(inhibit-startup-screen t)
