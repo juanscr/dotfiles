@@ -43,15 +43,15 @@ bindsym --release Print exec scrot 'screenshot_%Y%m%d_%H%M%S.png' -e 'mkdir -p ~
 bindsym --release $mod+Print exec scrot -s 'screenshot_%Y%m%d_%H%M%S.png' -e 'mkdir -p ~/screenshots && mv $f ~/screenshots && xclip -selection clipboard -t image/png -i ~/screenshots/`ls -1 -t ~/screenshots | head -1`' # Area selection
 
 ######## Movement cointainers ########
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+i focus up
+bindsym $mod+l focus right
 
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+i move up
+bindsym $mod+Shift+l move right
 
 ######## Orientation ########
 bindsym $mod+h split h
@@ -164,7 +164,7 @@ assign [class="Arandr"]      $w7
 for_window [class="Spotify"] move to workspace $w10
 
 ######## Keybinds for Apps ########
-bindsym $mod+i exec google-chrome
+bindsym $mod+b exec google-chrome
 bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+s exec spotify
 bindsym $mod+m exec $(cat /home/juanscr/.bin/movies | dmenu)
