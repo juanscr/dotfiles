@@ -4,6 +4,7 @@ export PATH=$PATH:/usr/local/bin
 export PATH=$PATH:/home/juanscr/.bin
 export PATH=$PATH:/opt/pycharm/bin
 export PATH=$PATH:/opt/eclipse
+export PATH=$PATH:/opt/st
 
 # Aliases
 alias cgfi="emacs ~/.config/i3/config"
@@ -16,6 +17,7 @@ alias dfiles='/usr/bin/git --git-dir=$HOME/juanscr/dotfiles --work-tree=$HOME'
 # Show user and last directory
 PS1='${debian_chroot:+($debian_chroot)}[\[\033[01;32m\]\u \[\033[00m\]\[\033[01;34m\]\W\[\033[00m\]] '
 
+# Editor variable
 export EDITOR="/usr/local/bin/emacs"
 
 ############ Automatic Stuff ############
