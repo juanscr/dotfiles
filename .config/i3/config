@@ -166,8 +166,6 @@ for_window [class="Spotify"] move to workspace $w10
 ######## Keybinds for Apps ########
 bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+s exec spotify
-bindsym $mod+m exec $(cat /home/juanscr/.bin/movies | dmenu)
-bindsym $mod+p exec /opt/pycharm/bin/pycharm.sh
 
 ######## Applications Startup ########
 exec google-chrome
