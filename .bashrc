@@ -2,9 +2,6 @@
 # Path changes
 export PATH=$PATH:/usr/local/bin
 export PATH=$PATH:/home/juanscr/.bin
-export PATH=$PATH:/opt/pycharm/bin
-export PATH=$PATH:/opt/eclipse
-export PATH=$PATH:/opt/st
 
 # Aliases
 alias cgfi="emacs ~/.config/i3/config"

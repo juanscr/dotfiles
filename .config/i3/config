@@ -147,10 +147,11 @@ assign [class="Eclipse"]              $w4
 
 # Media and social
 assign [class="discord"]                   $w5
+assign [class="Microsoft Teams - Preview"] $w5
 assign [class="vlc"]                       $w5
 assign [class="mpv"]                       $w5
-assign [class="Microsoft Teams - Preview"] $w5
 assign [class="Eog"]                       $w5
+assign [class="ffplay"]                    $w5
 
 # Installers of media
 assign [class="Popcorn-Time"] $w6
