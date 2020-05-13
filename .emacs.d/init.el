@@ -1,4 +1,4 @@
-;;;;;;;;;;;;;;;;;;;;; Modes ;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;; MODES ;;;;;;;;;;;;;;;;;;;;;;;
 ;; Agda mode
 (load-file (let ((coding-system-for-read 'utf-8))
 	     (shell-command-to-string "agda-mode locate")))
@@ -51,6 +51,14 @@
 
 (add-hook 'find-file-hook 'my-find-file-check-make-large-file-read-only-hook)
 
+;;;;;;;;;;;;;;;;;;;;; PACKAGES ;;;;;;;;;;;;;;;;;;;;;;;
+;; Added by Package.el.
+(package-initialize)
+
+;; Melpa
+(require 'package)
+(add-to-list 'package-archives ' ("melpa-stable" . "https://stable.melpa.org/packages/"))
+
 ;;;;;;; BASIC ;;;;;;;
 ;; Dismiss startup
 (custom-set-variables
@@ -60,6 +68,7 @@
  ;; If there is more than one, they won't work right.
  '(LaTeX-math-abbrev-prefix "¬")
  '(inhibit-startup-screen t)
+ '(ispell-highlight-face (quote flyspell-incorrect))
  '(package-selected-packages (quote (haskell-mode auctex))))
 
 ;; Custom theme
@@ -75,20 +84,16 @@
  '(custom-button-pressed ((t (:background "dark slate gray" :foreground "white" :box (:line-width 2 :style pressed-button)))))
  '(font-lock-comment-delimiter-face ((t (:inherit font-lock-comment-face :foreground "deep sky blue"))))
  '(font-lock-comment-face ((t (:foreground "deep sky blue"))))
+ '(font-lock-doc-face ((t (:inherit font-lock-comment-face))))
  '(font-lock-function-name-face ((t (:foreground "gold"))))
  '(font-lock-keyword-face ((t (:foreground "dark orange"))))
  '(font-lock-string-face ((t (:foreground "deep pink"))))
  '(font-lock-type-face ((t (:inherit bold :foreground "yellow"))))
+ '(haskell-interactive-face-garbage ((t (:inherit font-lock-doc-face))))
+ '(haskell-interactive-face-result ((t (:inherit font-lock-doc-face))))
+ '(haskell-literate-comment-face ((t (:inherit font-lock-comment-face))))
+ '(haskell-quasi-quote-face ((t (:inherit font-lock-doc-face))))
  '(line-number-current-line ((t (:inherit line-number :background "black" :foreground "blue"))))
  '(link ((t (:foreground "magenta" :underline t))))
  '(mode-line ((t (:background "dark slate gray" :foreground "white" :box (:line-width -1 :style released-button)))))
  '(preview-reference-face ((t nil))))
-
-
-;;;;;;;;;;;;;;;;;;;;; Packages ;;;;;;;;;;;;;;;;;;;;;;;
-;; Added by Package.el.
-(package-initialize)
-
-;; Melpa
-(require 'package)
-(add-to-list 'package-archives ' ("melpa-stable" . "https://stable.melpa.org/packages/"))
