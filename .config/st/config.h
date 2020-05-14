@@ -1,15 +1,36 @@
 /*
+  Tested with st 0.8.3
   PATCHES NEEDED:
     - alpha
+    - scrollback
  */
 
 
 /* FONTS */
-static char *font = "DejaVu Sans Mono:pixelsize=14:antialias=true:autohint=true";
+static char *font = "DejaVu Sans Mono:pixelsize=15:antialias=true:autohint=true";
 static int borderpx = 2;
 
 /* TRANSPARENCY VALUE */
 float alpha = 0.7;
+
+/* KEYBINDINGS - EMACS EMULATION */
+#define MODKEY Mod1Mask                 // Represents Alt
+#define TERMMOD (ControlMask|ShiftMask) // Represents Ctrl + Shift
+
+static Shortcut shortcuts[] = {
+	/* mask                 keysym          function        argument */
+	{ XK_ANY_MOD,           XK_Break,       sendbreak,      {.i =  0} },
+	{ ControlMask,          XK_plus,        zoom,           {.f = +2} },
+	{ ControlMask,          XK_minus,       zoom,           {.f = -2} },
+	{ TERMMOD,              XK_R,           zoomreset,      {.f =  0} },
+	{ MODKEY,               XK_w,           clipcopy,       {.i =  0} },
+	{ ControlMask,          XK_y,           clippaste,      {.i =  0} },
+	{ Mod1Mask,             XK_n,           kscrolldown,    {.i =  1} },
+	{ Mod1Mask,             XK_p,           kscrollup,      {.i =  1} },
+};
+
+
+/* AUTOMATIC STUFF */
 
 /*
  * What program is execed by st depends of these precedence rules:
@@ -169,28 +190,6 @@ static uint forcemousemod = ShiftMask;
 static MouseShortcut mshortcuts[] = {
 	/* mask                 button   function        argument       release */
 	{ XK_ANY_MOD,           Button2, selpaste,       {.i = 0},      1 },
-	{ XK_ANY_MOD,           Button4, ttysend,        {.s = "\031"} },
-	{ XK_ANY_MOD,           Button5, ttysend,        {.s = "\005"} },
-};
-
-/* Internal keyboard shortcuts. */
-#define MODKEY Mod1Mask
-#define TERMMOD (ControlMask|ShiftMask)
-
-static Shortcut shortcuts[] = {
-	/* mask                 keysym          function        argument */
-	{ XK_ANY_MOD,           XK_Break,       sendbreak,      {.i =  0} },
-	{ ControlMask,          XK_Print,       toggleprinter,  {.i =  0} },
-	{ ShiftMask,            XK_Print,       printscreen,    {.i =  0} },
-	{ XK_ANY_MOD,           XK_Print,       printsel,       {.i =  0} },
-	{ TERMMOD,              XK_Prior,       zoom,           {.f = +1} },
-	{ TERMMOD,              XK_Next,        zoom,           {.f = -1} },
-	{ TERMMOD,              XK_Home,        zoomreset,      {.f =  0} },
-	{ TERMMOD,              XK_C,           clipcopy,       {.i =  0} },
-	{ TERMMOD,              XK_V,           clippaste,      {.i =  0} },
-	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
-	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
-	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
 };
 
 /*
