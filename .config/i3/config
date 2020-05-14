@@ -178,6 +178,10 @@ exec_always nm-applet
 ######## BG #########
 exec --no-startup-id /home/juanscr/.bin/bg.sh
 
+######## TITLE BAR #########
+for_window [class="^.*"] border pixel 1
+new_window 1pixel
+
 ######## Bar #########
 # Tested with statusline 0.1.13 and i3status 2.11
 hide_edge_borders both
