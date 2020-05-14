@@ -126,7 +126,7 @@ assign [class="Google-chrome"] $w1
 # Terminal and text editors
 assign [class="Gedit"]          $w2
 assign [class="Emacs"]          $w2
-assign [class="Gnome-terminal"] $w2
+assign [class="st-256color"] $w2
 
 # Viewers and media editors
 assign [class="Evince"]                  $w3
