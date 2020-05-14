@@ -8,13 +8,16 @@ alias cgfi="emacs ~/.config/i3/config"
 alias e="emacs"
 alias lmk="latexmk -pdf"
 
+# XDG Aliases
+alias nvidia-settings="nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings"
+
 # Dotfiles backup
 alias dfiles='/usr/bin/git --git-dir=$HOME/juanscr/dotfiles --work-tree=$HOME'
 
 # Show user and last directory
 PS1='${debian_chroot:+($debian_chroot)}[\[\033[01;32m\]\u \[\033[00m\]\[\033[01;34m\]\W\[\033[00m\]] '
 
-# Editor variable
+# APPS VARIABLES
 export EDITOR="/usr/local/bin/emacs"
 
 ############ Automatic Stuff ############
