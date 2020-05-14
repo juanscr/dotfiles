@@ -164,12 +164,12 @@ assign [class="Arandr"]      $w7
 for_window [class="Spotify"] move to workspace $w10
 
 ######## Keybinds for Apps ########
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec st
 bindsym $mod+s exec spotify
 
 ######## Applications Startup ########
 exec google-chrome
-exec i3-sensible-terminal
+exec st
 
 ######## Wifi applet ########
 exec_always nm-applet
