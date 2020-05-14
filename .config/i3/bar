@@ -5,7 +5,7 @@ RED='\033[0;31m'
 NC='\033[0m'
 sep="                "
 prev_str=""
-
+n
 while :
 do
     ########### Bar ###########
@@ -78,8 +78,16 @@ do
     done
     br="BR $bri%"
 
+    ########### Active window ###########
+    id=$(xprop -root | awk '/_NET_ACTIVE_WINDOW\(WINDOW\)/{print $NF}')
+    name=$(xprop -id $id | awk '/_NET_WM_NAME/{$1=$2="";print}' | cut -d'"' -f2)
+    max_length=20
+    if [ ${#name} -ge $max_length ]; then
+	name="${name:0:max_length}..."
+    fi
+
     ########### Echo block ###########
-    str=""$vol" $vol_sep | $br | $bat | $date1"
+    str="$name | "$vol" $vol_sep | $br | $bat | $date1"
     if [ "$str" == "$prev_str" ]; then
 	echo -e "$str"
     fi
