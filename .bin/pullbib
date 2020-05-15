@@ -1,6 +1,0 @@
-#!/bin/bash
-
-# Pulls updates on bibliography
-git fetch mybibs master
-git subtree pull --prefix bib mybibs master --squash
-
