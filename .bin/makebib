@@ -1,6 +1,0 @@
-#!/bin/bash
-
-# Creates folder bib with sub-tree for the repo with my references.
-git remote add -f mybibs https://github.com/juanscr/bibliography &
-git subtree add --prefix bib mybibs master --squash
-
