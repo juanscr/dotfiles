@@ -39,6 +39,11 @@
 ; https://www.gnu.org/software/auctex/manual/auctex/Mathematics.html
 (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
 
+;; Reftex mode
+; https://tex.stackexchange.com/questions/36876/reftex-doesnt-turn-on-automatically-when-loading-auctex-after-upgrade-to-tex-li
+(add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+(setq reftex-plug-into-AUCTeX t)
+
 ;;;;;;; FUNCTIONS ;;;;;;;
 ;; Open big files easier
 ; https://stackoverflow.com/questions/18316665/how-to-improve-emacs-performance-when-view-large-file
@@ -71,7 +76,7 @@
  '(ispell-highlight-face (quote flyspell-incorrect))
  '(package-selected-packages (quote (haskell-mode auctex))))
 
-;; Custom theme
+;; ;; Custom theme
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -82,13 +87,13 @@
  '(custom-button ((t (:background "dark slate gray" :foreground "white" :box (:line-width 2 :style released-button)))))
  '(custom-button-mouse ((t (:background "slate gray" :foreground "white" :box (:line-width 2 :style released-button)))))
  '(custom-button-pressed ((t (:background "dark slate gray" :foreground "white" :box (:line-width 2 :style pressed-button)))))
- '(font-lock-comment-delimiter-face ((t (:inherit font-lock-comment-face :foreground "deep sky blue"))))
- '(font-lock-comment-face ((t (:foreground "deep sky blue"))))
- '(font-lock-doc-face ((t (:inherit font-lock-comment-face))))
- '(font-lock-function-name-face ((t (:foreground "gold"))))
- '(font-lock-keyword-face ((t (:foreground "dark orange"))))
- '(font-lock-string-face ((t (:foreground "deep pink"))))
- '(font-lock-type-face ((t (:inherit bold :foreground "yellow"))))
+ '(font-lock-comment-delimiter-face ((t (:inherit font-lock-comment-face))))
+ '(font-lock-comment-face ((t (:foreground "dark gray"))))
+ '(font-lock-doc-face ((t (:inherit (font-lock-comment-face bold)))))
+ '(font-lock-function-name-face ((t (:foreground "lime green"))))
+ '(font-lock-keyword-face ((t (:foreground "deep pink"))))
+ '(font-lock-string-face ((t (:foreground "light goldenrod"))))
+ '(font-lock-type-face ((t (:inherit bold :foreground "deep sky blue"))))
  '(haskell-interactive-face-garbage ((t (:inherit font-lock-doc-face))))
  '(haskell-interactive-face-result ((t (:inherit font-lock-doc-face))))
  '(haskell-literate-comment-face ((t (:inherit font-lock-comment-face))))
