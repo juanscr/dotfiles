@@ -43,10 +43,14 @@ bindsym --release Print exec scrot 'screenshot_%Y%m%d_%H%M%S.png' -e 'mkdir -p ~
 bindsym --release $mod+Print exec scrot -s 'screenshot_%Y%m%d_%H%M%S.png' -e 'mkdir -p ~/screenshots && mv $f ~/screenshots && xclip -selection clipboard -t image/png -i ~/screenshots/`ls -1 -t ~/screenshots | head -1`' # Area selection
 
 ######## Movement cointainers ########
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+i focus up
-bindsym $mod+l focus right
+### Border sizes
+set $border_max 2
+set $border_min 2
+
+bindsym $mod+j border pixel $border_min; focus left; border pixel $border_max;
+bindsym $mod+k border pixel $border_min; focus down; border pixel $border_max;
+bindsym $mod+i border pixel $border_min; focus up; border pixel $border_max;
+bindsym $mod+l border pixel $border_min; focus right; border pixel $border_max
 
 bindsym $mod+Shift+j move left
 bindsym $mod+Shift+k move down
@@ -170,6 +174,7 @@ bindsym $mod+s exec spotify
 ######## Applications Startup ########
 exec google-chrome
 exec st
+exec emacs --daemon
 
 ######## Wifi applet ########
 exec_always nm-applet
@@ -179,26 +184,27 @@ exec_always nm-applet
 exec --no-startup-id /home/juanscr/.bin/bg.sh
 
 ######## TITLE BAR #########
-for_window [class="^.*"] border pixel 1
+for_window [class="^.*"] border pixel $border_min
 new_window 1pixel
 
 ######## Bar #########
 # Tested with statusline 0.1.13 and i3status 2.11
 hide_edge_borders both
-exec_always compton
+exec compton
 
 # Colors
-set $bg-color 	         #2f343f
+set $bg-color 	         #191c22
+set $bg-color-comp       #3a404e
 set $inactive-bg-color   #2f343f
 set $text-color          #f3f4f5
 set $inactive-text-color #676E7D
-set $urgent-bg-color     #E53935
+set $urgent-bg-color     #b61b17
 
 # window colors
 #                       border              background         text                 indicator
-client.focused          $bg-color           $bg-color          $text-color          #00ff00
-client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00
-client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00
+client.focused          $bg-color           $bg-color-comp     $text-color          #00ff00
+client.unfocused        $bg-color           $bg-color          $inactive-text-color #00ff00
+client.focused_inactive $bg-color           $bg-color          $inactive-text-color #00ff00
 client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
 
 bar {
@@ -210,7 +216,7 @@ bar {
 	    	separator #757575
 		#                  border             background         text
 		focused_workspace  $bg-color          $bg-color          $text-color
-		inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
+		inactive_workspace $bg-color          $bg-color          $inactive-text-color
 		urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
 	}
 }
