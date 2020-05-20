@@ -77,28 +77,8 @@
  '(package-selected-packages (quote (haskell-mode auctex))))
 
 ;; ;; Custom theme
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 107 :width normal :foundry "PfEd" :family "DejaVu Sans Mono"))))
- '(cursor ((t (:background "lime green"))))
- '(custom-button ((t (:background "dark slate gray" :foreground "white" :box (:line-width 2 :style released-button)))))
- '(custom-button-mouse ((t (:background "slate gray" :foreground "white" :box (:line-width 2 :style released-button)))))
- '(custom-button-pressed ((t (:background "dark slate gray" :foreground "white" :box (:line-width 2 :style pressed-button)))))
- '(font-lock-comment-delimiter-face ((t (:inherit font-lock-comment-face))))
- '(font-lock-comment-face ((t (:foreground "dark gray"))))
- '(font-lock-doc-face ((t (:inherit (font-lock-comment-face bold)))))
- '(font-lock-function-name-face ((t (:foreground "lime green"))))
- '(font-lock-keyword-face ((t (:foreground "deep pink"))))
- '(font-lock-string-face ((t (:foreground "light goldenrod"))))
- '(font-lock-type-face ((t (:inherit bold :foreground "deep sky blue"))))
- '(haskell-interactive-face-garbage ((t (:inherit font-lock-doc-face))))
- '(haskell-interactive-face-result ((t (:inherit font-lock-doc-face))))
- '(haskell-literate-comment-face ((t (:inherit font-lock-comment-face))))
- '(haskell-quasi-quote-face ((t (:inherit font-lock-doc-face))))
- '(line-number-current-line ((t (:inherit line-number :background "black" :foreground "blue"))))
- '(link ((t (:foreground "magenta" :underline t))))
- '(mode-line ((t (:background "dark slate gray" :foreground "white" :box (:line-width -1 :style released-button)))))
- '(preview-reference-face ((t nil))))
+(custom-set-faces)
+
+;; Dracula theme
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+(load-theme 'dracula t)
