@@ -173,7 +173,7 @@ bindsym $mod+Return exec st
 bindsym $mod+s exec spotify
 
 ######## Applications Startup ########
-exec google-chrome
+exec brave-browser
 exec st
 exec emacs --daemon
 
