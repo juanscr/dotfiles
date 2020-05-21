@@ -23,10 +23,10 @@ static Shortcut shortcuts[] = {
 	{ ControlMask,          XK_plus,        zoom,           {.f = +2} },
 	{ ControlMask,          XK_minus,       zoom,           {.f = -2} },
 	{ TERMMOD,              XK_R,           zoomreset,      {.f =  0} },
-	{ MODKEY,               XK_w,           clipcopy,       {.i =  0} },
-	{ ControlMask,          XK_y,           clippaste,      {.i =  0} },
-	{ Mod1Mask,             XK_n,           kscrolldown,    {.i =  1} },
-	{ Mod1Mask,             XK_p,           kscrollup,      {.i =  1} },
+	{ MODKEY,               XK_y,           clipcopy,       {.i =  0} },
+	{ ControlMask,          XK_p,           clippaste,      {.i =  0} },
+	{ ControlMask,          XK_j,           kscrolldown,    {.i =  1} },
+	{ ControlMask,          XK_k,           kscrollup,      {.i =  1} },
 };
 
 
