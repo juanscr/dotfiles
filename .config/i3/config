@@ -47,18 +47,18 @@ bindsym --release $mod+Print exec scrot -s 'screenshot_%Y%m%d_%H%M%S.png' -e 'mk
 set $border_max 2
 set $border_min 2
 
-bindsym $mod+j border pixel $border_min; focus left; border pixel $border_max;
-bindsym $mod+k border pixel $border_min; focus down; border pixel $border_max;
-bindsym $mod+i border pixel $border_min; focus up; border pixel $border_max;
+bindsym $mod+h border pixel $border_min; focus left; border pixel $border_max;
+bindsym $mod+j border pixel $border_min; focus down; border pixel $border_max;
+bindsym $mod+k border pixel $border_min; focus up; border pixel $border_max;
 bindsym $mod+l border pixel $border_min; focus right; border pixel $border_max
 
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+i move up
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
 ######## Orientation ########
-bindsym $mod+h split h
+bindsym $mod+g split h
 
 bindsym $mod+v split v
 
