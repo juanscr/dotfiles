@@ -126,6 +126,7 @@ bindsym $mod+Shift+0 move container to workspace $w10
 ######### Apps for Workspaces #########
 # Browser
 assign [class="Google-chrome"] $w1
+assign [class="Brave-browser"] $w1
 
 # Terminal and text editors
 assign [class="Gedit"]          $w2
