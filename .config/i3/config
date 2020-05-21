@@ -23,7 +23,7 @@ bindsym $mod+shift+x exec betterlockscreen -l blur
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 ######## Search for app ########
-bindsym $mod+d exec dmenu_run
+bindsym $mod+d exec "dmenu_run -nf '#F8F8F2' -nb '#282A36' -sb '#6272A4' -sf '#F8F8F2' -fn 'monospace-10' -p 'Search:'"
 
 ######## Amixer controls ########
 # Tested with amixer 1.1.3
@@ -192,31 +192,28 @@ new_window 1pixel
 hide_edge_borders both
 exec compton
 
-# Colors
-set $bg-color 	         #191c22
-set $bg-color-comp       #3a404e
-set $inactive-bg-color   #2f343f
-set $text-color          #f3f4f5
-set $inactive-text-color #676E7D
-set $urgent-bg-color     #b61b17
+# class                 border  bground text    indicator child_border
+client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
+client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
+client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
+client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
+client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
 
-# window colors
-#                       border              background         text                 indicator
-client.focused          $bg-color           $bg-color-comp     $text-color          #00ff00
-client.unfocused        $bg-color           $bg-color          $inactive-text-color #00ff00
-client.focused_inactive $bg-color           $bg-color          $inactive-text-color #00ff00
-client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
+client.background       #F8F8F2
 
 bar {
-        status_command ~/.config/i3/bar
-	font pango: UbuntuMono-regular 10
-	position top
-	colors {
-		background $bg-color
-	    	separator #757575
-		#                  border             background         text
-		focused_workspace  $bg-color          $bg-color          $text-color
-		inactive_workspace $bg-color          $bg-color          $inactive-text-color
-		urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
-	}
+    status_command ~/.config/i3/bar   
+    font pango: UbuntuMono-regular 10
+    position top
+colors {
+    background #282A36
+    statusline #F8F8F2
+    separator  #44475A
+
+    focused_workspace  #44475A #44475A #F8F8F2
+    active_workspace   #282A36 #44475A #F8F8F2
+    inactive_workspace #282A36 #282A36 #BFBFBF
+    urgent_workspace   #FF5555 #FF5555 #F8F8F2
+    binding_mode       #FF5555 #FF5555 #F8F8F2
+  }
 }
