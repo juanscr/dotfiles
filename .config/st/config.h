@@ -20,7 +20,7 @@ float alpha = 0.6;
 static Shortcut shortcuts[] = {
 	/* mask                 keysym          function        argument */
 	{ XK_ANY_MOD,           XK_Break,       sendbreak,      {.i =  0} },
-	{ MODKEY,               XK_equal,       zoom,           {.f = +2} },
+	{ ControlMask,          XK_plus,        zoom,           {.f = +2} },
 	{ ControlMask,          XK_minus,       zoom,           {.f = -2} },
 	{ TERMMOD,              XK_R,           zoomreset,      {.f =  0} },
 	{ MODKEY,               XK_y,           clipcopy,       {.i =  0} },
