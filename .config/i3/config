@@ -142,6 +142,7 @@ assign [class="(?i)libreoffice-calc"]    $w3
 assign [class="(?i)soffice"]             $w3
 assign [class="(?i)libreoffice.*"]       $w3
 assign [class="Ntcardvt"]                $w3
+assign [class="kdenlive"]                $w3
 assign [class="Audacity"]                $w3
 
 # IDEs
@@ -176,6 +177,7 @@ bindsym $mod+s exec spotify
 exec brave-browser
 exec st
 exec emacs --daemon
+exec xrdb /home/juanscr/.config/X11/Xresources
 
 ######## Wifi applet ########
 exec_always nm-applet
