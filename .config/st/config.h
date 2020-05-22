@@ -11,7 +11,7 @@ static char *font = "DejaVu Sans Mono:pixelsize=15:antialias=true:autohint=true"
 static int borderpx = 2;
 
 /* TRANSPARENCY VALUE */
-float alpha = 0.7;
+float alpha = 0.6;
 
 /* KEYBINDINGS - EMACS EMULATION */
 #define MODKEY Mod1Mask                 // Represents Alt
@@ -29,6 +29,45 @@ static Shortcut shortcuts[] = {
 	{ ControlMask,          XK_k,           kscrollup,      {.i =  1} },
 };
 
+/* Dracula color scheme */
+static const char *colorname[] = {
+	/* 8 normal colors */
+    "#101010",
+	"#f07178",
+	"#c3e88d",
+	"#ffcb6b",
+	"#82aaff",
+	"#c792ea",
+	"#89ddff",
+	"#d0d0d0",
+
+	/* 8 bright colors */
+	"#434758",
+	"#ff8b92",
+	"#ddffa7",
+	"#ffe585",
+	"#9cc4ff",
+	"#e1acff",
+	"#a3f7ff",
+	"#ffffff",
+
+	[255] = 0,
+
+	/* more colors can be added after 255 to use with DefaultXX */
+	"#f8f8f2",
+	"#282a36",
+	"#bbc5ff",
+};
+
+
+/*
+ * Colors for:
+ * foreground, background, cursor, reverse cursor
+ */
+unsigned int defaultfg = 256;
+unsigned int defaultbg = 257;
+static unsigned int defaultcs = 258;
+static unsigned int defaultrcs = 0;
 
 /* AUTOMATIC STUFF */
 
@@ -107,45 +146,6 @@ char *termname = "st-256color";
  *	stty tabs
  */
 unsigned int tabspaces = 8;
-
-/* Terminal colors (16 first used in escape sequence) */
-static const char *colorname[] = {
-	/* 8 normal colors */
-	"black",
-	"red3",
-	"green3",
-	"yellow3",
-	"blue2",
-	"magenta3",
-	"cyan3",
-	"gray90",
-
-	/* 8 bright colors */
-	"gray50",
-	"red",
-	"green",
-	"yellow",
-	"#5c5cff",
-	"magenta",
-	"cyan",
-	"white",
-
-	[255] = 0,
-
-	/* more colors can be added after 255 to use with DefaultXX */
-	"#cccccc",
-	"#555555",
-};
-
-
-/*
- * Default colors (colorname index)
- * foreground, background, cursor, reverse cursor
- */
-unsigned int defaultfg = 7;
-unsigned int defaultbg = 0;
-static unsigned int defaultcs = 256;
-static unsigned int defaultrcs = 257;
 
 /*
  * Default shape of cursor
