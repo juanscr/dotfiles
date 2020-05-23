@@ -11,7 +11,7 @@ static char *font = "DejaVu Sans Mono:pixelsize=15:antialias=true:autohint=true"
 static int borderpx = 2;
 
 /* TRANSPARENCY VALUE */
-float alpha = 0.6;
+float alpha = 0.7;
 
 /* KEYBINDINGS - EMACS EMULATION */
 #define MODKEY Mod1Mask                 // Represents Alt
