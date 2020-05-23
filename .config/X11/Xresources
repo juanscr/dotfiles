@@ -1,41 +1,40 @@
 ! Dracula Theme
-! Extracted from: https://gitlab.com/dwt1/dotfiles/-/blob/master/.Xresources
 
 ! Special colors
-*.foreground:   #f8f8f2
-*.background:   #282a36
+*.foreground:   #F8F8F2
+*.background:   #282A36
 *.cursorColor:  #bbc5ff
 *.comment:      #6272a4
 *.selection:    #44475a
 
 ! black
-*.color0:       #101010
-*.color8:       #434758
+*.color0:       #000000
+*.color8:       #4D4D4D
 
 ! red
-*.color1:       #f07178
-*.color9:       #ff8b92
+*.color1:       #FF5555
+*.color9:       #FF6E67
 
 ! green
-*.color2:       #c3e88d
-*.color10:      #ddffa7
+*.color2:       #50FA7B
+*.color10:      #5AF78E
 
 ! yellow
-*.color3:       #ffcb6b
-*.color11:      #ffe585
+*.color3:       #F1FA8C
+*.color11:      #F4F99D
 
 ! blue
-*.color4:       #82aaff
-*.color12:      #9cc4ff
+*.color4:       #BD93D9
+*.color12:      #CAA9FA
 
 ! magenta
-*.color5:       #c792ea
-*.color13:      #e1acff
+*.color5:       #FF79C6
+*.color13:      #FF92D0
 
 ! cyan
-*.color6:       #89ddff
-*.color14:      #a3f7ff
+*.color6:       #8BE9FD
+*.color14:      #9AEDFE
 
 ! white
-*.color7:       #d0d0d0
-*.color15:      #ffffff
+*.color7:       #BFBFBF
+*.color15:      #E6E6E6
