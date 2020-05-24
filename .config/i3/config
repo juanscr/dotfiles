@@ -1,4 +1,4 @@
-########################## i3wm config, tested with i3 4.14.1
+########################## i3wm config, tested with i3 4.17.1
 
 ######## Mod key ########
 set $mod Mod4
