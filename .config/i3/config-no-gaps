@@ -150,9 +150,6 @@ assign [class="(?i)libreoffice-writer$"] $w3
 assign [class="(?i)libreoffice-calc"]    $w3
 assign [class="(?i)soffice"]             $w3
 assign [class="(?i)libreoffice.*"]       $w3
-assign [class="Ntcardvt"]                $w3
-assign [class="kdenlive"]                $w3
-assign [class="Audacity"]                $w3
 
 # IDEs
 assign [class="jetbrains-pycharm-ce"] $w4
@@ -174,6 +171,11 @@ assign [class="Stremio"]      $w6
 # Configuration apps
 assign [class="Pavucontrol"] $w7
 assign [class="Arandr"]      $w7
+
+# Production Apps
+assign [class="Ntcardvt"]                $w8
+assign [class="kdenlive"]                $w8
+assign [class="Audacity"]                $w8
 
 # Background apps
 for_window [class="Spotify"] move to workspace $w10
