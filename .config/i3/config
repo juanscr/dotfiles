@@ -180,6 +180,16 @@ assign [class="Audacity"]                $w8
 # Background apps
 for_window [class="Spotify"] move to workspace $w10
 
+######## Gaps for Workspaces ########
+gaps inner 15
+gaps outer 0
+
+# Have borders when there is more than one app
+smart_borders on
+
+# Remove gaps when there is one app or in tabbed layout
+smart_gaps on
+
 ######## Keybinds for Apps ########
 bindsym $mod+Return exec st
 bindsym $mod+s exec spotify
@@ -199,7 +209,6 @@ exec --no-startup-id /home/juanscr/.bin/bg.sh
 
 ######## TITLE BAR #########
 for_window [class="^.*"] border pixel $border_min
-new_window 1pixel
 
 ######## Bar #########
 # Tested with statusline 0.1.13 and i3status 2.11
