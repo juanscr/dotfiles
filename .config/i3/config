@@ -187,9 +187,6 @@ gaps outer 0
 # Have borders when there is more than one app
 smart_borders on
 
-# Remove gaps when there is one app or in tabbed layout
-smart_gaps on
-
 ######## Keybinds for Apps ########
 bindsym $mod+Return exec st
 bindsym $mod+s exec spotify
@@ -211,10 +208,10 @@ exec --no-startup-id /home/juanscr/.bin/bg.sh
 for_window [class="^.*"] border pixel $border_min
 
 ######## Bar #########
+# Tested with Polybar 3.4.3
 exec_always --no-startup-id $HOME/.config/polybar/launch-bar.sh
 
-# Tested with statusline 0.1.13 and i3status 2.11
-hide_edge_borders both
+# Transparency
 exec compton
 
 # class                 border  bground text    indicator child_border
