@@ -24,6 +24,9 @@
 ; https://www.gnu.org/software/auctex/manual/auctex/Mathematics.html
 (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
 
+(custom-set-variables
+ '(LaTeX-math-abbrev-prefix "¬"))
+
 ;; Reftex mode
 ; https://tex.stackexchange.com/questions/36876/reftex-doesnt-turn-on-automatically-when-loading-auctex-after-upgrade-to-tex-li
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
