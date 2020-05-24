@@ -4,7 +4,7 @@ export PATH=$PATH:/usr/local/bin
 export PATH=$PATH:/home/juanscr/.bin
 
 # Aliases
-alias cgfi="emacs ~/.config/i3/config"
+alias cgfi="emacsclient -c ~/.config/i3/config"
 alias e="emacsclient -c"
 alias lmk="latexmk -pdf"
 
