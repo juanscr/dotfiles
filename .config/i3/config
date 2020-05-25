@@ -145,6 +145,7 @@ assign [class="st-256color"] $w2
 # Viewers and media editors
 assign [class="Evince"]                  $w3
 assign [class="okular"]                  $w3
+assign [class="Zathura"]                 $w3
 assign [class="Inkscape"]                $w3
 assign [class="(?i)libreoffice-writer$"] $w3
 assign [class="(?i)libreoffice-calc"]    $w3
@@ -162,6 +163,7 @@ assign [class="discord"]                   $w5
 assign [class="Microsoft Teams - Preview"] $w5
 assign [class="mpv"]                       $w5
 assign [class="Eog"]                       $w5
+assign [class="Sxiv"]                      $w5
 assign [class="ffplay"]                    $w5
 
 # Installers of media
