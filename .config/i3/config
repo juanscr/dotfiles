@@ -183,11 +183,18 @@ assign [class="Audacity"]                $w8
 for_window [class="Spotify"] move to workspace $w10
 
 ######## Gaps for Workspaces ########
-gaps inner 15
-gaps outer 0
+set $gi 15
+set $go 0
+
+gaps inner $gi
+gaps outer $go
 
 # Have borders when there is more than one app
 smart_borders on
+
+# Toggle gaps
+bindsym $mod+shift+t gaps inner all set $gi, gaps outer all set $g0
+bindsym $mod+t gaps inner all set 0, gaps outer all set 0
 
 ######## Keybinds for Apps ########
 bindsym $mod+Return exec st
