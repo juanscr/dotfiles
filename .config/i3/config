@@ -192,6 +192,7 @@ smart_borders on
 ######## Keybinds for Apps ########
 bindsym $mod+Return exec st
 bindsym $mod+s exec spotify
+bindsym $mod+i exec brave-browser
 
 ######## Applications Startup ########
 exec brave-browser
