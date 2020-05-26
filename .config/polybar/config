@@ -1,21 +1,46 @@
 [colors]
-; The first two numbers represent transparency
-background = #00282A36
-background-alt = #444
+; Transparent and not transparent background
+background     = #B3282A36
+background-alt = #282A36
 
-foreground = #F8F8F2
-foreground-alt = #555
+; Workspaces setups
+focused-ws   = #44475A
+active-ws    = #282A36
+urgent-ws    = #FF5555
+underline-ws = #BBC5FF
 
-primary = #ffb52a
-secondary = #e60053
-alert = #bd2c40
+; Font color
+foreground     = #F8F8F2
+foreground-alt = #BFBFBF
+
+; Possible underline colors
+red     = #FF5555
+green   = #50FA7B
+yellow  = #F1FA8C
+blue    = #BD93D9
+magenta = #FF79C6
+cyan    = #8BE9FD
+
+; TODO : REMOVE THIS COLORS
+primary = #F1FA8C
+secondary = #8BE9FD
+alert = #FF6E67
+
+; Solution for floating bar based on
+; https://bit.ly/2XyRCey
+[sizes]
+bar-width      = 100%
+bar-height     = 30
+bar-offset-x   = 20
+bar-offset-y   = 10
+bar-bottom-gap = 0
 
 ;;;;;;;;;;; MY MAIN BAR FOR I3 ;;;;;;;;;;;;
 [bar/jscbar]
 ; Position Setup
-width = 100%
-height = 27
-radius = 6.0
+width        = ${sizes.bar-width}
+height       = ${sizes.bar-height}
+radius       = 0
 fixed-center = true
 
 ; Color Setup
@@ -24,36 +49,193 @@ foreground = ${colors.foreground}
 
 ; Height for line below numbers
 line-size = 3
-line-color = #f00
 
 ; Spacing around the bar
-border-size = 0
-border-color = ${colors.background}
-padding-left = 0
+;; MODIFY THE SIZES MODULE FOR A BETTER BEHAVIOR
+border-color       = #00000000
+border-right-size  = ${sizes.bar-offset-x}
+border-left-size   = ${sizes.bar-offset-x}
+border-top-size    = ${sizes.bar-offset-y}
+border-bottom-size = ${sizes.bar-bottom-gap}
+
+; Distance of first and last module to bar
+padding-left  = 0
 padding-right = 0
 
-module-margin-left = 1
+; Margin between modules
+module-margin-left  = 2
 module-margin-right = 2
 
-font-0 = fixed:pixelsize=10;1
+; Fonts
+font-0 = DejaVu Sans:size=10;1
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=10;1
+font-3 = FreeMono:pixelsize=11;1
 
 ; Position of each module
-modules-left = i3
-modules-center = memory cpu
-modules-right = xbacklight pulseaudio battery temperature date powermenu
+modules-left   = i3 xwindow
+modules-center = date pulseaudio
+modules-right  = spotify memory cpu battery powermenu
 
+; Position of the tray elements
 tray-position = right
-tray-padding = 2
+tray-padding  = 2
 
-cursor-click = pointer
+cursor-click  = pointer
 cursor-scroll = ns-resize
 
+;;;;;;;;;;; MODULES ;;;;;;;;;;;;
+;;;;;;; PURGED MODULES ;;;;;;;
+; Title of focused window
 [module/xwindow]
 type = internal/xwindow
 label = %title:0:30:...%
 
+; Workspaces names and focus
+[module/i3]
+type   = internal/i3
+format = <label-state> <label-mode>
+
+; Sort workspaces by index
+index-sort = true
+
+; Scroll through workspaces settings
+enable-scroll   = false
+wrapping-scroll = false
+
+; Write only the name of the workspace
+strip-wsnumbers = true
+
+label-mode-padding    = 2
+label-mode-foreground = #000
+label-mode-background = ${colors.primary}
+
+; Settings for focused workspaces
+label-focused            = %name%
+label-focused-background = ${colors.focused-ws}
+label-focused-underline  = ${colors.underline-ws}
+label-focused-padding    = 2
+
+; Settings for unfocused workspaces
+label-unfocused            = %name%
+label-unfocused-padding    = 2
+label-unfocused-foreground = ${colors.foreground-alt}
+
+; Active workspace in different monitor
+label-visible            = %name%
+label-visible-background = ${self.label-focused-background}
+label-visible-underline  = ${self.label-focused-underline}
+label-visible-padding    = ${self.label-focused-padding}
+
+; Urgent workspace
+label-urgent            = %name%
+label-urgent-background = ${colors.urgent-ws}
+label-urgent-padding    = 2
+
+; Spotify custom module based on
+; https://github.com/Jvanrhijn/polybar-spotify
+[module/spotify]
+type = custom/script
+; Interval for update
+interval = 1
+
+; Extract song and artis
+exec               = python /home/juanscr/.config/polybar/spotify_status.py -f '{song}' -t 20
+format-underline   = ${colors.green}
+
+[module/date]
+type = internal/date
+; Tick rate to Update date
+interval = 5
+
+; Date clickable format
+time             = %H:%M
+time-alt         = "%m/%d/%Y"
+format-underline = ${colors.blue}
+label            = %time%
+
+; Cpu usage
+[module/cpu]
+type = internal/cpu
+; Tick to update
+interval = 2
+
+; Prefix and printing
+format-prefix            = "cpu: "
+format-prefix-font       = 4
+format-prefix-foreground = ${colors.foreground-alt}
+format-underline         = ${colors.red}
+label                    = %percentage:2%%
+
+; Ram memory usage
+[module/memory]
+type = internal/memory
+; Tick to update
+interval = 2
+
+; Prefix and printing
+format-prefix            = "mem: "
+format-prefix-font       = 4
+format-prefix-foreground = ${colors.foreground-alt}
+format-underline         = ${colors.cyan}
+label                    = %percentage_used%%
+
+; Volume
+[module/pulseaudio]
+type = internal/pulseaudio
+
+; Formats for muted and not muted
+format-volume           = <label-volume> <bar-volume>
+label-volume            = "vol: "
+label-volume-foreground = ${colors.green}
+format-muted            = <label-muted> <bar-volume>
+label-muted             = ${self.label-volume}
+label-muted-foreground  = ${colors.urgent-ws}
+
+; Bar settings
+bar-volume-width            = 15
+bar-volume-foreground-0     = ${colors.red}
+bar-volume-foreground-1     = ${colors.red}
+bar-volume-foreground-2     = ${colors.green}
+bar-volume-foreground-3     = ${colors.green}
+bar-volume-foreground-4     = ${colors.green}
+bar-volume-foreground-5     = ${colors.red}
+bar-volume-foreground-6     = ${colors.red}
+bar-volume-gradient         = false
+bar-volume-indicator        = |
+bar-volume-indicator-font   = 2
+bar-volume-fill             = ─
+bar-volume-fill-font        = 2
+bar-volume-empty            = ─
+bar-volume-empty-font       = 2
+bar-volume-empty-foreground = ${colors.foreground}
+
+; Battery module
+[module/battery]
+type = internal/battery
+battery = BAT1
+adapter = ACAD
+full-at = 98
+
+; Full label
+label-full              = %percentage%%
+format-full-underline   = ${colors.yellow}
+format-full-prefix      = "bat: "
+format-full-prefix-font = 4
+
+; Charging
+label-charging              = ${self.label-full}
+format-charging-underline   = ${self.format-full-underline}
+format-charging-prefix      = ${self.format-full-prefix}
+format-charging-prefix-font = ${self.format-full-prefix-font}
+
+; Discharging
+label-discharging              = ${self.label-full}
+format-discharging-underline   = ${colors.urgent-ws}
+format-discharging-prefix      = ${self.format-full-prefix}
+format-discharging-prefix-font = ${self.format-full-prefix-font}
+
+;;;;;;; DEFUALT MODULES ;;;;;;;
 [module/xkeyboard]
 type = internal/xkeyboard
 blacklist-0 = num lock
@@ -70,43 +252,7 @@ label-indicator-margin = 1
 label-indicator-background = ${colors.secondary}
 label-indicator-underline = ${colors.secondary}
 
-[module/i3]
-type = internal/i3
-format = <label-state> <label-mode>
-index-sort = true
-wrapping-scroll = false
-
-; Only show workspaces on the same output as the bar
-; pin-workspaces = true
-
-label-mode-padding = 2
-label-mode-foreground = #000
-label-mode-background = ${colors.primary}
-
-; focused = Active workspace on focused monitor
-label-focused = %index%
-label-focused-background = ${colors.background-alt}
-label-focused-underline= ${colors.primary}
-label-focused-padding = 2
-
-; unfocused = Inactive workspace on any monitor
-label-unfocused = %index%
-label-unfocused-padding = 2
-
-; visible = Active workspace on unfocused monitor
-label-visible = %index%
-label-visible-background = ${self.label-focused-background}
-label-visible-underline = ${self.label-focused-underline}
-label-visible-padding = ${self.label-focused-padding}
-
-; urgent = Workspace with urgency hint set
-label-urgent = %index%
-label-urgent-background = ${colors.alert}
-label-urgent-padding = 2
-
-; Separator in between workspaces
-; label-separator = |
-
+; TODO : FIX BACKLIGHT FOR MY PC
 [module/xbacklight]
 type = internal/xbacklight
 
@@ -128,98 +274,6 @@ bar-empty-foreground = ${colors.foreground-alt}
 inherit = module/xbacklight
 type = internal/backlight
 card = intel_backlight
-
-[module/cpu]
-type = internal/cpu
-interval = 2
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #f90000
-label = %percentage:2%%
-
-[module/memory]
-type = internal/memory
-interval = 2
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #4bffdc
-label = %percentage_used%%
-
-[module/date]
-type = internal/date
-; Tick rate to Update date
-interval = 5
-
-; Date format
-date = "%m-%d-%Y"
-time = %H:%M
-
-; Color of foreground and underline
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #000a6cf5
-
-; Label For time
-label = %date%   %time%
-
-[module/pulseaudio]
-type = internal/pulseaudio
-
-format-volume = <label-volume> <bar-volume>
-label-volume = VOL %percentage%%
-label-volume-foreground = ${root.foreground}
-
-label-muted = 🔇 muted
-label-muted-foreground = #666
-
-bar-volume-width = 10
-bar-volume-foreground-0 = #55aa55
-bar-volume-foreground-1 = #55aa55
-bar-volume-foreground-2 = #55aa55
-bar-volume-foreground-3 = #55aa55
-bar-volume-foreground-4 = #55aa55
-bar-volume-foreground-5 = #f5a70a
-bar-volume-foreground-6 = #ff5555
-bar-volume-gradient = false
-bar-volume-indicator = |
-bar-volume-indicator-font = 2
-bar-volume-fill = ─
-bar-volume-fill-font = 2
-bar-volume-empty = ─
-bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground-alt}
-
-[module/battery]
-type = internal/battery
-battery = BAT1
-adapter = ACAD
-full-at = 98
-
-format-charging = <animation-charging> <label-charging>
-format-charging-underline = #ffb52a
-
-format-discharging = <animation-discharging> <label-discharging>
-format-discharging-underline = ${self.format-charging-underline}
-
-format-full-prefix = " "
-format-full-prefix-foreground = ${colors.foreground-alt}
-format-full-underline = ${self.format-charging-underline}
-
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-foreground = ${colors.foreground-alt}
-
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-foreground = ${colors.foreground-alt}
-animation-charging-framerate = 750
-
-animation-discharging-0 = 
-animation-discharging-1 = 
-animation-discharging-2 = 
-animation-discharging-foreground = ${colors.foreground-alt}
-animation-discharging-framerate = 750
 
 [module/temperature]
 type = internal/temperature
