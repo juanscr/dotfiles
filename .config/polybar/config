@@ -75,7 +75,7 @@ font-3 = FreeMono:pixelsize=11;1
 ; Position of each module
 modules-left   = i3 xwindow
 modules-center = date pulseaudio
-modules-right  = spotify memory cpu battery powermenu
+modules-right  = spotify memory cpu battery
 
 ; Position of the tray elements
 tray-position = right
