@@ -8,7 +8,7 @@ alias cgfi="emacs ~/.config/i3/config"
 alias e="emacs"
 alias lmk="latexmk -pdf"
 
-# XDG Aliases
+# XDG Directory compliance
 alias nvidia-settings="nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings"
 
 # Dotfiles backup
@@ -93,5 +93,5 @@ if ! shopt -oq posix; then
 fi
 
 # GHCUP file
-[ -f "${GHCUP_INSTALL_BASE_PREFIX:=$XDG_DATA_HOME}/ghcup/env" ] && \
-source "${GHCUP_INSTALL_BASE_PREFIX:=$XDG_DATA_HOME}/ghcup/env"
+[ -f "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/ghcup/env" ] && \
+source "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/ghcup/env"
