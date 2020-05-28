@@ -41,11 +41,10 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10
 
 ######## Screenshots #########
-# Tested with scroto 0.8
+# Tested with scrot 0.8
 bindsym --release Print exec scrot 'screenshot_%Y%m%d_%H%M%S.png' -e \
 'mkdir -p ~/screenshots && mv $f ~/screenshots && xclip -selection clipboard -t \
 image/png -i ~/screenshots/`ls -1 -t ~/screenshots | head -1`'
-
 
 bindsym --release $mod+Print exec scrot -s 'screenshot_%Y%m%d_%H%M%S.png' \
 -e 'mkdir -p ~/screenshots && mv $f ~/screenshots && xclip -selection clipboard -t \
