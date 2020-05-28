@@ -10,6 +10,7 @@ alias lmk="latexmk -pdf"
 
 # XDG Directory compliance
 alias nvidia-settings="nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings"
+alias wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
 
 # Dotfiles backup
 alias dfiles='/usr/bin/git --git-dir=$HOME/juanscr/dotfiles --work-tree=$HOME'
