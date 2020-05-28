@@ -13,7 +13,7 @@ static int borderpx = 2;
 /* TRANSPARENCY VALUE */
 float alpha = 0.7;
 
-/* KEYBINDINGS - EMACS EMULATION */
+/* KEYBINDINGS - VIM EMULATION */
 #define MODKEY Mod1Mask                 // Represents Alt
 #define TERMMOD (ControlMask|ShiftMask) // Represents Ctrl + Shift
 
@@ -22,11 +22,11 @@ static Shortcut shortcuts[] = {
 	{ XK_ANY_MOD,           XK_Break,       sendbreak,      {.i =  0} },
 	{ ControlMask,          XK_plus,        zoom,           {.f = +2} },
 	{ ControlMask,          XK_minus,       zoom,           {.f = -2} },
-	{ TERMMOD,              XK_R,           zoomreset,      {.f =  0} },
-	{ MODKEY,               XK_y,           clipcopy,       {.i =  0} },
-	{ MODKEY,               XK_p,           clippaste,      {.i =  0} },
-	{ ControlMask,          XK_j,           kscrolldown,    {.i =  1} },
-	{ ControlMask,          XK_k,           kscrollup,      {.i =  1} },
+	{ ControlMask,          XK_r,           zoomreset,      {.f =  0} },
+	{ ControlMask,          XK_y,           clipcopy,       {.i =  0} },
+	{ ControlMask,          XK_p,           clippaste,      {.i =  0} },
+	{ MODKEY,               XK_j,           kscrolldown,    {.i =  1} },
+	{ MODKEY,               XK_k,           kscrollup,      {.i =  1} },
 };
 
 /* Dracula color scheme */
