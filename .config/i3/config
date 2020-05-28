@@ -212,9 +212,6 @@ bindsym $mod+Return exec st
 bindsym $mod+s exec spotify
 bindsym $mod+i exec brave-browser
 
-# Bar: tested with Polybar 3.4.3
-exec_always --no-startup-id $HOME/.config/polybar/launch-bar.sh
-
 ######## Applications Startup ########
 exec brave-browser
 exec st
@@ -230,6 +227,9 @@ exec --no-startup-id /home/juanscr/.bin/bg.sh
 
 # Transparency
 exec compton
+
+# Bar: tested with Polybar 3.4.3
+exec_always --no-startup-id $HOME/.config/polybar/launch-bar.sh
 
 # Dracula theme for containers
 # class                 border  bground text    indicator child_border
