@@ -1,5 +1,0 @@
-#!/bin/bash
-
-# Removes trash from latex.
-rm -- !\(*.tex\|*.png\|*.jpg\|*.bib\)
-
