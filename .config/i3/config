@@ -35,7 +35,7 @@ bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 5%-
 bindsym XF86AudioMute exec amixer -D pulse set Master 1+ toggle
 
 ######## Brightness Control ########
-# Tested with xbacklight 1.2.1
+# Tested with xbacklight 1.2.1 (NOT WORKING ATM)
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10
 
@@ -52,15 +52,17 @@ bindsym --release $mod+Print exec scrot -s 'screenshot_%Y%m%d_%H%M%S.png' \
 image/png -i ~/screenshots/`ls -1 -t ~/screenshots | head -1`'
 
 ######## Movement cointainers ########
-### Border sizes
+# Border sizes
 set $border_max 2
 set $border_min 2
 
+# Change border sizes when changing focus
 bindsym $mod+h border pixel $border_min; focus left; border pixel $border_max;
 bindsym $mod+j border pixel $border_min; focus down; border pixel $border_max;
 bindsym $mod+k border pixel $border_min; focus up; border pixel $border_max;
 bindsym $mod+l border pixel $border_min; focus right; border pixel $border_max
 
+# Movement of containers
 bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
@@ -189,7 +191,11 @@ for_window [class="Eog"] floating enable
 for_window [class="mpv"] floating enable
 for_window [class="Sxiv"] floating enable
 
-######## Gaps for Workspaces ########
+######## Gaps ########
+# Add borders and remove title (Needed for gaps)
+for_window [class="^.*"] border pixel $border_min
+
+# Inner and outer gaps
 set $gi 15
 set $go 0
 
@@ -208,30 +214,26 @@ bindsym $mod+Return exec st
 bindsym $mod+s exec spotify
 bindsym $mod+i exec brave-browser
 
+# Bar: tested with Polybar 3.4.3
+exec_always --no-startup-id $HOME/.config/polybar/launch-bar.sh
+
 ######## Applications Startup ########
 exec brave-browser
 exec st
 exec emacs --daemon
 exec xrdb /home/juanscr/.config/X11/Xresources
 
-######## Wifi applet ########
+# Wifi Applet
 exec_always nm-applet
 
 ######### Cosmethic #########
-######## BG #########
+# Background
 exec --no-startup-id /home/juanscr/.bin/bg.sh
-
-######## TITLE BAR #########
-# Add borders each window
-for_window [class="^.*"] border pixel $border_min
-
-######## Bar #########
-# Tested with Polybar 3.4.3
-exec_always --no-startup-id $HOME/.config/polybar/launch-bar.sh
 
 # Transparency
 exec compton
 
+# Dracula theme for containers
 # class                 border  bground text    indicator child_border
 client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
 client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
