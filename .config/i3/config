@@ -182,6 +182,10 @@ assign [class="Audacity"]                $w8
 # Background apps
 for_window [class="Spotify"] move to workspace $w10
 
+######### Default floating #########
+# Python
+for_window [class="Matplotlib"] floating enable
+
 ######## Gaps for Workspaces ########
 set $gi 15
 set $go 0
@@ -215,6 +219,7 @@ exec_always nm-applet
 exec --no-startup-id /home/juanscr/.bin/bg.sh
 
 ######## TITLE BAR #########
+# Add borders each window
 for_window [class="^.*"] border pixel $border_min
 
 ######## Bar #########
