@@ -181,13 +181,15 @@ assign [class="Ntcardvt"] $w8
 for_window [class="Spotify"] move to workspace $w10
 
 ######### Default floating #########
-# Python
-for_window [class="Matplotlib"] floating enable
-
 # Media
 for_window [class="Eog"] floating enable
 for_window [class="mpv"] floating enable
 for_window [class="Sxiv"] floating enable
+
+# Misc
+for_window [class="Matplotlib"] floating enable
+for_window [class="Nautilus"] floating enable
+for_window [class="Nautilus"] [floating] resize set 1000 600
 
 ######## Gaps ########
 # Add borders and remove title (Needed for gaps)
