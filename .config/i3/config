@@ -158,23 +158,21 @@ assign [class="java-lang-Thread"]     $w4
 assign [class="Java"]                 $w4
 assign [class="Eclipse"]              $w4
 
-# Media and social
+# Social
 assign [class="discord"]                   $w5
 assign [class="Microsoft Teams - Preview"] $w5
-assign [class="mpv"]                       $w5
-assign [class="Eog"]                       $w5
-assign [class="Sxiv"]                      $w5
-assign [class="ffplay"]                    $w5
 
-# Installers of media
+# Media
+assign [class="ffplay"]       $w6
 assign [class="Popcorn-Time"] $w6
 assign [class="Stremio"]      $w6
+assign [class="vlc"]          $w6
 
 # Configuration apps
 assign [class="Pavucontrol"] $w7
 assign [class="Arandr"]      $w7
 
-# Production Apps
+# Production apps
 assign [class="Ntcardvt"]                $w8
 assign [class="kdenlive"]                $w8
 assign [class="Audacity"]                $w8
@@ -185,6 +183,11 @@ for_window [class="Spotify"] move to workspace $w10
 ######### Default floating #########
 # Python
 for_window [class="Matplotlib"] floating enable
+
+# Media
+for_window [class="Eog"] floating enable
+for_window [class="mpv"] floating enable
+for_window [class="Sxiv"] floating enable
 
 ######## Gaps for Workspaces ########
 set $gi 15
