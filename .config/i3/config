@@ -183,6 +183,9 @@ for_window [class="Spotify"] move to workspace $w10
 ######### Default floating #########
 # Media
 for_window [class="Eog"] floating enable
+for_window [class="Inkscape" title="Preferences"] floating enable
+for_window [class="Inkscape" title="Preferences"] [floating] resize set 1000 600 \
+                                                  move position 512 960
 for_window [class="mpv"] floating enable
 for_window [class="Sxiv"] floating enable
 
