@@ -173,9 +173,9 @@ assign [class="Arandr"]      $w7
 assign [class="Pavucontrol"] $w7
 
 # Production apps
-assign [class="Audacity"]                $w8
-assign [class="kdenlive"]                $w8
-assign [class="Ntcardvt"]                $w8
+assign [class="Audacity"] $w8
+assign [class="kdenlive"] $w8
+assign [class="Ntcardvt"] $w8
 
 # Background apps
 for_window [class="Spotify"] move to workspace $w10
