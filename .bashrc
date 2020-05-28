@@ -17,7 +17,16 @@ alias dfiles='/usr/bin/git --git-dir=$HOME/juanscr/dotfiles --work-tree=$HOME'
 # Show user and last directory
 PS1='${debian_chroot:+($debian_chroot)}[\[\033[01;32m\]\u\[\033[00m\] \[\033[01;34m\]\W\[\033[00m\]] '
 
-# APPS VARIABLES
+# Vim-like keybindings
+bind '"\ew": forward-word'
+bind '"\eb": backward-word'
+bind '"\eh": backward-char'
+bind '"\el": forward-char'
+
+bind '"\en": next-history'
+bind '"\ep": previous-history'
+
+# Apps variables
 export BROWSER="/usr/bin/brave-browser"
 
 ############ Automatic Stuff ############
