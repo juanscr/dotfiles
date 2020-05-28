@@ -10,21 +10,22 @@ font pango:UbuntuMono-regular 10
 floating_modifier $mod
 
 ######## I3 default stuff ########
+# Kill window
 bindsym $mod+q kill
 
-######## PC Startup ########
+# Reload i3
 bindsym $mod+Shift+c reload
-
 bindsym $mod+Shift+r restart6
 
-# Install lock screen
+# Lock screen
 bindsym $mod+shift+x exec betterlockscreen -l blur
 
+# Exit i3
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit \
 shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, \
 exit i3' 'i3-msg exit'"
 
-######## Search for app ########
+# Dmenu with Dracula theme
 bindsym $mod+d exec "dmenu_run -nf '#F8F8F2' -nb '#282A36' -sb '#6272A4' -sf \
 '#F8F8F2' -fn 'monospace-10' -p 'Search:'"
 
@@ -41,7 +42,6 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 10
 
 ######## Screenshots #########
 # Tested with scroto 0.8
-
 bindsym --release Print exec scrot 'screenshot_%Y%m%d_%H%M%S.png' -e \
 'mkdir -p ~/screenshots && mv $f ~/screenshots && xclip -selection clipboard -t \
 image/png -i ~/screenshots/`ls -1 -t ~/screenshots | head -1`'
@@ -76,7 +76,6 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
 ######## Layout stuff ########
-# bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
