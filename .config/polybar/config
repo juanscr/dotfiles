@@ -129,11 +129,11 @@ label-mode-background = ${colors.primary}
 label-focused            = %icon%
 label-focused-background = ${colors.focused-ws}
 label-focused-underline  = ${colors.underline-ws}
-label-focused-padding    = 2
+label-focused-padding    = 3
 
 ; Settings for unfocused workspaces
 label-unfocused            = %icon%
-label-unfocused-padding    = 2
+label-unfocused-padding    = 3
 label-unfocused-foreground = ${colors.foreground-alt}
 
 ; Active workspace in different monitor
