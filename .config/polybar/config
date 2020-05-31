@@ -75,7 +75,7 @@ font-3 = FreeMono:pixelsize=11;1
 ; Position of each module
 modules-left   = i3 xwindow
 modules-center = date pulseaudio
-modules-right  = spotify memory cpu battery
+modules-right  = spotify memory cpu light battery
 
 ; Position of the tray elements
 tray-position = right
@@ -85,7 +85,6 @@ cursor-click  = pointer
 cursor-scroll = ns-resize
 
 ;;;;;;;;;;; MODULES ;;;;;;;;;;;;
-;;;;;;; PURGED MODULES ;;;;;;;
 ; Title of focused window
 [module/xwindow]
 type = internal/xwindow
@@ -132,16 +131,29 @@ label-urgent            = %name%
 label-urgent-background = ${colors.urgent-ws}
 label-urgent-padding    = 2
 
+
 ; Spotify custom module based on
 ; https://github.com/Jvanrhijn/polybar-spotify
 [module/spotify]
 type = custom/script
-; Interval for update
-interval = 1
 
-; Extract song and artis
-exec               = python /home/juanscr/.config/polybar/spotify_status.py -f '{song}' -t 20
-format-underline   = ${colors.green}
+; Settings
+interval         = 1
+exec             = python /home/juanscr/.config/polybar/spotify_status.py -f '{song}' -t 20
+format-underline = ${colors.green}
+
+
+; Custom module to monitor brightness
+[module/light]
+type = custom/script
+
+; Settings
+interval                 = 1
+exec                     = light -G | awk  '{printf "%.0f\n", $1}'
+format-underline         = ${colors.blue}
+format-prefix            = "bri: "
+format-prefix-font       = 4
+format-prefix-foreground = ${colors.foreground-alt}
 
 [module/date]
 type = internal/date
@@ -153,6 +165,7 @@ time             = %H:%M
 time-alt         = "%m/%d/%Y"
 format-underline = ${colors.blue}
 label            = %time%
+
 
 ; Cpu usage
 [module/cpu]
@@ -167,6 +180,7 @@ format-prefix-foreground = ${colors.foreground-alt}
 format-underline         = ${colors.red}
 label                    = %percentage:2%%
 
+
 ; Ram memory usage
 [module/memory]
 type = internal/memory
@@ -179,6 +193,7 @@ format-prefix-font       = 4
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline         = ${colors.cyan}
 label                    = %percentage_used%%
+
 
 ; Volume
 [module/pulseaudio]
@@ -194,8 +209,8 @@ label-muted-foreground  = ${colors.urgent-ws}
 
 ; Bar settings
 bar-volume-width            = 15
-bar-volume-foreground-0     = ${colors.red}
-bar-volume-foreground-1     = ${colors.red}
+bar-volume-foreground-0     = ${colors.yellow}
+bar-volume-foreground-1     = ${colors.yellow}
 bar-volume-foreground-2     = ${colors.green}
 bar-volume-foreground-3     = ${colors.green}
 bar-volume-foreground-4     = ${colors.green}
@@ -209,6 +224,7 @@ bar-volume-fill-font        = 2
 bar-volume-empty            = ─
 bar-volume-empty-font       = 2
 bar-volume-empty-foreground = ${colors.foreground}
+
 
 ; Battery module
 [module/battery]
@@ -235,6 +251,7 @@ format-discharging-underline   = ${colors.urgent-ws}
 format-discharging-prefix      = ${self.format-full-prefix}
 format-discharging-prefix-font = ${self.format-full-prefix-font}
 
+
 ;;;;;;; DEFUALT MODULES ;;;;;;;
 [module/xkeyboard]
 type = internal/xkeyboard
@@ -252,28 +269,6 @@ label-indicator-margin = 1
 label-indicator-background = ${colors.secondary}
 label-indicator-underline = ${colors.secondary}
 
-; TODO : FIX BACKLIGHT FOR MY PC
-[module/xbacklight]
-type = internal/xbacklight
-
-format = <label> <bar>
-label = BL
-
-bar-width = 10
-bar-indicator = |
-bar-indicator-foreground = #fff
-bar-indicator-font = 2
-bar-fill = ─
-bar-fill-font = 2
-bar-fill-foreground = #9f78e1
-bar-empty = ─
-bar-empty-font = 2
-bar-empty-foreground = ${colors.foreground-alt}
-
-[module/backlight-acpi]
-inherit = module/xbacklight
-type = internal/backlight
-card = intel_backlight
 
 [module/temperature]
 type = internal/temperature
