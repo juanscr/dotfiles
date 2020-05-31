@@ -36,9 +36,9 @@ bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 5%-
 bindsym XF86AudioMute exec amixer -D pulse set Master 1+ toggle
 
 ######## Brightness Control ########
-# Tested with xbacklight 1.2.1 (NOT WORKING ATM)
-bindsym XF86MonBrightnessUp exec xbacklight -inc 10
-bindsym XF86MonBrightnessDown exec xbacklight -dec 10
+# Tested with light 1.2
+bindsym XF86MonBrightnessUp exec light -A 10
+bindsym XF86MonBrightnessDown exec light -U 10
 
 ######## Screenshots #########
 # Tested with scrot 0.8
