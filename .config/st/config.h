@@ -27,6 +27,8 @@ static Shortcut shortcuts[] = {
 	{ ControlMask,          XK_p,           clippaste,      {.i =  0} },
 	{ MODKEY,               XK_j,           kscrolldown,    {.i =  1} },
 	{ MODKEY,               XK_k,           kscrollup,      {.i =  1} },
+	{ ControlMask,          XK_u,           kscrollup,      {.i = 10} },
+	{ ControlMask,          XK_d,           kscrolldown,    {.i = 10} },
 };
 
 /* Dracula color scheme */
