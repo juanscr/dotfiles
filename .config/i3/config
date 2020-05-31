@@ -73,13 +73,13 @@ bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
 # Orientation of workspace
-bindsym $mod+g split h           # -- horizontal orientation
-bindsym $mod+v split v           # -- vertical orientation
-bindsym $mod+f fullscreen toggle # -- fullscreen mode
+bindsym $mod+g split h
+bindsym $mod+v split v
+bindsym $mod+f fullscreen toggle
 
 # Different layouts
-bindsym $mod+w layout tabbed       # -- tabbed layout
-bindsym $mod+e layout toggle split # -- tiling layout
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
 
 # Floating mode
 bindsym $mod+Shift+space floating toggle
@@ -249,6 +249,7 @@ exec compton
 
 # Bar: tested with Polybar 3.4.3
 exec_always --no-startup-id $HOME/.config/polybar/launch-bar.sh
+exec systemctl --user enable spotify-listener && systemctl --user start spotify-listener
 
 # Dracula theme for containers
 # class                 border  bground text    indicator child_border

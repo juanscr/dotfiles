@@ -37,6 +37,9 @@ bar-bottom-gap = 0
 
 ;;;;;;;;;;; MY MAIN BAR FOR I3 ;;;;;;;;;;;;
 [bar/jscbar]
+; Enable ipc modules
+enable-ipc = true
+
 ; Position Setup
 width        = ${sizes.bar-width}
 height       = ${sizes.bar-height}
@@ -47,7 +50,7 @@ fixed-center = true
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-; Height for line below numbers
+; Height for underline
 line-size = 3
 
 ; Spacing around the bar
@@ -59,27 +62,28 @@ border-top-size    = ${sizes.bar-offset-y}
 border-bottom-size = ${sizes.bar-bottom-gap}
 
 ; Distance of first and last module to bar
-padding-left  = 0
-padding-right = 0
+padding-left  = 3
+padding-right = 3
 
 ; Margin between modules
-module-margin-left  = 2
+module-margin-left  = 3
 module-margin-right = 2
 
 ; Fonts
 font-0 = DejaVu Sans:size=10;1
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=10;1
-font-3 = FreeMono:pixelsize=11;1
+font-3 = FontAwesome:pixelsize=13;1
+font-4 = FontAwesome 5 Free:size=13;1
 
 ; Position of each module
-modules-left   = i3 xwindow
-modules-center = date pulseaudio
-modules-right  = spotify memory cpu light battery
+modules-left   = i3
+modules-center = spotify previous playpause next
+modules-right  = pulseaudio light battery date
 
 ; Position of the tray elements
 tray-position = right
-tray-padding  = 2
+tray-padding  = 3
 
 cursor-click  = pointer
 cursor-scroll = ns-resize
@@ -105,66 +109,99 @@ wrapping-scroll = false
 ; Write only the name of the workspace
 strip-wsnumbers = true
 
+; Symbols for workspaces
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
+ws-icon-6 = 7;
+ws-icon-7 = 8;
+ws-icon-8 = 9;
+ws-icon-9 = 10;
+
 label-mode-padding    = 2
 label-mode-foreground = #000
 label-mode-background = ${colors.primary}
 
 ; Settings for focused workspaces
-label-focused            = %name%
+label-focused            = %icon%
 label-focused-background = ${colors.focused-ws}
 label-focused-underline  = ${colors.underline-ws}
 label-focused-padding    = 2
 
 ; Settings for unfocused workspaces
-label-unfocused            = %name%
+label-unfocused            = %icon%
 label-unfocused-padding    = 2
 label-unfocused-foreground = ${colors.foreground-alt}
 
 ; Active workspace in different monitor
-label-visible            = %name%
+label-visible            = %icon%
 label-visible-background = ${self.label-focused-background}
 label-visible-underline  = ${self.label-focused-underline}
 label-visible-padding    = ${self.label-focused-padding}
 
 ; Urgent workspace
-label-urgent            = %name%
+label-urgent            = %icon%
 label-urgent-background = ${colors.urgent-ws}
 label-urgent-padding    = 2
 
 
 ; Spotify custom module based on
-; https://github.com/Jvanrhijn/polybar-spotify
-[module/spotify]
-type = custom/script
+; https://github.com/mihirlad55/polybar-spotify-module
+[module/previous]
+type = custom/ipc
+format-font = 4
+hook-0 = echo ""
+hook-1 = echo 
+click-left = "spotifyctl -q previous"
 
-; Settings
-interval         = 1
-exec             = python /home/juanscr/.config/polybar/spotify_status.py -f '{song}' -t 20
-format-underline = ${colors.green}
+
+[module/next]
+type = custom/ipc
+format-font = 4
+hook-0 = echo ""
+hook-1 = echo 
+click-left = "spotifyctl -q next"
+
+
+[module/playpause]
+type = custom/ipc
+format-font = 4
+hook-0 = echo ""
+hook-1 = echo 
+hook-2 = echo 
+click-left = "spotifyctl playpause"
+
+
+[module/spotify]
+type = custom/ipc
+format-prefix = "  "
+format-prefix-font = 4
+hook-0 = echo ""
+hook-1 = spotifyctl -q status
 
 
 ; Custom module to monitor brightness
 [module/light]
 type = custom/script
-
 ; Settings
 interval                 = 1
-exec                     = light -G | awk  '{printf "%.0f\n", $1}'
-format-underline         = ${colors.blue}
-format-prefix            = "bri: "
+exec                     = light -G | awk '{printf "%.0f\n", $1}' | awk '{ print $0"%" }'
+format-prefix            = "  "
 format-prefix-font       = 4
 format-prefix-foreground = ${colors.foreground-alt}
 
+
 [module/date]
 type = internal/date
-; Tick rate to Update date
-interval = 5
-
-; Date clickable format
-time             = %H:%M
-time-alt         = "%m/%d/%Y"
-format-underline = ${colors.blue}
-label            = %time%
+; Settings
+interval      = 5
+format-prefix = "  "
+time          = "%H:%M"
+time-alt      = "%m-%d-%Y"
+label         = %time%
 
 
 ; Cpu usage
@@ -200,12 +237,16 @@ label                    = %percentage_used%%
 type = internal/pulseaudio
 
 ; Formats for muted and not muted
-format-volume           = <label-volume> <bar-volume>
-label-volume            = "vol: "
+format-volume           = <ramp-volume>  <bar-volume>
 label-volume-foreground = ${colors.green}
 format-muted            = <label-muted> <bar-volume>
-label-muted             = ${self.label-volume}
+label-muted             = 
 label-muted-foreground  = ${colors.urgent-ws}
+
+; Ramp volume
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
 
 ; Bar settings
 bar-volume-width            = 15
@@ -225,7 +266,6 @@ bar-volume-empty            = ─
 bar-volume-empty-font       = 2
 bar-volume-empty-foreground = ${colors.foreground}
 
-
 ; Battery module
 [module/battery]
 type = internal/battery
@@ -235,22 +275,23 @@ full-at = 98
 
 ; Full label
 label-full              = %percentage%%
-format-full-underline   = ${colors.yellow}
-format-full-prefix      = "bat: "
+format-full-prefix      = " "
 format-full-prefix-font = 4
 
 ; Charging
-label-charging              = ${self.label-full}
-format-charging-underline   = ${self.format-full-underline}
-format-charging-prefix      = ${self.format-full-prefix}
-format-charging-prefix-font = ${self.format-full-prefix-font}
+label-charging  = ${self.label-full}
+format-charging = <ramp-capacity>  <label-charging>
 
 ; Discharging
-label-discharging              = ${self.label-full}
-format-discharging-underline   = ${colors.urgent-ws}
-format-discharging-prefix      = ${self.format-full-prefix}
-format-discharging-prefix-font = ${self.format-full-prefix-font}
+label-discharging  = ${self.label-full}
+format-discharging = <ramp-capacity>  <label-discharging>
 
+; Ramp symbols
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
 
 ;;;;;;; DEFUALT MODULES ;;;;;;;
 [module/xkeyboard]
