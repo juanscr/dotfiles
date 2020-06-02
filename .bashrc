@@ -27,7 +27,7 @@ bind '"\el": forward-char'
 bind '"\en": next-history'
 bind '"\ep": previous-history'
 
-# Apps variables
+# Global Variables
 export BROWSER="/usr/bin/brave-browser"
 
 ############ Automatic Stuff ############
@@ -92,3 +92,7 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+# GHCup installation
+[ -f "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env" ] && \
+source "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env"
