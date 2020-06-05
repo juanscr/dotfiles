@@ -15,14 +15,23 @@ alias wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
 # Dotfiles backup
 alias dfiles='/usr/bin/git --git-dir=$HOME/juanscr/dotfiles --work-tree=$HOME'
 
-# Show user and last directory
-PS1='${debian_chroot:+($debian_chroot)}[\[\033[01;32m\]\u\[\033[00m\] \[\033[01;34m\]\W\[\033[00m\]] '
+# Prompt formatting
+# Chroot standard command
+PS1="${debian_chroot:+($debian_chroot)}"
+
+# User and git
+PS1+="[\[\033[01;32m\]\u\$(__git_ps1 '(%s)')\[\033[00m\] "
+
+# Working directory
+PS1+="\[\033[01;34m\]\W\[\033[00m\]] "
 
 # Vim-like keybindings
 bind '"\ew": forward-word'
 bind '"\eb": backward-word'
 bind '"\eh": backward-char'
 bind '"\el": forward-char'
+bind '"\e$": end-of-line'
+bind '"\e0": beginning-of-line'
 
 bind '"\en": next-history'
 bind '"\ep": previous-history'
