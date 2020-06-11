@@ -197,8 +197,11 @@ for_window [class="Sxiv"] floating enable
 
 # Misc
 for_window [class="Matplotlib"] floating enable
+
 for_window [class="Nautilus"] floating enable
 for_window [class="Nautilus"] [floating] resize set 1000 600
+
+for_window [title="Options Editor"] floating enable
 
 
 # ========== Gaps configuration ==========
