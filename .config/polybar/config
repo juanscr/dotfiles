@@ -47,7 +47,7 @@ radius       = 0
 fixed-center = true
 
 ; Color Setup
-background = ${colors.background}
+background = ${colors.background-alt}
 foreground = ${colors.foreground}
 
 ; Height for underline
