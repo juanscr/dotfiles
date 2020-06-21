@@ -1,7 +1,7 @@
 ;; Set transparency
 ; https://emacs.stackexchange.com/questions/5944/is-there-a-transparent-theme
-(set-frame-parameter (selected-frame) 'alpha '(90 90))
-(add-to-list 'default-frame-alist '(alpha 90 90))
+(set-frame-parameter (selected-frame) 'alpha '(98 98))
+(add-to-list 'default-frame-alist '(alpha 98 98))
 
 ;; Font size change
 (setq doom-font (font-spec :family "monospace" :size 15))
