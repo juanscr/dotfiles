@@ -37,6 +37,16 @@ set clipboard+=unnamedplus
 " Show number lines
 set number
 
-" Trailing white space
+"""""""" Trailing white space
+" Remove TWS function
+function TrimWhiteSpace()
+  %s/\s*$//
+  ''
+endfunction
+
+" Remove TWS after saving
+autocmd BufWritePre * call TrimWhiteSpace()
+
+" Highlight TWS
 highlight RedundantSpaces ctermbg=red guibg=red
 match RedundantSpaces /\s\+$/
