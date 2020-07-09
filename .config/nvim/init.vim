@@ -19,3 +19,8 @@ packadd! dracula
 syntax enable
 colorscheme dracula
 
+"""""""""""""""""""""""""""""
+" Statusline
+"""""""""""""""""""""""""""""
+packadd! lightline
+let g:lightline = { 'colorscheme': 'darcula', }
