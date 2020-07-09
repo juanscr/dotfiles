@@ -9,6 +9,9 @@ set tabstop=4
 " Copy and paste using system clipboard
 set clipboard+=unnamedplus
 
+" Show number lines
+set number number
+
 """""""""""""""""""""""""""""
 " Color scheme dracula
 """""""""""""""""""""""""""""
