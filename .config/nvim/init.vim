@@ -3,21 +3,7 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 """""""""""""""""""""""""""""
-" Tab behavior (Change tabs to spaces)
-"""""""""""""""""""""""""""""
-set expandtab
-set smarttab
-set shiftwidth=4
-set tabstop=4
-
-" Copy and paste using system clipboard
-set clipboard+=unnamedplus
-
-" Show number lines
-set number
-
-"""""""""""""""""""""""""""""
-" Color scheme 
+" Color scheme
 """""""""""""""""""""""""""""
 " Use 256 colors
 set t_Co=256
@@ -35,3 +21,22 @@ colorscheme dracula
 """""""""""""""""""""""""""""
 packadd! lightline
 let g:lightline = { 'colorscheme': 'darcula', }
+
+"""""""""""""""""""""""""""""
+" Editor settings
+"""""""""""""""""""""""""""""
+" Tab settings
+set expandtab
+set smarttab
+set shiftwidth=4
+set tabstop=4
+
+" Copy and paste using system clipboard
+set clipboard+=unnamedplus
+
+" Show number lines
+set number
+
+" Trailing white space
+highlight RedundantSpaces ctermbg=red guibg=red
+match RedundantSpaces /\s\+$/
