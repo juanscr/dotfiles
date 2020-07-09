@@ -1,3 +1,7 @@
+" Default recommended settings
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
 """""""""""""""""""""""""""""
 " Tab behavior (Change tabs to spaces)
 """""""""""""""""""""""""""""
@@ -10,11 +14,18 @@ set tabstop=4
 set clipboard+=unnamedplus
 
 " Show number lines
-set number number
+set number
 
 """""""""""""""""""""""""""""
-" Color scheme dracula
+" Color scheme 
 """""""""""""""""""""""""""""
+" Use 256 colors
+set t_Co=256
+
+" Correctly load theme
+set termguicolors
+
+" Dracula theme package
 packadd! dracula
 syntax enable
 colorscheme dracula
