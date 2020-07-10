@@ -234,6 +234,17 @@ bindsym $mod+Return exec st
 bindsym $mod+s exec spotify
 bindsym $mod+i exec brave-browser
 
+bindsym $mod+Shift+KP_0 exec teams
+bindsym $mod+Shift+KP_1 exec lightworks
+bindsym $mod+Shift+KP_2 exec arandr
+bindsym $mod+Shift+KP_3 exec pavucontrol
+bindsym $mod+Shift+KP_4 exec eclipse
+bindsym $mod+Shift+KP_5 exec pycharm.sh
+bindsym $mod+Shift+KP_6 exec discord
+bindsym $mod+Shift+KP_7 exec emacs
+bindsym $mod+Shift+KP_8 exec Popcorn-Time
+bindsym $mod+Shift+KP_9 exec stremio
+
 # Startup apps
 exec brave-browser
 exec st
