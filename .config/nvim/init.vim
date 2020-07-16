@@ -1,6 +1,6 @@
 " Default recommended settings
-set nocompatible              " be iMproved, required
-filetype off                  " required
+set nocompatible
+filetype off
 
 """""""""""""""""""""""""""""
 " Color scheme
