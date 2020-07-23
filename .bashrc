@@ -7,6 +7,7 @@ export PATH=$PATH:/home/juanscr/.bin
 alias cgfi="emacs ~/.config/i3/config"
 alias e="emacs"
 alias lmk="latexmk -pdf"
+alias sudo="sudo "
 
 # XDG Directory compliance
 alias nvidia-settings="nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings"
