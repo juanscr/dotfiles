@@ -31,8 +31,8 @@ alert = #FF6E67
 [sizes]
 bar-width      = 100%
 bar-height     = 30
-bar-offset-x   = 20
-bar-offset-y   = 10
+bar-offset-x   = 0
+bar-offset-y   = 0
 bar-bottom-gap = 0
 
 ;;;;;;;;;;; MY MAIN BAR FOR I3 ;;;;;;;;;;;;
