@@ -10,6 +10,11 @@ set $mod Mod4
 # Font
 font pango:UbuntuMono-regular 10
 
+# Terminal
+set $term st
+
+# Browser
+set $browser brave-browser
 
 # ========== Basic Behavior ==========
 # Setting the mod key
@@ -238,9 +243,9 @@ bindsym $mod+t gaps inner all set 0, gaps outer all set 0
 
 # ========== Application behavior ==========
 # Keybinds
-bindsym $mod+Return exec st
+bindsym $mod+Return exec $term
 bindsym $mod+s exec spotify
-bindsym $mod+i exec brave-browser
+bindsym $mod+i exec $browser
 
 bindsym $mod+Shift+KP_0 exec teams
 bindsym $mod+Shift+KP_1 exec lightworks
@@ -254,8 +259,8 @@ bindsym $mod+Shift+KP_8 exec Popcorn-Time
 bindsym $mod+Shift+KP_9 exec stremio
 
 # Startup apps
-exec brave-browser
-exec st
+exec $browser
+exec $term
 exec emacs --daemon
 exec xrdb $HOME/.config/X11/Xresources
 
