@@ -26,9 +26,17 @@ bindsym $mod+Shift+r restart6
 bindsym $mod+shift+x exec betterlockscreen -l blur
 
 # Exit i3
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit \
-shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, \
-exit i3' 'i3-msg exit'"
+mode "exit: [l]ogout, [r]eboot, [s]hutdown" {
+  bindsym l exec i3-msg exit
+  bindsym r exec systemctl reboot
+  bindsym s exec systemctl shutdown
+
+  bindsym Escape mode "default"
+  bindsym Return mode "default"
+
+}
+
+bindsym $mod+Shift+e mode "exit: [l]ogout, [r]eboot, [s]hutdown"
 
 # Search for app. Customized to use dracula theme.
 # Tested with dmenu 4.7
