@@ -31,7 +31,10 @@ from libqtile.config import Click, Drag, Group, Key, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 
+# Mod key
 mod = "mod4"
+
+# Terminal
 terminal = "st"
 
 keys = [
@@ -73,7 +76,17 @@ keys = [
         desc="Spawn a command using a prompt widget"),
 ]
 
-groups = [Group(i) for i in "asdfuiop"]
+groups = [("1", "1"),
+          ("2", "2"),
+          ("3", "3"),
+          ("4", "4"),
+          ("5", "5"),
+          ("6", "6"),
+          ("7", "7"),
+          ("8", "8"),
+          ("9", "9"),
+          ("10", "0")]
+groups = list(map(lambda x: Group(x[1], label=x[0]), groups))
 
 for i in groups:
     keys.extend([
