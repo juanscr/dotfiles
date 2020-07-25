@@ -27,7 +27,7 @@
 from typing import List  # noqa: F401
 
 from libqtile import bar, layout, widget
-from libqtile.config import Click, Drag, Group, Key, Screen
+from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 
@@ -76,6 +76,8 @@ keys = [
         desc="Spawn a command using a prompt widget"),
 ]
 
+# ========== Workspace configuration ==========
+# Configuration for workspaces (label, key)
 groups = [("1", "1"),
           ("2", "2"),
           ("3", "3"),
@@ -86,21 +88,73 @@ groups = [("1", "1"),
           ("8", "8"),
           ("9", "9"),
           ("10", "0")]
-groups = list(map(lambda x: Group(x[1], label=x[0]), groups))
+
+# Apps default workspace
+matches = {
+# Browser
+groups[0][0]: [Match(wm_class=["Brave_Browser",
+                               "Google-chrome"])],
+
+# Terminal and text editors
+groups[1][0]: [Match(wm_class="Emacs"),
+               Match(wm_class="Gedit"),
+               Match(wm_class="st-256color")],
+
+# Viewers and media editors
+groups[2][0]: [Match(wm_class="Evince"),
+               Match(wm_class="Inkscape"),
+               Match(title="LibreOffice"),
+               Match(wm_class="libreoffice-calc"),
+               Match(wm_class="libreoffice-writer$"),
+               Match(wm_class="Soffice"),
+               Match(wm_class="okular"),
+               Match(wm_class="Zathura")],
+
+# IDEs
+groups[3][0]: [Match(wm_class="jetbrains-pycharm-ce"),
+               Match(wm_class="java-lang-Thread"),
+               Match(wm_class="Java"),
+               Match(wm_class="Eclipse")],
+
+# Social
+groups[4][0]: [Match(wm_class="discord"),
+               Match(wm_class="Microsoft Teams - Preview")],
+
+# Media
+groups[5][0]: [Match(wm_class="ffplay"),
+               Match(wm_class="Popcorn-Time"),
+               Match(wm_class="Stremio"),
+               Match(wm_class="vlc")],
+
+# Configuration apps
+groups[6][0]: [Match(wm_class="Arandr"),
+               Match(wm_class="Pavucontrol"),
+               Match(wm_class="Lxappearance")],
+
+# Production apps
+groups[7][0]: [Match(wm_class="Audacity"),
+               Match(wm_class="kdenlive"),
+               Match(wm_class="Ntcardvt")],
+
+# Miscellaneous apps
+groups[8][0]: [Match(wm_class="VirtualBox Manager")],
+
+# Background apps
+groups[9][0]: [Match(title="Spotify Premium", wm_class="Spotify")]
+}
+
+# Creation of groups
+groups = list(map(lambda x: Group(x[1], label=x[0], matches=matches[x[0]]), groups))
 
 for i in groups:
     keys.extend([
-        # mod1 + letter of group = switch to group
+        # Keybinds for wokspace
         Key([mod], i.name, lazy.group[i.name].toscreen(),
-            desc="Switch to group {}".format(i.name)),
+            desc="Switch to group {}".format(i.label)),
 
-        # mod1 + shift + letter of group = switch to & move focused window to group
+        # Move windows to workspace
         Key([mod, "shift"], i.name, lazy.window.togroup(i.name, switch_group=True),
             desc="Switch to & move focused window to group {}".format(i.name)),
-        # Or, use below if you prefer not to switch to that group.
-        # # mod1 + shift + letter of group = move focused window to group
-        # Key([mod, "shift"], i.name, lazy.window.togroup(i.name),
-        #     desc="move focused window to group {}".format(i.name)),
     ])
 
 layouts = [
