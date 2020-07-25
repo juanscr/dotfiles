@@ -260,7 +260,7 @@ bindsym $mod+Shift+KP_9 exec stremio
 exec brave-browser
 exec st
 exec emacs --daemon
-exec xrdb /home/juanscr/.config/X11/Xresources
+exec xrdb $HOME/.config/X11/Xresources
 
 # Wifi Applet
 exec_always nm-applet
@@ -268,7 +268,7 @@ exec_always nm-applet
 
 # ========== Aesthetics ==========
 # Background
-exec --no-startup-id /home/juanscr/.bin/bg.sh
+exec --no-startup-id $HOME/.bin/bg.sh
 
 # Transparency
 exec compton
