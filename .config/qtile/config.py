@@ -240,6 +240,8 @@ floating_layout = layout.Floating(float_rules=[
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 
+# ========== Hooks ==========
+# Automatic workspace for apps
 @hook.subscribe.client_new
 def default_workspaces(window):
     for group in groups:
