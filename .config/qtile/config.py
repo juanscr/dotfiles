@@ -26,7 +26,7 @@
 
 from typing import List  # noqa: F401
 
-from libqtile import bar, layout, widget
+from libqtile import bar, hook, layout, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
@@ -148,7 +148,7 @@ groups = list(map(lambda x: Group(x[1], label=x[0], matches=matches[x[0]]), grou
 
 for i in groups:
     keys.extend([
-        # Keybinds for wokspace
+        # Keybinds for each wokspace
         Key([mod], i.name, lazy.group[i.name].toscreen(),
             desc="Switch to group {}".format(i.label)),
 
@@ -239,6 +239,13 @@ floating_layout = layout.Floating(float_rules=[
 ])
 auto_fullscreen = True
 focus_on_window_activation = "smart"
+
+@hook.subscribe.client_new
+def default_workspaces(window):
+    for group in groups:
+        if any(match.compare(window) for match in group.matches):
+            window.togroup(group.label)
+            break
 
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the
