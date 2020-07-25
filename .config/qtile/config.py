@@ -92,7 +92,7 @@ groups = [("1", "1"),
 # Apps default workspace
 matches = {
 # Browser
-groups[0][0]: [Match(wm_class=["Brave_Browser",
+groups[0][0]: [Match(wm_class=["Brave-browser",
                                "Google-chrome"])],
 
 # Terminal and text editors
@@ -248,6 +248,12 @@ def default_workspaces(window):
         if any(match.compare(window) for match in group.matches):
             window.togroup(group.label)
             break
+
+# Spotify assignment
+@hook.subscribe.client_managed
+def assign_spotify(window):
+    if window.window.get_wm_class() == "Spotify":
+        window.togroup(groups[-1].label)
 
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the
