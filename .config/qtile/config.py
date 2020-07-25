@@ -96,51 +96,51 @@ groups[0][0]: [Match(wm_class=["Brave_Browser",
                                "Google-chrome"])],
 
 # Terminal and text editors
-groups[1][0]: [Match(wm_class="Emacs"),
-               Match(wm_class="Gedit"),
-               Match(wm_class="st-256color")],
+groups[1][0]: [Match(wm_class=["Emacs",
+                               "Gedit",
+                               "st-256color"])],
 
 # Viewers and media editors
-groups[2][0]: [Match(wm_class="Evince"),
-               Match(wm_class="Inkscape"),
-               Match(title="LibreOffice"),
-               Match(wm_class="libreoffice-calc"),
-               Match(wm_class="libreoffice-writer$"),
-               Match(wm_class="Soffice"),
-               Match(wm_class="okular"),
-               Match(wm_class="Zathura")],
+groups[2][0]: [Match(title=["LibreOffice"],
+                     wm_class=["Evince",
+                               "Inkscape",
+                               "libreoffice-calc",
+                               "libreoffice-writer$",
+                               "Soffice",
+                               "okular",
+                               "Zathura"])],
 
 # IDEs
-groups[3][0]: [Match(wm_class="jetbrains-pycharm-ce"),
-               Match(wm_class="java-lang-Thread"),
-               Match(wm_class="Java"),
-               Match(wm_class="Eclipse")],
+groups[3][0]: [Match(wm_class=["jetbrains-pycharm-ce",
+                               "java-lang-Thread",
+                               "Java",
+                               "Eclipse"])],
 
 # Social
-groups[4][0]: [Match(wm_class="discord"),
-               Match(wm_class="Microsoft Teams - Preview")],
+groups[4][0]: [Match(wm_class=["discord",
+                               "Microsoft Teams - Preview"])],
 
 # Media
-groups[5][0]: [Match(wm_class="ffplay"),
-               Match(wm_class="Popcorn-Time"),
-               Match(wm_class="Stremio"),
-               Match(wm_class="vlc")],
+groups[5][0]: [Match(wm_class=["ffplay",
+                               "Popcorn-Time",
+                               "Stremio",
+                               "vlc"])],
 
 # Configuration apps
-groups[6][0]: [Match(wm_class="Arandr"),
-               Match(wm_class="Pavucontrol"),
-               Match(wm_class="Lxappearance")],
+groups[6][0]: [Match(wm_class=["Arandr",
+                               "Pavucontrol",
+                               "Lxappearance"])],
 
 # Production apps
-groups[7][0]: [Match(wm_class="Audacity"),
-               Match(wm_class="kdenlive"),
-               Match(wm_class="Ntcardvt")],
+groups[7][0]: [Match(wm_class=["Audacity",
+                               "kdenlive",
+                               "Ntcardvt"])],
 
 # Miscellaneous apps
-groups[8][0]: [Match(wm_class="VirtualBox Manager")],
+groups[8][0]: [Match(wm_class=["VirtualBox Manager"])],
 
 # Background apps
-groups[9][0]: [Match(title="Spotify Premium", wm_class="Spotify")]
+groups[9][0]: [Match(title=["Spotify Premium"], wm_class=["Spotify"])]
 }
 
 # Creation of groups
