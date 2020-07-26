@@ -237,8 +237,9 @@ label                    = %percentage_used%%
 type = internal/pulseaudio
 
 ; Formats for muted and not muted
-format-volume           = <ramp-volume>  <bar-volume>
-label-volume-foreground = ${colors.green}
+format-volume           = <ramp-volume>  <label-volume>
+label-volume            = %percentage%%
+label-volume-foreground = ${colors.foreground}
 format-muted            = <label-muted> <bar-volume>
 label-muted             = 
 label-muted-foreground  = ${colors.urgent-ws}
