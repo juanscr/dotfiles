@@ -142,16 +142,28 @@ bindsym $mod+9 workspace number $w9
 bindsym $mod+0 workspace number $w10
 
 # Move windows to workpsace
-bindsym $mod+Shift+1 move container to workspace $w1
-bindsym $mod+Shift+2 move container to workspace $w2
-bindsym $mod+Shift+3 move container to workspace $w3
-bindsym $mod+Shift+4 move container to workspace $w4
-bindsym $mod+Shift+5 move container to workspace $w5
-bindsym $mod+Shift+6 move container to workspace $w6
-bindsym $mod+Shift+7 move container to workspace $w7
-bindsym $mod+Shift+8 move container to workspace $w8
-bindsym $mod+Shift+9 move container to workspace $w9
-bindsym $mod+Shift+0 move container to workspace $w10
+bindsym $mod+Ctrl+1 move container to workspace $w1;
+bindsym $mod+Ctrl+2 move container to workspace $w2;
+bindsym $mod+Ctrl+3 move container to workspace $w3;
+bindsym $mod+Ctrl+4 move container to workspace $w4;
+bindsym $mod+Ctrl+5 move container to workspace $w5;
+bindsym $mod+Ctrl+6 move container to workspace $w6;
+bindsym $mod+Ctrl+7 move container to workspace $w7;
+bindsym $mod+Ctrl+8 move container to workspace $w8;
+bindsym $mod+Ctrl+9 move container to workspace $w9;
+bindsym $mod+Ctrl+0 move container to workspace $w10
+
+# Move windows to workpsace and focus
+bindsym $mod+Shift+1 move container to workspace $w1; workspace $w1
+bindsym $mod+Shift+2 move container to workspace $w2; workspace $w2
+bindsym $mod+Shift+3 move container to workspace $w3; workspace $w3
+bindsym $mod+Shift+4 move container to workspace $w4; workspace $w4
+bindsym $mod+Shift+5 move container to workspace $w5; workspace $w5
+bindsym $mod+Shift+6 move container to workspace $w6; workspace $w6
+bindsym $mod+Shift+7 move container to workspace $w7; workspace $w7
+bindsym $mod+Shift+8 move container to workspace $w8; workspace $w8
+bindsym $mod+Shift+9 move container to workspace $w9; workspace $w9
+bindsym $mod+Shift+0 move container to workspace $w10; workspace $w10
 
 # Apps default worskpace
 # Browser
@@ -182,6 +194,7 @@ assign [class="Eclipse"]              $w4
 # Social
 assign [class="discord"]                   $w5
 assign [class="Microsoft Teams - Preview"] $w5
+assign [class"zoom"]                       $w5
 
 # Media
 assign [class="ffplay"]       $w6
