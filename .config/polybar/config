@@ -72,7 +72,7 @@ font-2 = FontAwesome 5 Free:size=13;1
 ; Position of each module
 modules-left   = i3
 modules-center = spotify previous playpause next
-modules-right  = pulseaudio light battery date
+modules-right  = cpu memory pulseaudio light battery date
 
 ; Position of the tray elements
 tray-position = right
@@ -203,13 +203,29 @@ type = internal/cpu
 ; Tick to update
 interval = 2
 
-; Prefix and printing
-format-prefix            = "cpu: "
-format-prefix-font       = 4
+; Formatting
+format-prefix            = "CPU "
+format-prefix-font       = 1
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline         = ${colors.red}
-label                    = %percentage:2%%
+format                   = <ramp-coreload>
 
+; Ramp settings
+ramp-coreload-0 = ▁
+ramp-coreload-0-foreground = ${colors.green}
+ramp-coreload-1 = ▂
+ramp-coreload-1-foreground = ${colors.green}
+ramp-coreload-2 = ▃
+ramp-coreload-2-foreground = ${colors.green}
+ramp-coreload-3 = ▄
+ramp-coreload-3-foreground = ${colors.green}
+ramp-coreload-4 = ▅
+ramp-coreload-4-foreground = ${colors.yellow}
+ramp-coreload-5 = ▆
+ramp-coreload-5-foreground = ${colors.yellow}
+ramp-coreload-6 = ▇
+ramp-coreload-6-foreground = ${colors.red}
+ramp-coreload-7 = █
+ramp-coreload-7-foreground = ${colors.red}
 
 ; Ram memory usage
 [module/memory]
@@ -217,12 +233,11 @@ type = internal/memory
 ; Tick to update
 interval = 2
 
-; Prefix and printing
-format-prefix            = "mem: "
-format-prefix-font       = 4
+; Formatting
+format-prefix            = "CPU "
+format-prefix-font       = 1
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline         = ${colors.cyan}
-label                    = %percentage_used%%
+format                   = <ramp-coreload>
 
 
 ; Volume
