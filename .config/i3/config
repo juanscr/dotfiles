@@ -277,7 +277,6 @@ exec compton
 
 # Bar: tested with Polybar 3.4.3
 exec_always --no-startup-id $HOME/.config/polybar/launch-bar.sh
-exec systemctl --user enable spotify-listener && systemctl --user start spotify-listener
 
 # Dracula theme for containers
 # class                 border  bground text    indicator child_border
