@@ -226,7 +226,7 @@ set $border 2
 for_window [class="^.*"] border pixel $border
 
 # Inner and outer gaps
-set $gi 15
+set $gi 10
 set $go 0
 
 # Set gaps
