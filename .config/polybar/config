@@ -183,8 +183,8 @@ type = custom/script
 interval                 = 1
 exec                     = light -G | awk '{printf "%.0f\n", $1}' | awk '{ print $0"%" }'
 format-prefix            = "  "
-format-prefix-font       = 4
-format-prefix-foreground = ${colors.foreground-alt}
+format-prefix-font       = 2
+format-prefix-foreground = ${colors.foreground}
 
 
 [module/date]
