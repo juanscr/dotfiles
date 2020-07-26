@@ -122,8 +122,8 @@ ws-icon-8 = 9;
 ws-icon-9 = 10;
 
 label-mode-padding    = 2
-label-mode-foreground = #000
-label-mode-background = ${colors.primary}
+label-mode-foreground = ${colors.foreground}
+label-mode-background = ${colors.focused-ws}
 
 ; Settings for focused workspaces
 label-focused            = %icon%
