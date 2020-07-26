@@ -71,10 +71,8 @@ module-margin-right = 2
 
 ; Fonts
 font-0 = DejaVu Sans:size=10;1
-font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-2 = siji:pixelsize=10;1
-font-3 = FontAwesome:pixelsize=13;1
-font-4 = FontAwesome 5 Free:size=13;1
+font-1 = FontAwesome:pixelsize=13;1
+font-2 = FontAwesome 5 Free:size=13;1
 
 ; Position of each module
 modules-left   = i3
