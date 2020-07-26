@@ -150,7 +150,7 @@ label-urgent-padding    = 2
 ; https://github.com/mihirlad55/polybar-spotify-module
 [module/previous]
 type        = custom/ipc
-format-font = 2
+format-font = 3
 hook-0      = echo ""
 hook-1      = echo 
 click-left  = "spotifyctl -q previous"
@@ -158,7 +158,7 @@ click-left  = "spotifyctl -q previous"
 
 [module/next]
 type        = custom/ipc
-format-font = 2
+format-font = 3
 hook-0      = echo ""
 hook-1      = echo 
 click-left  = "spotifyctl -q next"
@@ -166,7 +166,7 @@ click-left  = "spotifyctl -q next"
 
 [module/playpause]
 type        = custom/ipc
-format-font = 2
+format-font = 3
 hook-0      = echo ""
 hook-1      = echo 
 hook-2      = echo 
