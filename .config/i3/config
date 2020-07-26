@@ -70,6 +70,7 @@ bindsym --release $mod+Print exec scrot -s 'screenshot_%Y%m%d_%H%M%S.png' \
 image/png -i ~/screenshots/`ls -1 -t ~/screenshots | head -1`'
 
 # Media player controls
+# Used with https://bit.ly/3hAVW5x
 bindsym XF86AudioPlay exec spotifyctl playpause
 bindsym XF86AudioNext exec spotifyctl next
 bindsym XF86AudioPrev exec spotifyctl previous
