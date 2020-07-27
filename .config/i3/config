@@ -31,10 +31,10 @@ bindsym $mod+Shift+r restart6
 bindsym $mod+shift+x exec betterlockscreen -l blur
 
 # Exit i3
-mode "exit: [l]ogout, [r]eboot, [s]hutdown" {
+mode "exit: [l]ogout, [r]eboot, [p]oweroff" {
   bindsym l exec i3-msg exit
   bindsym r exec systemctl reboot
-  bindsym s exec systemctl shutdown
+  bindsym p exec systemctl poweroff
 
   bindsym Escape mode "default"
   bindsym Return mode "default"
