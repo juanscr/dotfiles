@@ -39,7 +39,7 @@ mode "exit: [l]ogout, [r]eboot, [p]oweroff" {
   bindsym Escape mode "default"
   bindsym Return mode "default"
 }
-bindsym $mod+Shift+e mode "exit: [l]ogout, [r]eboot, [s]hutdown"
+bindsym $mod+Shift+e mode "exit: [l]ogout, [r]eboot, [p]oweroff"
 
 # Search for app. Customized to use dracula theme.
 # Tested with dmenu 4.7
