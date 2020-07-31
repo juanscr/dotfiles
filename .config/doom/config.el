@@ -23,3 +23,7 @@
 ; https://tex.stackexchange.com/questions/36876/reftex-doesnt-turn-on-automatically-when-loading-auctex-after-upgrade-to-tex-li
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
 (setq reftex-plug-into-AUCTeX t)
+
+;; Inline images notebook
+; https://github.com/hlissner/doom-emacs/issues/2545
+(setq ein:output-area-inlined-images t)
