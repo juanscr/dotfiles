@@ -3,6 +3,10 @@
 (defun set-tex-input ()
   (set-input-method "TeX"))
 
+;; Deactivate input method when active
+(defun no-tex-input ()
+  (toggle-input-method))
+
 ;; Line numbers
 (defun display-nums-white()
   (setq display-line-numbers t)
@@ -39,3 +43,6 @@
 ; Increase size of equations https://bit.ly/3gliSF3
 (setq org-format-latex-options (plist-put
 org-format-latex-options :scale 2.0))
+
+;; Do not have input method in org mode
+(add-hook 'org-mode-hook 'no-tex-input)
