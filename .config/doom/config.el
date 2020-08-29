@@ -34,8 +34,11 @@
 (setq reftex-plug-into-AUCTeX t)
 
 ; ==== Emacs IPython notebook ==== ;
-;; Inline images notebook https://github.com/hlissner/doom-emacs/issues/2545
+;; Inline images notebook https://bit.ly/2YNUoy3
 (setq ein:output-area-inlined-images t)
+
+;; Enable undo https://bit.ly/31FfBvZ
+(setq ein:worksheet-enable-undo t)
 
 ; ==== Org mode ==== ;
 (require 'org)
