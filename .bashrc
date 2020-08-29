@@ -42,12 +42,18 @@ function gitd() {
     git "$@"
   fi
 }
+function pullCheck() {
+  branch=$(gitd branch -l | awk '/^\*.*/{ print $2 }')
+  gitd checkout $1 && gitd pull && gitd checkout $branch
+}
 alias ga='gitd add'
 alias gc='gitd checkout'
 alias gca='gitd commit -a'
 alias gcm='gitd commit -m'
 alias gd='gitd diff'
 alias gp='gitd push'
+alias gpc='pullCheck '
+alias gpl='gitd pull'
 alias gs='gitd status'
 
 # ==== Global Variables ==== #
