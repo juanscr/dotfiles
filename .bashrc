@@ -34,6 +34,8 @@ alias wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
 # ==== Git ==== #
 alias dfiles='/usr/bin/git --git-dir=$HOME/juanscr/dotfiles --work-tree=$HOME'
 
+# Function which calls git, if inside a repository or my dotfiles alias
+# otherwise.
 function gitd() {
   if ! git rev-parse --git-dir &>/dev/null
   then
@@ -42,10 +44,14 @@ function gitd() {
     git "$@"
   fi
 }
+
+# Function that pulls an specific branch from git.
 function pullCheck() {
   branch=$(gitd branch -l | awk '/^\*.*/{ print $2 }')
-  gitd checkout $1 && gitd pull && gitd checkout $branch
+  gitd checkout $1 && gitd pull
+  gitd checkout $branch &>/dev/null
 }
+
 alias ga='gitd add'
 alias gc='gitd checkout'
 alias gca='gitd commit -a'
