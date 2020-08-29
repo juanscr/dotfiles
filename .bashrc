@@ -2,6 +2,7 @@
 # Path changes
 export PATH=$PATH:/usr/local/bin
 export PATH=$PATH:/home/juanscr/.bin
+export PATH=$PATH:$HOME/src/sfw/MPICH/bin
 
 # Aliases
 alias cgfi="emacs ~/.config/i3/config"
