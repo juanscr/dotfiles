@@ -4,8 +4,9 @@
   (set-input-method "TeX"))
 
 ;; Line numbers
-(defun display-nums()
-  (setq display-line-numbers t))
+(defun display-nums-white()
+  (setq display-line-numbers t)
+  (setq show-trailing-whitespace t))
 
 ; ============ BASE EDITOR ============ ;
 ;; Font size
@@ -14,17 +15,14 @@
 ;; Theme selection
 (setq doom-theme 'doom-dracula)
 
-;; Show trailing whitespace
-(setq-default show-trailing-whitespace t)
-
 ; ============ MODES ============ ;
 ; ==== Text mode ==== ;
 (add-hook 'text-mode-hook 'flyspell-mode)
 (add-hook 'text-mode-hook 'set-tex-input)
-(add-hook 'text-mode-hook 'display-nums)
+(add-hook 'text-mode-hook 'display-nums-white)
 
 ; ==== Programming mode ==== ;
-(add-hook 'prog-mode 'display-nums)
+(add-hook 'prog-mode-hook 'display-nums-white)
 
 ; ==== LaTeX mode ==== ;
 ;; Turn on reftex https://bit.ly/3gIgKHD
