@@ -1,29 +1,38 @@
-;; Font size change
+; ============ BASE EDITOR ============ ;
+;; Font size
 (setq doom-font (font-spec :family "monospace" :size 15))
 
 ;; Theme selection
 (setq doom-theme 'doom-dracula)
 
 ;; Show lines and columns
-(setq display-line-numbers t)
+(setq-default display-line-numbers t)
 
 ;; Show trailing whitespace
 (setq-default show-trailing-whitespace t)
 
-;;;;;;;;; MODES ;;;;;;;;;
-;; Spell check
+; ============ BASIC FUNCTIONS ============ ;
+;; TeX input method
+(defun set-tex-input ()
+    (set-input-method "TeX"))
+
+; ============ MODES ============ ;
+; ==== Text mode ==== ;
 (add-hook 'text-mode-hook 'flyspell-mode)
-(add-hook 'prog-mode-hook 'flyspell-prog-mode)
+(add-hook 'text-mode-hook 'set-tex-input)
 
-;; Math mode
-; https://www.gnu.org/software/auctex/manual/auctex/Mathematics.html
-(add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
-
-;; Reftex mode
-; https://tex.stackexchange.com/questions/36876/reftex-doesnt-turn-on-automatically-when-loading-auctex-after-upgrade-to-tex-li
+; ==== LaTeX mode ==== ;
+;; Turn on reftex https://bit.ly/3gIgKHD
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
 (setq reftex-plug-into-AUCTeX t)
 
-;; Inline images notebook
-; https://github.com/hlissner/doom-emacs/issues/2545
+; ==== Emacs IPython notebook ==== ;
+;; Inline images notebook https://github.com/hlissner/doom-emacs/issues/2545
 (setq ein:output-area-inlined-images t)
+
+; ==== Org mode ==== ;
+(require 'org)
+
+; Increase size of equations https://bit.ly/3gliSF3
+(setq org-format-latex-options (plist-put
+org-format-latex-options :scale 2.0))
