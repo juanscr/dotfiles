@@ -1,3 +1,12 @@
+; ============ BASIC FUNCTIONS ============ ;
+;; TeX input method
+(defun set-tex-input ()
+  (set-input-method "TeX"))
+
+;; Line numbers
+(defun display-nums()
+  (setq display-line-numbers t))
+
 ; ============ BASE EDITOR ============ ;
 ;; Font size
 (setq doom-font (font-spec :family "monospace" :size 15))
@@ -5,21 +14,17 @@
 ;; Theme selection
 (setq doom-theme 'doom-dracula)
 
-;; Show lines and columns
-(setq-default display-line-numbers t)
-
 ;; Show trailing whitespace
 (setq-default show-trailing-whitespace t)
-
-; ============ BASIC FUNCTIONS ============ ;
-;; TeX input method
-(defun set-tex-input ()
-    (set-input-method "TeX"))
 
 ; ============ MODES ============ ;
 ; ==== Text mode ==== ;
 (add-hook 'text-mode-hook 'flyspell-mode)
 (add-hook 'text-mode-hook 'set-tex-input)
+(add-hook 'text-mode-hook 'display-nums)
+
+; ==== Programming mode ==== ;
+(add-hook 'prog-mode 'display-nums)
 
 ; ==== LaTeX mode ==== ;
 ;; Turn on reftex https://bit.ly/3gIgKHD

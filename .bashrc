@@ -55,6 +55,7 @@ function pullCheck() {
 alias ga='gitd add'
 alias gc='gitd checkout'
 alias gca='gitd commit -a'
+alias gcl='git clone'
 alias gcm='gitd commit -m'
 alias gd='gitd diff'
 alias gp='gitd push'
