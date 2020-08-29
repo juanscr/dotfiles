@@ -138,7 +138,7 @@ label-visible-padding    = ${self.label-focused-padding}
 ; Urgent workspace
 label-urgent            = %icon%
 label-urgent-background = ${colors.urgent-ws}
-label-urgent-padding    = 2
+label-urgent-padding    = 3
 
 
 ; Spotify custom module based on
