@@ -61,6 +61,7 @@ alias gd='gitd diff'
 alias gp='gitd push'
 alias gpc='pullCheck '
 alias gpl='gitd pull'
+alias gr='gitd rm'
 alias gs='gitd status'
 
 # ==== Global Variables ==== #
