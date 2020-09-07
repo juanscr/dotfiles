@@ -38,7 +38,7 @@
 (setq ein:output-area-inlined-images t)
 
 ;; Enable undo https://bit.ly/31FfBvZ
-(setq ein:worksheet-enable-undo t)
+(setq-default ein:worksheet-enable-undo t)
 
 ; ==== Org mode ==== ;
 (require 'org)
