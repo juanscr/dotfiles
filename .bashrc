@@ -2,6 +2,7 @@
 export PATH=$PATH:/usr/local/bin
 export PATH=$PATH:$HOME/.bin
 export PATH=$PATH:$HOME/src/sfw/MPICH/bin
+export PATH=$PATH:$XDG_DATA_HOME/cargo/bin
 
 # ============ ALIASES ============ #
 # ==== Files ==== #
