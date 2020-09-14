@@ -1,6 +1,6 @@
 # ============ PATH CHANGES ============ #
 export PATH=$PATH:/usr/local/bin
-export PATH=$PATH:/home/juanscr/.bin
+export PATH=$PATH:$HOME/.bin
 export PATH=$PATH:$HOME/src/sfw/MPICH/bin
 
 # ============ ALIASES ============ #
@@ -110,5 +110,3 @@ HISTCONTROL=ignoreboth
 
 # ==== Resizing ==== #
 shopt -s checkwinsize
-
-
