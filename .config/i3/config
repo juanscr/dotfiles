@@ -214,6 +214,7 @@ assign [class="Ntcardvt"] $w8
 
 # Miscellaneous apps
 assign [class="VirtualBox Manager"] $w9
+assign [class=="Steam"]             $w9
 
 # Background apps
 for_window [class="Spotify"] move to workspace $w10
