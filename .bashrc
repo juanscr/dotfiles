@@ -78,19 +78,11 @@ source "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env"
 PS1="${debian_chroot:+($debian_chroot)}"
 
 # User and git
+source /usr/share/git/completion/git-prompt.sh
 PS1+="[\[\033[01;32m\]\u\$(__git_ps1 '(%s)')\[\033[00m\] "
 
 # Working directory
 PS1+="\[\033[01;34m\]\W\[\033[00m\]] "
-
-# Necessary for git_ps1 to work
-if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
-fi
 
 # ==== Keybindings ==== #
 bind '"\ew": forward-word'
