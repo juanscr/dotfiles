@@ -170,4 +170,4 @@ key_bindings:
   - { key: U,        mods: Control,       action: ScrollPageUp     }
   - { key: D,        mods: Control,       action: ScrollPageDown   }
   - { key: G,        mods: Control,       action: ScrollToTop,     }
-  - { key: G,        mods: Shift,         action: ScrollToBottom,  }
+  - { key: G,        mods: Control|Shift, action: ScrollToBottom,  }
