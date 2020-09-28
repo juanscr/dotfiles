@@ -8,13 +8,13 @@
 set $mod Mod4
 
 # Font
-font pango:UbuntuMono-regular 10
+font pango:DejaVu Sans 10
 
 # Terminal
 set $term st
 
 # Browser
-set $browser brave-browser
+set $browser brave
 
 # ========== Basic Behavior ==========
 # Setting the mod key
@@ -50,9 +50,9 @@ bindsym $mod+d exec "dmenu_run -nf '#F8F8F2' -nb '#282A36' -sb '#6272A4' -sf \
 # ========== Media controls ==========
 # Volume control
 # Tested with amixer 1.1.3
-bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 5%+
-bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 5%-
-bindsym XF86AudioMute exec amixer -D pulse set Master 1+ toggle
+bindsym XF86AudioRaiseVolume exec pamixer -i 5
+bindsym XF86AudioLowerVolume exec pamixer -d 5
+bindsym XF86AudioMute exec pamixer -t
 
 # Brightness control
 # Tested with light 1.2
@@ -230,8 +230,7 @@ for_window [class="Sxiv"] floating enable
 # Misc
 for_window [class="Matplotlib"] floating enable
 
-for_window [class="Nautilus"] floating enable
-for_window [class="Nautilus"] [floating] resize set 1000 600
+for_window [class="Thunar"] floating enable
 
 for_window [title="Options Editor"] floating enable
 
@@ -291,7 +290,7 @@ exec_always nm-applet
 exec --no-startup-id $HOME/.bin/bg.sh
 
 # Transparency
-exec compton
+exec_always picom
 
 # Bar: tested with Polybar 3.4.3
 exec_always --no-startup-id $HOME/.config/polybar/launch-bar.sh
