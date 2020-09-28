@@ -14,7 +14,8 @@
 
 ; ============ BASE EDITOR ============ ;
 ;; Font size
-(setq doom-font (font-spec :family "monospace" :size 15))
+(setq doom-font (font-spec :family "DejaVu Sans Mono" :size 15)
+      doom-variable-pitch-font (font-spec :family "DejaVu Sans Mono" :size 15))
 
 ;; Theme selection
 (setq doom-theme 'doom-dracula)
