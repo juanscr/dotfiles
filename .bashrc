@@ -15,18 +15,15 @@ alias lmk="latexmk -pdf"
 
 alias sudo="sudo "
 
+export LC_ALL="C"
+alias ls='ls-icons'
 alias ll='ls -alF'
 alias la='ls -A'
 
 # ==== Coloring ==== #
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
 
 # ==== XDG Compliance ==== #
 alias nvidia-settings="nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings"
