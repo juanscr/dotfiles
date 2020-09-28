@@ -203,9 +203,10 @@ assign [class="Stremio"]      $w6
 assign [class="vlc"]          $w6
 
 # Configuration apps
-assign [class="Arandr"]       $w7
-assign [class="Pavucontrol"]  $w7
-assign [class="Lxappearance"] $w7
+assign [class="Arandr"]           $w7
+assign [class="Pavucontrol"]      $w7
+assign [class="Lxappearance"]     $w7
+assign [class="Lightdm-settings"] $w7
 
 # Production apps
 assign [class="Audacity"] $w8
