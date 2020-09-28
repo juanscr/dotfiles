@@ -275,7 +275,7 @@ bindsym $mod+Shift+KP_4 exec st -e 'top'
 bindsym $mod+Shift+KP_5 exec pycharm.sh
 bindsym $mod+Shift+KP_6 exec discord
 bindsym $mod+Shift+KP_7 exec emacs
-bindsym $mod+Shift+KP_8 exec Popcorn-Time
+bindsym $mod+Shift+KP_8 exec popcorntime
 bindsym $mod+Shift+KP_9 exec stremio
 
 # Startup apps
