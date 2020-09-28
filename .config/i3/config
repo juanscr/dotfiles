@@ -44,7 +44,7 @@ bindsym $mod+Shift+e mode "exit: [l]ogout, [r]eboot, [p]oweroff"
 # Search for app. Customized to use dracula theme.
 # Tested with dmenu 4.7
 bindsym $mod+d exec "dmenu_run -nf '#F8F8F2' -nb '#282A36' -sb '#6272A4' -sf \
-'#F8F8F2' -fn 'monospace-10' -p 'Search:'"
+'#F8F8F2' -fn 'DejaVu Sans Mono-10' -p 'Search:'"
 
 
 # ========== Media controls ==========
