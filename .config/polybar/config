@@ -84,6 +84,55 @@ tray-padding  = 3
 cursor-click  = pointer
 cursor-scroll = ns-resize
 
+[bar/monitor2]
+; Monitor
+monitor = ${env:MONITOR:}
+
+; Enable ipc modules
+enable-ipc = true
+
+; Position Setup
+width        = ${sizes.bar-width}
+height       = ${sizes.bar-height}
+radius       = 0
+fixed-center = true
+
+; Color Setup
+background = ${colors.background-alt}
+foreground = ${colors.foreground}
+
+; Height for underline
+line-size = 3
+
+; Spacing around the bar
+;; MODIFY THE SIZES MODULE FOR A BETTER BEHAVIOR
+border-color       = #00000000
+border-right-size  = ${sizes.bar-offset-x}
+border-left-size   = ${sizes.bar-offset-x}
+border-top-size    = ${sizes.bar-offset-y}
+border-bottom-size = ${sizes.bar-bottom-gap}
+
+; Distance of first and last module to bar
+padding-left  = 3
+padding-right = 3
+
+; Margin between modules
+module-margin-left  = 3
+module-margin-right = 2
+
+; Fonts
+font-0 = DejaVu Sans:size=10;1
+font-1 = FontAwesome:pixelsize=13;1
+font-2 = FontAwesome 5 Free:size=13;1
+
+; Position of each module
+modules-left   = i3
+modules-center = cpu memory
+modules-right  = 
+
+cursor-click  = pointer
+cursor-scroll = ns-resize
+
 ;;;;;;;;;;; MODULES ;;;;;;;;;;;;
 ; Title of focused window
 [module/xwindow]
