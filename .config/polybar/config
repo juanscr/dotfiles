@@ -32,6 +32,9 @@ bar-bottom-gap = 0
 
 ;;;;;;;;;;; MY MAIN BAR FOR I3 ;;;;;;;;;;;;
 [bar/jscbar]
+; Monitor
+monitor = ${env:MONITOR:}
+
 ; Enable ipc modules
 enable-ipc = true
 
@@ -72,7 +75,7 @@ font-2 = FontAwesome 5 Free:size=13;1
 ; Position of each module
 modules-left   = i3
 modules-center = spotify previous playpause next
-modules-right  = cpu memory pulseaudio light battery date
+modules-right  = nvidia cpu memory pulseaudio light battery date
 
 ; Position of the tray elements
 tray-position = right
@@ -177,11 +180,21 @@ hook-1             = spotifyctl -q status
 
 
 ; Custom module to monitor brightness
+[module/nvidia]
+type = custom/script
+; Settings
+interval                 = 1
+exec                     = optimus-manager --status | awk 'FNR == 4 {print $5 }'
+format-prefix            = "  "
+format-prefix-font       = 2
+format-prefix-foreground = ${colors.foreground}
+format-foreground        = ${colors.foreground-alt}
+
 [module/light]
 type = custom/script
 ; Settings
 interval                 = 1
-exec                     = light -G | awk '{printf "%.0f\n", $1}' | awk '{ print $0"%" }'
+exec                     = light -G | awk '{printf "%.0f%\n", $1}'
 format-prefix            = "  "
 format-prefix-font       = 2
 format-prefix-foreground = ${colors.foreground}
