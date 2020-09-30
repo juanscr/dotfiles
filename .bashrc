@@ -12,6 +12,7 @@ alias cgfi="emacs ~/.config/i3/config"
 alias e="emacs"
 
 alias lmk="latexmk -pdf"
+alias lmks="lmk -shell-escape"
 
 alias sudo="sudo "
 
@@ -19,6 +20,8 @@ export LC_ALL="C"
 alias ls='ls-icons'
 alias ll='ls -alF'
 alias la='ls -A'
+
+alias gfl='ghc -Wall -Wmissing-signatures -Wmissing-local-signatures'
 
 # ==== Coloring ==== #
 alias grep='grep --color=auto'
