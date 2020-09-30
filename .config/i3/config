@@ -56,8 +56,8 @@ bindsym XF86AudioMute exec pamixer -t
 
 # Brightness control
 # Tested with light 1.2
-bindsym XF86MonBrightnessUp exec light -A 10
-bindsym XF86MonBrightnessDown exec light -U 10
+bindsym XF86MonBrightnessUp exec sudo light -A 10
+bindsym XF86MonBrightnessDown exec sudo light -U 10
 
 # Screenshots manager
 # Tested with scrot 0.8
