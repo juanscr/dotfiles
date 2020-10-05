@@ -6,7 +6,7 @@ killall -q polybar
 # Launch bar in different monitors
 if type "xrandr"; then
     monitors=$(xrandr --query | grep " connected" | cut -d" " -f1)
-    numMonitors=$(echo $monitors | wc -l)
+    numMonitors=$(echo $monitors | awk '{print NF}' | sort -nu | tail -n 1)
     echo $numMonitors
     if [ $numMonitors == 1 ]; then
         polybar --reload jscbar &
