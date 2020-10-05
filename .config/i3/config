@@ -128,6 +128,7 @@ set $w7 7
 set $w8 8
 set $w9 9
 set $w10 10
+set $w11 11
 
 # Keybinds for workspace
 bindsym $mod+1 workspace number $w1
@@ -140,18 +141,20 @@ bindsym $mod+7 workspace number $w7
 bindsym $mod+8 workspace number $w8
 bindsym $mod+9 workspace number $w9
 bindsym $mod+0 workspace number $w10
+bindsym $mod+p workspace number $w11
 
 # Move windows to workpsace
-bindsym $mod+Ctrl+1 move container to workspace $w1;
-bindsym $mod+Ctrl+2 move container to workspace $w2;
-bindsym $mod+Ctrl+3 move container to workspace $w3;
-bindsym $mod+Ctrl+4 move container to workspace $w4;
-bindsym $mod+Ctrl+5 move container to workspace $w5;
-bindsym $mod+Ctrl+6 move container to workspace $w6;
-bindsym $mod+Ctrl+7 move container to workspace $w7;
-bindsym $mod+Ctrl+8 move container to workspace $w8;
-bindsym $mod+Ctrl+9 move container to workspace $w9;
+bindsym $mod+Ctrl+1 move container to workspace $w1
+bindsym $mod+Ctrl+2 move container to workspace $w2
+bindsym $mod+Ctrl+3 move container to workspace $w3
+bindsym $mod+Ctrl+4 move container to workspace $w4
+bindsym $mod+Ctrl+5 move container to workspace $w5
+bindsym $mod+Ctrl+6 move container to workspace $w6
+bindsym $mod+Ctrl+7 move container to workspace $w7
+bindsym $mod+Ctrl+8 move container to workspace $w8
+bindsym $mod+Ctrl+9 move container to workspace $w9
 bindsym $mod+Ctrl+0 move container to workspace $w10
+bindsym $mod+Ctrl+p move container to workspace $w11
 
 # Move windows to workpsace and focus
 bindsym $mod+Shift+1 move container to workspace $w1; workspace $w1
@@ -164,6 +167,17 @@ bindsym $mod+Shift+7 move container to workspace $w7; workspace $w7
 bindsym $mod+Shift+8 move container to workspace $w8; workspace $w8
 bindsym $mod+Shift+9 move container to workspace $w9; workspace $w9
 bindsym $mod+Shift+0 move container to workspace $w10; workspace $w10
+bindsym $mod+Shift+p move container to workspace $w11; workspace $w11
+
+# Move workspaces between monitors
+bindsym $mod+Ctrl+space move workspace to output primary
+bindsym $mod+Ctrl+h move workspace to output left
+bindsym $mod+Ctrl+j move workspace to output down
+bindsym $mod+Ctrl+k move workspace to output up
+bindsym $mod+Ctrl+l move workspace to output right
+
+# Default workspace for second monitor
+workspace $w11 output eDP-1-1
 
 # Apps default worskpace
 # Browser
