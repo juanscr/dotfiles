@@ -22,8 +22,9 @@ alias ls='ls-icons'
 alias ll='ls -alF'
 alias la='ls -A'
 
-alias gfl='ghc -dynamic -Wall -Wmissing-signatures -Wmissing-local-signatures'
 alias ci='cabal install --ghc-options=-dynamic'
+alias gfl='ghc -dynamic -Wall -Wmissing-signatures -Wmissing-local-signatures'
+alias haddock='haddock --optghc=dynamic'
 
 # ==== Coloring ==== #
 alias grep='grep --color=auto'
