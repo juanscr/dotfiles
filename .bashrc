@@ -3,6 +3,7 @@ export PATH=$PATH:/usr/local/bin
 export PATH=$PATH:$HOME/.bin
 export PATH=$PATH:$HOME/src/sfw/MPICH/bin
 export PATH=$PATH:$XDG_DATA_HOME/cargo/bin
+export PATH=$PATH:$HOME/.cabal/bin
 
 # ============ ALIASES ============ #
 # ==== Files ==== #
@@ -22,6 +23,7 @@ alias ll='ls -alF'
 alias la='ls -A'
 
 alias gfl='ghc -dynamic -Wall -Wmissing-signatures -Wmissing-local-signatures'
+alias ci='cabal install --ghc-options=-dynamic'
 
 # ==== Coloring ==== #
 alias grep='grep --color=auto'
