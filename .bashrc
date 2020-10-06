@@ -21,7 +21,7 @@ alias ls='ls-icons'
 alias ll='ls -alF'
 alias la='ls -A'
 
-alias gfl='ghc -Wall -Wmissing-signatures -Wmissing-local-signatures'
+alias gfl='ghc -dynamic -Wall -Wmissing-signatures -Wmissing-local-signatures'
 
 # ==== Coloring ==== #
 alias grep='grep --color=auto'
