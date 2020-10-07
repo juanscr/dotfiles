@@ -1,2 +1,2 @@
 ;; Company backends
-(package! company-tabnine)
+(package! company-jedi)
