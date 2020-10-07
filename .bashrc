@@ -17,8 +17,7 @@ alias lmks="lmk -shell-escape"
 
 alias sudo="sudo "
 
-export LC_ALL="C"
-alias ls='ls-icons'
+alias ls='ls-icons -v'
 alias ll='ls -alF'
 alias la='ls -A'
 
@@ -71,21 +70,22 @@ alias gs='gitd status'
 # ==== Global Variables ==== #
 export BROWSER="/usr/bin/brave-browser"
 
-# GHCup installation
-[ -f "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env" ] && \
-source "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env"
-
 # ============ BASH Terminal ============ #
 # ==== Prompt ==== #
+# Colors
+GREEN="\[\e[01;32m\]"
+BLUE="\[\e[01;34m\]"
+RESET="\[\e[00m\]"
+
 # Chroot standard command
 PS1="${debian_chroot:+($debian_chroot)}"
 
 # User and git
 source /usr/share/git/completion/git-prompt.sh
-PS1+="[\[\033[01;32m\]\u\$(__git_ps1 '(%s)')\[\033[00m\] "
+PS1+="${GREEN}\$(__git_ps1 '(%s) ')${RESET}"
 
 # Working directory
-PS1+="\[\033[01;34m\]\W\[\033[00m\]] "
+PS1+="${BLUE}\W${RESET} > "
 
 # ==== Keybindings ==== #
 bind '"\ew": forward-word'
