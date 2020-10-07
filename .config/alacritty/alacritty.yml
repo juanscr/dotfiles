@@ -40,26 +40,26 @@ scrolling:
 # Font configuration
 font:
   normal:
-    family: DejaVu Sans Mono
+    family: JetBrains Mono
     style: Regular
 
   # Bold font face
   bold:
-    family: DejaVu Sans Mono
+    family: JetBrains Mono
     style: Bold
 
   # Italic font face
   italic:
-    family: DejaVu Sans Mono
+    family: JetBrains Mono
     style: Italic
 
   # Bold italic font face
   bold_italic:
-    family: DejaVu Sans Mono
+    family: JetBrains Mono
     style: Bold Italic
 
   # Point size
-  size: 8.0
+  size: 10.8
 
   offset:
     x: 0
