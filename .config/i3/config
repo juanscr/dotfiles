@@ -59,16 +59,6 @@ bindsym XF86AudioMute exec pamixer -t
 bindsym XF86MonBrightnessUp exec sudo light -A 10
 bindsym XF86MonBrightnessDown exec sudo light -U 10
 
-# Screenshots manager
-# Tested with scrot 0.8
-bindsym --release Print exec scrot 'screenshot_%Y%m%d_%H%M%S.png' -e \
-'mkdir -p ~/screenshots && mv $f ~/screenshots && xclip -selection clipboard -t \
-image/png -i ~/screenshots/`ls -1 -t ~/screenshots | head -1`'
-
-bindsym --release $mod+Print exec scrot -s 'screenshot_%Y%m%d_%H%M%S.png' \
--e 'mkdir -p ~/screenshots && mv $f ~/screenshots && xclip -selection clipboard -t \
-image/png -i ~/screenshots/`ls -1 -t ~/screenshots | head -1`'
-
 # Media player controls
 # Used with https://bit.ly/3hAVW5x
 bindsym XF86AudioPlay exec spotifyctl playpause
@@ -299,6 +289,13 @@ exec $browser
 exec $term
 exec emacs --daemon
 exec xrdb $HOME/.config/X11/Xresources
+
+# Screenshots manager
+# Tested with flameshot v0.8.3
+exec_always flameshot
+bindsym --release Print exec flameshot screen -r -c -p $HOME/pictures/screenshots
+bindsym --release $mod+Print exec flameshot gui -p $HOME/pictures/screenshots
+bindym --release Ctrl+Print exec flameshot full -c -p $HOME/pictures/screenshots
 
 # Wifi Applet
 exec_always nm-applet
