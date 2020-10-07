@@ -288,6 +288,8 @@ bindsym $mod+Shift+KP_9 exec stremio
 exec $browser
 exec $term
 exec emacs --daemon
+exec_always optimus-manager-qt
+
 exec xrdb $HOME/.config/X11/Xresources
 
 # Screenshots manager
