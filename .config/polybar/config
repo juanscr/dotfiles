@@ -230,16 +230,6 @@ hook-1             = spotifyctl -q status
 
 
 ; Custom module to monitor brightness
-[module/nvidia]
-type = custom/script
-; Settings
-interval                 = 1
-exec                     = optimus-manager --status | awk 'FNR == 4 {print $5 }'
-format-prefix            = "  "
-format-prefix-font       = 2
-format-prefix-foreground = ${colors.foreground}
-format-foreground        = ${colors.foreground-alt}
-
 [module/light]
 type = custom/script
 ; Settings
