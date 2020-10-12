@@ -213,6 +213,7 @@ assign [class="Pavucontrol"]      $w7
 assign [class="Lxappearance"]     $w7
 assign [class="Lightdm-settings"] $w7
 assign [class="Font-manager"]     $w7
+assign [class="Nvidia-settings"]  $w7
 
 # Production apps
 assign [class="Audacity"] $w8
