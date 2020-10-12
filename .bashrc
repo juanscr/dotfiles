@@ -67,10 +67,10 @@ alias gr='gitd rm'
 alias gs='gitd status'
 
 # ==== Global Variables ==== #
-export BROWSER="/usr/bin/brave-browser"
+export BROWSER="/usr/bin/brave"
 
 # ============ BASH Terminal ============ #
-# ==== Prompt ==== #
+# ==== Minimalist Prompt ==== #
 # Colors
 GREEN="\[\e[01;32m\]"
 BLUE="\[\e[01;34m\]"
@@ -79,7 +79,7 @@ RESET="\[\e[00m\]"
 # Chroot standard command
 PS1="${debian_chroot:+($debian_chroot)}"
 
-# User and git
+# Git branch
 source /usr/share/git/completion/git-prompt.sh
 PS1+="${GREEN}\$(__git_ps1 '(%s) ')${RESET}"
 
