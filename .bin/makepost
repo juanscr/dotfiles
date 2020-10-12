@@ -1,7 +1,0 @@
-#!/bin/bash
-
-# Creates generic template for article
-cp /home/juanscr/juanscr/jsc/jsc/templates/poster.tex .
-NAME="$(basename $PWD)"
-mv poster.tex ${NAME}.tex
-

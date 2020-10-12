@@ -1,7 +1,0 @@
-#!/bin/bash
-
-# Creates generic template for article
-cp /home/juanscr/latex/exam/exam.tex . &&
-NAME="$(basename $PWD)" &&
-mv exam.tex ${NAME}.tex
-

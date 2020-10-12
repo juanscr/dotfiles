@@ -1,7 +1,0 @@
-#!/bin/bash
-
-# Creates generic template for article in spanish
-cp /home/juanscr/juanscr/jsc/jsc/templates/generic-spanish.tex .
-NAME="$(basename $PWD)"
-mv generic-spanish.tex ${NAME}.tex
-
