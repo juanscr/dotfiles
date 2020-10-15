@@ -296,7 +296,7 @@ exec xrdb $HOME/.config/X11/Xresources
 # Screenshots manager
 # Tested with flameshot v0.8.3
 exec_always flameshot
-bindsym --release Print exec flameshot screen -r -c -p $HOME/pictures/screenshots
+bindsym --release Print exec $HOME/.bin/screenshot
 bindsym --release $mod+Print exec flameshot gui -p $HOME/pictures/screenshots
 bindym --release Ctrl+Print exec flameshot full -c -p $HOME/pictures/screenshots
 
