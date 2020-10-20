@@ -8,7 +8,7 @@ export PATH=$PATH:$HOME/.cabal/bin
 alias cgfi="emacs ~/.config/i3/config"
 
 # ==== Commands ==== #
-alias e="emacs"
+alias e="emacsclient -n -c"
 
 alias lmk="latexmk -pdf"
 alias lmks="lmk -shell-escape"
