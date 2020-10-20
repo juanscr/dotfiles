@@ -152,7 +152,7 @@ mouse:
   hide_when_typing: false
   url:
     launcher:
-      program: brave
+      program: firefox
       args: []
 
 
