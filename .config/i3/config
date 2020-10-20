@@ -14,7 +14,7 @@ font pango:DejaVu Sans 10
 set $term alacritty
 
 # Browser
-set $browser brave
+set $browser firefox
 
 # ========== Basic Behavior ==========
 # Setting the mod key
@@ -172,6 +172,7 @@ workspace $w11 output eDP-1-1
 # Apps default worskpace
 # Browser
 assign [class="Brave-browser"] $w1
+assign [class="firefox"]       $w1
 assign [class="Google-chrome"] $w1
 
 # Terminal and text editors
