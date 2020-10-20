@@ -67,7 +67,7 @@ alias gr='gitd rm'
 alias gs='gitd status'
 
 # ==== Global Variables ==== #
-export BROWSER="/usr/bin/brave"
+export BROWSER="/usr/bin/firefox"
 
 # ============ BASH Terminal ============ #
 # ==== Minimalist Prompt ==== #
