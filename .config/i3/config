@@ -282,7 +282,7 @@ bindsym $mod+Shift+KP_3 exec pavucontrol
 bindsym $mod+Shift+KP_4 exec $term -e 'htop'
 bindsym $mod+Shift+KP_5 exec pycharm.sh
 bindsym $mod+Shift+KP_6 exec discord
-bindsym $mod+Shift+KP_7 exec emacsclient -n -c
+bindsym $mod+Shift+KP_7 exec settings-nvidia
 bindsym $mod+Shift+KP_8 exec popcorntime
 bindsym $mod+Shift+KP_9 exec stremio
 
