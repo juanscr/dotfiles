@@ -66,3 +66,6 @@ org-format-latex-options :scale 2.0))
 (defun python-jedi ()
   (add-to-list 'company-backends 'company-jedi))
 (add-hook 'python-mode-hook 'python-jedi)
+
+; ==== Julia mode ==== ;
+(add-hook 'julia-mode-hook 'set-tex-input)
