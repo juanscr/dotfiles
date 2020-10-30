@@ -21,7 +21,7 @@ alias la='ls -A'
 
 alias ci='cabal install --ghc-options=-dynamic'
 alias gfl='ghc -dynamic -Wall -Wmissing-signatures -Wmissing-local-signatures'
-alias haddock='haddock --optghc=dynamic'
+alias hdoc='haddock --optghc=-dynamic --html -o doc'
 
 # ==== Coloring ==== #
 alias grep='grep --color=auto'
