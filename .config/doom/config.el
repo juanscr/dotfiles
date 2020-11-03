@@ -19,11 +19,7 @@
 ;; Theme selection
 (setq doom-theme 'doom-dracula)
 
-;; Autocompletion with company
-(setq company-idle-delay 0)
-(setq company-show-numbers t)
-
-; ============ MODES ============ ;
+; ============ EDITING MODES ============ ;
 ; ==== Text mode ==== ;
 (add-hook 'text-mode-hook 'flyspell-mode)
 (add-hook 'text-mode-hook 'set-tex-input)
@@ -37,6 +33,10 @@
 ;; Turn on reftex https://bit.ly/3gIgKHD
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
 (setq reftex-plug-into-AUCTeX t)
+
+; Default bibliography
+(setq
+reftex-default-bibliography "/home/juanscr/juanscr/jsc/jsc/backups/ref.bib")
 
 (add-hook 'LaTeX-mode-hook 'no-tex-input)
 
@@ -57,15 +57,19 @@ org-format-latex-options :scale 2.0))
 ;; Do not have input method in org mode
 (add-hook 'org-mode-hook 'no-tex-input)
 
-; ==== Irony mode ==== ;
+; ============ IDE BEHAVIOR ============ ;
+; ==== Company mode ==== ;
+(setq company-idle-delay 0)
+(setq company-show-numbers t)
+
+; Additional backends
+(require 'company-lsp)
+(push 'company-lsp company-backends)
+
+; Irony mode for C and C++
 (add-hook 'c++-mode-hook 'irony-mode)
 (add-hook 'c-mode-hook 'irony-mode)
 (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
-
-; ==== Python mode ==== ;
-(defun python-jedi ()
-  (add-to-list 'company-backends 'company-jedi))
-(add-hook 'python-mode-hook 'python-jedi)
 
 ; ==== Julia mode ==== ;
 (add-hook 'julia-mode-hook 'set-tex-input)
