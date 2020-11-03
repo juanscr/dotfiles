@@ -1,2 +1,5 @@
 ;; Company backends
-(package! company-jedi)
+(package! company-lsp)
+
+;; LSP backends
+(package! lsp-julia)
