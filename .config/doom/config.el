@@ -71,5 +71,10 @@ org-format-latex-options :scale 2.0))
 (add-hook 'c-mode-hook 'irony-mode)
 (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
 
+; Jedi mode for python
+(defun python-jedi ()
+  (add-to-list 'company-backends 'company-jedi))
+(add-hook 'python-mode-hook 'python-jedi)
+
 ; ==== Julia mode ==== ;
 (add-hook 'julia-mode-hook 'set-tex-input)
