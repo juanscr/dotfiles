@@ -62,7 +62,7 @@ alias gp='gitd push'
 alias gpc='pullCheck '
 alias gpl='gitd pull'
 alias gr='gitd rm'
-alias gs='gitd status'
+alias gt='gitd status'
 
 # ==== Global Variables ==== #
 export BROWSER="/usr/bin/firefox"
