@@ -31,19 +31,6 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
 # ==== XDG Compliance ==== #
-# Base specifications
-export XDG_CONFIG_HOME=$HOME/.config
-export XDG_CACHE_HOME=$HOME/.cache
-export XDG_DATA_HOME=$HOME/.local/share
-
-# Other specifications
-export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
-
-export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
-
-export IPYTHONDIR="$XDG_CONFIG_HOME"/jupyter
-export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter
-
 alias wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
 
 # ==== Git ==== #
