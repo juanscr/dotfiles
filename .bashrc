@@ -23,6 +23,8 @@ alias ci='cabal install --ghc-options=-dynamic'
 alias gfl='ghc -dynamic -Wall -Wmissing-signatures -Wmissing-local-signatures'
 alias hdoc='haddock --optghc=-dynamic --html -o doc'
 
+alias autoremove='pacman -Qtdq | sudo pacman -Rns -'
+
 # ==== Coloring ==== #
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
