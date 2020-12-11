@@ -173,7 +173,6 @@ workspace $w11 output eDP-1-1
 # Browser
 assign [class="Brave-browser"] $w1
 assign [class="firefox"]       $w1
-assign [class="Google-chrome"] $w1
 
 # Terminal and text editors
 assign [class="Emacs"]       $w2
@@ -202,6 +201,7 @@ assign [class="discord"]                   $w5
 assign [class="Microsoft Teams - Preview"] $w5
 assign [class="Slack"]                     $w5
 assign [class="zoom"]                      $w5
+assign [class="Google-chrome"]             $w5 # Used for google meets
 
 # Media
 assign [class="ffplay"]       $w6
