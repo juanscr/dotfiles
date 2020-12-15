@@ -34,6 +34,6 @@ if $comms; then
     cp ~/juanscr/jsc/jsc/templates/commands.tex .
 fi
 cp ~/juanscr/jsc/jsc/templates/"$file" .
-NAME="$(basename $PWD)"
+NAME="$(basename "$PWD")"
 mv "$file" "$NAME".tex
 

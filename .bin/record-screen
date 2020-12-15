@@ -9,4 +9,4 @@ ffmpeg \
 -async 1 \
 -f x11grab -r 24 -s 1920x1080 -i :0.0 \
  -c:v libx264 -preset veryfast -crf 18 \
- -c:a libmp3lame -ar 44100 -q:a 1 $1
+ -c:a libmp3lame -ar 44100 -q:a 1 "$1"
