@@ -277,11 +277,11 @@ bindsym $mod+s exec spotify
 bindsym $mod+i exec $browser
 
 bindsym $mod+Shift+KP_0 exec teams
-bindsym $mod+Shift+KP_1 exec lightworks
+bindsym $mod+Shift+KP_1 exec slack
 bindsym $mod+Shift+KP_2 exec arandr
 bindsym $mod+Shift+KP_3 exec pavucontrol
 bindsym $mod+Shift+KP_4 exec $term -e 'htop'
-bindsym $mod+Shift+KP_5 exec pycharm.sh
+bindsym $mod+Shift+KP_5 exec thunar
 bindsym $mod+Shift+KP_6 exec discord
 bindsym $mod+Shift+KP_7 exec settings-nvidia
 bindsym $mod+Shift+KP_8 exec popcorntime
