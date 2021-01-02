@@ -363,6 +363,7 @@ format-charging = <ramp-capacity>  <label-charging>
 
 ; Discharging
 label-discharging  = ${self.label-full}
+label-discharging-foreground = ${colors.yellow}
 format-discharging = <ramp-capacity>  <label-discharging>
 
 ; Ramp symbols
