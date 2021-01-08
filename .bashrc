@@ -11,20 +11,28 @@ alias cgfi="emacs ~/.config/i3/config"
 # ==== Commands ==== #
 alias e="emacsclient -n -c"
 
+# Latex
 alias lmk="latexmk -pdf"
 alias lmks="lmk -shell-escape"
 
+# Allows for using alias with sudo
 alias sudo="sudo "
 
+# Ls with icons
 alias ls='ls-icons -v'
 alias ll='ls -alF'
 alias la='ls -A'
 
+# Haskell with dynamic linking
 alias ci='cabal install --ghc-options=-dynamic'
 alias gfl='ghc -dynamic -Wall -Wmissing-signatures -Wmissing-local-signatures'
 alias hdoc='haddock --optghc=-dynamic --html -o doc'
 
+# Autoremove equivalent
 alias autoremove='pacman -Qtdq | sudo pacman -Rns -'
+
+# Image display with kittens
+alias icat='kitty +kitten icat'
 
 # ==== Coloring ==== #
 alias grep='grep --color=auto'
