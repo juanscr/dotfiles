@@ -5,9 +5,6 @@ export PATH=$PATH:$HOME/.cabal/bin
 export PATH=$PATH:$HOME/.local/bin
 
 # ============ ALIASES ============ #
-# ==== Files ==== #
-alias cgfi="emacs ~/.config/i3/config"
-
 # ==== Commands ==== #
 alias e="emacsclient -n -c"
 
