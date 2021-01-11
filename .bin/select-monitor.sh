@@ -5,3 +5,4 @@ layout=$(find "$HOME"/.bin/monitor-layouts/ -type f -printf "%f\n"| dmenu -nf \
          -fn 'DejaVu Sans-11' -p 'Select Layout:' )
 
 "$HOME"/.bin/monitor-layouts/"$layout"
+i3-msg restart
