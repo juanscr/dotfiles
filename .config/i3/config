@@ -1,6 +1,6 @@
 # ===============================================
 #
-#              i3-gaps 4.17.1 config
+#              i3-gaps 4.19.1 config
 #
 # ===============================================
 
@@ -42,7 +42,7 @@ mode "exit: [l]ogout, [r]eboot, [p]oweroff" {
 bindsym $mod+Shift+e mode "exit: [l]ogout, [r]eboot, [p]oweroff"
 
 # Search for app. Customized to use dracula theme.
-# Tested with dmenu 4.7
+# Tested with dmenu 5.0
 bindsym $mod+d exec "dmenu_run -nf '#F8F8F2' -nb '#282A36' -sb '#6272A4' -sf \
 '#F8F8F2' -fn 'DejaVu Sans Mono-11' -p 'Search:'"
 
@@ -52,7 +52,7 @@ bindsym $mod+shift+a exec "$HOME/.bin/select-monitor.sh"
 
 # ========== Media controls ==========
 # Volume control
-# Tested with amixer 1.1.3
+# Tested with pamixer 1.4.5
 bindsym XF86AudioRaiseVolume exec pamixer -i 5
 bindsym XF86AudioLowerVolume exec pamixer -d 5
 bindsym XF86AudioMute exec pamixer -t
@@ -302,7 +302,7 @@ exec_always optimus-manager-qt
 exec xrdb $HOME/.config/X11/Xresources
 
 # Screenshots manager
-# Tested with flameshot v0.8.3
+# Tested with flameshot v0.8.5
 exec_always flameshot
 bindsym --release Print exec $HOME/.bin/screenshot
 bindsym --release $mod+Print exec flameshot gui -p $HOME/pictures/screenshots
@@ -319,7 +319,7 @@ exec --no-startup-id $HOME/.bin/bg.sh
 # Transparency
 exec_always picom
 
-# Bar: tested with Polybar 3.4.3
+# Bar: tested with Polybar 3.5.4
 exec_always --no-startup-id $HOME/.config/polybar/launch-bar.sh
 
 # Dracula theme for containers
