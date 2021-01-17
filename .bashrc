@@ -31,6 +31,9 @@ alias autoremove='pacman -Qtdq | sudo pacman -Rns -'
 # Image display with kittens
 alias icat='kitty +kitten icat'
 
+# Tar files
+alias tarit='tar -czvf'
+
 # ==== Coloring ==== #
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
