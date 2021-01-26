@@ -79,6 +79,9 @@ alias gs='gitd status'
 # ==== Global Variables ==== #
 export BROWSER="/usr/bin/firefox"
 
+# QT Style
+export QT_STYLE_OVERRIDE=adwaita
+
 # ============ BASH Terminal ============ #
 # ==== Minimalist Prompt ==== #
 # Colors
