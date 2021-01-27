@@ -292,6 +292,9 @@ bindsym $mod+Shift+KP_7 exec settings-nvidia
 bindsym $mod+Shift+KP_8 exec popcorntime
 bindsym $mod+Shift+KP_9 exec stremio
 
+# Monitor setting
+exec $HOME/.bin/init-monitor.sh
+
 # Startup apps
 exec $browser
 exec $term
@@ -317,9 +320,6 @@ exec --no-startup-id $HOME/.bin/bg.sh
 
 # Transparency
 exec_always picom
-
-# Monitors
-exec $HOME/.bin/init-monitor.sh
 
 # Bar: tested with Polybar 3.5.4
 exec_always --no-startup-id $HOME/.config/polybar/launch-bar.sh
