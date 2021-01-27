@@ -296,7 +296,7 @@ bindsym $mod+Shift+KP_9 exec stremio
 exec $browser
 exec $term
 exec emacs --daemon
-exec_always optimus-manager-qt
+exec_always $HOME/.bin/tray-optimus-manager.sh
 
 exec xrdb $HOME/.config/X11/Xresources
 
