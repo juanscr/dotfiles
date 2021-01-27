@@ -292,14 +292,10 @@ bindsym $mod+Shift+KP_7 exec settings-nvidia
 bindsym $mod+Shift+KP_8 exec popcorntime
 bindsym $mod+Shift+KP_9 exec stremio
 
-# Monitor setting
-exec $HOME/.bin/init-monitor.sh
-
 # Startup apps
 exec $browser
 exec $term
 exec emacs --daemon
-exec_always $HOME/.bin/tray-optimus-manager.sh
 
 exec xrdb $HOME/.config/X11/Xresources
 
@@ -321,8 +317,12 @@ exec --no-startup-id $HOME/.bin/bg.sh
 # Transparency
 exec_always picom
 
+# Monitor setting
+exec $HOME/.bin/init-monitor.sh
+
 # Bar: tested with Polybar 3.5.4
 exec_always --no-startup-id $HOME/.config/polybar/launch-bar.sh
+exec_always $HOME/.bin/tray-optimus-manager.sh
 
 # Dracula theme for containers
 # class                 border  bground text    indicator child_border
