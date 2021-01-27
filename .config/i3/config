@@ -297,6 +297,7 @@ exec $browser
 exec $term
 exec emacs --daemon
 
+# Xresources loading
 exec xrdb $HOME/.config/X11/Xresources
 
 # Screenshots manager
@@ -304,25 +305,22 @@ exec xrdb $HOME/.config/X11/Xresources
 exec_always flameshot
 bindsym --release Print exec $HOME/.bin/screenshot
 bindsym --release $mod+Print exec flameshot gui -p $HOME/pictures/screenshots
-bindym --release Ctrl+Print exec flameshot full -c -p $HOME/pictures/screenshots
-
-# Wifi Applet
-exec_always nm-applet
+bindsym --release Ctrl+Print exec flameshot full -c -p $HOME/pictures/screenshots
 
 
-# ========== Aesthetics ==========
+# ========== Aesthetics =========
 # Background
 exec --no-startup-id $HOME/.bin/bg.sh
 
 # Transparency
 exec_always picom
 
-# Monitor setting
-exec $HOME/.bin/init-monitor.sh
-
 # Bar: tested with Polybar 3.5.4
 exec_always --no-startup-id $HOME/.config/polybar/launch-bar.sh
+
+# Tray icons
 exec_always $HOME/.bin/tray-optimus-manager.sh
+exec_always nm-applet
 
 # Dracula theme for containers
 # class                 border  bground text    indicator child_border
