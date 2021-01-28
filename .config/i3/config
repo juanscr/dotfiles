@@ -227,7 +227,8 @@ assign [class="kdenlive"] $w8
 assign [class="Ntcardvt"] $w8
 
 # Miscellaneous apps
-assign [class="VirtualBox Manager"]             $w9
+for_window [class="^Steam$"] move to workspace $w9
+assign [class="VirtualBox Manager"]            $w9
 
 # Background apps
 for_window [class="Spotify"] move to workspace $w10
@@ -241,9 +242,21 @@ for_window [class="Inkscape" title="Preferences"] [floating] resize set 1000 600
 for_window [class="mpv"] floating enable
 for_window [class="Sxiv"] floating enable
 
-# Misc
+# Steam
+for_window [class="^Steam$" title="Friends List"] floating enable
+for_window [class="^Steam$" title="Steam - News"] floating enable
+for_window [class="^Steam$" title="^Settings$"] floating enable
+for_window [class="^Steam$" title="^Steam - Self Updater$"] floating enable
+
+for_window [class="^Steam$" title="Steam - News"] [floating] resize set 1000 600 \
+                                                  move position 512 960
+for_window [class="^Steam$" title="Friends List"] [floating] resize set 1000 600 \
+                                                  move position 512 960
+
+# Python
 for_window [class="Matplotlib"] floating enable
 
+# File Explorer
 for_window [class="Thunar"] floating enable
 for_window [class="Thunar"] [floating] resize set 1000 800 \
                                        move position 512 960
