@@ -8,7 +8,7 @@
 set $mod Mod4
 
 # Font
-font pango:DejaVu Sans 0
+font pango:JetBrains Mono 10
 
 # Terminal
 set $term kitty
