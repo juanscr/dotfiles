@@ -86,7 +86,7 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
 # Different layouts
-bindsym $mod+w layout tabbed
+bindsym $mod+w layout stacking
 bindsym $mod+e layout toggle split
 
 # Floating mode
@@ -205,6 +205,7 @@ assign [class="Microsoft Teams - Preview"]           $w5
 assign [class="Slack"]                               $w5
 assign [class="zoom"]                                $w5
 assign [class="whatsapp-nativefier-d40211"]          $w5
+assign [class="TelegramDesktop"]                     $w5
 for_window [class="Google-chrome"] move to workspace $w5
 
 # Media
@@ -300,7 +301,7 @@ bindsym $mod+Shift+KP_2 exec arandr
 bindsym $mod+Shift+KP_3 exec pavucontrol
 bindsym $mod+Shift+KP_4 exec $term -e 'htop'
 bindsym $mod+Shift+KP_5 exec whatsapp
-bindsym $mod+Shift+KP_6 exec discord
+bindsym $mod+Shift+KP_6 exec telegram-desktop
 bindsym $mod+Shift+KP_7 exec settings-nvidia
 bindsym $mod+Shift+KP_8 exec popcorntime
 bindsym $mod+Shift+KP_9 exec stremio
