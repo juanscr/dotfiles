@@ -1,0 +1,3 @@
+[submodule ".config/nvim/pack/plugins/opt/lightline"]
+	path = .config/nvim/pack/plugins/opt/lightline
+	url = https://github.com/itchyny/lightline.vim
