@@ -79,6 +79,9 @@ alias gs='gitd status'
 # ==== Global Variables ==== #
 export BROWSER="/usr/bin/firefox"
 
+# Fraudsim
+source /home/juanscr/.bin/private/fraudsim.sh
+
 # ============ BASH Terminal ============ #
 # ==== Minimalist Prompt ==== #
 # Colors
