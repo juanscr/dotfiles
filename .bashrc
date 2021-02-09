@@ -37,7 +37,8 @@ alias tarit='tar -czvf'
 # Whatsapp
 whatsapp1='nativefier web.whatsapp.com --name whatsapp --single-instance'
 whatsapp2='--tray --inject whatsapp-assets/whatsapp-nativefier-inject.js'
-alias genw='$whatsapp1 $whatsapp2'
+whatsapp3='--icon whatsapp-assets/icon.png'
+alias genw='$whatsapp1 $whatsapp2 $whatsapp3'
 
 # ==== Coloring ==== #
 alias grep='grep --color=auto'
