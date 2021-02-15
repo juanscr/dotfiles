@@ -1,95 +1,116 @@
 #!/bin/bash
 
-########### Base  ###########
-RED='\033[0;31m'
-NC='\033[0m'
+##########
+# This script is a first and basic attempt in order to create a minimal status
+# bar with bash. This can be used with i3_bar in order to get some important
+# status.
+##########
+
+# Colors and styling
 sep="                "
 prev_str=""
 
-while :
-do
-    ########### Bar ###########
-    make_bar () {
-	bar="$1 ["
-	for i in {1..100..5}
-	do
-	    if [ $i -le $2 ]; then
-		bar="$bar#"
-	    else
-		bar="$bar   "
-	    fi
-	done
-	bar="$bar] $2%"
-    }
-
-
-    ########### Date ###########
-    date1=$(date "+%m-%d-%Y %r")
-
-    ########### Volume ###########
-    # Level
-    str=$(amixer -D pulse sget Master | grep % | awk '{print $5}'|sed -e 's/[^0-9/%]//g')
-    index=$(( (${#str}+1)/2 ))
-    index2=$(( $index - 2 ))
-    n_vol=${str:index:index2}
-    vol_sep=$sep
-    if [ $n_vol == 100 ]; then
-	vol_sep=${sep:0:$(( ${#sep} - 4))}
-    elif [ $n_vol -ge 10 ]; then
-	vol_sep=${sep:0:$(( ${#sep} - 2 ))}
-    fi
-
-    # State
-    str2=$(amixer -D pulse sget Master | grep % | awk '{print $6}')
-    index=$(( (${#str2} + 3)/2))
-    index2=$(( (${#str2} - 5)/2  ))
-    state=${str2:index:index2}
-
-    # Bar
-    bar=""
-    color=$NC
-    if [ "$state" == "off" ]; then
-	color=$RED
-    fi
-    make_bar "VOL $state" $n_vol
-    vol=$bar
-
-    ########### Power battery ###########
-    # Level
-    str=$(upower -i /org/freedesktop/UPower/devices/battery_BAT1 | grep -E "percentage" | sed -e 's/[^0-9/]//g')
-
-    # State
-    str2=$(upower -i /org/freedesktop/UPower/devices/battery_BAT1 | grep -E "state")
-    set -- $str2
-    state="CHR"
-    if [ "$2" == "discharging" ]; then
-	state="DIS"
-    fi
-    bat="$state $str%"
-
-    ########### Brightness ###########
-    bright=$(cat /sys/class/backlight/intel_backlight/brightness)
-    max_bright=$(cat /sys/class/backlight/intel_backlight/max_brightness)
-    step=$(($max_bright / 10 ))
-    bri=-10
-    for (( i=0; i <= $bright; i=(($i + $step)) ))
-    do
-	bri=$(( $bri + 10 ))
+# Creates a bar with the numeral character
+make_bar () {
+    bar="$1 ["
+    for i in {1..100..5}; do
+        if [ "$i" -le "$2" ]; then
+            bar="$bar#"
+        else
+            bar="$bar   "
+        fi
     done
-    br="BR $bri%"
+    bar="$bar] $2%"
+}
 
-    ########### Active window ###########
+# ======== Modules ======== #
+# Date
+get_date () {
+    date1=$(date "+%d %b %Y %r")
+}
+
+# Volume
+# Depends on pamixer
+get_volume () {
+    n_vol=$(pamixer --get-volume)
+    is_muted=$(pamixer --get-mute)
+    state="OFF"
+    if $is_muted; then
+        state="ON"
+    fi
+
+    # Separation
+    vol_sep=$sep
+    if [ "$n_vol" == 100 ]; then
+        vol_sep=${sep:0:$(( ${#sep} - 4))}
+    elif [ "$n_vol" -ge 10 ]; then
+        vol_sep=${sep:0:$(( ${#sep} - 2 ))}
+    fi
+
+    bar=""
+    make_bar "VOL $state" "$n_vol"
+    vol1="$bar $vol_sep"
+}
+
+# Battery
+get_battery () {
+    n_bat=$(upower -i /org/freedesktop/UPower/devices/battery_BAT1 | \
+            grep -E "percentage" | sed -e 's/[^0-9/]//g')
+
+    state_aux=$(upower -i /org/freedesktop/upower/devices/battery_bat1 | \
+                grep -e "state" | awk '{ print $2 }')
+    state="CHR"
+    if [ "$state_aux" == "discharging" ]; then
+        state="DIS"
+    fi
+
+    bat1="$state $n_bat%"
+}
+
+# Brightness
+# Depends on light
+get_brightness () {
+    n_bri_aux=$(light -G)
+    n_bri=${n_bri_aux%.*}
+
+    brightness1="BR $n_bri%"
+}
+
+# Activated window
+get_window () {
     id=$(xprop -root | awk '/_NET_ACTIVE_WINDOW\(WINDOW\)/{print $NF}')
+
     name=$(xprop -id $id | awk '/_NET_WM_NAME/{$1=$2="";print}' | cut -d'"' -f2)
     max_length=20
     if [ ${#name} -ge $max_length ]; then
-	name="${name:0:max_length}..."
+        name="${name:0:max_length}..."
     fi
 
-    ########### Echo block ###########
-    str="$name | "$vol" $vol_sep | $br | $bat | $date1"
+    window1=$name
+}
+# While loop for each module
+while :
+do
+    # Save modules in variables
+    get_date
+    dateModule=$date1
+
+    get_volume
+    volModule=$vol1
+
+    get_battery
+    batModule=$bat1
+
+    get_brightness
+    briModule=$brightness1
+
+    get_window
+    windModule=$window1
+
+    # Print bar
+    str="$windModule | $volModule | $briModule | $batModule | $dateModule"
     if [ "$str" == "$prev_str" ]; then
-	echo -e "$str"
+        echo -e "$str"
     fi
     prev_str=$str
 done
