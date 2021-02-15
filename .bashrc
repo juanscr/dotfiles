@@ -12,6 +12,9 @@ alias e="emacsclient -n -c"
 alias lmk="latexmk -pdf"
 alias lmks="lmk -shell-escape"
 
+files_to_erase=".*\.\(tex\|sty\|bst\|bib\|cls\)$"
+alias rmtrash='find . -maxdepth 1 -type f ! -regex "$files_to_erase" -delete'
+
 # Allows for using alias with sudo
 alias sudo="sudo "
 
