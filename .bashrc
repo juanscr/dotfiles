@@ -34,8 +34,9 @@ alias autoremove='pacman -Qtdq | sudo pacman -Rns -'
 # Image display with kittens
 alias icat='kitty +kitten icat'
 
-# Tar files
-alias tarit='tar -czvf'
+# Compression related commands
+alias comp='arc archive'
+alias unco='arc unarchive'
 
 # Whatsapp
 whatsapp1='nativefier web.whatsapp.com --name whatsapp --single-instance'
