@@ -35,9 +35,7 @@
 (setq reftex-plug-into-AUCTeX t)
 
 ; Default bibliography
-(setq
-reftex-default-bibliography "/home/juanscr/juanscr/jsc/jsc/backups/ref.bib")
-
+(setq reftex-default-bibliography "/home/juanscr/juanscr/jsc/backups/ref.bib")
 (add-hook 'LaTeX-mode-hook 'no-tex-input)
 
 ; ==== Emacs IPython notebook ==== ;
@@ -45,7 +43,7 @@ reftex-default-bibliography "/home/juanscr/juanscr/jsc/jsc/backups/ref.bib")
 (setq ein:output-area-inlined-images t)
 
 ;; Enable undo https://bit.ly/31FfBvZ
-(setq-default ein:worksheet-enable-undo t)
+(setq ein:worksheet-enable-undo t)
 
 ; ==== Org mode ==== ;
 (require 'org)
