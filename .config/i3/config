@@ -186,7 +186,6 @@ assign [class="firefox"]       $w1
 assign [class="Emacs"]       $w2
 assign [class="Gedit"]       $w2
 assign [class="st-256color"] $w2
-assign [class="Alacritty"]   $w2
 assign [class="kitty"]       $w2
 
 # Viewers and media editors
@@ -240,6 +239,7 @@ assign [class="VirtualBox Manager"]            $w9
 
 # Background apps
 for_window [class="Spotify"] move to workspace $w10
+assign [class="Alacritty"]                     $w10
 
 # Floating apps
 # Media
