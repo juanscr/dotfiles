@@ -1,0 +1,13 @@
+[Default Applications]
+x-scheme-handler/mailto=brave-browser.desktop
+x-scheme-handler/msteams=teams.desktop
+x-scheme-handler/webcal=brave-browser.desktop
+x-scheme-handler/tg=userapp-Telegram Desktop-Y4BCY0.desktop
+application/pdf=okular.desktop
+
+[Added Associations]
+application/pdf=org.pwmt.zathura-pdf-mupdf.desktop;
+image/png=sxiv.desktop;
+video/mp4=vlc.desktop;
+application/x-ipynb+json=emacs.desktop;
+x-scheme-handler/tg=userapp-Telegram Desktop-Y4BCY0.desktop;
