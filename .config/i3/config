@@ -299,6 +299,7 @@ bindsym $mod+ctrl+t gaps inner all set 0, gaps outer all set 0
 # Keybinds
 bindsym $mod+Return exec $term
 bindsym $mod+s exec spotify
+bindsym $mod+Shift+s exec alacritty -e $HOME/.bin/launchspt.sh
 bindsym $mod+i exec $browser
 bindsym $mod+u exec google-chrome-stable --new-window $(xsel --clipboard --output)
 
