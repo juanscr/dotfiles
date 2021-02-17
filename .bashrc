@@ -5,7 +5,6 @@ export PATH=$PATH:$HOME/.cabal/bin
 export PATH=$PATH:$HOME/.local/bin
 
 # ============ ALIASES ============ #
-# ==== Commands ==== #
 alias e="emacsclient -n -c"
 
 # Latex
@@ -43,6 +42,9 @@ whatsapp1='nativefier web.whatsapp.com --name whatsapp --single-instance'
 whatsapp2='--tray --inject whatsapp-assets/whatsapp-nativefier-inject.js'
 whatsapp3='--icon whatsapp-assets/icon.png'
 alias genw='$whatsapp1 $whatsapp2 $whatsapp3'
+
+# Spotify terminal user interface
+alias spt='$HOME/.bin/launchspt.sh'
 
 # ==== Coloring ==== #
 alias grep='grep --color=auto'
