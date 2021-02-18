@@ -44,7 +44,7 @@ whatsapp3='--icon whatsapp-assets/icon.png'
 alias genw='$whatsapp1 $whatsapp2 $whatsapp3'
 
 # Spotify terminal user interface
-alias spt='$HOME/.bin/launchspt.sh'
+alias lspt='$HOME/.bin/launchspt.sh'
 
 # ==== Coloring ==== #
 alias grep='grep --color=auto'
