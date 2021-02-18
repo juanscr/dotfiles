@@ -45,6 +45,7 @@ alias genw='$whatsapp1 $whatsapp2 $whatsapp3'
 
 # Spotify terminal user interface
 alias lspt='$HOME/.bin/launchspt.sh'
+alias cspt='killall spotifyd'
 
 # ==== Coloring ==== #
 alias grep='grep --color=auto'
