@@ -19,6 +19,9 @@
 ;; Theme selection
 (setq doom-theme 'doom-dracula)
 
+;; Column fitting
+(setq-default fill-column 80)
+
 ; ============ EDITING MODES ============ ;
 ; ==== Text mode ==== ;
 (add-hook 'text-mode-hook 'flyspell-mode)
