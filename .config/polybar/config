@@ -14,7 +14,7 @@ background-alt = #282A36
 ; Workspaces setups
 focused-ws   = #44475A
 active-ws    = #282A36
-urgent-ws    = #FF5555
+urgent-ws    = #F8F8F2
 underline-ws = #BBC5FF
 
 ; Font color
