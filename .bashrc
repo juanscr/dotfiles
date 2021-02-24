@@ -88,6 +88,11 @@ alias gpl='gitd pull'
 alias gr='gitd rm'
 alias gs='gitd status'
 
+# Generate video of commits
+flags1='--auto-skip-seconds 1 --file-idle-time 0 --seconds-per-day 1'
+flags2='-y -r 60 -f image2pipe -vcodec ppm -i - -vcodec libx264'
+flags3='-preset ultrafast -pix_fmt yuv420p -crf 1 -threads 0 -bf 0'
+alias gitvideo='gource $flags1 -1920x1080 -o - | ffmpeg $flags2 $flags3'
 
 # ==== Global Variables ==== #
 export BROWSER="/usr/bin/firefox"
