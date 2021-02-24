@@ -186,7 +186,7 @@ label-focused-padding    = 3
 
 ; Settings for unfocused workspaces
 label-unfocused            = %icon%
-label-unfocused-padding    = 3
+label-unfocused-padding    = ${self.label-focused-padding}
 
 ; Active workspace in different monitor
 label-visible            = %icon%
@@ -197,7 +197,7 @@ label-visible-padding    = ${self.label-focused-padding}
 ; Urgent workspace
 label-urgent           = %icon%
 label-urgent-underline = ${colors.urgent-ws}
-label-urgent-padding   = 3
+label-urgent-padding   = ${self.label-focused-padding}
 
 
 ; Spotify custom module based on
