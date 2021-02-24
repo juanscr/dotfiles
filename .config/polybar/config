@@ -182,13 +182,11 @@ label-mode-background = ${colors.focused-ws}
 ; Settings for focused workspaces
 label-focused            = %icon%
 label-focused-background = ${colors.focused-ws}
-label-focused-underline  = ${colors.underline-ws}
 label-focused-padding    = 3
 
 ; Settings for unfocused workspaces
 label-unfocused            = %icon%
 label-unfocused-padding    = 3
-label-unfocused-foreground = ${colors.foreground-alt}
 
 ; Active workspace in different monitor
 label-visible            = %icon%
@@ -197,9 +195,9 @@ label-visible-underline  = ${self.label-focused-underline}
 label-visible-padding    = ${self.label-focused-padding}
 
 ; Urgent workspace
-label-urgent            = %icon%
-label-urgent-background = ${colors.urgent-ws}
-label-urgent-padding    = 3
+label-urgent           = %icon%
+label-urgent-underline = ${colors.urgent-ws}
+label-urgent-padding   = 3
 
 
 ; Spotify custom module based on
