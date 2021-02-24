@@ -163,17 +163,17 @@ wrapping-scroll = false
 strip-wsnumbers = true
 
 ; Symbols for workspaces
-ws-icon-0 = 1;
-ws-icon-1 = 2;
-ws-icon-2 = 3;
-ws-icon-3 = 4;
-ws-icon-4 = 5;
-ws-icon-5 = 6;
-ws-icon-6 = 7;
-ws-icon-7 = 8;
-ws-icon-8 = 9;
-ws-icon-9 = 10;
-ws-icon-10 = 11;
+ws-icon-0 = 1;%{F#FFB86C}%{F-}
+ws-icon-1 = 2;%{F#F1FA8C}%{F-}
+ws-icon-2 = 3;%{F#50FA7B}%{F-}
+ws-icon-3 = 4;%{F#8BE9FD}%{F-}
+ws-icon-4 = 5;%{F#BD93D9}%{F-}
+ws-icon-5 = 6;%{F#FF79C6}%{F-}
+ws-icon-6 = 7;%{F#FF5555}%{F-}
+ws-icon-7 = 8;%{F#FFB86C}%{F-}
+ws-icon-8 = 9;%{F#F1FA8C}%{F-}
+ws-icon-9 = 10;%{F#50FA7B}%{F-}
+ws-icon-10 = 11;%{F#8BE9FD}%{F-}
 
 label-mode-padding    = 2
 label-mode-foreground = ${colors.foreground}
