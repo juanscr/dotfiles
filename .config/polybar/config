@@ -333,7 +333,7 @@ label-volume            = %percentage%%
 label-volume-foreground = ${colors.foreground}
 format-muted            = <label-muted>
 label-muted             =   %percentage%%
-label-muted-foreground  = ${colors.urgent-ws}
+label-muted-foreground  = ${colors.red}
 
 ; Ramp volume
 ramp-volume-0 = 
