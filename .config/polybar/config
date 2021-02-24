@@ -232,7 +232,7 @@ type               = custom/ipc
 format-prefix      = "  "
 format-prefix-font = 2
 hook-0             = echo ""
-hook-1             = spotifyctl -q status
+hook-1             = spotifyctl -q status --max-length 38
 
 
 ; Custom module to monitor brightness
