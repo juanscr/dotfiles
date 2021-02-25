@@ -22,17 +22,22 @@
 ;; Column fitting
 (setq-default fill-column 80)
 
+;; Centered cursor mode settings
+(setq ccm-recenter-at-end-of-file t)
+
 ; ============ EDITING MODES ============ ;
 ; ==== Text mode ==== ;
 (add-hook 'text-mode-hook 'flyspell-mode)
 (add-hook 'text-mode-hook 'set-tex-input)
 (add-hook 'text-mode-hook 'display-nums-white)
 (add-hook 'text-mode-hook 'display-fill-column-indicator-mode)
+(add-hook 'text-mode-hook 'centered-cursor-mode)
 
 ; ==== Programming mode ==== ;
 (add-hook 'prog-mode-hook 'display-nums-white)
 (add-hook 'prog-mode-hook 'flycheck-mode)
 (add-hook 'prog-mode-hook 'display-fill-column-indicator-mode)
+(add-hook 'prog-mode-hook 'centered-cursor-mode)
 
 ; ==== LaTeX mode ==== ;
 ;; Turn on reftex https://bit.ly/3gIgKHD
