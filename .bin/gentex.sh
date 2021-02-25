@@ -30,10 +30,11 @@ else
     exit 2
 fi
 
+
 if $comms; then
-    cp ~/juanscr/jsc/jsc/templates/commands.tex .
+    cp ~/juanscr/jsc/templates/commands.tex .
 fi
-cp ~/juanscr/jsc/jsc/templates/"$file" .
+cp ~/juanscr/jsc/templates/"$file" .
 NAME="$(basename "$PWD")"
 mv "$file" "$NAME".tex
 
