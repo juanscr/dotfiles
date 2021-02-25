@@ -27,10 +27,12 @@
 (add-hook 'text-mode-hook 'flyspell-mode)
 (add-hook 'text-mode-hook 'set-tex-input)
 (add-hook 'text-mode-hook 'display-nums-white)
+(add-hook 'prog-mode-hook 'display-fill-column-indicator-mode)
 
 ; ==== Programming mode ==== ;
 (add-hook 'prog-mode-hook 'display-nums-white)
 (add-hook 'prog-mode-hook 'flycheck-mode)
+(add-hook 'prog-mode-hook 'display-fill-column-indicator-mode)
 
 ; ==== LaTeX mode ==== ;
 ;; Turn on reftex https://bit.ly/3gIgKHD
