@@ -17,6 +17,9 @@ alias rmtrash='find . -maxdepth 1 -type f ! -regex "$files_to_keep" -delete'
 # Allows for using alias with sudo
 alias sudo="sudo "
 
+# Edit files with sudo privileges
+alias se='SUDO_EDITOR="emacsclient -n -c" sudoedit'
+
 # Ls with icons
 alias ls='ls-icons -v'
 alias ll='ls -alF'
