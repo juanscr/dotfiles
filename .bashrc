@@ -89,6 +89,7 @@ alias gp='gitd push'
 alias gpc='pullCheck '
 alias gpl='gitd pull'
 alias gr='gitd rm'
+alias grs='gitd restore --staged'
 alias gs='gitd status'
 
 # Generate video of commits
