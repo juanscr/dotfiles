@@ -212,6 +212,7 @@ assign [class="Microsoft Teams - Preview"]           $w5
 assign [class="Slack"]                               $w5
 assign [class="zoom"]                                $w5
 assign [class="whatsapp-nativefier-d40211"]          $w5
+assign [class="Telegram-desktop"]                    $w5
 assign [class="TelegramDesktop"]                     $w5
 for_window [class="Google-chrome"] move to workspace $w5
 
@@ -300,7 +301,7 @@ bindsym $mod+ctrl+t gaps inner all set 0, gaps outer all set 0
 # Keybinds
 bindsym $mod+Return exec $term
 bindsym $mod+s exec spotify
-bindsym $mod+Shift+s exec alacritty -e $HOME/.bin/launchspt.sh
+bindsym $mod+Shift+s exec alacritty -e $HOME/.bin/launchers/launchspt.sh
 bindsym $mod+i exec $browser
 bindsym $mod+u exec google-chrome-stable --new-window $(xsel --clipboard --output)
 
@@ -310,8 +311,8 @@ bindsym $mod+Shift+KP_2 exec arandr
 bindsym $mod+Shift+KP_3 exec pavucontrol
 bindsym $mod+Shift+KP_4 exec $term -e 'htop'
 bindsym $mod+Shift+KP_5 exec whatsapp
-bindsym $mod+Shift+KP_6 exec telegram-desktop
-bindsym $mod+Shift+KP_7 exec settings-nvidia
+bindsym $mod+Shift+KP_6 exec $HOME/.bin/launchers/launch-telegram.sh
+bindsym $mod+Shift+KP_7 exec $HOME/.bin/launchers/settings-nvidia.sh
 bindsym $mod+Shift+KP_8 exec popcorntime
 bindsym $mod+Shift+KP_9 exec stremio
 
@@ -342,7 +343,7 @@ exec_always picom
 exec_always --no-startup-id $HOME/.config/polybar/launch-bar.sh
 
 # Tray icons
-exec_always $HOME/.bin/tray-optimus-manager.sh
+exec_always $HOME/.bin/launchers/tray-optimus-manager.sh
 exec_always nm-applet
 
 # Dracula theme for containers
