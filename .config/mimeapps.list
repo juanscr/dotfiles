@@ -11,3 +11,4 @@ image/png=sxiv.desktop;
 video/mp4=vlc.desktop;
 application/x-ipynb+json=emacs.desktop;
 x-scheme-handler/tg=userapp-Telegram Desktop-Y4BCY0.desktop;
+image/jpeg=sxiv.desktop;
