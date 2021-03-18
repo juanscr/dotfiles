@@ -84,5 +84,8 @@ org-format-latex-options :scale 2.0))
   (add-to-list 'company-backends 'company-jedi))
 (add-hook 'python-mode-hook 'python-jedi)
 
+;; Activate LSP in all python buffers
+(add-hook 'python-mode-hook #'lsp)
+
 ; ==== Julia mode ==== ;
 (add-hook 'julia-mode-hook 'set-tex-input)
