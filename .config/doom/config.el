@@ -69,6 +69,12 @@ org-format-latex-options :scale 2.0))
 (add-hook 'julia-mode-hook 'set-tex-input)
 
 ; ============ IDE BEHAVIOR ============ ;
+;; LSP with no autoguess
+(setq-default lsp-auto-guess-root nil)
+
+;; Activate LSP in all python buffers
+(add-hook 'python-mode-hook #'lsp)
+
 ; ==== Company mode ==== ;
 (setq company-idle-delay 0)
 (setq company-show-numbers t)
@@ -83,8 +89,18 @@ org-format-latex-options :scale 2.0))
   (add-to-list 'company-backends 'company-jedi))
 (add-hook 'python-mode-hook 'python-jedi)
 
-;; Activate LSP in all python buffers
-(add-hook 'python-mode-hook #'lsp)
+; ==== LSP for Julia ==== ;
+;; LSP for Julia
+(require 'lsp-julia)
+(setq lsp-julia-default-environment "~/.julia/environments/v1.5")
 
-;; LSP with no autoguess
-(setq-default lsp-auto-guess-root nil)
+;; Use sysimage created
+(setq lsp-julia-package-dir nil)
+(setq lsp-julia-flags
+      `("-J/home/juanscr/.julia/environments/languageserver.so"))
+
+;; Fix error according to https://bit.ly/3cHwqe4
+(setq lsp-enable-folding t)
+
+;; Activate it automatically
+(add-hook 'julia-mode-hook #'lsp)
