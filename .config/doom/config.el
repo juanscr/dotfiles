@@ -65,14 +65,13 @@ org-format-latex-options :scale 2.0))
 ;; Do not have input method in org mode
 (add-hook 'org-mode-hook 'no-tex-input)
 
+; ==== Julia mode ==== ;
+(add-hook 'julia-mode-hook 'set-tex-input)
+
 ; ============ IDE BEHAVIOR ============ ;
 ; ==== Company mode ==== ;
 (setq company-idle-delay 0)
 (setq company-show-numbers t)
-
-; Additional backends
-(require 'company-lsp)
-(push 'company-lsp company-backends)
 
 ; Irony mode for C and C++
 (add-hook 'c++-mode-hook 'irony-mode)
@@ -86,6 +85,3 @@ org-format-latex-options :scale 2.0))
 
 ;; Activate LSP in all python buffers
 (add-hook 'python-mode-hook #'lsp)
-
-; ==== Julia mode ==== ;
-(add-hook 'julia-mode-hook 'set-tex-input)
