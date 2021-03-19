@@ -85,3 +85,6 @@ org-format-latex-options :scale 2.0))
 
 ;; Activate LSP in all python buffers
 (add-hook 'python-mode-hook #'lsp)
+
+;; LSP with no autoguess
+(setq-default lsp-auto-guess-root nil)
