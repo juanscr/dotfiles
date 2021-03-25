@@ -17,6 +17,9 @@ microphone=$($queryp | awk '/input/ { print $2 }' | head -1)
 computer=$($queryp | awk '/output/ { print $2 }' | head -1)
 nmic=0
 ncomp=0
+fps=30
+
+# Global variables to identify events
 NOAUDIO=1
 USEAUDIO=2
 
@@ -76,6 +79,13 @@ while :; do
                 die 'ERROR: No mic and mic option selected at the same time.'
             fi
             ncomp=$NOAUDIO
+            ;;
+        -f|--fps)
+            if [ "$2" ]; then
+                fps="$2"
+            else
+                die 'ERROR: No value for the FPS was passed.'
+            fi
             ;;
         -?*)
             printf 'WARN: Unknown option (ignored): %s\n' "$1" >&2
@@ -205,5 +215,5 @@ fi
 
 # ===== Record screen ===== #
 # ffmpeg command to record screen
-ffmpeg "${audioArgs[@]}" -f x11grab -r 30 -s "$res" -i :0.0+"$coord" \
+ffmpeg "${audioArgs[@]}" -f x11grab -r "$fps" -s "$res" -i :0.0+"$coord" \
        "${audioRateArgs[@]}" "$outputVideo"
