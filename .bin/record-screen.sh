@@ -6,11 +6,15 @@ die() {
     exit 1
 }
 
+# Default query for monitor information and devices
+queryx='xrandr --listmonitors'
+queryp='pactl list sources short'
+
 # Default values for variables
-monitorRecord=$(xrandr | awk '/primary/ { print $1 }')
+monitorRecord=$($queryx | awk '/\+\*/ { print $4 }')
 outputVideo='output.mp4'
-microphone='alsa_input.pci-0000_00_1f.3.analog-stereo'
-computer='alsa_output.pci-0000_00_1f.3.analog-stereo.monitor'
+microphone=$($queryp | awk '/input/ { print $2 }' | head -1)
+computer=$($queryp | awk '/output/ { print $2 }' | head -1)
 nmic=0
 ncomp=0
 NOAUDIO=1
@@ -24,7 +28,7 @@ while :; do
                 monitorRecord="$2"
 
                 # Check if monitor exists
-                isMonitor=$(xrandr | awk "/$monitorRecord/")
+                isMonitor=$($queryx | awk "/$monitorRecord/")
                 if [ "$isMonitor" = "" ]; then
                     die 'ERROR: The display given does not exist.'
                 fi
@@ -96,15 +100,23 @@ fi
 # ===== Information about monitor ===== #
 # Obtain coordinate for display
 getCoordDisplay() {
-    regexMatch="{ match(\$0, \"[0-9]+\\\\+[0-9]+ \", a) }"
-    coord=$(xrandr | awk "/$monitorRecord/ $regexMatch END { print a[0] }")
+    regexMatch="{ match(\$0, /[0-9]+\+[0-9]+\s/, a) }"
+    awkInput="/$monitorRecord/ $regexMatch END { print a[0] }"
+    coord=$($queryx | awk "$awkInput")
     echo "$coord" | awk '{ gsub("+", ",") } 1'
 }
 
 # Obtain resolution for display
 getResDisplay() {
-    regexMatch="{ match(\$0, \"[0-9]+x[0-9]+\", a) }"
-    xrandr | awk "/$monitorRecord/ $regexMatch END { print a[0] }"
+    regexMatch="{ match(\$0, /[0-9]+\/+[0-9]+x[0-9]+/, a) }"
+    awkInput="/$monitorRecord/ $regexMatch END { print a[0] }"
+    display=$($queryx | awk "$awkInput")
+
+    # Depure it
+    regexMatch="{ match(\$0, /\/[0-9]+x/, a) }"
+    extraStuff=$(echo "$display" | awk "$regexMatch END { print a[0] }")
+
+    echo "$display" | awk "{ gsub (\"$extraStuff\", \"x\")} 1"
 }
 
 coord=$(getCoordDisplay "$monitorRecord")
@@ -114,8 +126,7 @@ res=$(getResDisplay "$monitorRecord")
 # Get channel for a given audio device
 getAC() {
     matchChannel="{ match(\$0, \"[0-9]+ch\", a) }"
-    sources='pactl list sources short'
-    channel=$($sources | awk "/$1/ $matchChannel END { print a[0] }")
+    channel=$($queryp | awk "/$1/ $matchChannel END { print a[0] }")
 
     # Get channel
     echo "$channel" | awk '{ gsub("ch", "") } 1'
@@ -124,8 +135,7 @@ getAC() {
 # Get rate for a given audio device
 getAR() {
     matchRate="{ match(\$0, \"[0-9]+Hz\", a) }"
-    sources='pactl list sources short'
-    rate=$($sources | awk "/$1/ $matchRate END { print a[0] }")
+    rate=$($queryp | awk "/$1/ $matchRate END { print a[0] }")
 
     # Get channel
     echo "$rate" | awk '{ gsub("Hz", "") } 1'
