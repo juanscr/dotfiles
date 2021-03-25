@@ -23,6 +23,46 @@ fps=30
 NOAUDIO=1
 USEAUDIO=2
 
+# Help function
+help() {
+    echo "Record your screen using only ffmpeg. Works for x11 and pulseaudio."
+    echo
+    echo "The default devices used for the recording will be:"
+    echo "  1. Monitor:        $monitorRecord"
+    echo "  2. Microphone:     $microphone"
+    echo "  3. Computer sound: $computer"
+    echo
+    echo "For a list of available devices do:"
+    echo "  1. Screens:       '$queryx'"
+    echo "  2. Audio sources: '$queryp'"
+    echo
+    echo "Options for script:"
+    echo
+    echo "-f, --fps FPS            It selects the rate of the recording."
+    echo
+    echo "-d, --display DEVICE     It allows to select the monitor for which"
+    echo "                         the screen will be recorded. For a list of"
+    echo "                         available devices do 'xrandr --listmonitors'"
+    echo
+    echo "-o, --output FILENAME    It changes the name of the output file. It"
+    echo "                         has a default value of output.mp4."
+    echo
+    echo "-m, --mic <DEVICE>       It selects the source for which the"
+    echo "                         microphone will be recorded. If the DEVICE"
+    echo "                         is not given, it will use the default one."
+    echo
+    echo "-c, --comp <DEVICE>      It selects the source for which the computer"
+    echo "                         sound will be recorded. If the DEVICE"
+    echo "                         is not given, it will use the default one."
+    echo
+    echo "-nm, --nomic             It does not record the microphone sound."
+    echo
+    echo "-nc, --nocomp            It does not record the computer sound."
+    echo
+    echo "-h, --help               It prints this menu."
+}
+
+
 # Parse display options
 while :; do
     case $1 in
@@ -86,6 +126,10 @@ while :; do
             else
                 die 'ERROR: No value for the FPS was passed.'
             fi
+            ;;
+        -h|--help)
+            help
+            exit 0
             ;;
         -?*)
             printf 'WARN: Unknown option (ignored): %s\n' "$1" >&2
