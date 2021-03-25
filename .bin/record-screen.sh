@@ -7,7 +7,7 @@ die() {
 }
 
 # Default query for monitor information and devices
-queryx='xrandr --listmonitors'
+queryx='xrandr --listactivemonitors'
 queryp='pactl list sources short'
 
 # Default values for variables
