@@ -183,6 +183,7 @@ label-mode-background = ${colors.focused-ws}
 label-focused            = %icon%
 label-focused-background = ${colors.focused-ws}
 label-focused-padding    = 3
+label-focused-underline  = ${colors.focused-ws}
 
 ; Settings for unfocused workspaces
 label-unfocused            = %icon%
