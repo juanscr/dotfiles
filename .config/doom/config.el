@@ -92,7 +92,7 @@ org-format-latex-options :scale 2.0))
 ; ==== LSP for Julia ==== ;
 ;; LSP for Julia
 (require 'lsp-julia)
-(setq lsp-julia-default-environment "~/.julia/environments/v1.5")
+(setq lsp-julia-default-environment "~/.julia/environments/v1.6")
 
 ;; Use sysimage created
 (setq lsp-julia-package-dir nil)
