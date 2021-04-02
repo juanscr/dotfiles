@@ -221,6 +221,7 @@ assign [class="ffplay"]       $w6
 assign [class="Popcorn-Time"] $w6
 assign [class="Stremio"]      $w6
 assign [class="vlc"]          $w6
+assign [class="qBittorrent"]  $w6
 
 # Configuration apps
 assign [class="Arandr"]           $w7
