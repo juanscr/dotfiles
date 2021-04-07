@@ -1,14 +1,12 @@
 #!/usr/bin/env bash
 
-clipboard=$(xsel --clipboard --output)
-
-# Regex for URLS
-regex1="[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]"
-regex="(https?|ftp|file)://$regex1"
+# URL extraction with awk
+regex="{ match(\$0, \"(https?|ftp|file)://[-A-Za-z0-9+&@#/%?=~_|!:,.;]+\", a) }"
+url=$(xsel --clipboard --output | awk "$regex END { print a[0] }")
 
 # Check if url
-if [[ "$clipboard" =~ $regex ]]; then
-    google-chrome-stable --new-window "$clipboard"
+if [ "$url" != "" ]; then
+    google-chrome-stable --new-window "$url"
 else
     google-chrome-stable
 fi
