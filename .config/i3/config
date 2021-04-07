@@ -305,7 +305,7 @@ bindsym $mod+Return exec $term
 bindsym $mod+s exec spotify
 bindsym $mod+Shift+s exec alacritty -e $HOME/.bin/launchers/launchspt.sh
 bindsym $mod+i exec $browser
-bindsym $mod+u exec google-chrome-stable --new-window $(xsel --clipboard --output)
+bindsym $mod+u exec $HOME/.bin/launchers/launchchrome.sh
 
 bindsym $mod+Shift+KP_0 exec teams
 bindsym $mod+Shift+KP_1 exec slack
