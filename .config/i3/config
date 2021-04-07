@@ -311,7 +311,7 @@ bindsym $mod+Shift+KP_0 exec teams
 bindsym $mod+Shift+KP_1 exec slack
 bindsym $mod+Shift+KP_2 exec arandr
 bindsym $mod+Shift+KP_3 exec pavucontrol
-bindsym $mod+Shift+KP_4 exec bitwarden-desktop
+bindsym $mod+Shift+KP_4 exec bitwarden
 bindsym $mod+Shift+KP_5 exec whatsapp
 bindsym $mod+Shift+KP_6 exec $HOME/.bin/launchers/launch-telegram.sh
 bindsym $mod+Shift+KP_7 exec $HOME/.bin/launchers/settings-nvidia.sh
@@ -347,6 +347,7 @@ exec_always --no-startup-id $HOME/.config/polybar/launch-bar.sh
 # Tray icons
 exec_always $HOME/.bin/launchers/tray-optimus-manager.sh
 exec_always nm-applet
+exec bitwarden
 
 # Dracula theme for containers
 # class                 border  bground text    indicator child_border
