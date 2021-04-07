@@ -8,7 +8,7 @@ regex="(https?|ftp|file)://$regex1"
 
 # Check if url
 if [[ "$clipboard" =~ $regex ]]; then
-    google-chrome-stable --new-window "$regex"
+    google-chrome-stable --new-window "$clipboard"
 else
     google-chrome-stable
 fi
