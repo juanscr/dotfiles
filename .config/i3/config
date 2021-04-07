@@ -230,6 +230,7 @@ assign [class="Lxappearance"]     $w7
 assign [class="Lightdm-settings"] $w7
 assign [class="Font-manager"]     $w7
 assign [class="Nvidia-settings"]  $w7
+assign [class="Bitwarden"]        $w7
 
 # Production apps
 assign [class="Audacity"] $w8
@@ -310,7 +311,7 @@ bindsym $mod+Shift+KP_0 exec teams
 bindsym $mod+Shift+KP_1 exec slack
 bindsym $mod+Shift+KP_2 exec arandr
 bindsym $mod+Shift+KP_3 exec pavucontrol
-bindsym $mod+Shift+KP_4 exec $term -e 'htop'
+bindsym $mod+Shift+KP_4 exec bitwarden-desktop
 bindsym $mod+Shift+KP_5 exec whatsapp
 bindsym $mod+Shift+KP_6 exec $HOME/.bin/launchers/launch-telegram.sh
 bindsym $mod+Shift+KP_7 exec $HOME/.bin/launchers/settings-nvidia.sh
