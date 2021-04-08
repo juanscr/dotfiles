@@ -56,6 +56,10 @@ alias okular='QT_STYLE_OVERRIDE=adwaita-dark QT_QPA_PLATFORMTHEME=gtk3 okular'
 # Movies related stuffs
 alias movie-mode='xset s off -dpms'
 
+# Update python
+awkCom="{ match (\$0, \".*==\", a); gsub (\"=\", \"\", a[0]); print a[0] }"
+alias uppy="pip list --outdated --format=freeze | $awkCom | xargs pip install"
+
 # ==== Coloring ==== #
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
