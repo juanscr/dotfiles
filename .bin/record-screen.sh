@@ -154,21 +154,21 @@ fi
 # ===== Information about monitor ===== #
 # Obtain coordinate for display
 getCoordDisplay() {
-    regexMatch="{ match(\$0, /[0-9]+\+[0-9]+\s/, a) }"
-    awkInput="/$monitorRecord/ $regexMatch END { print a[0] }"
+    regexMatch="match(\$0, /[0-9]+\+[0-9]+\s/, a)"
+    awkInput="/$monitorRecord/ { $regexMatch; print a[0] }"
     coord=$($queryx | awk "$awkInput")
     echo "$coord" | awk '{ gsub("+", ",") } 1'
 }
 
 # Obtain resolution for display
 getResDisplay() {
-    regexMatch="{ match(\$0, /[0-9]+\/+[0-9]+x[0-9]+/, a) }"
-    awkInput="/$monitorRecord/ $regexMatch END { print a[0] }"
+    regexMatch="match(\$0, /[0-9]+\/+[0-9]+x[0-9]+/, a)"
+    awkInput="/$monitorRecord/ { $regexMatch; print a[0] }"
     display=$($queryx | awk "$awkInput")
 
     # Depure it
-    regexMatch="{ match(\$0, /\/[0-9]+x/, a) }"
-    extraStuff=$(echo "$display" | awk "$regexMatch END { print a[0] }")
+    regexMatch="match(\$0, /\/[0-9]+x/, a)"
+    extraStuff=$(echo "$display" | awk "{ $regexMatch; print a[0] }")
 
     echo "$display" | awk "{ gsub (\"$extraStuff\", \"x\")} 1"
 }
@@ -179,8 +179,8 @@ res=$(getResDisplay "$monitorRecord")
 # ===== Information about audio stuff ===== #
 # Get channel for a given audio device
 getAC() {
-    matchChannel="{ match(\$0, \"[0-9]+ch\", a) }"
-    channel=$($queryp | awk "/$1/ $matchChannel END { print a[0] }")
+    matchChannel="match(\$0, \"[0-9]+ch\", a)"
+    channel=$($queryp | awk "/$1/ { $matchChannel; print a[0] }")
 
     # Get channel
     echo "$channel" | awk '{ gsub("ch", "") } 1'
@@ -188,8 +188,8 @@ getAC() {
 
 # Get rate for a given audio device
 getAR() {
-    matchRate="{ match(\$0, \"[0-9]+Hz\", a) }"
-    rate=$($queryp | awk "/$1/ $matchRate END { print a[0] }")
+    matchRate="match(\$0, \"[0-9]+Hz\", a)"
+    rate=$($queryp | awk "/$1/ { $matchRate; print a[0] }")
 
     # Get channel
     echo "$rate" | awk '{ gsub("Hz", "") } 1'
