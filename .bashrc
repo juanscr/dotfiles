@@ -58,7 +58,7 @@ alias movie-mode='xset s off -dpms'
 
 # Update python
 awkCom="{ match (\$0, \".*==\", a); gsub (\"=\", \"\", a[0]); print a[0] }"
-alias uppy="pip list --outdated --format=freeze | $awkCom | xargs pip install"
+alias uppy="pip list --outdated --format=freeze | $awkCom | xargs -n1 pip install"
 
 # ==== Coloring ==== #
 alias grep='grep --color=auto'
