@@ -27,11 +27,12 @@ getRequirement() {
 
 # Separate commands
 files=$(find "$1" -name '*.py' -type f -exec cat {} +)
-match="match(\$0, \"(import|from) [A-Za-z ,]+$\", a)"
+match="match(\$0, \"(import|from) [A-Za-z ,_.]+$\", a)"
 
 # Get imports
 imports=$(echo "$files" | awk "{ $match ; print a[0] }" | \
           awk "!/^$/ { print \$2 }")
+echo "$imports"
 
 # Get the requirements
 requirements=$(getRequirement "$imports")
