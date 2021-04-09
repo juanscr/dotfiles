@@ -32,7 +32,9 @@ match="match(\$0, \"(import|from) [A-Za-z ,_.]+$\", a)"
 # Get imports
 imports=$(echo "$files" | awk "{ $match ; print a[0] }" | \
           awk "!/^$/ { print \$2 }")
-echo "$imports"
+
+# Split in dot
+imports=$(echo "$imports" | awk '{ split($0, a, "."); print a[1] }')
 
 # Get the requirements
 requirements=$(getRequirement "$imports")
