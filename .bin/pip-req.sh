@@ -11,8 +11,6 @@ getRequirement() {
     while IFS= read -r line; do
         ignore="BEGIN{IGNORECASE=1}"
         requirement=$(echo "$freeze" | awk "$ignore /^$line==/ { print \$0 }")
-        echo "$line"
-        echo "$requirement"
 
         # Requirement
         if [ "$requirement" != "" ]; then
