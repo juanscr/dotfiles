@@ -90,7 +90,7 @@ function pullCheck() {
 }
 
 alias ga='gitd add'
-alias gb='git branch'
+alias gb='gitd branch'
 alias gc='gitd checkout'
 alias gca='gitd commit -a'
 alias gcl='git clone'
