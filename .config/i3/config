@@ -199,6 +199,7 @@ assign [class="okular"]                            $w3
 assign [class="Zathura"]                           $w3
 assign [class="Gimp"]                              $w3
 for_window [class="Gephi 0.9.2"] move to workspace $w3
+assign [class="DB Browser for SQLite"]             $w3
 
 # IDEs
 assign [class="jetbrains-pycharm-ce"] $w4
