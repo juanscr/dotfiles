@@ -39,4 +39,4 @@ imports=$(echo "$imports" | awk '{ split($0, a, "."); print a[1] }')
 # Get the requirements
 requirements=$(getRequirement "$imports")
 
-echo "$requirements" | awk "!/^$/ { print \$0 }"
+echo "$requirements" | awk "!/^$/ { print \$0 }" | sort
