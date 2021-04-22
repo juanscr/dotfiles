@@ -57,8 +57,9 @@ alias okular='QT_STYLE_OVERRIDE=adwaita-dark QT_QPA_PLATFORMTHEME=gtk3 okular'
 alias movie-mode='xset s off -dpms'
 
 # Update python
-awkCom="{ match (\$0, \".*==\", a); gsub (\"=\", \"\", a[0]); print a[0] }"
-alias uppy="pip list --outdated --format=freeze | $awkCom | xargs -n1 pip install"
+awkCom='{ match ($0, ".*==", a); gsub ("=", "", a[0]); print a[0] }'
+instCom='xargs -n1 pip install --upgrade'
+alias uppy='pip list --outdated --format=freeze | awk "$awkCom" | $instCom'
 
 # ==== Coloring ==== #
 alias grep='grep --color=auto'
