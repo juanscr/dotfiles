@@ -187,6 +187,7 @@ assign [class="Emacs"]       $w2
 assign [class="Gedit"]       $w2
 assign [class="st-256color"] $w2
 assign [class="kitty"]       $w2
+assign [class="Alacritty"]   $w2
 
 # Viewers and media editors
 assign [class="Evince"]                            $w3
