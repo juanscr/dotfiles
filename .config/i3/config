@@ -272,8 +272,7 @@ for_window [class="Matplotlib"] floating enable
 
 # File Explorer
 for_window [class="Thunar"] floating enable
-for_window [class="Thunar"] [floating] resize set 1000 800 \
-                                       move position 512 960
+for_window [class="Thunar"] [floating] resize set 1000 800 move position 512 960
 
 for_window [title="Options Editor"] floating enable
 
