@@ -65,6 +65,10 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
+# LS colors
+ls_types='di=1'
+export LS_COLORS="$ls_types"
+
 # ==== XDG Compliance ==== #
 alias wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
 
