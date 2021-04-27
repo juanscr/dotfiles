@@ -67,7 +67,8 @@ alias egrep='egrep --color=auto'
 
 # LS colors
 ls_types='di=1'
-export LS_COLORS="$ls_types"
+ls_ext='.*=34;04:*bash*=33:*git*=32'
+export LS_COLORS="$ls_types:$ls_ext"
 
 # ==== XDG Compliance ==== #
 alias wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
