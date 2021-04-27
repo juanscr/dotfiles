@@ -21,9 +21,8 @@ alias sudo="sudo "
 alias se='SUDO_EDITOR="emacsclient -c" sudoedit'
 
 # Ls with icons
-alias ls='ls-icons -v'
-alias ll='ls -alF'
-alias la='ls -A'
+alias ls='exa --icons'
+alias la='ls -lah'
 
 # Haskell with dynamic linking
 alias ci='cabal install --ghc-options=-dynamic'
