@@ -216,7 +216,7 @@ assign [class="zoom"]                                $w5
 assign [class="whatsapp-nativefier-d40211"]          $w5
 assign [class="Telegram-desktop"]                    $w5
 assign [class="TelegramDesktop"]                     $w5
-for_window [class="Google-chrome"] move to workspace $w5
+assign [class="Chromium"]                            $w5
 
 # Media
 assign [class="ffplay"]       $w6
