@@ -70,9 +70,9 @@ ls_types='di=1:ex=36;04'
 ls_ext='.*=34;04:*git*=32;1:*.jpeg=33:*.JPG=33:*.jpg=33:*.png=35:*.pdf=31;1'
 ls_ext1='*.mp4=35;1;4:*.MP4=35;1;4:*.mkv=35;1;4:*.srt=36:*.wmv=35;1;4'
 ls_ext2='*.py=33:*.jl=33:*.java=33:*.ipynb=33;1:*.el=33:*.tex=33:*.bib=33'
-ls_ext3='*.conf=32:*config*=32:*rc=32:*main*=33;4:*.pyc=35:*.class=35:*.aux=35'
-ls_ext4='*.bbl=35:*.bcf=35:*.blg=35:*.fdb_latexmk=35:*.fls=35:*.log=35:*.nav=35'
-ls_ext5='*.out=35:*.run.xml=35:*.snm=35:*.toc=35'
+ls_ext3='*.conf=32:*config*=32:*rc=32:*main*=33;4:*.pyc=37:*.class=37:*.aux=37'
+ls_ext4='*.bbl=37:*.bcf=37:*.blg=37:*.fdb_latexmk=37:*.fls=37:*.log=37:*.nav=37'
+ls_ext5='*.out=37:*.run.xml=37:*.snm=37:*.toc=37'
 ls_ext="$ls_ext:$ls_ext1:$ls_ext2:$ls_ext3:$ls_ext4:$ls_ext5"
 export LS_COLORS="$ls_types:$ls_ext"
 
