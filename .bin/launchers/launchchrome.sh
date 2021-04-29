@@ -9,7 +9,7 @@ url=$(echo "$url" | awk '!/^$/')
 
 # Check if url
 if [ "$url" != "" ]; then
-    google-chrome-stable --new-window "$url"
+    chromium --new-window "$url"
 else
-    google-chrome-stable
+    chromium
 fi
