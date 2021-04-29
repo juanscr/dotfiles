@@ -73,12 +73,14 @@ groups = [("1", "1"),
 matches = {
   # Browser
   groups[0][0]: [Match(wm_class=["Brave-browser",
-                                 "Google-chrome"])],
+                                 "firefox"])],
 
   # Terminal and text editors
   groups[1][0]: [Match(wm_class=["Emacs",
                                  "Gedit",
-                                 "st-256color"])],
+                                 "st-256color",
+                                 "kitty",
+                                 "Alacritty"])],
 
   # Viewers and media editors
   groups[2][0]: [Match(title=["LibreOffice"],
@@ -88,7 +90,9 @@ matches = {
                                  "libreoffice-writer$",
                                  "Soffice",
                                  "okular",
-                                 "Zathura"])],
+                                 "Zathura",
+                                 "Gimp",
+                                 "Gephi 0.9.2"])],
 
   # IDEs
   groups[3][0]: [Match(wm_class=["jetbrains-pycharm-ce",
@@ -98,18 +102,28 @@ matches = {
 
   # Social
   groups[4][0]: [Match(wm_class=["discord",
-                                 "Microsoft Teams - Preview"])],
+                                 "Microsoft Teams - Preview",
+                                 "Slack",
+                                 "zoom",
+                                 "whatsapp-nativefier-d40211",
+                                 "TelegramDesktop",
+                                 "Chromium"])],
 
   # Media
   groups[5][0]: [Match(wm_class=["ffplay",
                                  "Popcorn-Time",
                                  "Stremio",
-                                 "vlc"])],
+                                 "vlc",
+                                 "qBittorrent"])],
 
   # Configuration apps
   groups[6][0]: [Match(wm_class=["Arandr",
                                  "Pavucontrol",
-                                 "Lxappearance"])],
+                                 "Lxappearance",
+                                 "Lightdm-settings",
+                                 "Font-manager",
+                                 "Nvidia-settings",
+                                 "Bitwarden"])],
 
   # Production apps
   groups[7][0]: [Match(wm_class=["Audacity",
@@ -117,10 +131,12 @@ matches = {
                                  "Ntcardvt"])],
 
   # Miscellaneous apps
-  groups[8][0]: [Match(wm_class=["VirtualBox Manager"])],
+  groups[8][0]: [Match(wm_class=["VirtualBox Manager",
+                                 "^Steam$"])],
 
   # Background apps
-  groups[9][0]: [Match(title=["Spotify Premium"], wm_class=["Spotify"])]
+  groups[9][0]: [Match(wm_class=["Spotify",
+                                 "youtube-music-desktop-app"])]
 }
 
 # Creation of groups
