@@ -83,7 +83,7 @@ font-2 = FontAwesome 5 Free:size=13;1
 ; Position of each module
 modules-left   = i3
 modules-center = spotify previous playpause next
-modules-right  = cpu memory pulseaudio light battery date
+modules-right  = cpu memory light battery date pulseaudio
 
 ; Position of the tray elements
 tray-position = right
@@ -329,28 +329,24 @@ ramp-used-7-foreground = ${colors.red}
 type = internal/pulseaudio
 
 ; Formats for muted and not muted
-format-volume           = <ramp-volume>  <label-volume>
+format-volume           = <ramp-volume>   <bar-volume>
 label-volume            = %percentage%%
 label-volume-foreground = ${colors.foreground}
-format-muted            = <label-muted>
-label-muted             =   %percentage%%
+format-muted            = <label-muted>   <bar-volume>
+label-muted             = 
 label-muted-foreground  = ${colors.red}
 
 ; Ramp volume
 ramp-volume-0 = 
 ramp-volume-1 = 
-ramp-volume-2 = 
+ramp-volume-2 = 
+ramp-volume-3 = 
+ramp-volume-4 = 
+ramp-volume-5 = 
+ramp-volume-6 = 
 
 ; Bar settings
 bar-volume-width            = 15
-bar-volume-foreground-0     = ${colors.yellow}
-bar-volume-foreground-1     = ${colors.yellow}
-bar-volume-foreground-2     = ${colors.green}
-bar-volume-foreground-3     = ${colors.green}
-bar-volume-foreground-4     = ${colors.green}
-bar-volume-foreground-5     = ${colors.red}
-bar-volume-foreground-6     = ${colors.red}
-bar-volume-gradient         = false
 bar-volume-indicator        = |
 bar-volume-indicator-font   = 2
 bar-volume-fill             = ─
@@ -358,6 +354,7 @@ bar-volume-fill-font        = 2
 bar-volume-empty            = ─
 bar-volume-empty-font       = 2
 bar-volume-empty-foreground = ${colors.foreground}
+bar-volume-fill-foreground  = ${colors.green}
 
 ; Battery module
 [module/battery]
