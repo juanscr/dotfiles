@@ -1,15 +1,15 @@
-# ===============================================
-#      _                   ____
-#     | |_   _  __ _ _ __ / ___|  ___
-#  _  | | | | |/ _` | '_ \\___ \ / _ \
-# | |_| | |_| | (_| | | | |___) |  __/
-#  \___/ \__,_|\__,_|_| |_|____/ \___|
-# ===============================================
-#
-#
-#              i3-gaps 4.19.1 config
-#
-# ===============================================
+# =============================================== #
+#      _                   ____                   #
+#     | |_   _  __ _ _ __ / ___|  ___             #
+#  _  | | | | |/ _` | '_ \\___ \ / _ \            #
+# | |_| | |_| | (_| | | | |___) |  __/            #
+#  \___/ \__,_|\__,_|_| |_|____/ \___|            #
+# =============================================== #
+#                                                 #
+#                                                 #
+#              i3-gaps 4.19.1 config              #
+#                                                 #
+# =============================================== #
 
 # Mod Key
 set $mod Mod4
@@ -23,7 +23,7 @@ set $term alacritty
 # Browser
 set $browser firefox
 
-# ========== Basic Behavior ==========
+# ========== Basic Behavior ========== #
 # Setting the mod key
 floating_modifier $mod
 
@@ -55,7 +55,7 @@ bindsym $mod+d exec dmenu_run
 bindsym $mod+shift+a exec "$HOME/.bin/select-monitor.sh"
 
 
-# ========== Media controls ==========
+# ========== Media controls ========== #
 # Volume control
 # Tested with pamixer 1.4.5
 bindsym XF86AudioRaiseVolume exec pamixer -i 5
@@ -73,7 +73,7 @@ bindsym XF86AudioPlay exec spotifyctl playpause
 bindsym XF86AudioNext exec spotifyctl next
 bindsym XF86AudioPrev exec spotifyctl previous
 
-# ========== Window movement ==========
+# ========== Window movement ========== #
 # Change focus between windows
 bindsym $mod+h focus left
 bindsym $mod+j focus down
@@ -101,7 +101,7 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
 
-# ========== Resize mode ==========
+# ========== Resize mode ========== #
 mode "resize" {
         bindsym h resize shrink width 10 px or 10 ppt
         bindsym j resize grow height 10 px or 10 ppt
@@ -114,7 +114,7 @@ mode "resize" {
 bindsym $mod+Shift+q mode "resize"
 
 
-# ========== Workspace configuration ==========
+# ========== Workspace configuration ========== #
 # Names of workspaces
 set $w1 1
 set $w2 2
@@ -275,7 +275,7 @@ for_window [class="Thunar"] [floating] resize set 1000 800 move position 512 960
 for_window [title="Options Editor"] floating enable
 
 
-# ========== Gaps configuration ==========
+# ========== Gaps configuration ========== #
 # Borders size
 set $border 2
 
@@ -298,7 +298,7 @@ bindsym $mod+shift+t gaps inner all set $gi, gaps outer all set $g0
 bindsym $mod+ctrl+t gaps inner all set 0, gaps outer all set 0
 
 
-# ========== Application behavior ==========
+# ========== Application behavior ========== #
 # Keybinds
 bindsym $mod+Return exec $term
 bindsym $mod+s exec spotify
@@ -333,7 +333,7 @@ bindsym --release $mod+Print exec flameshot gui -p $HOME/pictures/screenshots
 bindsym --release Ctrl+Print exec flameshot full -c -p $HOME/pictures/screenshots
 
 
-# ========== Aesthetics =========
+# ========== Aesthetics ========= #
 # Background
 exec --no-startup-id $HOME/.bin/bg.sh
 
