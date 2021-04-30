@@ -316,7 +316,7 @@ exec emacs --daemon
 exec xrdb $HOME/.config/X11/Xresources
 
 # Screenshots manager
-# Tested with flameshot v0.8.5
+# Tested with flameshot v0.9.0
 exec_always flameshot
 bindsym --release Print exec $HOME/.bin/screenshot.sh
 bindsym --release $mod+Print exec flameshot gui -p $HOME/pictures/screenshots
