@@ -7,6 +7,7 @@
 from libqtile import bar, hook, layout, widget
 from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
 from libqtile.lazy import lazy
+from os.path import expanduser as eu
 
 # Mod key
 mod = "mod4"
@@ -28,8 +29,8 @@ keys = [
     # Exit qtile
     KeyChord([mod, "shift"], "e", [
         Key([], "l", lazy.shutdown(), desc="Log off"),
-        Key([], "r", lazy.spwan("systemctl reboot"), desc="Reboot PC"),
-        Key([], "p", lazy.spwan("systemctl poweroff"), desc="Shutdown")
+        Key([], "r", lazy.spawn("systemctl reboot"), desc="Reboot PC"),
+        Key([], "p", lazy.spawn("systemctl poweroff"), desc="Shutdown")
     ], mode="exit: [l]ogout, [r]eboot, [p]oweroff"),
 
     # Search for app. Customized to use dracula theme.
@@ -37,7 +38,7 @@ keys = [
     Key([mod], "d", lazy.spawn('dmenu_run'), desc="Spawn dmenu"),
 
     # Select monitor layout
-    Key([mod, "shift"], "a", lazy.spwan("$HOME/.bin/select-monitor.sh"),
+    Key([mod, "shift"], "a", lazy.spawn(eu("~/.bin/select-monitor.sh")),
         desc="Select monitor layout using script"),
 ]
 
@@ -261,6 +262,33 @@ main = None
 follow_mouse_focus = True
 bring_front_click = False
 cursor_warp = False
+auto_fullscreen = True
+focus_on_window_activation = "smart"
+
+# ========== Aesthetics ========= #
+
+# Dracula theme for containers
+border_focused = "#6272A4"
+border_unfocused = "#282A36"
+
+# ========== Layouts ========== #
+# _____ Configuring themes based on previous variables _____ #
+layout_theme_tall  = {'margin': gaps,
+                      'border_focus': border_focused,
+                      'border_normal': border_unfocused,
+                      'border_width': border,
+                      'align': layout.MonadTall._right}
+layout_theme_stack = {'margin': gaps,
+                      'num_stacks': 1,
+                      'border_width': 0}
+layout_theme_float = {'border_focus': border_focused,
+                      'border_normal': border_unfocused,
+                      'border_width': border}
+
+# Available layouts
+layouts = [layout.MonadTall(**layout_theme_tall),
+           layout.Stack(**layout_theme_stack)]
+
 floating_layout = layout.Floating(float_rules=[
     # Run the utility of `xprop` to see the wm class and name of an X client.
     {'wmclass': 'confirm'},
@@ -277,30 +305,7 @@ floating_layout = layout.Floating(float_rules=[
     {'wname': 'branchdialog'},  # gitk
     {'wname': 'pinentry'},  # GPG key password entry
     {'wmclass': 'ssh-askpass'},  # ssh-askpass
-])
-auto_fullscreen = True
-focus_on_window_activation = "smart"
-
-# ========== Aesthetics ========= #
-
-# Dracula theme for containers
-border_focused = "#6272A4"
-border_unfocused = "#282A36"
-
-# ========== Layouts ========== #
-# _____ Configuring themes based on previous variables _____ #
-layout_theme_tall = {'margin': gaps,
-                     'border_focus': border_focused,
-                     'border_normal': border_unfocused,
-                     'border_width': border,
-                     'align': layout.MonadTall._right}
-layout_theme_stack = {'margin': gaps,
-                      'num_stacks': 1,
-                      'border_width': 0}
-
-# Available layouts
-layouts = [layout.MonadTall(**layout_theme_tall),
-           layout.Stack(**layout_theme_stack)]
+], **layout_theme_float)
 
 # ========== Hooks ========== #
 # Automatic workspace for apps
