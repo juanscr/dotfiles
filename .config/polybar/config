@@ -68,7 +68,7 @@ border-top-size    = ${sizes.bar-offset-y}
 border-bottom-size = ${sizes.bar-bottom-gap}
 
 ; Distance of first and last module to bar
-padding-left  = 1
+padding-left  = 0
 padding-right = 0
 
 ; Margin between modules
