@@ -141,7 +141,7 @@ bindsym $mod+9 workspace number $w9
 bindsym $mod+0 workspace number $w10
 bindsym $mod+p workspace number $w11
 
-# Move windows to workpsace
+# Move windows to workspace
 bindsym $mod+Ctrl+1 move container to workspace $w1
 bindsym $mod+Ctrl+2 move container to workspace $w2
 bindsym $mod+Ctrl+3 move container to workspace $w3
