@@ -1,6 +1,6 @@
 # ===============================================
 #
-#              qtile 0.16.0 config
+#              qtile 0.17.0 config
 #
 # ===============================================
 
@@ -8,8 +8,6 @@ from libqtile import bar, hook, layout, widget
 from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
 from libqtile.dgroups import simple_key_binder
 from libqtile.lazy import lazy
-from libqtile.utils import guess_terminal
-from typing import List
 
 # Mod key
 mod = "mod4"
@@ -42,14 +40,44 @@ keys = [
     # Select monitor layout
     Key([mod, "shift"], "a", lazy.spwan("$HOME/.bin/select-monitor.sh"),
         desc="Select monitor layout using script"),
+]
 
-    # Moving between windows
+# ============ Media Controls ============
+keys += [
+    # Volume control
+    # Tested with pamixer 1.4.5
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("pamixer -i 5"),
+        desc="Increase volume"),
+    Key([], "XF86AudioLowerVolume", lazy.spawn("pamixer -d 5"),
+        desc="Decrease volume"),
+    Key([], "XF86AudioMute", lazy.spawn("pamixer -t"), desc="Toggle mute."),
+
+    # Brightness control
+    # Tested with light 1.2
+    Key([], "XF86MonBrightnessUp", lazy.spawn("light -A 10"),
+        desc="Increase brightness"),
+    Key([], "XF86MonBrightnessDown", lazy.spawn("light -U 10"),
+        desc="Decrease brightness"),
+
+    # Media player controls
+    # Used with https://bit.ly/3hAVW5x
+    Key([], "XF86AudioPlay", lazy.spawn("spotifyctl playpause"),
+        desc="Play or pause spotify"),
+    Key([], "XF86AudioNext", lazy.spawn("spotifyctl next"),
+        desc="Next song spotify"),
+    Key([], "XF86AudioPrev", lazy.spawn("spotifyctl previous"),
+        desc="Previous song spotify")
+]
+
+# ========== Window movement ==========
+keys += [
+    # Change focus between windows
     Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
     Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
     Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
     Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
 
-    # Switching windows
+    # Move window
     Key([mod, "shift"], "h", lazy.layout.shuffle_left(),
         desc="Move window to the left"),
     Key([mod, "shift"], "l", lazy.layout.shuffle_right(),
