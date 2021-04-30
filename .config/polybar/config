@@ -38,8 +38,9 @@ bar-offset-x   = 0
 bar-offset-y   = 0
 bar-bottom-gap = 0
 
-;;;;;;;;;;; MY MAIN BAR FOR I3 ;;;;;;;;;;;;
+; Bar for main monitor in dual-monitor setup
 [bar/jscbar]
+
 ; Monitor
 monitor = ${env:MONITOR:}
 
@@ -92,7 +93,9 @@ tray-padding  = 10
 cursor-click  = pointer
 cursor-scroll = ns-resize
 
+; Bar for second monitor in dual-monitor setup
 [bar/monitor2]
+
 ; Monitor
 monitor = ${env:MONITOR:}
 
@@ -137,6 +140,61 @@ font-2 = FontAwesome 5 Free:size=13;1
 modules-left   = i3
 modules-center = date
 modules-right  = light cpu memory
+
+cursor-click  = pointer
+cursor-scroll = ns-resize
+
+; Full bar for laptop usage
+[bar/jscbar-full]
+
+; Monitor
+monitor = ${env:MONITOR:}
+
+; Enable ipc modules
+enable-ipc = true
+
+; Position Setup
+width        = ${sizes.bar-width}
+height       = ${sizes.bar-height}
+radius       = 0
+fixed-center = true
+
+; Color Setup
+background = ${colors.background-alt}
+foreground = ${colors.foreground}
+
+; Height for underline
+line-size = 3
+
+; Spacing around the bar
+;; MODIFY THE SIZES MODULE FOR A BETTER BEHAVIOR
+border-color       = #00000000
+border-right-size  = ${sizes.bar-offset-x}
+border-left-size   = ${sizes.bar-offset-x}
+border-top-size    = ${sizes.bar-offset-y}
+border-bottom-size = ${sizes.bar-bottom-gap}
+
+; Distance of first and last module to bar
+padding-left  = 0
+padding-right = 0
+
+; Margin between modules
+module-margin-left  = 1
+module-margin-right = 1
+
+; Fonts
+font-0 = JetBrains Mono:size=10;1
+font-1 = FontAwesome:pixelsize=13;1
+font-2 = FontAwesome 5 Free:size=13;1
+
+; Position of each module
+modules-left   = i3
+modules-center = date
+modules-right  = spotify pulseaudio battery light
+
+; Position of the tray elements
+tray-position = right
+tray-padding  = 10
 
 cursor-click  = pointer
 cursor-scroll = ns-resize
