@@ -103,7 +103,7 @@ keys += [
 
     # Toggle between split and unsplit sides of stack.
     # Split = all windows displayed
-    # Unsplit = 1 window displayed, like Max layout, but still with
+    # Unsplit = 1 window displayed, like Stack layout, but still with
     # multiple stack panes
     Key([mod, "shift"], "Return", lazy.layout.toggle_split(),
         desc="Toggle between split and unsplit sides of stack"),
@@ -113,16 +113,16 @@ keys += [
 
 # ========== Workspace configuration ==========
 # Workspaces names, keybinds and default layouts
-workspaces = [["1", {"label": "1",  "layout": "max"}],
+workspaces = [["1", {"label": "1",  "layout": "stack"}],
               ["2", {"label": "2",  "layout": "monadtall"}],
-              ["3", {"label": "3",  "layout": "max"}],
+              ["3", {"label": "3",  "layout": "stack"}],
               ["4", {"label": "4",  "layout": "monadtall"}],
-              ["5", {"label": "5",  "layout": "max"}],
-              ["6", {"label": "6",  "layout": "max"}],
-              ["7", {"label": "7",  "layout": "max"}],
-              ["8", {"label": "8",  "layout": "max"}],
-              ["9", {"label": "9",  "layout": "max"}],
-              ["0", {"label": "10", "layout": "max"}],
+              ["5", {"label": "5",  "layout": "stack"}],
+              ["6", {"label": "6",  "layout": "stack"}],
+              ["7", {"label": "7",  "layout": "stack"}],
+              ["8", {"label": "8",  "layout": "stack"}],
+              ["9", {"label": "9",  "layout": "stack"}],
+              ["0", {"label": "10", "layout": "stack"}],
               ["p", {"label": "11", "layout": "monadtall"}]]
 
 # Apps default workspace
@@ -216,21 +216,12 @@ for g in groups:
             desc="Switch to and move focused window to group {}".format(g.name))
     ]
 
-layouts = [
-    layout.MonadTall(),
-    layout.Max(),
-    # Try more layouts by unleashing below layouts.
-    # layout.Bsp(),
-    # layout.Columns(),
-    # layout.Matrix(),
-    # layout.MonadTall(),
-    # layout.MonadWide(),
-    # layout.RatioTile(),
-    # layout.Tile(),
-    # layout.TreeTab(),
-    # layout.VerticalTile(),
-    # layout.Zoomy(),
-]
+# ========== Gaps configuration ========== #
+# Borders size
+border = 2
+
+# Gaps
+gaps = 10
 
 widget_defaults = dict(
     font='sans',
@@ -299,7 +290,29 @@ floating_layout = layout.Floating(float_rules=[
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 
-# ========== Hooks ==========
+# ========== Aesthetics ========= #
+
+# Dracula theme for containers
+border_focused = "#6272A4"
+border_unfocused = "#282A36"
+
+# ========== Layouts ========== #
+
+# _____ Configuring themes based on previous variables _____ #
+layout_theme_tall = {'margin': gaps,
+                     'border_focus': border_focused,
+                     'border_normal': border_unfocused,
+                     'border_width': border,
+                     'align': layout.MonadTall._right}
+layout_theme_stack = {'margin': gaps,
+                      'num_stacks': 1,
+                      'border_width': 0}
+
+# Available layouts
+layouts = [layout.MonadTall(**layout_theme_tall),
+           layout.Stack(**layout_theme_stack)]
+
+# ========== Hooks ========== #
 # Automatic workspace for apps
 @hook.subscribe.client_new
 def default_workspaces(window):
