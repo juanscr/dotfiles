@@ -5,7 +5,7 @@
 # ===============================================
 
 from libqtile import bar, hook, layout, widget
-from libqtile.config import Click, Drag, Group, Key, Match, Screen
+from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
 from libqtile.dgroups import simple_key_binder
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
@@ -15,16 +15,47 @@ from typing import List
 mod = "mod4"
 
 # Terminal
-terminal = "st"
+terminal = "alacritty"
 
+# Browser
+browser = "firefox"
+
+# ============ Basic Behavior ============
 keys = [
-    # Movement keys
-    Key([mod], "k", lazy.layout.down(), desc="Move focus down in stack pane."),
-    Key([mod], "j", lazy.layout.up(), desc="Move focus up in stack pane."),
-    Key([mod, "shift"], "k", lazy.layout.shuffle_down(),
-        desc="Move window down in current stack."),
-    Key([mod, "shift"], "j", lazy.layout.shuffle_up(),
-        desc="Move window up in current stack."),
+    # Close window
+    Key([mod], "q", lazy.window.kill(), desc="Kill focused window"),
+
+    # Restart qtile
+    Key([mod, "shift"], "r", lazy.restart(), desc="Restart qtile"),
+
+    # Exit qtile
+    KeyChord([mod, "shift"], "e", [
+        Key([], "l", lazy.shutdown(), desc="Log off"),
+        Key([], "r", lazy.spwan("systemctl reboot"), desc="Reboot PC"),
+        Key([], "p", lazy.spwan("systemctl poweroff"), desc="Shutdown")
+    ], mode="exit: [l]ogout, [r]eboot, [p]oweroff"),
+
+    # Search for app. Customized to use dracula theme.
+    # Tested with dmenu 5.0
+    Key([mod], "d", lazy.spawn('dmenu_run'), desc="Spawn dmenu"),
+
+    # Select monitor layout
+    Key([mod, "shift"], "a", lazy.spwan("$HOME/.bin/select-monitor.sh"),
+        desc="Select monitor layout using script"),
+
+    # Moving between windows
+    Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
+    Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
+    Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
+    Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
+
+    # Switching windows
+    Key([mod, "shift"], "h", lazy.layout.shuffle_left(),
+        desc="Move window to the left"),
+    Key([mod, "shift"], "l", lazy.layout.shuffle_right(),
+        desc="Move window to the right"),
+    Key([mod, "shift"], "j", lazy.layout.shuffle_down(),
+        desc="Move window down"),
 
     # Switch window focus to other pane(s) of stack
     Key([mod], "space", lazy.layout.next(),
@@ -44,12 +75,7 @@ keys = [
 
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
-    Key([mod], "q", lazy.window.kill(), desc="Kill focused window"),
 
-    Key([mod, "shift"], "r", lazy.restart(), desc="Restart qtile"),
-    Key([mod, "shift"], "e", lazy.shutdown(), desc="Shutdown qtile"),
-    Key([mod], "d", lazy.spawn('dmenu_run'),
-        desc="Spawn a command using a prompt widget"),
 ]
 
 # ========== Workspace configuration ==========
