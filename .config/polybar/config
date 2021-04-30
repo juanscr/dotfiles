@@ -82,8 +82,8 @@ font-2 = FontAwesome 5 Free:size=13;1
 
 ; Position of each module
 modules-left   = i3
-modules-center = spotify previous playpause next
-modules-right  = light battery date pulseaudio
+modules-center = date
+modules-right  = spotify previous playpause next light battery pulseaudio
 
 ; Position of the tray elements
 tray-position = right
@@ -252,8 +252,7 @@ type = internal/date
 ; Settings
 interval      = 5
 format-prefix = "  "
-time          = "%H:%M"
-time-alt      = "%d %b %Y"
+time          = "%a, %d %b    %H:%M"
 label         = %time%
 
 [module/date-all]
