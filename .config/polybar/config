@@ -363,16 +363,17 @@ adapter = ACAD
 full-at = 98
 
 ; Full label
-label-full            = " "
-label-full-font       = 4
-label-full-foreground = ${colors.green}
+label-full              = %percentage%%
+format-full-prefix      = "  "
+format-full-prefix-font = 4
+format-full-foreground  = ${colors.green}
 
 ; Charging
-label-charging  = %percentage%%
+label-charging  = ${self.label-full}
 format-charging = <animation-charging> <label-charging>
 
 ; Discharging
-label-discharging  = %percentage%%
+label-discharging  = ${self.label-full}
 format-discharging = <animation-discharging> <label-discharging>
 
 ; Discharging
