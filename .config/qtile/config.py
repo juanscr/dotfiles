@@ -191,8 +191,8 @@ matches = {
 
 # _____ Add matches to groups _____ #
 for index in range(len(workspaces)):
-    if ws(index - 1) in matches:
-        workspaces[index][1]['matches'] = matches[ws(index - 1)]
+    if ws(index + 1) in matches:
+        workspaces[index][1]['matches'] = matches[ws(index + 1)]
 
 # _____ Create groups _____ #
 groups = [Group(name, **kwargs) for name, kwargs in workspaces]
