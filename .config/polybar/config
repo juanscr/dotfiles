@@ -162,6 +162,9 @@ wrapping-scroll = false
 ; Write only the name of the workspace
 strip-wsnumbers = true
 
+; Show only the workspaces on a monitor
+pin-workspaces = true
+
 ; Symbols for workspaces
 ws-icon-0 = 1;%{F#FFB86C}%{F-}
 ws-icon-1 = 2;%{F#F1FA8C}%{F-}
@@ -175,7 +178,7 @@ ws-icon-8 = 9;%{F#F1FA8C}%{F-}
 ws-icon-9 = 10;%{F#50FA7B}%{F-}
 ws-icon-10 = 11;%{F#8BE9FD}%{F-}
 
-label-mode-padding    = 2
+label-mode-padding    = 1
 label-mode-foreground = ${colors.foreground}
 label-mode-background = ${colors.focused-ws}
 
