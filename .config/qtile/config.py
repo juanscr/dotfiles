@@ -6,7 +6,6 @@
 
 from libqtile import bar, hook, layout, widget
 from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
-from libqtile.dgroups import simple_key_binder
 from libqtile.lazy import lazy
 
 # Mod key
@@ -110,114 +109,109 @@ keys += [
 ]
 
 # ========== Workspace configuration ==========
-# Configuration for workspaces (label, key)
-group_names = [("1", "1"),
-               ("2", "2"),
-               ("3", "3"),
-               ("4", "4"),
-               ("5", "5"),
-               ("6", "6"),
-               ("7", "7"),
-               ("8", "8"),
-               ("9", "9"),
-               ("10", "0"),
-               ("11", "p")]
+# Workspaces names, keybinds and default layouts
+workspaces = [["1", {"label": "1",  "layout": "max"}],
+              ["2", {"label": "2",  "layout": "monadtall"}],
+              ["3", {"label": "3",  "layout": "max"}],
+              ["4", {"label": "4",  "layout": "monadtall"}],
+              ["5", {"label": "5",  "layout": "max"}],
+              ["6", {"label": "6",  "layout": "max"}],
+              ["7", {"label": "7",  "layout": "max"}],
+              ["8", {"label": "8",  "layout": "max"}],
+              ["9", {"label": "9",  "layout": "max"}],
+              ["0", {"label": "10", "layout": "max"}],
+              ["p", {"label": "11", "layout": "monadtall"}]]
 
 # Apps default workspace
+ws = lambda index: workspaces[index - 1][0]
 matches = {
     # Browser
-    groups[0][0]: [Match(wm_class=["Brave-browser",
-                                   "firefox"])],
+    ws(1): [Match(wm_class="Brave-browser"),
+            Match(wm_class="firefox")],
 
     # Terminal and text editors
-    groups[1][0]: [Match(wm_class=["Emacs",
-                                   "Gedit",
-                                   "st-256color",
-                                   "kitty",
-                                   "Alacritty"])],
+    ws(2): [Match(wm_class="Emacs"),
+            Match(wm_class="st-256color"),
+            Match(wm_class="kitty"),
+            Match(wm_class="Alacritty")],
 
     # Viewers and media editors
-    groups[2][0]: [Match(title=["LibreOffice"],
-                         wm_class=["Evince",
-                                   "Inkscape",
-                                   "libreoffice-calc",
-                                   "libreoffice-writer$",
-                                   "Soffice",
-                                   "okular",
-                                   "Zathura",
-                                   "Gimp",
-                                   "Gephi 0.9.2"])],
+    ws(3): [Match(wm_class="Inkscape"),
+            Match(wm_class="LibreOffice"),
+            Match(wm_class="libreoffice-calc"),
+            Match(wm_class="libreoffice-writer$"),
+            Match(wm_class="Soffice"),
+            Match(wm_class="okular"),
+            Match(wm_class="Zathura"),
+            Match(wm_class="Gimp"),
+            Match(wm_class="Gephi 0.9.2")],
 
     # IDEs
-    groups[3][0]: [Match(wm_class=["jetbrains-pycharm-ce",
-                                   "java-lang-Thread",
-                                   "Java",
-                                   "Eclipse"])],
+    ws(4): [Match(wm_class="jetbrains-pycharm-ce"),
+            Match(wm_class="java-lang-Thread"),
+            Match(wm_class="Java"),
+            Match(wm_class="Eclipse")],
 
     # Social
-    groups[4][0]: [Match(wm_class=["discord",
-                                   "Microsoft Teams - Preview",
-                                   "Slack",
-                                   "zoom",
-                                   "whatsapp-nativefier-d40211",
-                                   "TelegramDesktop",
-                                   "Chromium"])],
+    ws(5): [Match(wm_class="discord"),
+            Match(wm_class="Microsoft Teams - Preview"),
+            Match(wm_class="Slack"),
+            Match(wm_class="zoom"),
+            Match(wm_class="whatsapp-nativefier-d40211"),
+            Match(wm_class="TelegramDesktop"),
+            Match(wm_class="Chromium")],
 
     # Media
-    groups[5][0]: [Match(wm_class=["ffplay",
-                                   "Popcorn-Time",
-                                   "Stremio",
-                                   "vlc",
-                                   "qBittorrent"])],
+    ws(6): [Match(wm_class="Popcorn-Time"),
+            Match(wm_class="Stremio"),
+            Match(wm_class="vlc"),
+            Match(wm_class="qBittorrent")],
 
     # Configuration apps
-    groups[6][0]: [Match(wm_class=["Arandr",
-                                   "Pavucontrol",
-                                   "Lxappearance",
-                                   "Lightdm-settings",
-                                   "Font-manager",
-                                   "Nvidia-settings",
-                                   "Bitwarden"])],
+    ws(7): [Match(wm_class="Arandr"),
+            Match(wm_class="Pavucontrol"),
+            Match(wm_class="Lxappearance"),
+            Match(wm_class="Lightdm-settings"),
+            Match(wm_class="Font-manager"),
+            Match(wm_class="Nvidia-settings"),
+            Match(wm_class="Bitwarden")],
 
     # Production apps
-    groups[7][0]: [Match(wm_class=["Audacity",
-                                   "kdenlive",
-                                   "Ntcardvt"])],
+    ws(8): [Match(wm_class="Audacity"),
+            Match(wm_class="kdenlive")],
 
     # Miscellaneous apps
-    groups[8][0]: [Match(wm_class=["VirtualBox Manager",
-                                   "^Steam$"])],
+    ws(9): [Match(wm_class="VirtualBox Manager"),
+            Match(wm_class="^Steam$")],
 
     # Background apps
-    groups[9][0]: [Match(wm_class=["Spotify",
-                                   "youtube-music-desktop-app"])],
+    ws(10): [Match(wm_class="Spotify"),
+             Match(wm_class="youtube-music-desktop-app")]
 }
 
-# Add matches to groups
-kwargs = {}
-for x in group_names:
-    kwargs[x[0]] = {}
-    if x[0] in matches:
-        kwargs[x[0]]['matches'] = matches[x[0]]
+# _____ Add matches to groups _____ #
+for index in range(len(workspaces)):
+    if ws(index - 1) in matches:
+        workspaces[index][1]['matches'] = matches[ws(index - 1)]
 
-# Create workspaces
+# _____ Create groups _____ #
 groups = list(map(lambda x: Group(x[0], **kwargs[x[0]]), group_names))
 
-# Create keybinds
-keys = list(map(lambda x: x[1], group_names))
-dgroups_key_binder = simple_key_binder(mod, keynames=keys)
-
-for i in groups:
-    keys.extend([
-
-        # Keybinds for each wokspace
+for group in groups:
+    keys += [
+        # Keybinds for wokspace
         Key([mod], i.name, lazy.group[i.name].toscreen(),
             desc="Switch to group {}".format(i.label)),
 
         # Move windows to workspace
-        Key([mod, "shift"], i.name, lazy.window.togroup(i.name, switch_group=True),
-            desc="Switch to & move focused window to group {}".format(i.name)),
-    ])
+        Key([mod, "ctrl"], i.name, lazy.window.togroup(i.name),
+            desc="Move focused window to group {}".format(i.name)),
+
+        # Move windows to workspace
+        Key([mod, "shift"], i.name,
+            lazy.window.togroup(i.name, switch_group=True),
+            desc="Switch to and move focused window to group {}".format(i.name))
+    ]
 
 layouts = [
     layout.MonadTall(),
