@@ -19,11 +19,11 @@ checkMirrorDisplays () {
 monitors=$(xrandr --query | grep " connected" | cut -d" " -f1)
 numMonitors=$(echo "$monitors" | wc -l)
 if [ "$numMonitors" == 1 ]; then
-    polybar --reload jscbar &
+    polybar --reload jscbar-full &
 else
     mirror=$(checkMirrorDisplays)
     if [ "$mirror" = "$mirrored" ]; then
-        polybar --reload jscbar &
+        polybar --reload jscbar-full &
     else
         for m in $monitors; do
             if [ "$m" == 'HDMI-0' ]; then
