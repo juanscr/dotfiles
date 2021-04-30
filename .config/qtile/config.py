@@ -98,11 +98,6 @@ keys += [
         desc="Toggle floating")
 ]
 
-[
-    Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
-
-]
-
 # ========== Workspace configuration ==========
 # Workspaces names, keybinds and default layouts
 workspaces = [["1", {"label": "1",  "layout": "stack"}],
@@ -215,6 +210,70 @@ border = 2
 # Gaps
 gaps = 10
 
+# ========== Application behavior ========== #
+# _____ Add keybinds for keypads _____ #
+kp0 = "KP_Insert"
+kp1 = "KP_End"
+kp2 = "KP_Down"
+kp3 = "KP_Next"
+kp4 = "KP_Left"
+kp5 = "KP_Begin"
+kp6 = "KP_Right"
+kp7 = "KP_Home"
+kp8 = "KP_Up"
+kp9 = "KP_Prior"
+
+keys += [
+    # Keybinds
+    Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
+    Key([mod], "s", lazy.spawn("spotify"), desc="Launch spotify"),
+    Key([mod, "shift"], "s", lazy.spawn("ytmdesktop"),
+        desc="Launch youtube desktop"),
+    Key([mod], "i", lazy.spawn(browser), desc="Launch browser"),
+    Key([mod], "u", lazy.spawn(eu("~/.bin/launchers/launchchrome.sh")),
+        desc="Launch chromium with copied link"),
+
+    Key([mod, "shift"], kp0, lazy.spawn("teams"), desc="Launch teams"),
+    Key([mod, "shift"], kp1, lazy.spawn("slack"), desc="Launch slack"),
+    Key([mod, "shift"], kp2, lazy.spawn("arandr"), desc="Launch arandr"),
+    Key([mod, "shift"], kp3, lazy.spawn("pavucontrol"),
+        desc="Launch pavucontrol"),
+    Key([mod, "shift"], kp4, lazy.spawn("bitwarden"), desc="Launch bitwarden"),
+    Key([mod, "shift"], kp5, lazy.spawn("whatsapp"), desc="Launch whatsapp"),
+    Key([mod, "shift"], kp6, lazy.spawn(eu("~/.bin/launchers/launch-telegram.sh")),
+        desc="Launch telegram"),
+    Key([mod, "shift"], kp7, lazy.spawn(eu("~/.bin/launchers/settings-nvidia.sh")),
+        desc="Launch nvidia settings"),
+    Key([mod, "shift"], kp8, lazy.spawn("popcorntime"),
+        desc="Launch Popcorn time"),
+    Key([mod, "shift"], kp9, lazy.spawn("stremio"), desc="Launch stremio")
+]
+
+# _____ List for startup apps _____ #
+execute = []
+execute_always = []
+
+# Startup apps
+execute.append(browser)
+execute.append(terminal)
+execute.append("emacs --daemon")
+
+# Xresources loading
+execute.append("xrdb " + eu("~/.config/X11/Xresources"))
+
+# Screenshots manager
+# Tested with flameshot v0.9.0
+execute_always.append("flameshot")
+keys += [
+    Key([], "Print", lazy.spawn(eu("~/.bin/screenshot.sh")),
+        desc="Take screenshot of focused monitor"),
+    Key([mod], "Print",
+        lazy.spawn("flameshot gui -p " + eu("~/pictures/screenshots")),
+        desc="Take screenshot with flameshot's GUI"),
+    Key(["control"], "Print",
+        lazy.spawn("flameshot full -c -p " + eu("~/pictures/screenshots")),
+        desc="Take screenshot of all screens")
+]
 widget_defaults = dict(
     font='sans',
     fontsize=12,
