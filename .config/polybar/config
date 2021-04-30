@@ -68,15 +68,15 @@ border-top-size    = ${sizes.bar-offset-y}
 border-bottom-size = ${sizes.bar-bottom-gap}
 
 ; Distance of first and last module to bar
-padding-left  = 4
-padding-right = 3
+padding-left  = 1
+padding-right = 0
 
 ; Margin between modules
-module-margin-left  = 3
-module-margin-right = 3
+module-margin-left  = 1
+module-margin-right = 1
 
 ; Fonts
-font-0 = DejaVu Sans:size=10;1
+font-0 = JetBrains Mono:size=10;1
 font-1 = FontAwesome:pixelsize=13;1
 font-2 = FontAwesome 5 Free:size=13;1
 
@@ -182,7 +182,7 @@ label-mode-background = ${colors.focused-ws}
 ; Settings for focused workspaces
 label-focused            = %icon%
 label-focused-background = ${colors.focused-ws}
-label-focused-padding    = 3
+label-focused-padding    = 2
 label-focused-underline  = ${colors.focused-ws}
 
 ; Settings for unfocused workspaces
@@ -252,7 +252,7 @@ type = internal/date
 ; Settings
 interval      = 5
 format-prefix = "  "
-time          = "%a, %d %b    %H:%M"
+time          = "%a, %d %b   %H:%M"
 label         = %time%
 
 [module/date-all]
@@ -328,10 +328,10 @@ ramp-used-7-foreground = ${colors.red}
 type = internal/pulseaudio
 
 ; Formats for muted and not muted
-format-volume           = <ramp-volume>   <bar-volume>
+format-volume           = <ramp-volume> <bar-volume>
 label-volume            = %percentage%%
 label-volume-foreground = ${colors.foreground}
-format-muted            = <label-muted>   <bar-volume>
+format-muted            = <label-muted> <bar-volume>
 label-muted             = 
 label-muted-foreground  = ${colors.red}
 
