@@ -195,22 +195,22 @@ for index in range(len(workspaces)):
         workspaces[index][1]['matches'] = matches[ws(index - 1)]
 
 # _____ Create groups _____ #
-groups = list(map(lambda x: Group(x[0], **kwargs[x[0]]), group_names))
+groups = [Group(name, **kwargs) for name, kwargs in workspaces]
 
-for group in groups:
+for g in groups:
     keys += [
         # Keybinds for wokspace
-        Key([mod], i.name, lazy.group[i.name].toscreen(),
-            desc="Switch to group {}".format(i.label)),
+        Key([mod], g.name, lazy.group[g.name].toscreen(),
+            desc="Switch to group {}".format(g.label)),
 
         # Move windows to workspace
-        Key([mod, "ctrl"], i.name, lazy.window.togroup(i.name),
-            desc="Move focused window to group {}".format(i.name)),
+        Key([mod, "control"], g.name, lazy.window.togroup(g.name),
+            desc="Move focused window to group {}".format(g.name)),
 
         # Move windows to workspace
-        Key([mod, "shift"], i.name,
-            lazy.window.togroup(i.name, switch_group=True),
-            desc="Switch to and move focused window to group {}".format(i.name))
+        Key([mod, "shift"], g.name,
+            lazy.window.togroup(g.name, switch_group=True),
+            desc="Switch to and move focused window to group {}".format(g.name))
     ]
 
 layouts = [
