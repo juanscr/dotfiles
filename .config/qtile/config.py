@@ -91,23 +91,13 @@ keys += [
     # Orientation of workspace
     Key([mod], "v", lazy.layout.flip(), desc="Flip layout"),
     Key([mod], "f", lazy.window.toggle_fullscreen(), desc='Fullscreen'),
+
+    # Floating mode
+    Key([mod, "shift"], "space", lazy.window.toggle_floating(),
+        desc="Toggle floating")
 ]
 
 [
-    # Switch window focus to other pane(s) of stack
-    Key([mod], "space", lazy.layout.next(),
-        desc="Switch window focus to other pane(s) of stack"),
-
-    # Swap panes of split stack
-    Key([mod, "shift"], "space", lazy.layout.rotate(),
-        desc="Swap panes of split stack"),
-
-    # Toggle between split and unsplit sides of stack.
-    # Split = all windows displayed
-    # Unsplit = 1 window displayed, like Stack layout, but still with
-    # multiple stack panes
-    Key([mod, "shift"], "Return", lazy.layout.toggle_split(),
-        desc="Toggle between split and unsplit sides of stack"),
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
 
 ]
