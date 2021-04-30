@@ -88,8 +88,9 @@ keys += [
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
 
-    # Flip monadtall layout
-    Key([mod], "v", lazy.layout.flip(), desc="Flip layout")
+    # Orientation of workspace
+    Key([mod], "v", lazy.layout.flip(), desc="Flip layout"),
+    Key([mod], "f", lazy.window.toggle_fullscreen(), desc='Fullscreen'),
 ]
 
 [
@@ -297,7 +298,6 @@ border_focused = "#6272A4"
 border_unfocused = "#282A36"
 
 # ========== Layouts ========== #
-
 # _____ Configuring themes based on previous variables _____ #
 layout_theme_tall = {'margin': gaps,
                      'border_focus': border_focused,
