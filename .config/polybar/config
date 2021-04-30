@@ -83,7 +83,7 @@ font-2 = FontAwesome 5 Free:size=13;1
 ; Position of each module
 modules-left   = i3
 modules-center = date
-modules-right  = spotify previous playpause next light battery pulseaudio
+modules-right  = spotify pulseaudio battery
 
 ; Position of the tray elements
 tray-position = right
