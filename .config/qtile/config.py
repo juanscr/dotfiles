@@ -89,7 +89,7 @@ keys += [
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
 
     # Flip monadtall layout
-    Key([mod], "g", lazy.layout.flip(), desc="Flip layout")
+    Key([mod], "v", lazy.layout.flip(), desc="Flip layout")
 ]
 
 [
