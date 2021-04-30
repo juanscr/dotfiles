@@ -68,12 +68,12 @@ border-top-size    = ${sizes.bar-offset-y}
 border-bottom-size = ${sizes.bar-bottom-gap}
 
 ; Distance of first and last module to bar
-padding-left  = 3
+padding-left  = 4
 padding-right = 3
 
 ; Margin between modules
 module-margin-left  = 3
-module-margin-right = 2
+module-margin-right = 3
 
 ; Fonts
 font-0 = DejaVu Sans:size=10;1
@@ -83,7 +83,7 @@ font-2 = FontAwesome 5 Free:size=13;1
 ; Position of each module
 modules-left   = i3
 modules-center = spotify previous playpause next
-modules-right  = cpu memory light battery date pulseaudio
+modules-right  = light battery date pulseaudio
 
 ; Position of the tray elements
 tray-position = right
