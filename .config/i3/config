@@ -179,18 +179,15 @@ workspace $w11 output eDP-1-1
 
 # Apps default worskpace
 # Browser
-assign [class="Brave-browser"] $w1
 assign [class="firefox"]       $w1
 
 # Terminal and text editors
 assign [class="Emacs"]       $w2
-assign [class="Gedit"]       $w2
 assign [class="st-256color"] $w2
 assign [class="kitty"]       $w2
 assign [class="Alacritty"]   $w2
 
 # Viewers and media editors
-assign [class="Evince"]                            $w3
 assign [class="Inkscape"]                          $w3
 assign [title="LibreOffice"]                       $w3
 assign [class="libreoffice-calc"]                  $w3
@@ -217,7 +214,6 @@ assign [class="TelegramDesktop"]                     $w5
 assign [class="Chromium"]                            $w5
 
 # Media
-assign [class="ffplay"]       $w6
 assign [class="Popcorn-Time"] $w6
 assign [class="Stremio"]      $w6
 assign [class="vlc"]          $w6
@@ -235,7 +231,6 @@ assign [class="Bitwarden"]        $w7
 # Production apps
 assign [class="Audacity"] $w8
 assign [class="kdenlive"] $w8
-assign [class="Ntcardvt"] $w8
 
 # Miscellaneous apps
 for_window [class="^Steam$"] move to workspace $w9
