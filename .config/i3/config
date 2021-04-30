@@ -288,11 +288,6 @@ gaps outer $go
 # Have borders when there is more than one app
 smart_borders on
 
-# Toggle gaps
-bindsym $mod+shift+t gaps inner all set $gi, gaps outer all set $g0
-bindsym $mod+ctrl+t gaps inner all set 0, gaps outer all set 0
-
-
 # ========== Application behavior ========== #
 # Keybinds
 bindsym $mod+Return exec $term
