@@ -363,22 +363,30 @@ adapter = ACAD
 full-at = 98
 
 ; Full label
-label-full              = %percentage%%
-format-full-prefix      = " "
-format-full-prefix-font = 4
+label-full            = " "
+label-full-font       = 4
+label-full-foreground = ${colors.green}
 
 ; Charging
-label-charging  = ${self.label-full}
-format-charging = <ramp-capacity>  <label-charging>
+label-charging  = %percentage%%
+format-charging = <animation-charging> <label-charging>
 
 ; Discharging
-label-discharging  = ${self.label-full}
-label-discharging-foreground = ${colors.yellow}
-format-discharging = <ramp-capacity>  <label-discharging>
+label-discharging  = %percentage%%
+format-discharging = <animation-discharging> <label-discharging>
 
-; Ramp symbols
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-3 = 
-ramp-capacity-4 = 
+; Discharging
+animation-discharging-4       = 
+animation-discharging-3       = 
+animation-discharging-2       = 
+animation-discharging-1       = 
+animation-discharging-0       = 
+amination-discharing-framerate = 750
+
+; Charging
+animation-charging-0        = 
+animation-charging-1        = 
+animation-charging-2        = 
+animation-charging-3        = 
+animation-charging-4        = 
+amination-charing-framerate = 750
