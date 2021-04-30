@@ -4,12 +4,12 @@
 #
 # ===============================================
 
-from typing import List  # noqa: F401
-
 from libqtile import bar, hook, layout, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
+from libqtile.dgroups import simple_key_binder
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
+from typing import List
 
 # Mod key
 mod = "mod4"
@@ -18,17 +18,13 @@ mod = "mod4"
 terminal = "st"
 
 keys = [
-    # Switch between windows in current stack pane
-    Key([mod], "k", lazy.layout.down(),
-        desc="Move focus down in stack pane"),
-    Key([mod], "j", lazy.layout.up(),
-        desc="Move focus up in stack pane"),
-
-    # Move windows up or down in current stack
-    Key([mod, "control"], "k", lazy.layout.shuffle_down(),
-        desc="Move window down in current stack "),
-    Key([mod, "control"], "j", lazy.layout.shuffle_up(),
-        desc="Move window up in current stack "),
+    # Movement keys
+    Key([mod], "k", lazy.layout.down(), desc="Move focus down in stack pane."),
+    Key([mod], "j", lazy.layout.up(), desc="Move focus up in stack pane."),
+    Key([mod, "shift"], "k", lazy.layout.shuffle_down(),
+        desc="Move window down in current stack."),
+    Key([mod, "shift"], "j", lazy.layout.shuffle_up(),
+        desc="Move window up in current stack."),
 
     # Switch window focus to other pane(s) of stack
     Key([mod], "space", lazy.layout.next(),
@@ -52,99 +48,111 @@ keys = [
 
     Key([mod, "shift"], "r", lazy.restart(), desc="Restart qtile"),
     Key([mod, "shift"], "e", lazy.shutdown(), desc="Shutdown qtile"),
-    Key([mod], "r", lazy.spawncmd(),
+    Key([mod], "d", lazy.spawn('dmenu_run'),
         desc="Spawn a command using a prompt widget"),
 ]
 
 # ========== Workspace configuration ==========
 # Configuration for workspaces (label, key)
-groups = [("1", "1"),
-          ("2", "2"),
-          ("3", "3"),
-          ("4", "4"),
-          ("5", "5"),
-          ("6", "6"),
-          ("7", "7"),
-          ("8", "8"),
-          ("9", "9"),
-          ("10", "0"),
-          ("11", "p")]
+group_names = [("1", "1"),
+               ("2", "2"),
+               ("3", "3"),
+               ("4", "4"),
+               ("5", "5"),
+               ("6", "6"),
+               ("7", "7"),
+               ("8", "8"),
+               ("9", "9"),
+               ("10", "0"),
+               ("11", "p")]
 
 # Apps default workspace
 matches = {
-  # Browser
-  groups[0][0]: [Match(wm_class=["Brave-browser",
-                                 "firefox"])],
+    # Browser
+    groups[0][0]: [Match(wm_class=["Brave-browser",
+                                   "firefox"])],
 
-  # Terminal and text editors
-  groups[1][0]: [Match(wm_class=["Emacs",
-                                 "Gedit",
-                                 "st-256color",
-                                 "kitty",
-                                 "Alacritty"])],
+    # Terminal and text editors
+    groups[1][0]: [Match(wm_class=["Emacs",
+                                   "Gedit",
+                                   "st-256color",
+                                   "kitty",
+                                   "Alacritty"])],
 
-  # Viewers and media editors
-  groups[2][0]: [Match(title=["LibreOffice"],
-                       wm_class=["Evince",
-                                 "Inkscape",
-                                 "libreoffice-calc",
-                                 "libreoffice-writer$",
-                                 "Soffice",
-                                 "okular",
-                                 "Zathura",
-                                 "Gimp",
-                                 "Gephi 0.9.2"])],
+    # Viewers and media editors
+    groups[2][0]: [Match(title=["LibreOffice"],
+                         wm_class=["Evince",
+                                   "Inkscape",
+                                   "libreoffice-calc",
+                                   "libreoffice-writer$",
+                                   "Soffice",
+                                   "okular",
+                                   "Zathura",
+                                   "Gimp",
+                                   "Gephi 0.9.2"])],
 
-  # IDEs
-  groups[3][0]: [Match(wm_class=["jetbrains-pycharm-ce",
-                                 "java-lang-Thread",
-                                 "Java",
-                                 "Eclipse"])],
+    # IDEs
+    groups[3][0]: [Match(wm_class=["jetbrains-pycharm-ce",
+                                   "java-lang-Thread",
+                                   "Java",
+                                   "Eclipse"])],
 
-  # Social
-  groups[4][0]: [Match(wm_class=["discord",
-                                 "Microsoft Teams - Preview",
-                                 "Slack",
-                                 "zoom",
-                                 "whatsapp-nativefier-d40211",
-                                 "TelegramDesktop",
-                                 "Chromium"])],
+    # Social
+    groups[4][0]: [Match(wm_class=["discord",
+                                   "Microsoft Teams - Preview",
+                                   "Slack",
+                                   "zoom",
+                                   "whatsapp-nativefier-d40211",
+                                   "TelegramDesktop",
+                                   "Chromium"])],
 
-  # Media
-  groups[5][0]: [Match(wm_class=["ffplay",
-                                 "Popcorn-Time",
-                                 "Stremio",
-                                 "vlc",
-                                 "qBittorrent"])],
+    # Media
+    groups[5][0]: [Match(wm_class=["ffplay",
+                                   "Popcorn-Time",
+                                   "Stremio",
+                                   "vlc",
+                                   "qBittorrent"])],
 
-  # Configuration apps
-  groups[6][0]: [Match(wm_class=["Arandr",
-                                 "Pavucontrol",
-                                 "Lxappearance",
-                                 "Lightdm-settings",
-                                 "Font-manager",
-                                 "Nvidia-settings",
-                                 "Bitwarden"])],
+    # Configuration apps
+    groups[6][0]: [Match(wm_class=["Arandr",
+                                   "Pavucontrol",
+                                   "Lxappearance",
+                                   "Lightdm-settings",
+                                   "Font-manager",
+                                   "Nvidia-settings",
+                                   "Bitwarden"])],
 
-  # Production apps
-  groups[7][0]: [Match(wm_class=["Audacity",
-                                 "kdenlive",
-                                 "Ntcardvt"])],
+    # Production apps
+    groups[7][0]: [Match(wm_class=["Audacity",
+                                   "kdenlive",
+                                   "Ntcardvt"])],
 
-  # Miscellaneous apps
-  groups[8][0]: [Match(wm_class=["VirtualBox Manager",
-                                 "^Steam$"])],
+    # Miscellaneous apps
+    groups[8][0]: [Match(wm_class=["VirtualBox Manager",
+                                   "^Steam$"])],
 
-  # Background apps
-  groups[9][0]: [Match(wm_class=["Spotify",
-                                 "youtube-music-desktop-app"])]
+    # Background apps
+    groups[9][0]: [Match(wm_class=["Spotify",
+                                   "youtube-music-desktop-app"])],
 }
 
-# Creation of groups
-groups = list(map(lambda x: Group(x[1], label=x[0], matches=matches[x[0]]), groups))
+# Add matches to groups
+kwargs = {}
+for x in group_names:
+    kwargs[x[0]] = {}
+    if x[0] in matches:
+        kwargs[x[0]]['matches'] = matches[x[0]]
+
+# Create workspaces
+groups = list(map(lambda x: Group(x[0], **kwargs[x[0]]), group_names))
+
+# Create keybinds
+keys = list(map(lambda x: x[1], group_names))
+dgroups_key_binder = simple_key_binder(mod, keynames=keys)
 
 for i in groups:
     keys.extend([
+
         # Keybinds for each wokspace
         Key([mod], i.name, lazy.group[i.name].toscreen(),
             desc="Switch to group {}".format(i.label)),
