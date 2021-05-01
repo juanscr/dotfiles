@@ -103,17 +103,17 @@ keys += [
 
 # ========== Workspace configuration ==========
 # Workspaces names, keybinds and default layouts
-workspaces = [["1", {"label": "1",  "layout": "stack"}],
-              ["2", {"label": "2",  "layout": "monadtall"}],
-              ["3", {"label": "3",  "layout": "stack"}],
-              ["4", {"label": "4",  "layout": "monadtall"}],
-              ["5", {"label": "5",  "layout": "stack"}],
-              ["6", {"label": "6",  "layout": "stack"}],
-              ["7", {"label": "7",  "layout": "stack"}],
-              ["8", {"label": "8",  "layout": "stack"}],
-              ["9", {"label": "9",  "layout": "stack"}],
-              ["0", {"label": "10", "layout": "stack"}],
-              ["p", {"label": "11", "layout": "monadtall"}]]
+workspaces = [["1", {"label": "",  "layout": "stack"}],
+              ["2", {"label": "",  "layout": "monadtall"}],
+              ["3", {"label": "",  "layout": "stack"}],
+              ["4", {"label": "",  "layout": "monadtall"}],
+              ["5", {"label": "",  "layout": "stack"}],
+              ["6", {"label": "",  "layout": "stack"}],
+              ["7", {"label": "",  "layout": "stack"}],
+              ["8", {"label": "",  "layout": "stack"}],
+              ["9", {"label": "",  "layout": "stack"}],
+              ["0", {"label": "", "layout": "stack"}],
+              ["p", {"label": "", "layout": "monadtall"}]]
 
 # Apps default workspace
 ws = lambda index: workspaces[index - 1][0]
@@ -202,7 +202,7 @@ groups = [Group(name, **kwargs) for name, kwargs in workspaces]
 for g in groups:
     keys += [
         # Keybinds for wokspace
-        Key([mod], g.name, lazy.group[g.name].toscreen(),
+        Key([mod], g.name, lazy.group[g.name].toscreen(toggle=False),
             desc="Switch to group {}".format(g.label)),
 
         # Move windows to workspace
@@ -291,7 +291,7 @@ screens = [
         top=bar.Bar(
             [
                 widget.CurrentLayout(),
-                widget.GroupBox(),
+                widget.GroupBox(Font="FontAwesome"),
                 widget.Prompt(),
                 widget.WindowName(),
                 widget.Chord(
