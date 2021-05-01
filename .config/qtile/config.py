@@ -387,12 +387,6 @@ def default_workspaces(window):
             window.togroup(group.label)
             break
 
-# Spotify assignment
-@hook.subscribe.client_managed
-def assign_spotify(window):
-    if window.window.get_wm_class() == "Spotify":
-        window.togroup(groups[-1].label)
-
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the
 # mailing lists, GitHub issues, and other WM documentation that suggest setting
