@@ -365,6 +365,7 @@ def default_workspaces(window):
             window.togroup(group.label)
             break
 
+# Startup all apps
 @hook.subscribe.startup_once
 def autostart():
     script = eu("~/.config/qtile/autostart.sh")
