@@ -1,8 +1,9 @@
-# ===============================================
-#
-#              qtile 0.17.0 config
-#
-# ===============================================
+# =============================================== #
+#                                                 #
+#                                                 #
+#              qtile 0.17.0 config                #
+#                                                 #
+# =============================================== #
 
 import subprocess
 
@@ -180,6 +181,13 @@ matches = {
     ws(10): [Match(wm_class="Spotify"),
              Match(wm_class="youtube-music-desktop-app")]
 }
+
+# _____ Force a match _____ #
+force_match = [
+    matches[ws(3)][8],
+    matches[ws(9)][1],
+    matches[ws(10)][0]
+]
 
 # _____ Add matches to groups _____ #
 for index in range(len(workspaces)):
@@ -362,7 +370,7 @@ floating_layout = layout.Floating(float_rules=[
 def default_workspaces(window):
     for group in groups:
         if any(match.compare(window) for match in group.matches):
-            window.togroup(group.label)
+            window.togroup(group.name)
             break
 
 # Startup all apps
@@ -370,6 +378,12 @@ def default_workspaces(window):
 def autostart():
     script = eu("~/.config/qtile/autostart.sh")
     subprocess.call([script])
+
+# Force a workspace match
+@hook.subscribe.client_managed
+def force_match_default_workspace(window):
+    if any(match.compare(window) for match in force_match):
+        default_workspaces(window)
 
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the
