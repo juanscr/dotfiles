@@ -294,20 +294,15 @@ colors = {'background':      '#282A36',
           'orange':          '#FFB86C'}
 
 # Widget settings
-widget_defaults = dict(
-    font='JetBrains Mono',
-    fontsize=13,
-    padding=3,
-    background=colors['background']
-)
+fonts = {'Normal': {'font': 'JetBrainsMono Nerd Font', 'fontsize': 13},
+         'Icons':  {'font': 'FontAwesome',             'fontsize': 18}}
 
 # Bar sizes
-heights = {'bar1': 35}
+heights = {'bar1': 30}
 
 # Widgets
 # _____ Widget for displaying groups _____ #
-config = dict(Font     = "FontAwesome",
-              fontsize = 17,
+config = dict(**fonts['Icons'],
 
               # Mouse behavior
               disable_drag    = True,
@@ -319,9 +314,10 @@ config = dict(Font     = "FontAwesome",
               urgent_text = colors['foreground'],
 
               # Spacing
-              margin_y  = 5,
+              margin_y  = 2,
               spacing   = 0,
               padding_x = 10,
+              borderwidth = 2,
 
               # Highlight colors
               highlight_method           = 'line',
