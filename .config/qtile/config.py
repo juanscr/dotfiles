@@ -17,6 +17,9 @@ mod = "mod4"
 # Terminal
 terminal = "alacritty"
 
+# Browser
+browser = "firefox"
+
 # ============ Basic Behavior ============
 keys = [
     # Close window
