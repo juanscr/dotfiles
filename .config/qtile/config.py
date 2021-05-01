@@ -336,7 +336,8 @@ layout_theme_tall  = {'margin': gaps,
                       'border_focus': border_focused,
                       'border_normal': border_unfocused,
                       'border_width': border,
-                      'align': layout.MonadTall._right}
+                      'align': layout.MonadTall._right,
+                      'single_border_width': 0}
 layout_theme_stack = {'margin': gaps,
                       'num_stacks': 1,
                       'border_width': 0}
