@@ -328,9 +328,15 @@ config = dict(**fonts['Icons'],
               urgent_border              = colors['red'])
 widget_groups = widget.GroupBox(**config)
 
+# _____ Widget for layout _____ #
+config = dict(custom_icon_paths = [eu("~/.config/qtile/icons")],
+              scale             = 0.7)
+widget_layout = widget.CurrentLayoutIcon(**config)
+
+# _____ Widget for displaying time _____ #
 # Bar creations per screen
 def my_bar1():
-    widgets = [widget_groups]
+    widgets = [widget_groups, widget_layout]
 
     # Height of bar
     size = heights['bar1']
@@ -341,7 +347,7 @@ def my_bar1():
     return {'widgets': widgets, 'size': size, 'background': background}
 
 def my_bar2():
-    widgets = [widget_groups]
+    widgets = [widget_groups, widget_layout]
 
     # Height of bar
     size = heights['bar1']
