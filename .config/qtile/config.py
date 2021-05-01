@@ -4,7 +4,7 @@
 #
 # ===============================================
 
-import os
+import subprocess
 
 from libqtile import bar, hook, layout, widget
 from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
@@ -16,9 +16,6 @@ mod = "mod4"
 
 # Terminal
 terminal = "alacritty"
-
-# Browser
-browser = "firefox"
 
 # ============ Basic Behavior ============
 keys = [
@@ -251,21 +248,8 @@ keys += [
     Key([mod, "shift"], kp9, lazy.spawn("stremio"), desc="Launch stremio")
 ]
 
-# _____ List for startup apps _____ #
-execute = []
-execute_always = []
-
-# Startup apps
-execute.append(browser)
-execute.append(terminal)
-execute.append("emacs --daemon")
-
-# Xresources loading
-execute.append("xrdb " + eu("~/.config/X11/Xresources"))
-
 # Screenshots manager
 # Tested with flameshot v0.9.0
-execute_always.append("flameshot")
 keys += [
     Key([], "Print", lazy.spawn(eu("~/.bin/screenshot.sh")),
         desc="Take screenshot of focused monitor"),
@@ -278,17 +262,6 @@ keys += [
 ]
 
 # ========== Aesthetics ========= #
-# Background
-execute.append(eu("~/.bin/bg.sh"))
-
-# Transparency and tearing reduction
-execute_always.append("picom")
-
-# Tray icons
-execute_always.append(eu("~/.bin/launchers/tray-optimus-manager.sh"))
-execute.append("bitwarden")
-execute_always.append("nm-applet")
-
 # Dracula theme for containers
 border_focused = "#6272A4"
 border_unfocused = "#282A36"
@@ -388,6 +361,11 @@ def default_workspaces(window):
         if any(match.compare(window) for match in group.matches):
             window.togroup(group.label)
             break
+
+@hook.subscribe.startup_once
+def autostart():
+    script = eu("~/.config/qtile/autostart.sh")
+    subprocess.call([script])
 
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the
