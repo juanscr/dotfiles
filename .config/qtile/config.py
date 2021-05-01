@@ -130,14 +130,15 @@ matches = {
 
     # Viewers and media editors
     ws(3): [Match(wm_class="Inkscape"),
-            Match(wm_class="LibreOffice"),
+            Match(title="LibreOffice"),
             Match(wm_class="libreoffice-calc"),
             Match(wm_class="libreoffice-writer$"),
             Match(wm_class="Soffice"),
             Match(wm_class="okular"),
             Match(wm_class="Zathura"),
             Match(wm_class="Gimp"),
-            Match(wm_class="Gephi 0.9.2")],
+            Match(wm_class="Gephi 0.9.2"),
+            Match(title="Starting Gephi 0.9.2")],
 
     # IDEs
     ws(4): [Match(wm_class="jetbrains-pycharm-ce"),
@@ -185,6 +186,7 @@ matches = {
 # _____ Force a match _____ #
 force_match = [
     matches[ws(3)][8],
+    matches[ws(3)][9],
     matches[ws(9)][1],
     matches[ws(10)][0]
 ]
