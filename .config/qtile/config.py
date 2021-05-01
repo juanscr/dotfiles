@@ -4,6 +4,8 @@
 #
 # ===============================================
 
+import os
+
 from libqtile import bar, hook, layout, widget
 from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
 from libqtile.lazy import lazy
@@ -285,7 +287,7 @@ execute_always.append("picom")
 # Tray icons
 execute_always.append(eu("~/.bin/launchers/tray-optimus-manager.sh"))
 execute.append("bitwarden")
-execute_always("nm-applet")
+execute_always.append("nm-applet")
 
 # Dracula theme for containers
 border_focused = "#6272A4"
