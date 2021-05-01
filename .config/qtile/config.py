@@ -275,43 +275,91 @@ keys += [
 ]
 
 # ========== Aesthetics ========= #
-# Dracula theme for containers
+# Dracula theme for windows
 border_focused = "#6272A4"
 border_unfocused = "#282A36"
 
+# Dracula theme for bar
+colors = {'background':      '#282A36',
+          'background-alt1': '#44475A',
+          'foreground':      '#F8F8F2',
+          'foreground-alt':  '#BFBFBF',
+          'foreground-alt1': '#6272A4',
+          'red':             '#FF5555',
+          'green':           '#50FA7B',
+          'yellow':          '#F1FA8C',
+          'blue':            '#BD93D9',
+          'magenta':         '#FF79C6',
+          'cyan':            '#8BE9FD',
+          'orange':          '#FFB86C'}
+
+# Widget settings
 widget_defaults = dict(
-    font='sans',
-    fontsize=12,
+    font='JetBrains Mono',
+    fontsize=13,
     padding=3,
+    background=colors['background']
 )
-extension_defaults = widget_defaults.copy()
 
-screens = [
-    Screen(
-        top=bar.Bar(
-            [
-                widget.CurrentLayout(),
-                widget.GroupBox(Font="FontAwesome"),
-                widget.Prompt(),
-                widget.WindowName(),
-                widget.Chord(
-                    chords_colors={
-                        'launch': ("#ff0000", "#ffffff"),
-                    },
-                    name_transform=lambda name: name.upper(),
-                ),
-                widget.TextBox("default config", name="default"),
-                widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
-                widget.Systray(),
-                widget.Clock(format='%Y-%m-%d %a %I:%M %p'),
-                widget.QuickExit(),
-            ],
-            24,
-        ),
-    ),
-]
+# Bar sizes
+heights = {'bar1': 35}
 
-# Drag floating layouts.
+# Widgets
+# _____ Widget for displaying groups _____ #
+config = dict(Font     = "FontAwesome",
+              fontsize = 17,
+
+              # Mouse behavior
+              disable_drag    = True,
+              use_mouse_wheel = False,
+
+              # Foreground colors
+              active      = colors['foreground'],
+              inactive    = colors['foreground-alt1'],
+              urgent_text = colors['foreground'],
+
+              # Spacing
+              margin_y  = 5,
+              spacing   = 0,
+              padding_x = 10,
+
+              # Highlight colors
+              highlight_method           = 'line',
+              urgent_alert_method        = 'line',
+              highlight_color            = colors['background-alt1'],
+              this_current_screen_border = colors['green'],
+              other_screen_border        = colors['blue'],
+              urgent_border              = colors['red'])
+widget_groups = widget.GroupBox(**config)
+
+# Bar creations per screen
+def my_bar1():
+    widgets = [widget_groups]
+
+    # Height of bar
+    size = heights['bar1']
+
+    # Background
+    background = colors['background']
+
+    return {'widgets': widgets, 'size': size, 'background': background}
+
+def my_bar2():
+    widgets = [widget_groups]
+
+    # Height of bar
+    size = heights['bar1']
+
+    # Background
+    background = colors['background']
+
+    return {'widgets': widgets, 'size': size, 'background': background}
+
+# _____ Spawn each bar _____ #
+screens = [Screen(top=bar.Bar(**my_bar1())),
+           Screen(top=bar.Bar(**my_bar2()))]
+
+# ========== Mouse Behavior ========== #
 mouse = [
     Drag([mod], "Button1", lazy.window.set_position_floating(),
          start=lazy.window.get_position()),
@@ -320,14 +368,16 @@ mouse = [
     Click([mod], "Button2", lazy.window.bring_to_front())
 ]
 
-dgroups_key_binder = None
-dgroups_app_rules = []  # type: List
-main = None
+# Change focus with mouse
 follow_mouse_focus = True
+
+# Focus window
+focus_on_window_activation = "smart"
+
+# Other
 bring_front_click = False
 cursor_warp = False
 auto_fullscreen = True
-focus_on_window_activation = "smart"
 
 
 # ========== Layouts ========== #
