@@ -274,6 +274,23 @@ keys += [
         lazy.spawn("flameshot full -c -p " + eu("~/pictures/screenshots")),
         desc="Take screenshot of all screens")
 ]
+
+# ========== Aesthetics ========= #
+# Background
+execute.append(eu("~/.bin/bg.sh"))
+
+# Transparency and tearing reduction
+execute_always.append("picom")
+
+# Tray icons
+execute_always.append(eu("~/.bin/launchers/tray-optimus-manager.sh"))
+execute.append("bitwarden")
+execute_always("nm-applet")
+
+# Dracula theme for containers
+border_focused = "#6272A4"
+border_unfocused = "#282A36"
+
 widget_defaults = dict(
     font='sans',
     fontsize=12,
@@ -324,11 +341,6 @@ cursor_warp = False
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 
-# ========== Aesthetics ========= #
-
-# Dracula theme for containers
-border_focused = "#6272A4"
-border_unfocused = "#282A36"
 
 # ========== Layouts ========== #
 # _____ Configuring themes based on previous variables _____ #
