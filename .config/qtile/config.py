@@ -298,7 +298,11 @@ fonts = {'Normal': {'font': 'JetBrainsMono Nerd Font', 'fontsize': 14},
          'Icons':  {'font': 'FontAwesome',             'fontsize': 18}}
 
 # Bar sizes
-heights = {'bar1': 30}
+heights = {'bar1': 30, 'bar2': 30}
+
+# Padding
+padding_left = {'bar1': 0, 'bar2': 0}
+padding_right = {'bar1': 10, 'bar2': 10}
 
 # Widgets
 # _____ Widget for displaying groups _____ #
@@ -351,9 +355,14 @@ def my_bar1():
     widget_center = [widget_clock]
     widgets_right = [widget_systray]
 
+    # Padding for bar
+    paddingl = padding_left['bar1']
+    paddingr = padding_right['bar1']
+
     # Join all widgets
-    widgets = widgets_left + [widget.Spacer()] + widget_center + \
-              [widget.Spacer()] + widgets_right
+    widgets = [widget.Spacer(length=paddingl)] + widgets_left + \
+              [widget.Spacer()] + widget_center + [widget.Spacer()] + \
+              widgets_right + [widget.Spacer(length=paddingr)]
 
     # Height of bar
     size = heights['bar1']
