@@ -295,7 +295,8 @@ colors = {'background':      '#282A36',
 
 # Widget settings
 fonts = {'Normal': {'font': 'JetBrainsMono Nerd Font', 'fontsize': 14},
-         'Icons':  {'font': 'FontAwesome',             'fontsize': 18}}
+         'Icons':  {'font': 'FontAwesome',             'fontsize': 18},
+         'Icons2': {'font': 'JetBrainsMono Nerd Font', 'fontsize': 18}}
 
 # Bar sizes
 heights = {'bar1': 30, 'bar2': 30}
@@ -345,8 +346,10 @@ widget_layout = widget.CurrentLayoutIcon(**config)
 
 # Widget for displaying time
 widget_clock = widget.Clock(**fonts['Normal'],
-                            format = '%a, %d %b   %H:%M',
-                            fmt    = ' {}')
+                            format = '%a, %d %b   %H:%M')
+w_clock_icon = widget.TextBox(**fonts['Icons2'],
+                              text    = '',
+                              padding = 6)
 
 
 # Widget for system tray
@@ -355,9 +358,43 @@ widget_systray = widget.Systray(background = colors['background-alt1'],
                                 padding    = 15)
 
 
-# Widget for battery
-config = dict(**fonts['Normal'])
-widget_battery = widget.Battery(**config)
+# Widget for icon battery
+config = dict(**fonts['Icons2'],
+
+              # Formatting options
+              format          = '{char}',
+              show_short_text = False,
+              padding         = 4,
+
+              # Icons for each state
+              charge_char    = '',
+              full_char      = '',
+              empty_char     = '',
+              discharge_char = '',
+
+              # Other options
+              update_interval = 1,
+              low_percentage  = 0.15,
+              low_foreground  = colors['red'],
+              foreground      = colors['foreground'],
+              background      = colors['background'])
+w_battery_icon = widget.Battery(**config)
+
+# Widget for the percentage of the battery
+config = dict(**fonts['Normal'],
+
+              # Formatting options
+              format          = '{percent:2.0%} ',
+              show_short_text = False,
+              padding         = 0,
+
+              # Other options
+              update_interval = config['update_interval'],
+              low_percentage  = config['low_percentage'],
+              low_foreground  = config['foreground'],
+              foreground      = config['foreground'],
+              background      = config['background'])
+w_battery_text = widget.Battery(**config)
 
 
 # Widget for separating some modules
@@ -404,8 +441,8 @@ def my_bar1():
 
     # Other widgets
     widgets_left = [widget_groups, widget_layout]
-    widgets_center = [widget_clock]
-    widgets_right = [widget_sep, widget_systray]
+    widgets_center = [w_clock_icon, widget_clock]
+    widgets_right = [w_battery_icon, w_battery_text, widget_sep, widget_systray]
     widgets = create_widgets(widgets_left, widgets_center, widgets_right, 1)
 
     # Height of bar
