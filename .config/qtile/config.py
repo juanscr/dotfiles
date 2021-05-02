@@ -302,11 +302,15 @@ heights = {'bar1': 30, 'bar2': 30}
 
 # Padding
 padding_left = {'bar1': 0, 'bar2': 0}
-padding_right = {'bar1': 10, 'bar2': 10}
+padding_right = {'bar1': 15, 'bar2': 15}
 
-# Widgets
-# _____ Widget for displaying groups _____ #
+### Widgets
+# Widget for displaying groups
 config = dict(**fonts['Icons'],
+
+              # Base configuration
+              background = colors['background'],
+              foreground = colors['foreground'],
 
               # Mouse behavior
               disable_drag    = True,
@@ -332,37 +336,77 @@ config = dict(**fonts['Icons'],
               urgent_border              = colors['red'])
 widget_groups = widget.GroupBox(**config)
 
-# _____ Widget for layout _____ #
+
+# Widget for layout
 config = dict(custom_icon_paths = [eu("~/.config/qtile/icons")],
               scale             = 0.5)
 widget_layout = widget.CurrentLayoutIcon(**config)
 
-# _____ Widget for displaying time _____ #
-config = dict(**fonts['Normal'],
-              format = '%a, %d %b   %H:%M',
-              fmt    = ' {}')
-widget_clock = widget.Clock(**config)
 
-# _____ Widget for system tray _____ #
-config = dict(background = colors['background'],
-              icon_size  = 16,
-              padding    = 15)
-widget_systray = widget.Systray(**config)
+# Widget for displaying time
+widget_clock = widget.Clock(**fonts['Normal'],
+                            format = '%a, %d %b   %H:%M',
+                            fmt    = ' {}')
 
-# Bar creations per screen
-def my_bar1():
-    widgets_left = [widget_groups, widget_layout]
-    widget_center = [widget_clock]
-    widgets_right = [widget_systray]
 
+# Widget for system tray
+widget_systray = widget.Systray(background = colors['background-alt1'],
+                                icon_size  = 16,
+                                padding    = 15)
+
+
+# Widget for battery
+config = dict(**fonts['Normal'])
+widget_battery = widget.Battery(**config)
+
+
+# Widget for separating some modules
+
+# _____ Method for creating widgets with padding _____ #
+def create_widgets(widgets_left, widgets_center, widgets_right, screen):
     # Padding for bar
-    paddingl = padding_left['bar1']
-    paddingr = padding_right['bar1']
+    paddingl = padding_left[f'bar{screen}']
+    paddingr = padding_right[f'bar{screen}']
 
-    # Join all widgets
-    widgets = [widget.Spacer(length=paddingl)] + widgets_left + \
-              [widget.Spacer()] + widget_center + [widget.Spacer()] + \
-              widgets_right + [widget.Spacer(length=paddingr)]
+    widgets = []
+
+    # Add left
+    if len(widgets_left) > 0:
+        background = widgets_left[0].background
+        space = widget.Spacer(length=paddingl, background=background)
+        widgets += [space] + widgets_left
+
+    # Add center
+    if len(widgets_center) > 0:
+        widgets += [widget.Spacer()] + widgets_center + [widget.Spacer()]
+
+    # Add right
+    if len(widgets_right) > 0:
+        if len(widgets_center) == 0:
+            widgets += [widget.Spacer()]
+
+        background = widgets_right[-1].background
+        space = widget.Spacer(length=paddingr, background=background)
+        widgets += widgets_right + [space]
+
+    return widgets
+
+# Bar for my first screen
+def my_bar1():
+    # Separate between systray end everything else
+    config = dict(text = '',
+                foreground = colors['background-alt1'],
+                background = colors['background'],
+                padding = -9,
+                fontsize = 55,
+                font = fonts['Normal']['font'])
+    widget_sep = widget.TextBox(**config)
+
+    # Other widgets
+    widgets_left = [widget_groups, widget_layout]
+    widgets_center = [widget_clock]
+    widgets_right = [widget_sep, widget_systray]
+    widgets = create_widgets(widgets_left, widgets_center, widgets_right, 1)
 
     # Height of bar
     size = heights['bar1']
@@ -372,11 +416,15 @@ def my_bar1():
 
     return {'widgets': widgets, 'size': size, 'background': background}
 
+# Bar for my second screen
 def my_bar2():
-    widgets = [widget_groups, widget_layout]
+    widgets_left = [widget_groups, widget_layout]
+    widgets_center = []
+    widgets_right = []
+    widgets = create_widgets(widgets_left, widgets_center, widgets_right, 2)
 
     # Height of bar
-    size = heights['bar1']
+    size = heights['bar2']
 
     # Background
     background = colors['background']
