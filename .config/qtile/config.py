@@ -294,7 +294,7 @@ colors = {'background':      '#282A36',
           'orange':          '#FFB86C'}
 
 # Widget settings
-fonts = {'Normal': {'font': 'JetBrainsMono Nerd Font', 'fontsize': 13},
+fonts = {'Normal': {'font': 'JetBrainsMono Nerd Font', 'fontsize': 14},
          'Icons':  {'font': 'FontAwesome',             'fontsize': 18}}
 
 # Bar sizes
@@ -330,13 +330,30 @@ widget_groups = widget.GroupBox(**config)
 
 # _____ Widget for layout _____ #
 config = dict(custom_icon_paths = [eu("~/.config/qtile/icons")],
-              scale             = 0.7)
+              scale             = 0.5)
 widget_layout = widget.CurrentLayoutIcon(**config)
 
 # _____ Widget for displaying time _____ #
+config = dict(**fonts['Normal'],
+              format = '%a, %d %b   %H:%M',
+              fmt    = ' {}')
+widget_clock = widget.Clock(**config)
+
+# _____ Widget for system tray _____ #
+config = dict(background = colors['background'],
+              icon_size  = 20,
+              padding    = 15)
+widget_systray = widget.Systray(**config)
+
 # Bar creations per screen
 def my_bar1():
-    widgets = [widget_groups, widget_layout]
+    widgets_left = [widget_groups, widget_layout]
+    widget_center = [widget_clock]
+    widgets_right = [widget_systray]
+
+    # Join all widgets
+    widgets = widgets_left + [widget.Spacer()] + widget_center + \
+              [widget.Spacer()] + widgets_right
 
     # Height of bar
     size = heights['bar1']
