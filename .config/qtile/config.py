@@ -345,7 +345,7 @@ widget_clock = widget.Clock(**config)
 
 # _____ Widget for system tray _____ #
 config = dict(background = colors['background'],
-              icon_size  = 20,
+              icon_size  = 16,
               padding    = 15)
 widget_systray = widget.Systray(**config)
 
