@@ -397,7 +397,15 @@ config = dict(**fonts['Normal'],
 w_battery_text = widget.Battery(**config)
 
 
-# Widget for separating some modules
+# Widget for key chords
+widget_chord = widget.Chord(**fonts['Normal'],
+
+                            # Formatting
+                            background     = colors['background-alt1'],
+                            foreground     = colors['foreground'],
+                            padding        = 3,
+                            name_transform = lambda name: f' {name} ')
+
 
 # _____ Method for creating widgets with padding _____ #
 def create_widgets(widgets_left, widgets_center, widgets_right, screen):
@@ -440,7 +448,7 @@ def my_bar1():
     widget_sep = widget.TextBox(**config)
 
     # Other widgets
-    widgets_left = [widget_groups, widget_layout]
+    widgets_left = [widget_groups, widget_layout, widget_chord]
     widgets_center = [w_clock_icon, widget_clock]
     widgets_right = [w_battery_icon, w_battery_text, widget_sep, widget_systray]
     widgets = create_widgets(widgets_left, widgets_center, widgets_right, 1)
