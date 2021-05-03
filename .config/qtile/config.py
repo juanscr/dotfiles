@@ -368,9 +368,10 @@ config = dict(**fonts['Icons2'],
 
               # Icons for each state
               charge_char    = '',
-              full_char      = '',
+              full_char      = '',
               empty_char     = '',
               discharge_char = '',
+              unknown_char   = '',
 
               # Other options
               update_interval = 1,
@@ -464,7 +465,7 @@ def my_bar1():
 # Bar for my second screen
 def my_bar2():
     widgets_left = [widget_groups, widget_layout]
-    widgets_center = []
+    widgets_center = [w_clock_icon, widget_clock]
     widgets_right = []
     widgets = create_widgets(widgets_left, widgets_center, widgets_right, 2)
 
