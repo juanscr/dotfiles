@@ -368,7 +368,7 @@ config = dict(**fonts['Icons2'],
 
               # Icons for each state
               charge_char    = '',
-              full_char      = '',
+              full_char      = '',
               empty_char     = '',
               discharge_char = '',
               unknown_char   = '',
