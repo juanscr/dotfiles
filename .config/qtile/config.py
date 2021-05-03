@@ -407,6 +407,8 @@ widget_chord = widget.Chord(**fonts['Normal'],
                             padding        = 3,
                             name_transform = lambda name: f' {name} ')
 
+# Check updates
+
 
 # _____ Method for creating widgets with padding _____ #
 def create_widgets(widgets_left, widgets_center, widgets_right, screen):
@@ -434,6 +436,8 @@ def create_widgets(widgets_left, widgets_center, widgets_right, screen):
         background = widgets_right[-1].background
         space = widget.Spacer(length=paddingr, background=background)
         widgets += widgets_right + [space]
+    elif len(widgets_center) > 0:
+        widgets += [widget.TextBox()]
 
     return widgets
 
