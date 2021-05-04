@@ -168,7 +168,8 @@ matches = {
             Match(wm_class="Lightdm-settings"),
             Match(wm_class="Font-manager"),
             Match(wm_class="Nvidia-settings"),
-            Match(wm_class="Bitwarden")],
+            Match(wm_class="Bitwarden"),
+            Match(wm_class="qt5ct")],
 
     # Production apps
     ws(8): [Match(wm_class="Audacity"),
@@ -421,6 +422,12 @@ w_update_text = widget.CheckUpdates(**fonts['Normal'],
                                     display_format      = '{updates}',
                                     padding             = 0)
 
+widget_spotify = widget.Mpris2(**fonts['Normal'],
+                               name='spotify',
+                               objname="org.mpris.MediaPlayer2.spotify",
+                               display_metadata=['xesam:artist', 'xesam:title'],
+                               scroll_chars=15,
+                               stop_pause_text='IDLE')
 
 # _____ Method for creating widgets with padding _____ #
 def create_widgets(widgets_left, widgets_center, widgets_right, screen):
@@ -470,8 +477,8 @@ def my_bar1():
     # Other widgets
     widgets_left = [widget_groups, widget_layout, widget_chord]
     widgets_center = [w_clock_icon, widget_clock]
-    widgets_right = [w_update_icon, w_update_text, w_sep, w_battery_icon,
-                     w_battery_text, widget_sep, widget_systray]
+    widgets_right = [widget_spotify, w_update_icon, w_update_text, w_sep,
+                     w_battery_icon, w_battery_text, widget_sep, widget_systray]
     widgets = create_widgets(widgets_left, widgets_center, widgets_right, 1)
 
     # Height of bar
