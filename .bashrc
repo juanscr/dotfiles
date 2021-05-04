@@ -49,9 +49,6 @@ alias genw='$whatsapp1 $whatsapp2 $whatsapp3'
 alias lspt='$HOME/.bin/launchspt.sh'
 alias cspt='killall spotifyd'
 
-# Okular theming
-alias okular='QT_STYLE_OVERRIDE=adwaita-dark QT_QPA_PLATFORMTHEME=gtk3 okular'
-
 # Movies related stuffs
 alias movie-mode='xset s off -dpms'
 
