@@ -158,11 +158,11 @@ alt_send_esc: true
 
 mouse:
   hide_when_typing: false
-  url:
-    launcher:
-      program: firefox
-      args: []
 
+hints:
+  launcher:
+    program: firefox
+    args: []
 
 # Mouse bindings
 #mouse_bindings:
