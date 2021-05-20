@@ -179,3 +179,4 @@ key_bindings:
   - { key: D,        mods: Control|Shift, action: ScrollPageDown   }
   - { key: G,        mods: Control,       action: ScrollToTop,     }
   - { key: G,        mods: Control|Shift, action: ScrollToBottom,  }
+  - { key: V,        mods: Control|Shift, action: ToggleViMode,    }
