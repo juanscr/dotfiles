@@ -25,3 +25,6 @@ xrdb "$HOME"/.config/X11/Xresources &
 
 # Screenshot tool
 flameshot &
+
+# Conky
+conky &

@@ -338,6 +338,7 @@ exec_always --no-startup-id $HOME/.config/polybar/launch-bar.sh
 exec_always $HOME/.bin/launchers/tray-optimus-manager.sh
 exec bitwarden
 exec_always nm-applet
+exec conky
 
 # Dracula theme for containers
 # class                 border  bground text    indicator child_border
