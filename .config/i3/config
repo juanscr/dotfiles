@@ -309,6 +309,7 @@ bindsym $mod+Shift+KP_8 exec popcorntime
 bindsym $mod+Shift+KP_9 exec stremio
 
 # Startup apps
+exec nvidia-force-comp-pipeline
 exec $browser
 exec $term
 exec emacs --daemon

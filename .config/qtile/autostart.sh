@@ -1,5 +1,8 @@
 #!/usr/bin/sh
 
+# Nvidia Force full composition
+nvidia-force-comp-pipeline
+
 # Background
 "$HOME"/.bin/bg.sh &
 
