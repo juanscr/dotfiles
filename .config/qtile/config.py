@@ -119,8 +119,7 @@ workspaces = [["1", {"label": "",  "layout": "stack"}],
 ws = lambda index: workspaces[index - 1][0]
 matches = {
     # Browser
-    ws(1): [Match(wm_class="Brave-browser"),
-            Match(wm_class="firefox")],
+    ws(1): [Match(wm_class="firefox")],
 
     # Terminal and text editors
     ws(2): [Match(wm_class="Emacs"),
