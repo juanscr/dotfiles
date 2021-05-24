@@ -146,3 +146,23 @@ class MyWidgets:
             return widgets + [widget.Spacer(length=10)]
 
         return widgets
+
+    def widget_tray(self):
+        """Widget for displaying system tray."""
+
+        # Separate between systray end everything else
+        config = dict(text = '',
+                      foreground = self.colors['background-alt1'],
+                      background = self.colors['background'],
+                      padding = -9,
+                      fontsize = 55,
+                      font = self.fonts['Normal']['font'])
+        widget_sep = widget.TextBox(**config)
+
+        # Systay
+        config = dict(background = self.colors['background-alt1'],
+                      icon_size = 16,
+                      padding = 15)
+        widget_systray = widget.Systray(**config)
+
+        return [widget_sep, widget_systray]

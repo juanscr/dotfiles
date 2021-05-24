@@ -313,9 +313,6 @@ padding_right = {'bar1': 15, 'bar2': 15}
 mw = MyWidgets(colors, fonts)
 
 # Widget for system tray
-widget_systray = widget.Systray(background = colors['background-alt1'],
-                                icon_size  = 16,
-                                padding    = 15)
 
 
 # Widget for key chords
@@ -369,14 +366,6 @@ def create_widgets(widgets_left, widgets_center, widgets_right, screen):
 
 # Bar for my first screen
 def my_bar1():
-    # Separate between systray end everything else
-    config = dict(text = '',
-                foreground = colors['background-alt1'],
-                background = colors['background'],
-                padding = -9,
-                fontsize = 55,
-                font = fonts['Normal']['font'])
-    widget_sep = widget.TextBox(**config)
 
     # Separate modules
     w_sep = widget.Spacer(length = 10)
@@ -386,7 +375,7 @@ def my_bar1():
     widgets_left = [*mw.widget_groups(), widget_chord]
     widgets_center = [*mw.widget_time()]
     widgets_right = [*mw.widget_layout(), *mw.widget_update(),
-                     *mw.widget_battery(), widget_sep, widget_systray]
+                     *mw.widget_battery(), *mw.widget_tray()]
     widgets = create_widgets(widgets_left, widgets_center, widgets_right, 1)
 
     # Height of bar
