@@ -498,20 +498,21 @@ layouts = [layout.MonadTall(**layout_theme_tall),
 
 floating_layout = layout.Floating(float_rules=[
     # Run the utility of `xprop` to see the wm class and name of an X client.
-    {'wmclass': 'confirm'},
-    {'wmclass': 'dialog'},
-    {'wmclass': 'download'},
-    {'wmclass': 'error'},
-    {'wmclass': 'file_progress'},
-    {'wmclass': 'notification'},
-    {'wmclass': 'splash'},
-    {'wmclass': 'toolbar'},
-    {'wmclass': 'confirmreset'},  # gitk
-    {'wmclass': 'makebranch'},  # gitk
-    {'wmclass': 'maketag'},  # gitk
-    {'wname': 'branchdialog'},  # gitk
-    {'wname': 'pinentry'},  # GPG key password entry
-    {'wmclass': 'ssh-askpass'},  # ssh-askpass
+    Match(wm_type = 'confirm'),
+    Match(wm_type = 'dialog'),
+    Match(wm_type = 'download'),
+    Match(wm_type = 'error'),
+    Match(wm_type = 'file_progress'),
+    Match(wm_type = 'notification'),
+    Match(wm_type = 'splash'),
+    Match(wm_type = 'toolbar'),
+    Match(wm_type = 'confirmreset'),
+    Match(wm_type = 'makebranch'),
+    Match(wm_type = 'maketag'),
+    Match(wm_type = 'ssh-askpass'),
+    Match(title = 'branchdialog'),
+    Match(title = 'pinentry'),
+    Match(title = 'meet.google.com is sharing your screen.')
 ], **layout_theme_float)
 
 # ========== Hooks ========== #
