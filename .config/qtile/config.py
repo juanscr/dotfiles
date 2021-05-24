@@ -11,6 +11,7 @@ from libqtile import bar, hook, layout, widget
 from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
 from libqtile.lazy import lazy
 from os.path import expanduser as eu
+from my_widgets import MyWidgets
 
 # Mod key
 mod = "mod4"
@@ -309,37 +310,7 @@ padding_left = {'bar1': 0, 'bar2': 0}
 padding_right = {'bar1': 15, 'bar2': 15}
 
 ### Widgets
-# Widget for displaying groups
-config = dict(**fonts['Icons'],
-
-              # Base configuration
-              background = colors['background'],
-              foreground = colors['foreground'],
-
-              # Mouse behavior
-              disable_drag    = True,
-              use_mouse_wheel = False,
-
-              # Foreground colors
-              active      = colors['foreground'],
-              inactive    = colors['foreground-alt1'],
-              urgent_text = colors['foreground'],
-
-              # Spacing
-              margin_y  = 2,
-              spacing   = 0,
-              padding_x = 10,
-              borderwidth = 2,
-
-              # Highlight colors
-              highlight_method           = 'line',
-              urgent_alert_method        = 'line',
-              highlight_color            = colors['background-alt1'],
-              this_current_screen_border = colors['green'],
-              other_screen_border        = colors['blue'],
-              urgent_border              = colors['red'])
-widget_groups = widget.GroupBox(**config)
-
+mw = MyWidgets(colors, fonts)
 
 # Widget for layout
 config = dict(custom_icon_paths = [eu("~/.config/qtile/icons")],
@@ -485,7 +456,7 @@ def my_bar1():
     w_sep1 = widget.Spacer(length = 4)
 
     # Other widgets
-    widgets_left = [widget_groups, widget_chord]
+    widgets_left = [*mw.get_groups(), widget_chord]
     widgets_center = [w_clock_icon, widget_clock]
     widgets_right = [widget_layout, widget_nw, w_sep1, w_update_icon,
                      w_update_text, w_sep, w_battery_icon, w_battery_text,
@@ -502,7 +473,7 @@ def my_bar1():
 
 # Bar for my second screen
 def my_bar2():
-    widgets_left = [widget_groups, widget_layout]
+    widgets_left = [*mw.get_groups(), widget_layout]
     widgets_center = [w_clock_icon, widget_clock]
     widgets_right = []
     widgets = create_widgets(widgets_left, widgets_center, widgets_right, 2)
