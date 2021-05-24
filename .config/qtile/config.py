@@ -312,19 +312,6 @@ padding_right = {'bar1': 15, 'bar2': 15}
 ### Widgets
 mw = MyWidgets(colors, fonts)
 
-# Widget for system tray
-
-
-# Widget for key chords
-widget_chord = widget.Chord(**fonts['Normal'],
-
-                            # Formatting
-                            background     = colors['background-alt1'],
-                            foreground     = colors['foreground'],
-                            padding        = 3,
-                            name_transform = lambda name: f' {name} ')
-
-
 # Mpris widget for spotify
 widget_spotify = widget.Mpris2(**fonts['Normal'],
                                name='spotify',
@@ -372,7 +359,7 @@ def my_bar1():
     w_sep1 = widget.Spacer(length = 4)
 
     # Other widgets
-    widgets_left = [*mw.widget_groups(), widget_chord]
+    widgets_left = [*mw.widget_groups(), *mw.widget_chord()]
     widgets_center = [*mw.widget_time()]
     widgets_right = [*mw.widget_layout(), *mw.widget_update(),
                      *mw.widget_battery(), *mw.widget_tray()]
@@ -388,7 +375,7 @@ def my_bar1():
 
 # Bar for my second screen
 def my_bar2():
-    widgets_left = [*mw.widget_groups()]
+    widgets_left = [*mw.widget_groups(), *mw.widget_chord()]
     widgets_center = [*mw.widget_time()]
     widgets_right = []
     widgets = create_widgets(widgets_left, widgets_center, widgets_right, 2)

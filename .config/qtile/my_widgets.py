@@ -166,3 +166,17 @@ class MyWidgets:
         widget_systray = widget.Systray(**config)
 
         return [widget_sep, widget_systray]
+
+    def widget_chord(self):
+        """Widget for showing key chords."""
+
+        config = dict(**self.fonts['Normal'],
+
+                      # Formatting
+                      background     = self.colors['background-alt1'],
+                      foreground     = self.colors['foreground'],
+                      padding        = 3,
+                      name_transform = lambda name: f' {name} ')
+        widget_chord = widget.Chord(**config)
+
+        return [widget_chord]
