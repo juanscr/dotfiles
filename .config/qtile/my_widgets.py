@@ -2,9 +2,11 @@ from libqtile import widget
 from os.path import expanduser as eu
 
 class MyWidgets:
-    def __init__(self, colors, fonts):
+    def __init__(self, colors, fonts, padding_left, padding_right):
         self.fonts = fonts
         self.colors = colors
+        self.padding_left = padding_left
+        self.padding_right = padding_right
 
     def widget_groups(self):
         """Widget for displaying groups."""
@@ -195,5 +197,38 @@ class MyWidgets:
         widgets = [widget_spotify]
         if add_sep:
             return widgets + [widget.Spacer(length=10)]
+
+        return widgets
+
+    def create_widgets(self, widgets_left, widgets_center, widgets_right,
+                       screen):
+        """It creates the widgets list by section"""
+
+        # Padding for bar
+        paddingl = self.padding_left[f'bar{screen}']
+        paddingr = self.padding_right[f'bar{screen}']
+
+        widgets = []
+
+        # Add left
+        if len(widgets_left) > 0:
+            background = widgets_left[0].background
+            space = widget.Spacer(length=paddingl, background=background)
+            widgets += [space] + widgets_left
+
+        # Add center
+        if len(widgets_center) > 0:
+            widgets += [widget.Spacer()] + widgets_center + [widget.Spacer()]
+
+        # Add right
+        if len(widgets_right) > 0:
+            if len(widgets_center) == 0:
+                widgets += [widget.Spacer()]
+
+            background = widgets_right[-1].background
+            space = widget.Spacer(length=paddingr, background=background)
+            widgets += widgets_right + [space]
+        elif len(widgets_center) > 0:
+            widgets += [widget.TextBox()]
 
         return widgets

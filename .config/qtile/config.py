@@ -310,38 +310,7 @@ padding_left = {'bar1': 0, 'bar2': 0}
 padding_right = {'bar1': 15, 'bar2': 15}
 
 # Widgets class
-mw = MyWidgets(colors, fonts)
-
-# _____ Method for creating widgets with padding _____ #
-def create_widgets(widgets_left, widgets_center, widgets_right, screen):
-    # Padding for bar
-    paddingl = padding_left[f'bar{screen}']
-    paddingr = padding_right[f'bar{screen}']
-
-    widgets = []
-
-    # Add left
-    if len(widgets_left) > 0:
-        background = widgets_left[0].background
-        space = widget.Spacer(length=paddingl, background=background)
-        widgets += [space] + widgets_left
-
-    # Add center
-    if len(widgets_center) > 0:
-        widgets += [widget.Spacer()] + widgets_center + [widget.Spacer()]
-
-    # Add right
-    if len(widgets_right) > 0:
-        if len(widgets_center) == 0:
-            widgets += [widget.Spacer()]
-
-        background = widgets_right[-1].background
-        space = widget.Spacer(length=paddingr, background=background)
-        widgets += widgets_right + [space]
-    elif len(widgets_center) > 0:
-        widgets += [widget.TextBox()]
-
-    return widgets
+mw = MyWidgets(colors, fonts, padding_left, padding_right)
 
 # Bar for my first screen
 def my_bar1():
@@ -355,7 +324,7 @@ def my_bar1():
     widgets_center = [*mw.widget_time()]
     widgets_right = [*mw.widget_layout(), *mw.widget_update(),
                      *mw.widget_battery(), *mw.widget_tray()]
-    widgets = create_widgets(widgets_left, widgets_center, widgets_right, 1)
+    widgets = mw.create_widgets(widgets_left, widgets_center, widgets_right, 1)
 
     # Height of bar
     size = heights['bar1']
@@ -370,7 +339,7 @@ def my_bar2():
     widgets_left = [*mw.widget_groups(), *mw.widget_chord()]
     widgets_center = [*mw.widget_time()]
     widgets_right = []
-    widgets = create_widgets(widgets_left, widgets_center, widgets_right, 2)
+    widgets = mw.create_widgets(widgets_left, widgets_center, widgets_right, 2)
 
     # Height of bar
     size = heights['bar2']
