@@ -318,46 +318,6 @@ widget_systray = widget.Systray(background = colors['background-alt1'],
                                 padding    = 15)
 
 
-# Widget for icon battery
-config = dict(**fonts['Icons2'],
-
-              # Formatting options
-              format          = '{char}',
-              show_short_text = False,
-              padding         = 4,
-
-              # Icons for each state
-              charge_char    = '',
-              full_char      = '',
-              empty_char     = '',
-              discharge_char = '',
-              unknown_char   = '',
-
-              # Other options
-              update_interval = 1,
-              low_percentage  = 0.15,
-              low_foreground  = colors['red'],
-              foreground      = colors['foreground'],
-              background      = colors['background'])
-w_battery_icon = widget.Battery(**config)
-
-# Widget for the percentage of the battery
-config = dict(**fonts['Normal'],
-
-              # Formatting options
-              format          = '{percent:2.0%} ',
-              show_short_text = False,
-              padding         = 0,
-
-              # Other options
-              update_interval = config['update_interval'],
-              low_percentage  = config['low_percentage'],
-              low_foreground  = config['foreground'],
-              foreground      = config['foreground'],
-              background      = config['background'])
-w_battery_text = widget.Battery(**config)
-
-
 # Widget for key chords
 widget_chord = widget.Chord(**fonts['Normal'],
 
@@ -426,7 +386,7 @@ def my_bar1():
     widgets_left = [*mw.widget_groups(), widget_chord]
     widgets_center = [*mw.widget_time()]
     widgets_right = [*mw.widget_layout(), *mw.widget_update(),
-                     w_battery_icon, w_battery_text, widget_sep, widget_systray]
+                     *mw.widget_battery(), widget_sep, widget_systray]
     widgets = create_widgets(widgets_left, widgets_center, widgets_right, 1)
 
     # Height of bar

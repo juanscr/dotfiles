@@ -98,3 +98,51 @@ class MyWidgets:
                                     format = '%a, %d %b   %H:%M')
 
         return [w_clock_icon, widget_clock]
+
+    def widget_battery(self, add_sep=False):
+        """Widget for displaying battery usage."""
+
+        # Widget for icon battery
+        config = dict(**self.fonts['Icons2'],
+
+                    # Formatting options
+                    format          = '{char}',
+                    show_short_text = False,
+                    padding         = 4,
+
+                    # Icons for each state
+                    charge_char    = '',
+                    full_char      = '',
+                    empty_char     = '',
+                    discharge_char = '',
+                    unknown_char   = '',
+
+                    # Other options
+                    update_interval = 1,
+                    low_percentage  = 0.15,
+                    low_foreground  = self.colors['red'],
+                    foreground      = self.colors['foreground'],
+                    background      = self.colors['background'])
+        w_battery_icon = widget.Battery(**config)
+
+        # Widget for the percentage of the battery
+        config = dict(**self.fonts['Normal'],
+
+                    # Formatting options
+                    format          = '{percent:2.0%} ',
+                    show_short_text = False,
+                    padding         = 0,
+
+                    # Other options
+                    update_interval = config['update_interval'],
+                    low_percentage  = config['low_percentage'],
+                    low_foreground  = config['foreground'],
+                    foreground      = config['foreground'],
+                    background      = config['background'])
+        w_battery_text = widget.Battery(**config)
+
+        widgets = [w_battery_icon, w_battery_text]
+        if add_sep:
+            return widgets + [widget.Spacer(length=10)]
+
+        return widgets
