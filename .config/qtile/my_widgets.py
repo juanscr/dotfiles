@@ -84,3 +84,17 @@ class MyWidgets:
             return widgets + [widget.Spacer(length=10)]
 
         return widgets
+
+    def widget_time(self):
+        """Widget for displaying the time."""
+
+        # Icon
+        w_clock_icon = widget.TextBox(**self.fonts['Icons2'],
+                                      text    = '',
+                                      padding = 6)
+
+        # Text
+        widget_clock = widget.Clock(**self.fonts['Normal'],
+                                    format = '%a, %d %b   %H:%M')
+
+        return [w_clock_icon, widget_clock]

@@ -312,14 +312,6 @@ padding_right = {'bar1': 15, 'bar2': 15}
 ### Widgets
 mw = MyWidgets(colors, fonts)
 
-# Widget for displaying time
-widget_clock = widget.Clock(**fonts['Normal'],
-                            format = '%a, %d %b   %H:%M')
-w_clock_icon = widget.TextBox(**fonts['Icons2'],
-                              text    = '',
-                              padding = 6)
-
-
 # Widget for system tray
 widget_systray = widget.Systray(background = colors['background-alt1'],
                                 icon_size  = 16,
@@ -432,7 +424,7 @@ def my_bar1():
 
     # Other widgets
     widgets_left = [*mw.widget_groups(), widget_chord]
-    widgets_center = [w_clock_icon, widget_clock]
+    widgets_center = [*mw.widget_time()]
     widgets_right = [*mw.widget_layout(), *mw.widget_update(),
                      w_battery_icon, w_battery_text, widget_sep, widget_systray]
     widgets = create_widgets(widgets_left, widgets_center, widgets_right, 1)
@@ -448,7 +440,7 @@ def my_bar1():
 # Bar for my second screen
 def my_bar2():
     widgets_left = [*mw.widget_groups()]
-    widgets_center = [w_clock_icon, widget_clock]
+    widgets_center = [*mw.widget_time()]
     widgets_right = []
     widgets = create_widgets(widgets_left, widgets_center, widgets_right, 2)
 
