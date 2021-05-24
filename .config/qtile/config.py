@@ -309,16 +309,8 @@ heights = {'bar1': 30, 'bar2': 30}
 padding_left = {'bar1': 0, 'bar2': 0}
 padding_right = {'bar1': 15, 'bar2': 15}
 
-### Widgets
+# Widgets class
 mw = MyWidgets(colors, fonts)
-
-# Mpris widget for spotify
-widget_spotify = widget.Mpris2(**fonts['Normal'],
-                               name='spotify',
-                               objname="org.mpris.MediaPlayer2.spotify",
-                               display_metadata=['xesam:artist', 'xesam:title'],
-                               scroll_chars=15,
-                               stop_pause_text='IDLE')
 
 # _____ Method for creating widgets with padding _____ #
 def create_widgets(widgets_left, widgets_center, widgets_right, screen):

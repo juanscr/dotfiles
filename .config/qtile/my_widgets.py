@@ -180,3 +180,20 @@ class MyWidgets:
         widget_chord = widget.Chord(**config)
 
         return [widget_chord]
+
+    def widget_spotify(self, add_sep=True):
+        """Widget for showing spotify."""
+
+        config = dict(**self.fonts['Normal'],
+                      name             = 'spotify',
+                      objname          = "org.mpris.MediaPlayer2.spotify",
+                      display_metadata = ['xesam:artist', 'xesam:title'],
+                      scroll_chars     = 15,
+                      stop_pause_text  = 'IDLE')
+        widget_spotify = widget.Mpris2(**config)
+
+        widgets = [widget_spotify]
+        if add_sep:
+            return widgets + [widget.Spacer(length=10)]
+
+        return widgets
