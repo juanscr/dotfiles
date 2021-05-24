@@ -375,19 +375,6 @@ widget_chord = widget.Chord(**fonts['Normal'],
                             padding        = 3,
                             name_transform = lambda name: f' {name} ')
 
-# Check updates text and icon
-w_update_icon = widget.TextBox(**fonts['Icons2'],
-                               text    = 'ﮮ',
-                               padding = 8)
-w_update_text = widget.CheckUpdates(**fonts['Normal'],
-
-                                    # Config
-                                    distro              = 'Arch',
-                                    colour_have_updates = colors['foreground'],
-                                    colour_no_updates   = colors['foreground'],
-                                    no_update_string    = '0',
-                                    display_format      = '{updates}',
-                                    padding             = 0)
 
 # Mpris widget for spotify
 widget_spotify = widget.Mpris2(**fonts['Normal'],
@@ -446,7 +433,7 @@ def my_bar1():
     # Other widgets
     widgets_left = [*mw.widget_groups(), widget_chord]
     widgets_center = [w_clock_icon, widget_clock]
-    widgets_right = [*mw.widget_layout(), w_update_icon, w_update_text, w_sep,
+    widgets_right = [*mw.widget_layout(), *mw.widget_update(),
                      w_battery_icon, w_battery_text, widget_sep, widget_systray]
     widgets = create_widgets(widgets_left, widgets_center, widgets_right, 1)
 
