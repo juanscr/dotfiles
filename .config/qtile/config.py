@@ -10,8 +10,8 @@ import subprocess
 from libqtile import bar, hook, layout, widget
 from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
 from libqtile.lazy import lazy
-from os.path import expanduser as eu
 from my_widgets import MyWidgets
+from os.path import expanduser as eu
 
 # Mod key
 mod = "mod4"
@@ -312,18 +312,6 @@ padding_right = {'bar1': 15, 'bar2': 15}
 ### Widgets
 mw = MyWidgets(colors, fonts)
 
-# Widget for layout
-config = dict(custom_icon_paths = [eu("~/.config/qtile/icons")],
-              scale             = 0.5,
-              padding           = -5)
-widget_layout = widget.CurrentLayoutIcon(**config)
-
-# Widget for number of windows
-config = dict(**fonts['Normal'],
-              show_zero = True)
-widget_nw = widget.WindowCount(**config)
-
-
 # Widget for displaying time
 widget_clock = widget.Clock(**fonts['Normal'],
                             format = '%a, %d %b   %H:%M')
@@ -456,11 +444,10 @@ def my_bar1():
     w_sep1 = widget.Spacer(length = 4)
 
     # Other widgets
-    widgets_left = [*mw.get_groups(), widget_chord]
+    widgets_left = [*mw.widget_groups(), widget_chord]
     widgets_center = [w_clock_icon, widget_clock]
-    widgets_right = [widget_layout, widget_nw, w_sep1, w_update_icon,
-                     w_update_text, w_sep, w_battery_icon, w_battery_text,
-                     widget_sep, widget_systray]
+    widgets_right = [*mw.widget_layout(), w_update_icon, w_update_text, w_sep,
+                     w_battery_icon, w_battery_text, widget_sep, widget_systray]
     widgets = create_widgets(widgets_left, widgets_center, widgets_right, 1)
 
     # Height of bar
@@ -473,7 +460,7 @@ def my_bar1():
 
 # Bar for my second screen
 def my_bar2():
-    widgets_left = [*mw.get_groups(), widget_layout]
+    widgets_left = [*mw.widget_groups()]
     widgets_center = [w_clock_icon, widget_clock]
     widgets_right = []
     widgets = create_widgets(widgets_left, widgets_center, widgets_right, 2)

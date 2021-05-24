@@ -1,11 +1,12 @@
 from libqtile import widget
+from os.path import expanduser as eu
 
 class MyWidgets:
     def __init__(self, colors, fonts):
         self.fonts = fonts
         self.colors = colors
 
-    def get_groups(self):
+    def widget_groups(self):
         """Widget for displaying groups."""
         config = dict(**self.fonts['Icons'],
 
@@ -37,3 +38,24 @@ class MyWidgets:
                     urgent_border              = self.colors['red'])
 
         return [widget.GroupBox(**config)]
+
+    def widget_layout(self, add_sep=True):
+        """Module for showing layout and number of windows."""
+
+        # Widget for layout
+        config = dict(custom_icon_paths = [eu("~/.config/qtile/icons")],
+                      scale             = 0.5,
+                      padding           = -5)
+        widget_layout = widget.CurrentLayoutIcon(**config)
+
+        # Widget for number of windows
+        config = dict(**self.fonts['Normal'],
+                      show_zero = True)
+        widget_nw = widget.WindowCount(**config)
+
+        widgets = [widget_layout, widget_nw]
+
+        if add_sep:
+            return widgets + [widget.Spacer(length=4)]
+
+        return widgets
