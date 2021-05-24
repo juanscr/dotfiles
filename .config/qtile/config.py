@@ -98,7 +98,11 @@ keys += [
 
     # Floating mode
     Key([mod, "shift"], "space", lazy.window.toggle_floating(),
-        desc="Toggle floating")
+        desc="Toggle floating"),
+
+    # Movement between screens
+    Key([mod], "w", lazy.to_screen(0), desc="Switch to screen 0."),
+    Key([mod], "e", lazy.to_screen(1), desc="Switch to screen 1."),
 ]
 
 # ========== Workspace configuration ==========
