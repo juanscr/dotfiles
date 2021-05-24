@@ -431,6 +431,7 @@ w_update_text = widget.CheckUpdates(**fonts['Normal'],
                                     display_format      = '{updates}',
                                     padding             = 0)
 
+# Mpris widget for spotify
 widget_spotify = widget.Mpris2(**fonts['Normal'],
                                name='spotify',
                                objname="org.mpris.MediaPlayer2.spotify",
