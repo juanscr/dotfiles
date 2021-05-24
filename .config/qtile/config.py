@@ -116,8 +116,8 @@ workspaces = [["1", {"label": "",  "layout": "stack"}],
               ["7", {"label": "",  "layout": "stack"}],
               ["8", {"label": "",  "layout": "stack"}],
               ["9", {"label": "",  "layout": "stack"}],
-              ["0", {"label": "", "layout": "stack"}],
-              ["p", {"label": "", "layout": "monadtall"}]]
+              ["0", {"label": "",  "layout": "stack"}],
+              ["p", {"label": "",  "layout": "monadtall"}]]
 
 # Apps default workspace
 ws = lambda index: workspaces[index - 1][0]
