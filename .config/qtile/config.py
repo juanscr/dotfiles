@@ -344,8 +344,14 @@ widget_groups = widget.GroupBox(**config)
 
 # Widget for layout
 config = dict(custom_icon_paths = [eu("~/.config/qtile/icons")],
-              scale             = 0.5)
+              scale             = 0.5,
+              padding           = -5)
 widget_layout = widget.CurrentLayoutIcon(**config)
+
+# Widget for number of windows
+config = dict(**fonts['Normal'],
+              show_zero = True)
+widget_nw = widget.WindowCount(**config)
 
 
 # Widget for displaying time
@@ -476,12 +482,14 @@ def my_bar1():
 
     # Separate modules
     w_sep = widget.Spacer(length = 10)
+    w_sep1 = widget.Spacer(length = 4)
 
     # Other widgets
-    widgets_left = [widget_groups, widget_layout, widget_chord]
+    widgets_left = [widget_groups, widget_chord]
     widgets_center = [w_clock_icon, widget_clock]
-    widgets_right = [widget_spotify, w_update_icon, w_update_text, w_sep,
-                     w_battery_icon, w_battery_text, widget_sep, widget_systray]
+    widgets_right = [widget_layout, widget_nw, w_sep1, w_update_icon,
+                     w_update_text, w_sep, w_battery_icon, w_battery_text,
+                     widget_sep, widget_systray]
     widgets = create_widgets(widgets_left, widgets_center, widgets_right, 1)
 
     # Height of bar
