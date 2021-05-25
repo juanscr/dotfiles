@@ -72,12 +72,13 @@ class MyWidgets:
 
         # Text
         config = dict(**self.fonts['Normal'],
-                      distro              = 'Arch',
+                      distro              = 'Arch_checkupdates',
                       colour_have_updates = self.colors['foreground'],
                       colour_no_updates   = self.colors['foreground'],
                       no_update_string    = '0',
                       display_format      = '{updates}',
-                      padding             = 0)
+                      padding             = 0,
+                      update_interval     = 1800)
         w_update_text = widget.CheckUpdates(**config)
 
         widgets = [w_update_icon, w_update_text]
