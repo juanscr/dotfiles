@@ -62,7 +62,7 @@ class MyWidgets:
 
         return widgets
 
-    def widget_update(self, add_sep=True):
+    def widget_update(self, add_sep=True, add_pipe=True):
         """Module for displaying updates."""
 
         # Icon
@@ -84,7 +84,10 @@ class MyWidgets:
         widgets = [w_update_icon, w_update_text]
 
         if add_sep:
-            return widgets + [widget.Spacer(length=10)]
+            widgets += [widget.Spacer(length=10)]
+        if add_pipe:
+            pipe = widget.TextBox(**self.fonts['Normal'], text = '|')
+            widgets = [pipe, widget.Spacer(length=0)] + widgets
 
         return widgets
 
