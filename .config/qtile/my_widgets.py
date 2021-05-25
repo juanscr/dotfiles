@@ -87,7 +87,8 @@ class MyWidgets:
         if add_sep:
             widgets += [widget.Spacer(length=10)]
         if add_pipe:
-            pipe = widget.TextBox(**self.fonts['Normal'], text = '|',
+            pipe = widget.TextBox(**self.fonts['Normal'],
+                                  text       = '|',
                                   foreground = self.colors['yellow'])
             widgets = [pipe] + widgets
 
@@ -155,25 +156,22 @@ class MyWidgets:
 
         return widgets
 
-    def widget_tray(self):
+    def widget_tray(self, add_pipe=True):
         """Widget for displaying system tray."""
-
-        # Separate between systray end everything else
-        config = dict(text = '',
-                      foreground = self.colors['background-alt1'],
-                      background = self.colors['background'],
-                      padding = -9,
-                      fontsize = 55,
-                      font = self.fonts['Normal']['font'])
-        widget_sep = widget.TextBox(**config)
-
-        # Systay
-        config = dict(background = self.colors['background-alt1'],
+        config = dict(background = self.colors['background'],
                       icon_size = 16,
                       padding = 15)
         widget_systray = widget.Systray(**config)
+        widgets = [widget_systray]
 
-        return [widget_sep, widget_systray]
+        if add_pipe:
+            pipe = widget.TextBox(**self.fonts['Normal'],
+                                  text       = '|',
+                                  foreground = self.colors['foreground'],
+                                  padding    = -2)
+            widgets = [pipe] + widgets
+
+        return widgets
 
     def widget_chord(self):
         """Widget for showing key chords."""
