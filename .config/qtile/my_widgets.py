@@ -106,7 +106,7 @@ class MyWidgets:
 
         # Icon
         w_clock_icon = widget.TextBox(**self.fonts['Icons2'],
-                                      text    = '',
+                                      text    = ' ',
                                       padding = 6)
 
         # Text
