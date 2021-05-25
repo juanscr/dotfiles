@@ -87,7 +87,7 @@ class MyWidgets:
             widgets += [widget.Spacer(length=10)]
         if add_pipe:
             pipe = widget.TextBox(**self.fonts['Normal'], text = '|')
-            widgets = [pipe, widget.Spacer(length=0)] + widgets
+            widgets = [pipe] + widgets
 
         return widgets
 
