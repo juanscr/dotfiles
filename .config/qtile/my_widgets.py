@@ -92,7 +92,7 @@ class MyWidgets:
         widgets = [w_update_icon, w_update_text]
 
         if add_sep:
-            widgets += [widget.Spacer(length=10)]
+            widgets += [widget.Spacer(length=8)]
         if add_pipe:
             pipe = widget.TextBox(**self.fonts['Normal'],
                                   text       = '|',
