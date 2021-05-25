@@ -41,24 +41,31 @@ class MyWidgets:
 
         return [widget.GroupBox(**config)]
 
-    def widget_layout(self, add_sep=True):
+    def widget_layout(self, add_sep=True, add_pipe=True):
         """Module for showing layout and number of windows."""
 
         # Widget for layout
         config = dict(custom_icon_paths = [eu("~/.config/qtile/icons")],
                       scale             = 0.5,
-                      padding           = -5)
+                      padding           = -5,
+                      foreground        = self.colors['green'])
         widget_layout = widget.CurrentLayoutIcon(**config)
 
         # Widget for number of windows
         config = dict(**self.fonts['Normal'],
-                      show_zero = True)
+                      foreground = self.colors['green'],
+                      show_zero  = True)
         widget_nw = widget.WindowCount(**config)
 
         widgets = [widget_layout, widget_nw]
 
         if add_sep:
-            return widgets + [widget.Spacer(length=4)]
+            widgets += [widget.Spacer(length=4)]
+        if add_pipe:
+            pipe = widget.TextBox(**self.fonts['Normal'],
+                                  text       = '|',
+                                  foreground = self.colors['green'])
+            widgets = [pipe] + widgets
 
         return widgets
 
