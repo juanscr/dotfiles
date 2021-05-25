@@ -30,6 +30,10 @@ keys = [
     # Restart qtile
     Key([mod, "shift"], "r", lazy.restart(), desc="Restart qtile"),
 
+    # Lock screen
+    Key([mod, "shift"], "x", lazy.spawn("betterlockscreen -l blur"),
+        desc="Lock screen."),
+
     # Exit qtile
     KeyChord([mod, "shift"], "e", [
         Key([], "l", lazy.shutdown(), desc="Log off"),
