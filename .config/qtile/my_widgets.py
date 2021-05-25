@@ -60,12 +60,12 @@ class MyWidgets:
         widgets = [widget_layout, widget_nw]
 
         if add_sep:
-            widgets += [widget.Spacer(length=4)]
+            widgets += [widget.Spacer(length=5)]
         if add_pipe:
             pipe = widget.TextBox(**self.fonts['Normal'],
                                   text       = '|',
                                   foreground = self.colors['green'])
-            widgets = [pipe] + widgets
+            widgets = [pipe, widget.Spacer(length = 5)] + widgets
 
         return widgets
 
