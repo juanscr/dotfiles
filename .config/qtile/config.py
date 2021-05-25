@@ -318,12 +318,6 @@ mw = MyWidgets(colors, fonts, padding_left, padding_right)
 
 # Bar for my first screen
 def my_bar1():
-
-    # Separate modules
-    w_sep = widget.Spacer(length = 10)
-    w_sep1 = widget.Spacer(length = 4)
-
-    # Other widgets
     widgets_left = [*mw.widget_groups(), *mw.widget_chord()]
     widgets_center = [*mw.widget_time()]
     widgets_right = [*mw.widget_layout(), *mw.widget_update(),
