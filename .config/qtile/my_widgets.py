@@ -72,7 +72,7 @@ class MyWidgets:
 
         # Text
         config = dict(**self.fonts['Normal'],
-                      distro              = 'Arch_checkupdates',
+                      distro              = 'Arch',
                       colour_have_updates = self.colors['foreground'],
                       colour_no_updates   = self.colors['foreground'],
                       no_update_string    = '0',
