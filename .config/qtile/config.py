@@ -302,7 +302,7 @@ colors = {'background':      '#282A36',
           'orange':          '#FFB86C'}
 
 # Widget settings
-fonts = {'Normal': {'font': 'JetBrainsMono Nerd Font', 'fontsize': 14},
+fonts = {'Normal': {'font': 'JetBrains Mono',          'fontsize': 14},
          'Icons':  {'font': 'FontAwesome',             'fontsize': 18},
          'Icons2': {'font': 'JetBrainsMono Nerd Font', 'fontsize': 18}}
 
