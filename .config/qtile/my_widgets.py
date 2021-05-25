@@ -68,13 +68,14 @@ class MyWidgets:
         # Icon
         w_update_icon = widget.TextBox(**self.fonts['Icons2'],
                                        text    = 'ﮮ',
+                                       foreground = self.colors['yellow'],
                                        padding = 8)
 
         # Text
         config = dict(**self.fonts['Normal'],
                       distro              = 'Arch',
-                      colour_have_updates = self.colors['foreground'],
-                      colour_no_updates   = self.colors['foreground'],
+                      colour_have_updates = self.colors['yellow'],
+                      colour_no_updates   = self.colors['yellow'],
                       no_update_string    = '0',
                       display_format      = '{updates}',
                       padding             = 0,
@@ -86,7 +87,8 @@ class MyWidgets:
         if add_sep:
             widgets += [widget.Spacer(length=10)]
         if add_pipe:
-            pipe = widget.TextBox(**self.fonts['Normal'], text = '|')
+            pipe = widget.TextBox(**self.fonts['Normal'], text = '|',
+                                  foreground = self.colors['yellow'])
             widgets = [pipe] + widgets
 
         return widgets
