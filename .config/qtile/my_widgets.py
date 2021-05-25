@@ -108,7 +108,7 @@ class MyWidgets:
 
         return [w_clock_icon, widget_clock]
 
-    def widget_battery(self, add_sep=False):
+    def widget_battery(self, add_sep=True, add_pipe=True):
         """Widget for displaying battery usage."""
 
         # Widget for icon battery
@@ -129,8 +129,8 @@ class MyWidgets:
                     # Other options
                     update_interval = 1,
                     low_percentage  = 0.15,
-                    low_foreground  = self.colors['red'],
-                    foreground      = self.colors['foreground'],
+                    low_foreground  = self.colors['orange'],
+                    foreground      = self.colors['orange'],
                     background      = self.colors['background'])
         w_battery_icon = widget.Battery(**config)
 
@@ -152,7 +152,12 @@ class MyWidgets:
 
         widgets = [w_battery_icon, w_battery_text]
         if add_sep:
-            return widgets + [widget.Spacer(length=10)]
+            widgets += [widget.Spacer(length=5)]
+        if add_pipe:
+            pipe = widget.TextBox(**self.fonts['Normal'],
+                                  text       = '|',
+                                  foreground = self.colors['orange'])
+            widgets = [pipe, widget.Spacer(length = 5)] + widgets
 
         return widgets
 
