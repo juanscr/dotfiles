@@ -37,7 +37,8 @@ class MyWidgets:
                       highlight_color            = self.colors['background-alt1'],
                       this_current_screen_border = self.colors['green'],
                       other_screen_border        = self.colors['blue'],
-                      urgent_border              = self.colors['red'])
+                      urgent_border              = self.colors['red'],
+                      block_highlight_text_color = self.colors['green'])
 
         return [widget.GroupBox(**config)]
 
