@@ -21,8 +21,8 @@ alias sudo="sudo "
 alias se='SUDO_EDITOR="emacsclient -c" sudoedit'
 
 # Ls with icons
-alias ls='exa --icons --ignore-glob="__pycache__"'
-alias la='exa --icons -lah'
+alias ls='exa --icons --ignore-glob="__pycache__" --group-directories-first'
+alias la='exa --icons --group-directories-first -lah'
 
 # Haskell with dynamic linking
 alias ci='cabal install --ghc-options=-dynamic'
