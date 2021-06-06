@@ -97,7 +97,7 @@ class MyWidgets:
                       no_update_string    = '0',
                       display_format      = '{updates}',
                       padding             = 0,
-                      update_interval     = 1800)
+                      update_interval     = 60)
         w_update_text = widget.CheckUpdates(**config)
 
         widgets = [w_update_icon, w_update_text]
@@ -127,10 +127,13 @@ class MyWidgets:
         widget_clock = widget.Clock(**self.fonts['Normal'],
                                     format = '%a, %d %b   %H:%M')
 
-        return [w_clock_icon, widget_clock]
+        self.store['widget_time'] = [w_clock_icon, widget_clock]
+        return self.store['widget_time']
 
-    def widget_battery(self, add_sep=True, add_pipe=True):
+    def widget_battery(self, add_sep=True, add_pipe=True, mirror=True):
         """Widget for displaying battery usage."""
+        if 'widget_battery' in self.store and mirror:
+            return self.store['widget_battery']
 
         # Widget for icon battery
         config = dict(**self.fonts['Icons2'],
@@ -180,7 +183,7 @@ class MyWidgets:
                                   foreground = self.colors['orange'])
             widgets = [pipe, widget.Spacer(length = 5)] + widgets
 
-        self.store['widget_time'] = widgets
+        self.store['widget_battery'] = widgets
         return widgets
 
     def widget_tray(self, add_pipe=True):
