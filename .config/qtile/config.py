@@ -406,8 +406,8 @@ floating_layout = layout.Floating(float_rules=[
     Match(wm_type = 'maketag'),
     Match(wm_type = 'ssh-askpass'),
     Match(title = 'branchdialog'),
-    Match(title = 'pinentry'),
-    Match(title = 'meet.google.com is sharing your screen.')
+    Match(title = 'meet.google.com is sharing your screen.'),
+    Match(wm_class = 'Pinentry-gtk-2'),
 ], **layout_theme_float)
 
 # ========== Hooks ========== #
