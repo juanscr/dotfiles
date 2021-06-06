@@ -7,9 +7,13 @@ class MyWidgets:
         self.colors = colors
         self.padding_left = padding_left
         self.padding_right = padding_right
+        self.store = {}
 
-    def widget_groups(self):
+    def widget_groups(self, mirror=True):
         """Widget for displaying groups."""
+        if 'widget_groups' in self.store and mirror:
+            return self.store['widget_groups']
+
         config = dict(**self.fonts['Icons'],
 
                       # Base configuration
@@ -40,10 +44,13 @@ class MyWidgets:
                       urgent_border              = self.colors['red'],
                       block_highlight_text_color = self.colors['green'])
 
-        return [widget.GroupBox(**config)]
+        self.store['widget_groups'] = [widget.GroupBox(**config)]
+        return self.store['widget_groups']
 
-    def widget_layout(self, add_sep=True, add_pipe=True):
+    def widget_layout(self, add_sep=True, add_pipe=True, mirror=True):
         """Module for showing layout and number of windows."""
+        if 'widget_layout' in self.store and mirror:
+            return self.store['widget_layout']
 
         # Widget for layout
         config = dict(custom_icon_paths = [eu("~/.config/qtile/icons")],
@@ -68,10 +75,13 @@ class MyWidgets:
                                   foreground = self.colors['green'])
             widgets = [pipe, widget.Spacer(length = 5)] + widgets
 
+        self.store['widget_layout'] = widgets
         return widgets
 
-    def widget_update(self, add_sep=True, add_pipe=True):
+    def widget_update(self, add_sep=True, add_pipe=True, mirror=True):
         """Module for displaying updates."""
+        if 'widget_update' in self.store and mirror:
+            return self.store['widget_update']
 
         # Icon
         w_update_icon = widget.TextBox(**self.fonts['Icons2'],
@@ -100,10 +110,13 @@ class MyWidgets:
                                   foreground = self.colors['yellow'])
             widgets = [pipe] + widgets
 
+        self.store['widget_update'] = widgets
         return widgets
 
-    def widget_time(self):
+    def widget_time(self, mirror=True):
         """Widget for displaying the time."""
+        if 'widget_time' in self.store and mirror:
+            return self.store['widget_time']
 
         # Icon
         w_clock_icon = widget.TextBox(**self.fonts['Icons2'],
@@ -167,6 +180,7 @@ class MyWidgets:
                                   foreground = self.colors['orange'])
             widgets = [pipe, widget.Spacer(length = 5)] + widgets
 
+        self.store['widget_time'] = widgets
         return widgets
 
     def widget_tray(self, add_pipe=True):
@@ -186,8 +200,10 @@ class MyWidgets:
 
         return widgets
 
-    def widget_chord(self):
+    def widget_chord(self, mirror=True):
         """Widget for showing key chords."""
+        if 'widget_chord' in self.store and mirror:
+            return self.store['widget_chord']
 
         config = dict(**self.fonts['Normal'],
 
@@ -198,10 +214,13 @@ class MyWidgets:
                       name_transform = lambda name: f' {name} ')
         widget_chord = widget.Chord(**config)
 
-        return [widget_chord]
+        self.store['widget_chord'] = [widget_chord]
+        return self.store['widget_chord']
 
-    def widget_spotify(self, add_sep=True):
+    def widget_spotify(self, add_sep=True, mirror=True):
         """Widget for showing spotify."""
+        if 'widget_spotify' in self.store and mirror:
+            return self.store['widget_spotify']
 
         config = dict(**self.fonts['Normal'],
                       name             = 'spotify',
@@ -215,6 +234,7 @@ class MyWidgets:
         if add_sep:
             return widgets + [widget.Spacer(length=10)]
 
+        self.store['widget_spotify'] = widgets
         return widgets
 
     def create_widgets(self, widgets_left, widgets_center, widgets_right,
