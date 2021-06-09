@@ -11,6 +11,7 @@ class MyWidgets:
 
     def widget_groups(self, mirror=True):
         """Widget for displaying groups."""
+
         if 'widget_groups' in self.store and mirror:
             return self.store['widget_groups']
 
@@ -49,6 +50,7 @@ class MyWidgets:
 
     def widget_layout(self, add_sep=True, add_pipe=True, mirror=True):
         """Module for showing layout and number of windows."""
+
         if 'widget_layout' in self.store and mirror:
             return self.store['widget_layout']
 
@@ -79,7 +81,13 @@ class MyWidgets:
         return widgets
 
     def widget_update(self, add_sep=True, add_pipe=True, mirror=True):
-        """Module for displaying updates."""
+        """Module for displaying updates.
+
+        Requirements
+        ------------
+        pacman-contrib
+        """
+
         if 'widget_update' in self.store and mirror:
             return self.store['widget_update']
 
@@ -91,7 +99,7 @@ class MyWidgets:
 
         # Text
         config = dict(**self.fonts['Normal'],
-                      distro              = 'Arch',
+                      distro              = 'Arch_checkupdates',
                       colour_have_updates = self.colors['yellow'],
                       colour_no_updates   = self.colors['yellow'],
                       no_update_string    = '0',
@@ -115,6 +123,7 @@ class MyWidgets:
 
     def widget_time(self, mirror=True):
         """Widget for displaying the time."""
+
         if 'widget_time' in self.store and mirror:
             return self.store['widget_time']
 
@@ -132,6 +141,7 @@ class MyWidgets:
 
     def widget_battery(self, add_sep=True, add_pipe=True, mirror=True):
         """Widget for displaying battery usage."""
+
         if 'widget_battery' in self.store and mirror:
             return self.store['widget_battery']
 
@@ -240,8 +250,13 @@ class MyWidgets:
         self.store['widget_spotify'] = widgets
         return widgets
 
-    def create_widgets(self, widgets_left, widgets_center, widgets_right,
-                       screen):
+    def create_widgets(
+            self,
+            widgets_left,
+            widgets_center,
+            widgets_right,
+            screen
+    ):
         """It creates the widgets list by section"""
 
         # Padding for bar
