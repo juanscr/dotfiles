@@ -1,15 +1,25 @@
 from libqtile import widget
+from libqtile.widget.base import _Widget
 from os.path import expanduser as eu
+from typing import Any
 
 class MyWidgets:
-    def __init__(self, colors, fonts, padding_left, padding_right):
+
+    def __init__(
+            self,
+            colors: dict[str, str],
+            fonts: dict[str, dict[str, Any]],
+            padding_left: dict[str, int],
+            padding_right: dict[str, int]
+    ) -> None:
+
         self.fonts = fonts
         self.colors = colors
         self.padding_left = padding_left
         self.padding_right = padding_right
         self.store = {}
 
-    def widget_groups(self, mirror=True):
+    def widget_groups(self, mirror: bool = True) -> list[_Widget]:
         """Widget for displaying groups."""
 
         if 'widget_groups' in self.store and mirror:
@@ -48,7 +58,12 @@ class MyWidgets:
         self.store['widget_groups'] = [widget.GroupBox(**config)]
         return self.store['widget_groups']
 
-    def widget_layout(self, add_sep=True, add_pipe=True, mirror=True):
+    def widget_layout(
+            self,
+            add_sep: bool = True,
+            add_pipe: bool = True,
+            mirror: bool = True
+    ) -> list[_Widget]:
         """Module for showing layout and number of windows."""
 
         if 'widget_layout' in self.store and mirror:
@@ -80,12 +95,17 @@ class MyWidgets:
         self.store['widget_layout'] = widgets
         return widgets
 
-    def widget_update(self, add_sep=True, add_pipe=True, mirror=True):
+    def widget_update(
+            self,
+            add_sep: bool = True,
+            add_pipe: bool = True,
+            mirror: bool = True
+    ):
         """Module for displaying updates.
 
         Requirements
         ------------
-        pacman-contrib
+        - pacman-contrib
         """
 
         if 'widget_update' in self.store and mirror:
@@ -121,7 +141,7 @@ class MyWidgets:
         self.store['widget_update'] = widgets
         return widgets
 
-    def widget_time(self, mirror=True):
+    def widget_time(self, mirror: bool = True) -> list[_Widget]:
         """Widget for displaying the time."""
 
         if 'widget_time' in self.store and mirror:
@@ -139,7 +159,12 @@ class MyWidgets:
         self.store['widget_time'] = [w_clock_icon, widget_clock]
         return self.store['widget_time']
 
-    def widget_battery(self, add_sep=True, add_pipe=True, mirror=True):
+    def widget_battery(
+            self,
+            add_sep: bool = True,
+            add_pipe: bool = True,
+            mirror: bool = True
+    ) -> list[_Widget]:
         """Widget for displaying battery usage."""
 
         if 'widget_battery' in self.store and mirror:
@@ -196,8 +221,9 @@ class MyWidgets:
         self.store['widget_battery'] = widgets
         return widgets
 
-    def widget_tray(self, add_pipe=True):
+    def widget_tray(self, add_pipe: bool = True) -> list[_Widget]:
         """Widget for displaying system tray."""
+
         config = dict(background = self.colors['background'],
                       icon_size = 16,
                       padding = 15)
@@ -213,8 +239,9 @@ class MyWidgets:
 
         return widgets
 
-    def widget_chord(self, mirror=True):
+    def widget_chord(self, mirror: bool = True) -> list[_Widget]:
         """Widget for showing key chords."""
+
         if 'widget_chord' in self.store and mirror:
             return self.store['widget_chord']
 
@@ -230,8 +257,13 @@ class MyWidgets:
         self.store['widget_chord'] = [widget_chord]
         return self.store['widget_chord']
 
-    def widget_spotify(self, add_sep=True, mirror=True):
+    def widget_spotify(
+            self,
+            add_sep: bool = True,
+            mirror: bool = True
+    ) -> list[_Widget]:
         """Widget for showing spotify."""
+
         if 'widget_spotify' in self.store and mirror:
             return self.store['widget_spotify']
 
@@ -252,11 +284,11 @@ class MyWidgets:
 
     def create_widgets(
             self,
-            widgets_left,
-            widgets_center,
-            widgets_right,
-            screen
-    ):
+            widgets_left: list[_Widget],
+            widgets_center: list[_Widget],
+            widgets_right: list[_Widget],
+            screen: int
+    ) -> list[_Widget]:
         """It creates the widgets list by section"""
 
         # Padding for bar
