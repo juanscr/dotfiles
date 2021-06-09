@@ -5,6 +5,7 @@ export PATH=$PATH:$HOME/.cabal/bin
 export PATH=$PATH:$HOME/.local/bin
 
 # ============ ALIASES ============ #
+# Editor
 alias e="emacsclient -n -c"
 
 # Latex
