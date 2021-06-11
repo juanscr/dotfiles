@@ -88,19 +88,3 @@ org-format-latex-options :scale 2.0))
 (defun python-jedi ()
   (add-to-list 'company-backends 'company-jedi))
 (add-hook 'python-mode-hook 'python-jedi)
-
-; ==== LSP for Julia ==== ;
-;; LSP for Julia
-(require 'lsp-julia)
-(setq lsp-julia-default-environment "~/.julia/environments/v1.6")
-
-;; Use sysimage created
-(setq lsp-julia-package-dir nil)
-(setq lsp-julia-flags
-      `("-J/home/juanscr/.julia/environments/languageserver.so"))
-
-;; Fix error according to https://bit.ly/3cHwqe4
-(setq lsp-enable-folding t)
-
-;; Activate it automatically
-(add-hook 'julia-mode-hook #'lsp)
