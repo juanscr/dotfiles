@@ -25,6 +25,14 @@
 ;; Centered cursor mode settings
 (setq ccm-recenter-at-end-of-file t)
 
+;; Modeline settings
+(setq all-the-icons-scale-factor 1.1)
+(after! doom-modeline
+  (doom-modeline-def-modeline 'main '(bar matches buffer-info
+    remote-host buffer-position parrot selection-info)
+    '(misc-info minor-modes checker input-method buffer-encoding
+    major-mode process vcs " ")))
+
 ; ============ EDITING MODES ============ ;
 ; ==== Text mode ==== ;
 (add-hook 'text-mode-hook 'flyspell-mode)
