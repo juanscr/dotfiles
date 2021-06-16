@@ -65,9 +65,6 @@ org-format-latex-options :scale 2.0))
 ;; Do not have input method in org mode
 (add-hook 'org-mode-hook 'no-tex-input)
 
-; ==== Julia mode ==== ;
-(add-hook 'julia-mode-hook 'set-tex-input)
-
 ; ============ IDE BEHAVIOR ============ ;
 ;; LSP with no autoguess
 (setq-default lsp-auto-guess-root nil)
@@ -78,11 +75,6 @@ org-format-latex-options :scale 2.0))
 ; ==== Company mode ==== ;
 (setq company-idle-delay 0)
 (setq company-show-numbers t)
-
-; Irony mode for C and C++
-(add-hook 'c++-mode-hook 'irony-mode)
-(add-hook 'c-mode-hook 'irony-mode)
-(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
 
 ; Jedi mode for python
 (defun python-jedi ()
