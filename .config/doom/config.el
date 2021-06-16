@@ -70,7 +70,10 @@ org-format-latex-options :scale 2.0))
 (setq-default lsp-auto-guess-root nil)
 
 ;; Activate LSP in all python buffers
-(add-hook 'python-mode-hook #'lsp)
+(use-package lsp-pyright
+  :hook (python-mode . (lambda ()
+                          (require 'lsp-pyright)
+                          (lsp))))
 
 ; ==== Company mode ==== ;
 (setq company-idle-delay 0)
