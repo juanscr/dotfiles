@@ -76,7 +76,6 @@ org-format-latex-options :scale 2.0))
 (setq company-idle-delay 0)
 (setq company-show-numbers t)
 
-; Jedi mode for python
-(defun python-jedi ()
-  (add-to-list 'company-backends 'company-jedi))
-(add-hook 'python-mode-hook 'python-jedi)
+; Company LSP
+(require 'company-lsp)
+(push 'company-lsp company-backends)
