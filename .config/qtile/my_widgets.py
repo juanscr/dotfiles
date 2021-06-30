@@ -1,3 +1,6 @@
+from __future__ import annotations
+import functools
+
 from libqtile.widget.base import _Widget
 from libqtile.widget.battery import Battery
 from libqtile.widget.check_updates import CheckUpdates
@@ -11,7 +14,54 @@ from libqtile.widget.systray import Systray
 from libqtile.widget.textbox import TextBox
 from libqtile.widget.window_count import WindowCount
 from os.path import expanduser as eu
-from typing import Any
+from typing import Any, Callable
+
+def add_mirror(
+        func: Callable[..., list[_Widget]]
+) -> Callable[..., list[_Widget]]:
+    """It adds the mirror parameter to the function.
+
+    Parameters
+    ----------
+    func: Callable[..., list[_Widget]]
+        The function that creates the widgets.
+
+    Returns
+    -------
+    Callable[..., list[_Widget]]
+        The new function that stores the result in the object.
+    """
+
+    @functools.wraps(func)
+    def wrapper(self: MyWidgets, *args: Any, **kwargs: Any) -> list[_Widget]:
+        """It stores the result of the function or returns the stored value.
+
+        Parameters
+        ----------
+        self: MyWidgets
+            The object to store the result.
+        args: Any
+            The positional arguments of the function.
+        kwargs: Any
+            The named arguments of the function.
+
+        Returns
+        -------
+        list[libqtile.base._Widget]
+            The list of the widgets.
+        """
+
+        name_func = func.__name__
+        mirror = kwargs.pop('mirror', True)
+        if name_func in self.store and mirror:
+            return self.store[name_func]
+
+        result = func(self, *args, **kwargs)
+        self.store[name_func] = result
+        return result
+
+    return wrapper
+
 
 class MyWidgets:
     """Class to store all my favorite configuration for my used widgets for the
@@ -50,22 +100,15 @@ class MyWidgets:
         self.padding_right: dict[str, int] = padding_right
         self.store: dict[str, list[_Widget]] = {}
 
-    def widget_groups(self, mirror: bool = True) -> list[_Widget]:
+    @add_mirror
+    def widget_groups(self) -> list[_Widget]:
         """Widget for displaying groups.
-
-        Parameters
-        ----------
-        mirror: bool, optional
-            If a mirrored widget should be returned. Default: True.
 
         Returns
         -------
         list[libqtile.widget.base._Widget]
             The list of widgets to add to the bar.
         """
-
-        if 'widget_groups' in self.store and mirror:
-            return self.store['widget_groups']
 
         config = dict(
             **self.fonts['Icons'],
@@ -103,14 +146,13 @@ class MyWidgets:
             block_highlight_text_color = self.colors['green']
         )
 
-        self.store['widget_groups'] = [GroupBox(**config)]
-        return self.store['widget_groups']
+        return [GroupBox(**config)]
 
+    @add_mirror
     def widget_layout(
             self,
             add_sep: bool = True,
-            add_pipe: bool = True,
-            mirror: bool = True
+            add_pipe: bool = True
     ) -> list[_Widget]:
         """Module for showing layout and number of windows.
 
@@ -120,17 +162,12 @@ class MyWidgets:
             Add a space to the right. Default: True.
         add_pipe: bool, optional
             Add a pipe separator to the left. Default: True.
-        mirror: bool, optional
-            If a mirrored widget should be returned. Default: True.
 
         Returns
         -------
         list[libqtile.widget.base._Widget]
             The list of widgets to add to the bar.
         """
-
-        if 'widget_layout' in self.store and mirror:
-            return self.store['widget_layout']
 
         # Widget for layout
         config = dict(custom_icon_paths = [eu("~/.config/qtile/icons")],
@@ -155,15 +192,14 @@ class MyWidgets:
                            foreground = self.colors['green'])
             widgets = [pipe, Spacer(length = 5)] + widgets
 
-        self.store['widget_layout'] = widgets
         return widgets
 
+    @add_mirror
     def widget_update(
             self,
             add_sep: bool = True,
-            add_pipe: bool = True,
-            mirror: bool = True
-    ):
+            add_pipe: bool = True
+    ) -> list[_Widget]:
         """Module for displaying updates.
 
         Requirements
@@ -176,17 +212,12 @@ class MyWidgets:
             Add a space to the right. Default: True.
         add_pipe: bool, optional
             Add a pipe separator to the left. Default: True.
-        mirror: bool, optional
-            If a mirrored widget should be returned. Default: True.
 
         Returns
         -------
         list[libqtile.widget.base._Widget]
             The list of widgets to add to the bar.
         """
-
-        if 'widget_update' in self.store and mirror:
-            return self.store['widget_update']
 
         # Icon
         w_update_icon = TextBox(**self.fonts['Icons2'],
@@ -215,25 +246,17 @@ class MyWidgets:
                            foreground = self.colors['yellow'])
             widgets = [pipe] + widgets
 
-        self.store['widget_update'] = widgets
         return widgets
 
-    def widget_time(self, mirror: bool = True) -> list[_Widget]:
+    @add_mirror
+    def widget_time(self) -> list[_Widget]:
         """Widget for displaying the time.
-
-        Parameters
-        ----------
-        mirror: bool, optional
-            If a mirrored widget should be returned. Default: True.
 
         Returns
         -------
         list[libqtile.widget.base._Widget]
             The list of widgets to add to the bar.
         """
-
-        if 'widget_time' in self.store and mirror:
-            return self.store['widget_time']
 
         # Icon
         w_clock_icon = TextBox(**self.fonts['Icons2'],
@@ -244,14 +267,13 @@ class MyWidgets:
         widget_clock = Clock(**self.fonts['Normal'],
                              format = '%a, %d %b   %H:%M')
 
-        self.store['widget_time'] = [w_clock_icon, widget_clock]
-        return self.store['widget_time']
+        return [w_clock_icon, widget_clock]
 
+    @add_mirror
     def widget_battery(
             self,
             add_sep: bool = True,
-            add_pipe: bool = True,
-            mirror: bool = True
+            add_pipe: bool = True
     ) -> list[_Widget]:
         """Widget for displaying battery usage.
 
@@ -261,17 +283,12 @@ class MyWidgets:
             Add a space to the right. Default: True.
         add_pipe: bool, optional
             Add a pipe separator to the left. Default: True.
-        mirror: bool, optional
-            If a mirrored widget should be returned. Default: True.
 
         Returns
         -------
         list[libqtile.widget.base._Widget]
             The list of widgets to add to the bar.
         """
-
-        if 'widget_battery' in self.store and mirror:
-            return self.store['widget_battery']
 
         # Widget for icon battery
         config = dict(**self.fonts['Icons2'],
@@ -321,7 +338,6 @@ class MyWidgets:
                            foreground = self.colors['orange'])
             widgets = [pipe, Spacer(length = 5)] + widgets
 
-        self.store['widget_battery'] = widgets
         return widgets
 
     def widget_tray(self, add_pipe: bool = True) -> list[_Widget]:
@@ -353,7 +369,8 @@ class MyWidgets:
 
         return widgets
 
-    def widget_chord(self, mirror: bool = True) -> list[_Widget]:
+    @add_mirror
+    def widget_chord(self) -> list[_Widget]:
         """Widget for showing key chords.
 
         Parameters
@@ -362,17 +379,12 @@ class MyWidgets:
             Add a space to the right. Default: True.
         add_pipe: bool, optional
             Add a pipe separator to the left. Default: True.
-        mirror: bool, optional
-            If a mirrored widget should be returned. Default: True.
 
         Returns
         -------
         list[libqtile.widget.base._Widget]
             The list of widgets to add to the bar.
         """
-
-        if 'widget_chord' in self.store and mirror:
-            return self.store['widget_chord']
 
         config = dict(**self.fonts['Normal'],
 
@@ -383,13 +395,12 @@ class MyWidgets:
                       name_transform = lambda name: f' {name} ')
         widget_chord = Chord(**config)
 
-        self.store['widget_chord'] = [widget_chord]
-        return self.store['widget_chord']
+        return [widget_chord]
 
+    @add_mirror
     def widget_spotify(
             self,
-            add_sep: bool = True,
-            mirror: bool = True
+            add_sep: bool = True
     ) -> list[_Widget]:
         """Widget for showing spotify.
 
@@ -397,17 +408,12 @@ class MyWidgets:
         ----------
         add_sep: bool, optional
             Add a space to the right. Default: True.
-        mirror: bool, optional
-            If a mirrored widget should be returned. Default: True.
 
         Returns
         -------
         list[libqtile.widget.base._Widget]
             The list of widgets to add to the bar.
         """
-
-        if 'widget_spotify' in self.store and mirror:
-            return self.store['widget_spotify']
 
         config = dict(**self.fonts['Normal'],
                       name             = 'spotify',
@@ -421,7 +427,6 @@ class MyWidgets:
         if add_sep:
             return widgets + [Spacer(length=10)]
 
-        self.store['widget_spotify'] = widgets
         return widgets
 
     def create_widgets(
