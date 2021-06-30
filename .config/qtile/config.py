@@ -392,9 +392,7 @@ layouts = [layout.MonadTall(**layout_theme_tall),
            layout.Stack(**layout_theme_stack)]
 
 floating_layout = layout.Floating(float_rules=[
-    # Run the utility of `xprop` to see the wm class and name of an X client.
     Match(wm_type = 'confirm'),
-    Match(wm_type = 'dialog'),
     Match(wm_type = 'download'),
     Match(wm_type = 'error'),
     Match(wm_type = 'file_progress'),
@@ -404,10 +402,12 @@ floating_layout = layout.Floating(float_rules=[
     Match(wm_type = 'confirmreset'),
     Match(wm_type = 'makebranch'),
     Match(wm_type = 'maketag'),
+    Match(wm_type = 'notification'),
+    Match(wm_type = 'utility'),
     Match(wm_type = 'ssh-askpass'),
     Match(title = 'branchdialog'),
     Match(title = 'meet.google.com is sharing your screen.'),
-    Match(wm_class = 'Pinentry-gtk-2'),
+    Match(wm_class = 'Pinentry-gtk-2')
 ], **layout_theme_float)
 
 # ========== Hooks ========== #
@@ -430,6 +430,23 @@ def autostart():
 def force_match_default_workspace(window):
     if any(match.compare(window) for match in force_match):
         default_workspaces(window)
+
+# Change size of floating windows
+@hook.subscribe.client_new
+def resize_floating_windows(window):
+    move_to_middle = False
+
+    if window.window.get_wm_type() == 'dialog':
+        window.cmd_enable_floating()
+        window.cmd_set_size_floating(900, 700)
+        move_to_middle = True
+
+    if move_to_middle:
+        size = window.cmd_get_size()
+        window.cmd_set_position_floating(
+            960 - int(size[0] / 2),
+            540 - int(size[1] / 2)
+        )
 
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the
