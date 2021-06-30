@@ -339,7 +339,7 @@ def my_bar1():
 
 # Bar for my second screen
 def my_bar2():
-    widgets_left = [*mw.widget_groups(), *mw.widget_chord()]
+    widgets_left = [*mw.widget_groups(mirror=False), *mw.widget_chord()]
     widgets_center = [*mw.widget_time()]
     widgets_right = []
     widgets = mw.create_widgets(widgets_left, widgets_center, widgets_right, 2)
