@@ -331,6 +331,7 @@ def my_bar1():
         *mw.widget_time()
     ]
     widgets_right = [
+        *mw.widget_spotify(),
         *mw.widget_volume(),
         *mw.widget_layout(),
         *mw.widget_update(),

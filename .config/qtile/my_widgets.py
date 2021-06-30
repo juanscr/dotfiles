@@ -1,5 +1,7 @@
 from __future__ import annotations
+
 import functools
+import subprocess
 
 from libqtile.widget.base import _Widget
 from libqtile.widget.battery import Battery
@@ -7,8 +9,8 @@ from libqtile.widget.check_updates import CheckUpdates
 from libqtile.widget.chord import Chord
 from libqtile.widget.clock import Clock
 from libqtile.widget.currentlayout import CurrentLayoutIcon
+from libqtile.widget.generic_poll_text import GenPollText
 from libqtile.widget.groupbox import GroupBox
-from libqtile.widget.mpris2widget import Mpris2
 from libqtile.widget.spacer import Spacer
 from libqtile.widget.systray import Systray
 from libqtile.widget.textbox import TextBox
@@ -530,22 +532,70 @@ class MyWidgets:
     def widget_spotify(self) -> list[_Widget]:
         """Widget for showing spotify.
 
+        Requirements
+        ------------
+        - https://github.com/mihirlad55/polybar-spotify-module
+
         Returns
         -------
         list[libqtile.widget.base._Widget]
             The list of widgets to add to the bar.
         """
 
-        widget_spotify = Mpris2(
+        def get_func_for_track_name(icon: bool = False) -> Callable[[], str]:
+            """It gets the track name using spotifyctl.
+
+            Parameters
+            ----------
+            icon: bool, optional
+                If the icon will be outputed or the text.
+
+            Returns
+            -------
+            Callable[[], str]
+                The function to obtain the text.
+            """
+
+            def get_track_name() -> str:
+                """It outputs the track name or the icon.
+
+                Returns
+                -------
+                str
+                    The result of the output.
+                """
+
+                try:
+                    output = subprocess.check_output(
+                        "spotifyctl status --format '%title% (%artist%)' " +
+                        "--max-length 30",
+                        shell = True
+                    ).decode()[:-1]
+                except subprocess.SubprocessError:
+                    return ''
+
+                return '' if icon else output
+
+            return get_track_name
+
+        # Track information
+        widget_spotify = GenPollText(
             **self.fonts['Normal'],
-            name             = 'spotify',
-            objname          = "org.mpris.MediaPlayer2.spotify",
-            display_metadata = ['xesam:artist', 'xesam:title'],
-            scroll_chars     = 15,
-            stop_pause_text  = 'IDLE'
+            foreground      = self.colors['foreground'],
+            func            = get_func_for_track_name(),
+            update_interval = 2
         )
 
-        widgets: list[_Widget] = [widget_spotify]
+        # Icon
+        widget_icon_spotify = GenPollText(
+            **self.fonts['Icons2'],
+            foreground      = self.colors['foreground'],
+            func            = get_func_for_track_name(icon = True),
+            update_interval = 2,
+            padding         = 7
+        )
+
+        widgets: list[_Widget] = [widget_icon_spotify, widget_spotify]
         return widgets
 
     def create_widgets(
