@@ -250,7 +250,7 @@ class MyWidgets:
             The list of widgets to add to the bar.
         """
 
-        config = dict(
+        widget_groupbox = GroupBox(
             **self.fonts['Icons'],
 
             # Base configuration
@@ -286,7 +286,8 @@ class MyWidgets:
             block_highlight_text_color = self.colors['green']
         )
 
-        return [GroupBox(**config)]
+        widgets: list[_Widget] = [widget_groupbox]
+        return widgets
 
     @add_mirror
     @add_separation(space = 5)
@@ -301,17 +302,19 @@ class MyWidgets:
         """
 
         # Widget for layout
-        config = dict(custom_icon_paths = [eu("~/.config/qtile/icons")],
-                      scale             = 0.5,
-                      padding           = -5,
-                      foreground        = self.colors['green'])
-        widget_layout = CurrentLayoutIcon(**config)
+        widget_layout = CurrentLayoutIcon(
+            custom_icon_paths = [eu("~/.config/qtile/icons")],
+            scale             = 0.5,
+            padding           = -5,
+            foreground        = self.colors['green']
+        )
 
         # Widget for number of windows
-        config = dict(**self.fonts['Normal'],
-                      foreground = self.colors['green'],
-                      show_zero  = True)
-        widget_nw = WindowCount(**config)
+        widget_nw = WindowCount(
+            **self.fonts['Normal'],
+            foreground = self.colors['green'],
+            show_zero  = True
+        )
 
         widgets = [widget_layout, widget_nw]
         return widgets
@@ -333,23 +336,26 @@ class MyWidgets:
         """
 
         # Icon
-        w_update_icon = TextBox(**self.fonts['Icons2'],
-                                text    = 'ﮮ',
-                                foreground = self.colors['yellow'],
-                                padding    = 8)
+        w_update_icon = TextBox(
+            **self.fonts['Icons2'],
+            text       = 'ﮮ',
+            foreground = self.colors['yellow'],
+            padding    = 8
+        )
 
         # Text
-        config = dict(**self.fonts['Normal'],
-                      distro              = 'Arch_checkupdates',
-                      colour_have_updates = self.colors['yellow'],
-                      colour_no_updates   = self.colors['yellow'],
-                      no_update_string    = '0',
-                      display_format      = '{updates}',
-                      padding             = 0,
-                      update_interval     = 60)
-        w_update_text = CheckUpdates(**config)
+        w_update_text = CheckUpdates(
+            **self.fonts['Normal'],
+            distro              = 'Arch_checkupdates',
+            colour_have_updates = self.colors['yellow'],
+            colour_no_updates   = self.colors['yellow'],
+            no_update_string    = '0',
+            display_format      = '{updates}',
+            padding             = 0,
+            update_interval     = 60
+        )
 
-        widgets = [w_update_icon, w_update_text]
+        widgets: list[_Widget] = [w_update_icon, w_update_text]
         return widgets
 
     @add_mirror
@@ -363,15 +369,20 @@ class MyWidgets:
         """
 
         # Icon
-        w_clock_icon = TextBox(**self.fonts['Icons2'],
-                               text    = ' ',
-                               padding = 6)
+        w_clock_icon = TextBox(
+            **self.fonts['Icons2'],
+            text    = ' ',
+            padding = 6
+        )
 
         # Text
-        widget_clock = Clock(**self.fonts['Normal'],
-                             format = '%a, %d %b   %H:%M')
+        widget_clock = Clock(
+            **self.fonts['Normal'],
+            format = '%a, %d %b   %H:%M'
+        )
 
-        return [w_clock_icon, widget_clock]
+        widgets = [w_clock_icon, widget_clock]
+        return widgets
 
     @add_mirror
     @add_separation(space = 5)
@@ -386,43 +397,46 @@ class MyWidgets:
         """
 
         # Widget for icon battery
-        config = dict(**self.fonts['Icons2'],
+        config = dict(
+            **self.fonts['Icons2'],
 
-                    # Formatting options
-                    format          = '{char}',
-                    show_short_text = False,
-                    padding         = 4,
+            # Formatting options
+            format          = '{char}',
+            show_short_text = False,
+            padding         = 4,
 
-                    # Icons for each state
-                    charge_char    = '',
-                    full_char      = '',
-                    empty_char     = '',
-                    discharge_char = '',
-                    unknown_char   = '',
+            # Icons for each state
+            charge_char    = '',
+            full_char      = '',
+            empty_char     = '',
+            discharge_char = '',
+            unknown_char   = '',
 
-                    # Other options
-                    update_interval = 1,
-                    low_percentage  = 0.15,
-                    low_foreground  = self.colors['orange'],
-                    foreground      = self.colors['orange'],
-                    background      = self.colors['background'])
+            # Other options
+            update_interval = 1,
+            low_percentage  = 0.15,
+            low_foreground  = self.colors['orange'],
+            foreground      = self.colors['orange'],
+            background      = self.colors['background']
+        )
         w_battery_icon = Battery(**config)
 
         # Widget for the percentage of the battery
-        config = dict(**self.fonts['Normal'],
+        w_battery_text = Battery(
+            **self.fonts['Normal'],
 
-                    # Formatting options
-                    format          = '{percent:2.0%} ',
-                    show_short_text = False,
-                    padding         = 0,
+            # Formatting options
+            format          = '{percent:2.0%} ',
+            show_short_text = False,
+            padding         = 0,
 
-                    # Other options
-                    update_interval = config['update_interval'],
-                    low_percentage  = config['low_percentage'],
-                    low_foreground  = config['foreground'],
-                    foreground      = config['foreground'],
-                    background      = config['background'])
-        w_battery_text = Battery(**config)
+            # Other options
+            update_interval = config['update_interval'],
+            low_percentage  = config['low_percentage'],
+            low_foreground  = config['foreground'],
+            foreground      = config['foreground'],
+            background      = config['background']
+        )
 
         widgets: list[_Widget] = [w_battery_icon, w_battery_text]
         return widgets
@@ -437,10 +451,11 @@ class MyWidgets:
             The list of widgets to add to the bar.
         """
 
-        config = dict(background = self.colors['background'],
-                      icon_size = 16,
-                      padding = 15)
-        widget_systray = Systray(**config)
+        widget_systray = Systray(
+            background = self.colors['background'],
+            icon_size = 16,
+            padding   = 15
+        )
 
         widgets: list[_Widget] = [widget_systray]
         return widgets
@@ -455,16 +470,18 @@ class MyWidgets:
             The list of widgets to add to the bar.
         """
 
-        config = dict(**self.fonts['Normal'],
+        widget_chord = Chord(
+            **self.fonts['Normal'],
 
-                      # Formatting
-                      background     = self.colors['background-alt1'],
-                      foreground     = self.colors['foreground'],
-                      padding        = 3,
-                      name_transform = lambda name: f' {name} ')
-        widget_chord = Chord(**config)
+            # Formatting
+            background     = self.colors['background-alt1'],
+            foreground     = self.colors['foreground'],
+            padding        = 3,
+            name_transform = lambda name: f' {name} '
+        )
 
-        return [widget_chord]
+        widgets: list[_Widget] = [widget_chord]
+        return widgets
 
     @add_mirror
     @add_separation(space = 5)
@@ -519,13 +536,14 @@ class MyWidgets:
             The list of widgets to add to the bar.
         """
 
-        config = dict(**self.fonts['Normal'],
-                      name             = 'spotify',
-                      objname          = "org.mpris.MediaPlayer2.spotify",
-                      display_metadata = ['xesam:artist', 'xesam:title'],
-                      scroll_chars     = 15,
-                      stop_pause_text  = 'IDLE')
-        widget_spotify = Mpris2(**config)
+        widget_spotify = Mpris2(
+            **self.fonts['Normal'],
+            name             = 'spotify',
+            objname          = "org.mpris.MediaPlayer2.spotify",
+            display_metadata = ['xesam:artist', 'xesam:title'],
+            scroll_chars     = 15,
+            stop_pause_text  = 'IDLE'
+        )
 
         widgets: list[_Widget] = [widget_spotify]
         return widgets
