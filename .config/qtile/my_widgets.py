@@ -1,5 +1,15 @@
-from libqtile import widget
 from libqtile.widget.base import _Widget
+from libqtile.widget.battery import Battery
+from libqtile.widget.check_updates import CheckUpdates
+from libqtile.widget.chord import Chord
+from libqtile.widget.clock import Clock
+from libqtile.widget.currentlayout import CurrentLayoutIcon
+from libqtile.widget.groupbox import GroupBox
+from libqtile.widget.mpris2widget import Mpris2
+from libqtile.widget.spacer import Spacer
+from libqtile.widget.systray import Systray
+from libqtile.widget.textbox import TextBox
+from libqtile.widget.window_count import WindowCount
 from os.path import expanduser as eu
 from typing import Any
 
@@ -38,7 +48,7 @@ class MyWidgets:
         self.colors: dict[str, str] = colors
         self.padding_left: dict[str, int] = padding_left
         self.padding_right: dict[str, int] = padding_right
-        self.store: dict[str, _Widget] = {}
+        self.store: dict[str, list[_Widget]] = {}
 
     def widget_groups(self, mirror: bool = True) -> list[_Widget]:
         """Widget for displaying groups.
@@ -93,7 +103,7 @@ class MyWidgets:
             block_highlight_text_color = self.colors['green']
         )
 
-        self.store['widget_groups'] = [widget.GroupBox(**config)]
+        self.store['widget_groups'] = [GroupBox(**config)]
         return self.store['widget_groups']
 
     def widget_layout(
@@ -127,23 +137,23 @@ class MyWidgets:
                       scale             = 0.5,
                       padding           = -5,
                       foreground        = self.colors['green'])
-        widget_layout = widget.CurrentLayoutIcon(**config)
+        widget_layout = CurrentLayoutIcon(**config)
 
         # Widget for number of windows
         config = dict(**self.fonts['Normal'],
                       foreground = self.colors['green'],
                       show_zero  = True)
-        widget_nw = widget.WindowCount(**config)
+        widget_nw = WindowCount(**config)
 
         widgets = [widget_layout, widget_nw]
 
         if add_sep:
-            widgets += [widget.Spacer(length=5)]
+            widgets += [Spacer(length=5)]
         if add_pipe:
-            pipe = widget.TextBox(**self.fonts['Normal'],
-                                  text       = '|',
-                                  foreground = self.colors['green'])
-            widgets = [pipe, widget.Spacer(length = 5)] + widgets
+            pipe = TextBox(**self.fonts['Normal'],
+                           text       = '|',
+                           foreground = self.colors['green'])
+            widgets = [pipe, Spacer(length = 5)] + widgets
 
         self.store['widget_layout'] = widgets
         return widgets
@@ -179,10 +189,10 @@ class MyWidgets:
             return self.store['widget_update']
 
         # Icon
-        w_update_icon = widget.TextBox(**self.fonts['Icons2'],
-                                       text    = 'ﮮ',
-                                       foreground = self.colors['yellow'],
-                                       padding = 8)
+        w_update_icon = TextBox(**self.fonts['Icons2'],
+                                text    = 'ﮮ',
+                                foreground = self.colors['yellow'],
+                                padding    = 8)
 
         # Text
         config = dict(**self.fonts['Normal'],
@@ -193,16 +203,16 @@ class MyWidgets:
                       display_format      = '{updates}',
                       padding             = 0,
                       update_interval     = 60)
-        w_update_text = widget.CheckUpdates(**config)
+        w_update_text = CheckUpdates(**config)
 
         widgets = [w_update_icon, w_update_text]
 
         if add_sep:
-            widgets += [widget.Spacer(length=8)]
+            widgets += [Spacer(length=8)]
         if add_pipe:
-            pipe = widget.TextBox(**self.fonts['Normal'],
-                                  text       = '|',
-                                  foreground = self.colors['yellow'])
+            pipe = TextBox(**self.fonts['Normal'],
+                           text       = '|',
+                           foreground = self.colors['yellow'])
             widgets = [pipe] + widgets
 
         self.store['widget_update'] = widgets
@@ -226,13 +236,13 @@ class MyWidgets:
             return self.store['widget_time']
 
         # Icon
-        w_clock_icon = widget.TextBox(**self.fonts['Icons2'],
-                                      text    = ' ',
-                                      padding = 6)
+        w_clock_icon = TextBox(**self.fonts['Icons2'],
+                               text    = ' ',
+                               padding = 6)
 
         # Text
-        widget_clock = widget.Clock(**self.fonts['Normal'],
-                                    format = '%a, %d %b   %H:%M')
+        widget_clock = Clock(**self.fonts['Normal'],
+                             format = '%a, %d %b   %H:%M')
 
         self.store['widget_time'] = [w_clock_icon, widget_clock]
         return self.store['widget_time']
@@ -284,7 +294,7 @@ class MyWidgets:
                     low_foreground  = self.colors['orange'],
                     foreground      = self.colors['orange'],
                     background      = self.colors['background'])
-        w_battery_icon = widget.Battery(**config)
+        w_battery_icon = Battery(**config)
 
         # Widget for the percentage of the battery
         config = dict(**self.fonts['Normal'],
@@ -300,16 +310,16 @@ class MyWidgets:
                     low_foreground  = config['foreground'],
                     foreground      = config['foreground'],
                     background      = config['background'])
-        w_battery_text = widget.Battery(**config)
+        w_battery_text = Battery(**config)
 
         widgets = [w_battery_icon, w_battery_text]
         if add_sep:
-            widgets += [widget.Spacer(length=5)]
+            widgets += [Spacer(length=5)]
         if add_pipe:
-            pipe = widget.TextBox(**self.fonts['Normal'],
-                                  text       = '|',
-                                  foreground = self.colors['orange'])
-            widgets = [pipe, widget.Spacer(length = 5)] + widgets
+            pipe = TextBox(**self.fonts['Normal'],
+                           text       = '|',
+                           foreground = self.colors['orange'])
+            widgets = [pipe, Spacer(length = 5)] + widgets
 
         self.store['widget_battery'] = widgets
         return widgets
@@ -331,14 +341,14 @@ class MyWidgets:
         config = dict(background = self.colors['background'],
                       icon_size = 16,
                       padding = 15)
-        widget_systray = widget.Systray(**config)
+        widget_systray = Systray(**config)
         widgets = [widget_systray]
 
         if add_pipe:
-            pipe = widget.TextBox(**self.fonts['Normal'],
-                                  text       = '|',
-                                  foreground = self.colors['foreground'],
-                                  padding    = -2)
+            pipe = TextBox(**self.fonts['Normal'],
+                           text       = '|',
+                           foreground = self.colors['foreground'],
+                           padding    = -2)
             widgets = [pipe] + widgets
 
         return widgets
@@ -371,7 +381,7 @@ class MyWidgets:
                       foreground     = self.colors['foreground'],
                       padding        = 3,
                       name_transform = lambda name: f' {name} ')
-        widget_chord = widget.Chord(**config)
+        widget_chord = Chord(**config)
 
         self.store['widget_chord'] = [widget_chord]
         return self.store['widget_chord']
@@ -405,11 +415,11 @@ class MyWidgets:
                       display_metadata = ['xesam:artist', 'xesam:title'],
                       scroll_chars     = 15,
                       stop_pause_text  = 'IDLE')
-        widget_spotify = widget.Mpris2(**config)
+        widget_spotify = Mpris2(**config)
 
         widgets = [widget_spotify]
         if add_sep:
-            return widgets + [widget.Spacer(length=10)]
+            return widgets + [Spacer(length=10)]
 
         self.store['widget_spotify'] = widgets
         return widgets
@@ -449,22 +459,22 @@ class MyWidgets:
         # Add left
         if len(widgets_left) > 0:
             background = widgets_left[0].background
-            space = widget.Spacer(length=paddingl, background=background)
+            space = Spacer(length=paddingl, background=background)
             widgets += [space] + widgets_left
 
         # Add center
         if len(widgets_center) > 0:
-            widgets += [widget.Spacer()] + widgets_center + [widget.Spacer()]
+            widgets += [Spacer()] + widgets_center + [Spacer()]
 
         # Add right
         if len(widgets_right) > 0:
             if len(widgets_center) == 0:
-                widgets += [widget.Spacer()]
+                widgets += [Spacer()]
 
             background = widgets_right[-1].background
-            space = widget.Spacer(length=paddingr, background=background)
+            space = Spacer(length=paddingr, background=background)
             widgets += widgets_right + [space]
         elif len(widgets_center) > 0:
-            widgets += [widget.TextBox()]
+            widgets += [TextBox()]
 
         return widgets
