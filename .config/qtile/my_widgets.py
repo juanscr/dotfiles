@@ -427,7 +427,7 @@ class MyWidgets:
         return widgets
 
     @add_pipe(color = 'foreground', padding = -2)
-    def widget_tray(self, add_pipe: bool = True) -> list[_Widget]:
+    def widget_tray(self) -> list[_Widget]:
         """Widget for displaying system tray.
 
         Returns
@@ -516,28 +516,32 @@ class MyWidgets:
         # Padding for bar
         paddingl = self.padding_left[f'bar{screen}']
         paddingr = self.padding_right[f'bar{screen}']
-
         widgets = []
 
         # Add left
         if len(widgets_left) > 0:
             background = widgets_left[0].background
             space = Spacer(length=paddingl, background=background)
-            widgets += [space] + widgets_left
+            widgets += widgets_left
+            widgets.insert(0, space)
 
         # Add center
         if len(widgets_center) > 0:
-            widgets += [Spacer()] + widgets_center + [Spacer()]
+            widgets.append(Spacer())
+            widgets += widgets_center
+            widgets.append(Spacer())
 
         # Add right
         if len(widgets_right) > 0:
             if len(widgets_center) == 0:
-                widgets += [Spacer()]
+                widgets.append(Spacer())
 
             background = widgets_right[-1].background
             space = Spacer(length=paddingr, background=background)
-            widgets += widgets_right + [space]
+            widgets += widgets_right
+            widgets.append(space)
+
         elif len(widgets_center) > 0:
-            widgets += [TextBox()]
+            widgets.append(TextBox())
 
         return widgets
