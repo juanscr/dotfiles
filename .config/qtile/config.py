@@ -7,7 +7,7 @@
 
 import subprocess
 
-from libqtile import bar, hook, layout, widget
+from libqtile import bar, hook, layout
 from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
 from libqtile.lazy import lazy
 from my_widgets import MyWidgets
@@ -93,6 +93,11 @@ keys += [
     Key([mod, "shift"], "k", lazy.layout.shuffle_up(), desc="Move window up"),
     Key([mod, "shift"], "l", lazy.layout.shuffle_right(),
         desc="Move window to the right"),
+
+    # Resize windows
+    Key([mod, "control"], "j", lazy.layout.shrink(),
+        desc="Decrease window size"),
+    Key([mod, "control"], "k", lazy.layout.grow(), desc="Increase window size"),
 
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
