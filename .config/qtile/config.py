@@ -323,10 +323,20 @@ mw = MyWidgets(colors, fonts, padding_left, padding_right)
 
 # Bar for my first screen
 def my_bar1():
-    widgets_left = [*mw.widget_groups(), *mw.widget_chord()]
-    widgets_center = [*mw.widget_time()]
-    widgets_right = [*mw.widget_layout(), *mw.widget_update(),
-                     *mw.widget_battery(), *mw.widget_tray()]
+    widgets_left = [
+        *mw.widget_groups(),
+        *mw.widget_chord()
+    ]
+    widgets_center = [
+        *mw.widget_time()
+    ]
+    widgets_right = [
+        *mw.widget_volume(),
+        *mw.widget_layout(),
+        *mw.widget_update(),
+        *mw.widget_battery(),
+        *mw.widget_tray()
+    ]
     widgets = mw.create_widgets(widgets_left, widgets_center, widgets_right, 1)
 
     # Height of bar
@@ -339,8 +349,13 @@ def my_bar1():
 
 # Bar for my second screen
 def my_bar2():
-    widgets_left = [*mw.widget_groups(mirror=False), *mw.widget_chord()]
-    widgets_center = [*mw.widget_time()]
+    widgets_left = [
+        *mw.widget_groups(mirror=False),
+        *mw.widget_chord()
+    ]
+    widgets_center = [
+        *mw.widget_time()
+    ]
     widgets_right = []
     widgets = mw.create_widgets(widgets_left, widgets_center, widgets_right, 2)
 

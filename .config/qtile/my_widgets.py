@@ -12,6 +12,7 @@ from libqtile.widget.mpris2widget import Mpris2
 from libqtile.widget.spacer import Spacer
 from libqtile.widget.systray import Systray
 from libqtile.widget.textbox import TextBox
+from libqtile.widget.volume import Volume
 from libqtile.widget.window_count import WindowCount
 from os.path import expanduser as eu
 from typing import Any, Callable, Optional
@@ -464,6 +465,48 @@ class MyWidgets:
         widget_chord = Chord(**config)
 
         return [widget_chord]
+
+    @add_mirror
+    @add_separation(space = 5)
+    @add_pipe(color = 'cyan')
+    def widget_volume(self) -> list[_Widget]:
+        """Widget for displaying the volume.
+
+        Requirements
+        ------------
+        - pamixer
+
+        Returns
+        -------
+        list[libqtile.widget.base._Widget]
+            The list of widgets.
+        """
+
+        # Widget for volume
+        widget_volume = Volume(
+            **self.fonts['Normal'],
+
+            # Colors
+            foreground = self.colors['cyan'],
+            background = self.colors['background'],
+
+            # Volume command
+            get_volume_command  = '/home/juanscr/.config/qtile/' +
+                                  'get_volume_qtile.sh',
+            mute_command        = 'pamixer -t',
+            volume_down_command = 'pamixer -d 5',
+            volume_up_command   = 'pamixer -i 5'
+        )
+
+        # Icon for volume
+        icon_volume = TextBox(
+            **self.fonts['Icons2'],
+            foreground = self.colors['cyan'],
+            text       = '',
+            padding    = 8
+        )
+
+        return [icon_volume, widget_volume]
 
     @add_mirror
     @add_separation(space = 10)
