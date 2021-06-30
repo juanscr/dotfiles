@@ -14,7 +14,7 @@ from libqtile.widget.systray import Systray
 from libqtile.widget.textbox import TextBox
 from libqtile.widget.window_count import WindowCount
 from os.path import expanduser as eu
-from typing import Any, Callable
+from typing import Any, Callable, Optional
 
 def add_mirror(
         func: Callable[..., list[_Widget]]
@@ -62,6 +62,145 @@ def add_mirror(
 
     return wrapper
 
+def add_separation(
+        space: int
+) -> Callable[[Callable[..., list[_Widget]]], Callable[..., list[_Widget]]]:
+    """It adds parameters to add a spacer to the right of the widgets.
+
+    Parameters
+    ----------
+    space: int
+        The number of pixels to add to the right.
+
+    Returns
+    -------
+    Callable[[Callable[..., list[_Widget]]], Callable[..., list[_Widget]]]
+        The decorator for the function that adds the parameter.
+    """
+
+    def decorator(
+            func: Callable[..., list[_Widget]]
+    ) -> Callable[..., list[_Widget]]:
+        """The decorator to add the add_sep  parameter.
+
+        Parameters
+        ----------
+        func: Callable[..., list[_Widget]]
+            The function that gives the list of widgets.
+
+        Returns
+        -------
+        Callable[..., list[_Widget]]
+            The function with the add_sep parameter.
+        """
+
+        @functools.wraps(func)
+        def wrapper(self: MyWidgets, *args: Any, **kwargs: Any) -> list[_Widget]:
+            """It adds a space to the right of the widgets.
+
+            Parameters
+            ----------
+            self: MyWidgets
+                The object to store the result.
+            args: Any
+                The positional arguments of the function.
+            kwargs: Any
+                The named arguments of the function.
+
+            Returns
+            -------
+            list[libqtile.base._Widget]
+                The list of the widgets with the spacer.
+            """
+
+            add_sep = kwargs.pop('add_sep', True)
+            widgets = func(self, *args, **kwargs)
+            if add_sep:
+                widgets += [Spacer(length = space)]
+
+            return widgets
+
+        return wrapper
+
+    return decorator
+
+def add_pipe(
+        color: str,
+        space: Optional[int] = None,
+        padding: int = 0
+) -> Callable[[Callable[..., list[_Widget]]], Callable[..., list[_Widget]]]:
+    """It adds parameters to add a pipe to the left of the widgets.
+
+    Parameters
+    ----------
+    pipe: str
+        The color for the pipe.
+    space: int, optional
+        The number of pixels to add between the pipe and the widgets.
+        Default: None.
+
+    Returns
+    -------
+    Callable[[Callable[..., list[_Widget]]], Callable[..., list[_Widget]]]
+        The decorator for the function that adds the parameter.
+    """
+
+    def decorator(
+            func: Callable[..., list[_Widget]]
+    ) -> Callable[..., list[_Widget]]:
+        """The decorator to add the add_pipe parameter.
+
+        Parameters
+        ----------
+        func: Callable[..., list[_Widget]]
+            The function that gives the list of widgets.
+
+        Returns
+        -------
+        Callable[..., list[_Widget]]
+            The function with the add_sep parameter.
+        """
+
+        @functools.wraps(func)
+        def wrapper(self: MyWidgets, *args: Any, **kwargs: Any) -> list[_Widget]:
+            """It adds a separator and a pipe in the respective places.
+
+            Parameters
+            ----------
+            self: MyWidgets
+                The object to store the result.
+            args: Any
+                The positional arguments of the function.
+            kwargs: Any
+                The named arguments of the function.
+
+            Returns
+            -------
+            list[libqtile.base._Widget]
+                The list of the widgets with the spacer and the pipe.
+            """
+
+            add_pipe = kwargs.pop('add_pipe', True)
+            widgets = func(self, *args, **kwargs)
+
+            # Add space
+            if space is not None:
+                widgets.insert(0, Spacer(length = space))
+
+            # Add pipe
+            if add_pipe:
+                widgets.insert(0, TextBox(
+                    **self.fonts['Normal'],
+                    text       = '|',
+                    foreground = self.colors[color],
+                    padding = padding
+                ))
+
+            return widgets
+
+        return wrapper
+
+    return decorator
 
 class MyWidgets:
     """Class to store all my favorite configuration for my used widgets for the
@@ -149,19 +288,10 @@ class MyWidgets:
         return [GroupBox(**config)]
 
     @add_mirror
-    def widget_layout(
-            self,
-            add_sep: bool = True,
-            add_pipe: bool = True
-    ) -> list[_Widget]:
+    @add_separation(space = 5)
+    @add_pipe(color = 'green', space = 5)
+    def widget_layout(self) -> list[_Widget]:
         """Module for showing layout and number of windows.
-
-        Parameters
-        ----------
-        add_sep: bool, optional
-            Add a space to the right. Default: True.
-        add_pipe: bool, optional
-            Add a pipe separator to the left. Default: True.
 
         Returns
         -------
@@ -183,35 +313,17 @@ class MyWidgets:
         widget_nw = WindowCount(**config)
 
         widgets = [widget_layout, widget_nw]
-
-        if add_sep:
-            widgets += [Spacer(length=5)]
-        if add_pipe:
-            pipe = TextBox(**self.fonts['Normal'],
-                           text       = '|',
-                           foreground = self.colors['green'])
-            widgets = [pipe, Spacer(length = 5)] + widgets
-
         return widgets
 
     @add_mirror
-    def widget_update(
-            self,
-            add_sep: bool = True,
-            add_pipe: bool = True
-    ) -> list[_Widget]:
+    @add_separation(space = 8)
+    @add_pipe(color = 'yellow')
+    def widget_update(self) -> list[_Widget]:
         """Module for displaying updates.
 
         Requirements
         ------------
         - pacman-contrib
-
-        Parameters
-        ----------
-        add_sep: bool, optional
-            Add a space to the right. Default: True.
-        add_pipe: bool, optional
-            Add a pipe separator to the left. Default: True.
 
         Returns
         -------
@@ -237,15 +349,6 @@ class MyWidgets:
         w_update_text = CheckUpdates(**config)
 
         widgets = [w_update_icon, w_update_text]
-
-        if add_sep:
-            widgets += [Spacer(length=8)]
-        if add_pipe:
-            pipe = TextBox(**self.fonts['Normal'],
-                           text       = '|',
-                           foreground = self.colors['yellow'])
-            widgets = [pipe] + widgets
-
         return widgets
 
     @add_mirror
@@ -270,19 +373,10 @@ class MyWidgets:
         return [w_clock_icon, widget_clock]
 
     @add_mirror
-    def widget_battery(
-            self,
-            add_sep: bool = True,
-            add_pipe: bool = True
-    ) -> list[_Widget]:
+    @add_separation(space = 5)
+    @add_pipe(color = 'orange', space = 5)
+    def widget_battery(self) -> list[_Widget]:
         """Widget for displaying battery usage.
-
-        Parameters
-        ----------
-        add_sep: bool, optional
-            Add a space to the right. Default: True.
-        add_pipe: bool, optional
-            Add a pipe separator to the left. Default: True.
 
         Returns
         -------
@@ -329,24 +423,12 @@ class MyWidgets:
                     background      = config['background'])
         w_battery_text = Battery(**config)
 
-        widgets = [w_battery_icon, w_battery_text]
-        if add_sep:
-            widgets += [Spacer(length=5)]
-        if add_pipe:
-            pipe = TextBox(**self.fonts['Normal'],
-                           text       = '|',
-                           foreground = self.colors['orange'])
-            widgets = [pipe, Spacer(length = 5)] + widgets
-
+        widgets: list[_Widget] = [w_battery_icon, w_battery_text]
         return widgets
 
+    @add_pipe(color = 'foreground', padding = -2)
     def widget_tray(self, add_pipe: bool = True) -> list[_Widget]:
         """Widget for displaying system tray.
-
-        Parameters
-        ----------
-        add_pipe: bool, optional
-            Add a pipe separator to the left. Default: True.
 
         Returns
         -------
@@ -358,27 +440,13 @@ class MyWidgets:
                       icon_size = 16,
                       padding = 15)
         widget_systray = Systray(**config)
-        widgets = [widget_systray]
 
-        if add_pipe:
-            pipe = TextBox(**self.fonts['Normal'],
-                           text       = '|',
-                           foreground = self.colors['foreground'],
-                           padding    = -2)
-            widgets = [pipe] + widgets
-
+        widgets: list[_Widget] = [widget_systray]
         return widgets
 
     @add_mirror
     def widget_chord(self) -> list[_Widget]:
         """Widget for showing key chords.
-
-        Parameters
-        ----------
-        add_sep: bool, optional
-            Add a space to the right. Default: True.
-        add_pipe: bool, optional
-            Add a pipe separator to the left. Default: True.
 
         Returns
         -------
@@ -398,16 +466,9 @@ class MyWidgets:
         return [widget_chord]
 
     @add_mirror
-    def widget_spotify(
-            self,
-            add_sep: bool = True
-    ) -> list[_Widget]:
+    @add_separation(space = 10)
+    def widget_spotify(self) -> list[_Widget]:
         """Widget for showing spotify.
-
-        Parameters
-        ----------
-        add_sep: bool, optional
-            Add a space to the right. Default: True.
 
         Returns
         -------
@@ -423,10 +484,7 @@ class MyWidgets:
                       stop_pause_text  = 'IDLE')
         widget_spotify = Mpris2(**config)
 
-        widgets = [widget_spotify]
-        if add_sep:
-            return widgets + [Spacer(length=10)]
-
+        widgets: list[_Widget] = [widget_spotify]
         return widgets
 
     def create_widgets(
