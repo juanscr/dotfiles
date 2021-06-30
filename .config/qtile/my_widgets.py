@@ -32,7 +32,7 @@ class MyWidgets:
     padding_right: dict[str, int]
         A map between the screen ('bar_X') to their padding. This is the space
         between the end of the bar and the last widget.
-    store: dict[str, _Widget]
+    store: dict[str, list[_Widget]]
         The already created widgets.
     """
 
