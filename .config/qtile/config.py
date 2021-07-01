@@ -181,7 +181,8 @@ matches = {
             Match(wm_class="Font-manager"),
             Match(wm_class="Nvidia-settings"),
             Match(wm_class="Bitwarden"),
-            Match(wm_class="qt5ct")],
+            Match(wm_class="qt5ct"),
+            Match(wm_class="v4l2ucp")],
 
     # Production apps
     ws(8): [Match(wm_class="Audacity"),
