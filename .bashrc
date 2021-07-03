@@ -145,15 +145,24 @@ PS1+="${GREEN}\$(__git_ps1 '(%s) ')${RESET}"
 PS1+="${BLUE}\W${RESET} > "
 
 # ==== Keybindings ==== #
-bind '"\ew": forward-word'
-bind '"\eb": backward-word'
-bind '"\eh": backward-char'
-bind '"\el": forward-char'
-bind '"\e$": end-of-line'
-bind '"\e0": beginning-of-line'
+# Function for interactive shell
+function is_interactive_shell() {
+  [[ "$-" =~ "i" ]]
+}
 
-bind '"\en": next-history'
-bind '"\ep": previous-history'
+# Fix for root bind warning
+# http://gurdiga.com/blog/2018/04/14/bind-warning-line-editing-not-enabled/
+if is_interactive_shell; then
+  bind '"\ew": forward-word'
+  bind '"\eb": backward-word'
+  bind '"\eh": backward-char'
+  bind '"\el": forward-char'
+  bind '"\e$": end-of-line'
+  bind '"\e0": beginning-of-line'
+
+  bind '"\en": next-history'
+  bind '"\ep": previous-history'
+fi
 
 # ==== History settings ==== #
 HISTSIZE=1000
