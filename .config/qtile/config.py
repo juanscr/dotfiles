@@ -190,7 +190,8 @@ matches = {
 
     # Miscellaneous apps
     ws(9): [Match(wm_class="VirtualBox Manager"),
-            Match(wm_class="^Steam$")],
+            Match(wm_class="^Steam$"),
+            Match(wm_class="Virt-manager")],
 
     # Background apps
     ws(10): [Match(wm_class="Spotify"),
