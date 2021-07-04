@@ -31,3 +31,6 @@ flameshot &
 
 # Conky
 conky &
+
+# Polkit
+polkit-dumb-agent &
