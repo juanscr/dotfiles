@@ -77,12 +77,6 @@ org-format-latex-options :scale 2.0))
 ;; LSP with no autoguess
 (setq-default lsp-auto-guess-root nil)
 
-;; Activate LSP in all python buffers
-(use-package lsp-pyright
-  :hook (python-mode . (lambda ()
-                          (require 'lsp-pyright)
-                          (lsp))))
-
 ; ==== Company mode ==== ;
 (setq company-idle-delay 0)
 (setq company-show-numbers t)
