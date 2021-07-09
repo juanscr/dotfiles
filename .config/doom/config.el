@@ -20,7 +20,7 @@
 (setq doom-theme 'doom-dracula)
 
 ;; Column fitting
-(setq-default fill-column 80)
+(setq-default fill-column 88)
 
 ;; Centered cursor mode settings
 (setq ccm-recenter-at-end-of-file t)
