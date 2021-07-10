@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import functools
 import subprocess
+from os.path import expanduser as eu
+from typing import Any, Callable, Optional
 
 from libqtile.widget.base import _Widget
 from libqtile.widget.battery import Battery
@@ -16,8 +18,6 @@ from libqtile.widget.systray import Systray
 from libqtile.widget.textbox import TextBox
 from libqtile.widget.volume import Volume
 from libqtile.widget.window_count import WindowCount
-from os.path import expanduser as eu
-from typing import Any, Callable, Optional
 
 
 def add_mirror(func: Callable[..., list[_Widget]]) -> Callable[..., list[_Widget]]:

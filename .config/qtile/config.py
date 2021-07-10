@@ -6,12 +6,13 @@
 # =============================================== #
 
 import subprocess
+from os.path import expanduser as eu
 
 from libqtile import bar, hook, layout
 from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
 from libqtile.lazy import lazy
+
 from my_widgets import MyWidgets
-from os.path import expanduser as eu
 
 # Mod key
 mod = "mod4"
