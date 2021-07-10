@@ -565,6 +565,27 @@ class MyWidgets:
         widgets: list[_Widget] = [widget_icon_spotify, widget_spotify]
         return widgets
 
+    @add_mirror
+    @add_separation(space=5)
+    @add_pipe(color="red")
+    def cpu_widget(self) -> list[_Widget]:
+
+        return []
+
+    @add_mirror
+    @add_separation(space=5)
+    @add_pipe(color="blue")
+    def ram_widget(self) -> list[_Widget]:
+
+        return []
+
+    @add_mirror
+    @add_separation(space=5)
+    @add_pipe(color="magenta")
+    def brightness_widget(self) -> list[_Widget]:
+
+        return []
+
     def create_widgets(
         self,
         widgets_left: list[_Widget],
