@@ -7,6 +7,7 @@ from typing import Any, Callable, Optional
 
 from libqtile.widget.base import _Widget
 from libqtile.widget.battery import Battery
+from libqtile.widget.cpu import CPU
 from libqtile.widget.check_updates import CheckUpdates
 from libqtile.widget.chord import Chord
 from libqtile.widget.clock import Clock
@@ -500,8 +501,13 @@ class MyWidgets:
 
     @add_mirror
     @add_separation(space=10)
-    def widget_spotify(self) -> list[_Widget]:
+    def widget_spotify(self, max_length: int = 30) -> list[_Widget]:
         """Widget for showing spotify.
+
+        Parameters
+        ----------
+        max_length: int, optional
+            The max length of the spotify output. Default: 30.
 
         Requirements
         ------------
@@ -539,7 +545,7 @@ class MyWidgets:
                 try:
                     output = subprocess.check_output(
                         "spotifyctl status --format '%title% (%artist%)' "
-                        + "--max-length 30",
+                        + f"--max-length {max_length}",
                         shell=True,
                     ).decode()[:-1]
                 except subprocess.SubprocessError:
@@ -572,7 +578,7 @@ class MyWidgets:
     @add_mirror
     @add_separation(space=5)
     @add_pipe(color="red", space=5)
-    def widget_cpu(self) -> list[_Widget]:
+    def widget_cpu(self, text=False) -> list[_Widget]:
         """Widget for showing CPU usage.
 
         Requirements
@@ -585,13 +591,21 @@ class MyWidgets:
             A list of the widgets for the CPU module.
         """
 
-        cpu_graph = CPUGraph(
-            background=self.colors["background"],
-            border_color=self.colors["background"],
-            graph_color=self.colors["red"],
-            fill_color=self.colors["red"],
-            type="linefill",
-        )
+        if text:
+            cpu_graph = CPU(
+                **self.fonts["Normal"],
+                background=self.colors["background"],
+                foreground=self.colors["red"],
+                format="{load_percent}%",
+            )
+        else:
+            cpu_graph = CPUGraph(
+                background=self.colors["background"],
+                border_color=self.colors["background"],
+                graph_color=self.colors["red"],
+                fill_color=self.colors["red"],
+                type="linefill",
+            )
         textbox = TextBox(
             **self.fonts["Normal"],
             text="CPU",

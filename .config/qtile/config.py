@@ -408,8 +408,58 @@ def my_bar2():
     return {"widgets": widgets, "size": size, "background": background}
 
 
+# Bar for my only screen
+def my_bar_full():
+    widgets_left = [*mw.widget_groups(), *mw.widget_chord()]
+    widgets_center = [*mw.widget_time()]
+    widgets_right = [
+        *mw.widget_spotify(max_length=15),
+        *mw.widget_brightness(),
+        *mw.widget_volume(),
+        *mw.widget_layout(),
+        *mw.widget_update(),
+        *mw.widget_battery(),
+        *mw.widget_cpu(text=True),
+        *mw.widget_ram(),
+        *mw.widget_tray(),
+    ]
+    widgets = mw.create_widgets(widgets_left, widgets_center, widgets_right, 1)
+
+    # Height of bar
+    size = heights["bar1"]
+
+    # Background
+    background = colors["background"]
+
+    return {"widgets": widgets, "size": size, "background": background}
+
+
+# _____ Function for obtaining the number of monitors _____ #
+def get_number_of_monitors() -> int:
+    """It gets the number of monitors.
+
+    Returns
+    -------
+    int
+        The number of active non-mirrored monitors.
+    """
+
+    try:
+        output = subprocess.check_output(
+            eu("~/.config/qtile/check_number_of_monitors.sh"), shell=True
+        ).decode()[:-1]
+    except subprocess.SubprocessError:
+        return 0
+
+    return int(output)
+
+
 # _____ Spawn each bar _____ #
-screens = [Screen(top=bar.Bar(**my_bar1())), Screen(top=bar.Bar(**my_bar2()))]
+n_monitor = get_number_of_monitors()
+if n_monitor == 2:
+    screens = [Screen(top=bar.Bar(**my_bar1())), Screen(top=bar.Bar(**my_bar2()))]
+else:
+    screens = [Screen(top=bar.Bar(**my_bar_full()))]
 
 # ========== Mouse Behavior ========== #
 mouse = [
