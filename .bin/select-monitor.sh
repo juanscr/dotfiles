@@ -9,11 +9,5 @@ num_monitors=$("$HOME/.config/qtile/check_number_of_monitors.sh")
 
 i3-msg restart || qtile cmd-obj -o cmd -f restart
 if [ "$num_monitors" != "$prev_num_monitors" ]; then
-   killall conky
-
-   if [ "$num_monitors" == 1 ]; then
-      conky --config="$HOME"/.config/conky/conky-one.conf
-   else
-      conky
-   fi
+   "$HOME"/.bin/launchers/launch-conky.sh &
 fi
