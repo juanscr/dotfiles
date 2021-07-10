@@ -18,7 +18,7 @@ bitwarden &
 firefox &
 
 # Terminal
-alacritty &
+"$HOME"/.bin/launchers/launch-terminal.sh &
 
 # Emacs Daemon
 emacs --daemon &

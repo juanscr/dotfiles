@@ -17,9 +17,6 @@ from my_widgets import MyWidgets
 # Mod key
 mod = "mod4"
 
-# Terminal
-terminal = "alacritty"
-
 # Browser
 browser = "firefox"
 
@@ -276,7 +273,12 @@ kp9 = "KP_Prior"
 
 keys += [
     # Keybinds
-    Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
+    Key(
+        [mod],
+        "Return",
+        lazy.spawn(eu("~/.bin/launchers/launch-terminal.sh")),
+        desc="Launch terminal",
+    ),
     Key([mod], "s", lazy.spawn("spotify"), desc="Launch spotify"),
     Key([mod, "shift"], "s", lazy.spawn("ytmdesktop"), desc="Launch youtube desktop"),
     Key([mod], "i", lazy.spawn(browser), desc="Launch browser"),
