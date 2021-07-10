@@ -3,6 +3,7 @@ export PATH=$PATH:/usr/local/bin
 export PATH=$PATH:$HOME/.bin
 export PATH=$PATH:$HOME/.cabal/bin
 export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:$HOME/.local/share/cargo/bin
 
 # ============ ALIASES ============ #
 # Editor
