@@ -14,6 +14,7 @@ from libqtile.widget.currentlayout import CurrentLayoutIcon
 from libqtile.widget.generic_poll_text import GenPollText
 from libqtile.widget.graph import CPUGraph
 from libqtile.widget.groupbox import GroupBox
+from libqtile.widget.memory import Memory
 from libqtile.widget.spacer import Spacer
 from libqtile.widget.systray import Systray
 from libqtile.widget.textbox import TextBox
@@ -139,6 +140,8 @@ def add_pipe(
     space: int, optional
         The number of pixels to add between the pipe and the widgets.
         Default: None.
+    padding: int, optional
+        The padding of the pipe. Default: 0.
 
     Returns
     -------
@@ -568,7 +571,7 @@ class MyWidgets:
 
     @add_mirror
     @add_separation(space=5)
-    @add_pipe(color="red")
+    @add_pipe(color="red", space=5)
     def widget_cpu(self) -> list[_Widget]:
         """Widget for showing CPU usage.
 
@@ -582,13 +585,25 @@ class MyWidgets:
             A list of the widgets for the CPU module.
         """
 
-        cpu_graph = CPUGraph()
+        cpu_graph = CPUGraph(
+            background=self.colors["background"],
+            border_color=self.colors["background"],
+            graph_color=self.colors["red"],
+            fill_color=self.colors["red"],
+            type="linefill",
+        )
+        textbox = TextBox(
+            **self.fonts["Normal"],
+            text="CPU",
+            foreground=self.colors["red"],
+            background=self.colors["background"],
+        )
 
-        return [cpu_graph]
+        return [textbox, cpu_graph]
 
     @add_mirror
     @add_separation(space=5)
-    @add_pipe(color="blue")
+    @add_pipe(color="blue", space=5)
     def widget_ram(self) -> list[_Widget]:
         """Widget for showing RAM usage.
 
@@ -602,14 +617,68 @@ class MyWidgets:
             A list of the widgets for the RAM module.
         """
 
-        return []
+        ram_graph = Memory(
+            **self.fonts["Normal"],
+            background=self.colors["background"],
+            foreground=self.colors["blue"],
+            format="{MemPercent}%",
+        )
+        textbox = TextBox(
+            **self.fonts["Normal"],
+            text="RAM",
+            foreground=self.colors["blue"],
+            background=self.colors["background"],
+        )
+
+        return [textbox, ram_graph]
 
     @add_mirror
     @add_separation(space=5)
     @add_pipe(color="magenta")
     def widget_brightness(self) -> list[_Widget]:
+        """It gets the brightness widgets.
 
-        return []
+        Requirements
+        ------------
+        - https://github.com/haikarainen/light
+
+        Returns
+        -------
+        list[libqtile.widget.base_Widget]
+            The list of widgets for the brightness module.
+        """
+
+        def get_brightness() -> str:
+            """It gets the current brightness.
+
+            Returns
+            -------
+            str
+                The percentage of brightness.
+            """
+
+            try:
+                output = subprocess.check_output(
+                    'light -G | awk \'{split($0, a, "."); print a[1]"%"}\'', shell=True
+                ).decode()[:-1]
+            except subprocess.SubprocessError:
+                return ""
+
+            return output
+
+        widget_brightness = GenPollText(
+            **self.fonts["Normal"],
+            foreground=self.colors["magenta"],
+            func=get_brightness,
+            update_interval=2,
+        )
+        widget_text = TextBox(
+            **self.fonts["Icons2"],
+            foreground=self.colors["magenta"],
+            text="",
+            padding=8,
+        )
+        return [widget_text, widget_brightness]
 
     def create_widgets(
         self,

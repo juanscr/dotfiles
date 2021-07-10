@@ -396,7 +396,7 @@ def my_bar1():
 def my_bar2():
     widgets_left = [*mw.widget_groups(mirror=False), *mw.widget_chord()]
     widgets_center = [*mw.widget_time()]
-    widgets_right = []
+    widgets_right = [*mw.widget_cpu(), *mw.widget_ram(), *mw.widget_brightness()]
     widgets = mw.create_widgets(widgets_left, widgets_center, widgets_right, 2)
 
     # Height of bar
