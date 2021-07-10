@@ -12,6 +12,7 @@ from libqtile.widget.chord import Chord
 from libqtile.widget.clock import Clock
 from libqtile.widget.currentlayout import CurrentLayoutIcon
 from libqtile.widget.generic_poll_text import GenPollText
+from libqtile.widget.graph import CPUGraph
 from libqtile.widget.groupbox import GroupBox
 from libqtile.widget.spacer import Spacer
 from libqtile.widget.systray import Systray
@@ -568,21 +569,45 @@ class MyWidgets:
     @add_mirror
     @add_separation(space=5)
     @add_pipe(color="red")
-    def cpu_widget(self) -> list[_Widget]:
+    def widget_cpu(self) -> list[_Widget]:
+        """Widget for showing CPU usage.
 
-        return []
+        Requirements
+        ------------
+        - https://pypi.org/project/psutil/
+
+        Returns
+        -------
+        list[libqtile.widget.base._Widget]
+            A list of the widgets for the CPU module.
+        """
+
+        cpu_graph = CPUGraph()
+
+        return [cpu_graph]
 
     @add_mirror
     @add_separation(space=5)
     @add_pipe(color="blue")
-    def ram_widget(self) -> list[_Widget]:
+    def widget_ram(self) -> list[_Widget]:
+        """Widget for showing RAM usage.
+
+        Requirements
+        ------------
+        - https://pypi.org/project/psutil/
+
+        Returns
+        -------
+        list[libqtile.widget.base._Widget]
+            A list of the widgets for the RAM module.
+        """
 
         return []
 
     @add_mirror
     @add_separation(space=5)
     @add_pipe(color="magenta")
-    def brightness_widget(self) -> list[_Widget]:
+    def widget_brightness(self) -> list[_Widget]:
 
         return []
 
