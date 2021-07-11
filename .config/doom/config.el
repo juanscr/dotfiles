@@ -84,3 +84,7 @@ org-format-latex-options :scale 2.0))
 ; Company LSP
 (require 'company-lsp)
 (push 'company-lsp company-backends)
+
+; LSP for Rust
+(after! rustic
+  (setq rustic-lsp-server 'rls))
