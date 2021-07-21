@@ -527,6 +527,7 @@ floating_layout = layout.Floating(
         Match(title="branchdialog"),
         Match(title="meet.google.com is sharing your screen."),
         Match(wm_class="Pinentry-gtk-2"),
+        Match(wm_class="Matplotlib"),
     ],
     **layout_theme_float
 )
