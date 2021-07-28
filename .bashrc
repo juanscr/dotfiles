@@ -7,7 +7,7 @@ export PATH=$PATH:$HOME/.local/share/cargo/bin
 
 # ============ ALIASES ============ #
 # Editor
-alias e="emacsclient -n -c"
+alias e="pgrep emacs > /dev/null || emacs --daemon; emacsclient -n -c"
 
 # Latex
 alias lmk="latexmk -pdf"
