@@ -96,9 +96,11 @@ org-format-latex-options :scale 2.0))
 
 ;; Julia LSP
 (setq lsp-julia-package-dir nil)
-(setq lsp-julia-default-environment "~/.julia/environments/v1.6")
+(setq lsp-julia-default-environment "~/.julia/environments/v1.6/")
 (setq lsp-enable-folding t)
-(setq lsp-julia-flags `("-J/home/juanscr/.julia/environments/languageserver.so"))
+(setq lsp-julia-flags `("-J/home/juanscr/.julia/environments/languageserver.so"
+                        "--startup-file=no"
+                        "--history-file=no"))
 (after! julia
   :init
   (setq! +lsp-company-backends
