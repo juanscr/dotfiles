@@ -100,7 +100,9 @@ org-format-latex-options :scale 2.0))
 (setq lsp-enable-folding t)
 (setq lsp-julia-flags `("-J/home/juanscr/.julia/environments/languageserver.so"
                         "--startup-file=no"
-                        "--history-file=no"))
+                        "--history-file=no")
+      )
+
 (after! julia
   :init
   (setq! +lsp-company-backends
