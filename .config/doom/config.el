@@ -95,4 +95,7 @@ org-format-latex-options :scale 2.0))
            'company-capf)))
 
 ;; Julia LSP
+(setq lsp-julia-package-dir nil)
 (setq lsp-julia-default-environment "~/.julia/environments/v1.6")
+(setq lsp-enable-folding t)
+(setq lsp-julia-flags `("-J/home/juanscr/.julia/environments/languageserver.so"))
