@@ -99,3 +99,9 @@ org-format-latex-options :scale 2.0))
 (setq lsp-julia-default-environment "~/.julia/environments/v1.6")
 (setq lsp-enable-folding t)
 (setq lsp-julia-flags `("-J/home/juanscr/.julia/environments/languageserver.so"))
+(after! julia
+  :init
+  (setq! +lsp-company-backends
+         (if (featurep! :editor snippets)
+             '(:separate company-yasnippet company-capf)
+           'company-capf)))
