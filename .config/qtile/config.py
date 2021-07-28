@@ -528,6 +528,12 @@ floating_layout = layout.Floating(
         Match(title="meet.google.com is sharing your screen."),
         Match(wm_class="Pinentry-gtk-2"),
         Match(wm_class="Matplotlib"),
+        Match(wm_class="flameshot", title="Configuration"),
+        Match(wm_class="Inkscape", title="Preferences"),
+        Match(wm_class="mpv"),
+        Match(wm_class="Sxiv"),
+        Match(wm_class="Thunar"),
+        Match(wm_class="Options Editor"),
     ],
     **layout_theme_float
 )
