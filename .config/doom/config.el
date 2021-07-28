@@ -81,10 +81,15 @@ org-format-latex-options :scale 2.0))
 (setq company-idle-delay 0)
 (setq company-show-numbers t)
 
-; Company LSP
-(require 'company-lsp)
-(push 'company-lsp company-backends)
-
 ; LSP for Rust
 (after! rustic
   (setq rustic-lsp-server 'rls))
+
+; Fix issue with autocompletions
+; https://github.com/hlissner/doom-emacs/issues/5262
+(after! python
+  :init
+  (setq! +lsp-company-backends
+         (if (featurep! :editor snippets)
+             '(:separate company-yasnippet company-capf)
+           'company-capf)))
