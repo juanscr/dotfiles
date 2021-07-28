@@ -93,3 +93,6 @@ org-format-latex-options :scale 2.0))
          (if (featurep! :editor snippets)
              '(:separate company-yasnippet company-capf)
            'company-capf)))
+
+;; Julia LSP
+(setq lsp-julia-default-environment "~/.julia/environments/v1.6")
