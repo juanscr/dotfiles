@@ -10,9 +10,9 @@ nvidia-force-comp-pipeline
 picom &
 
 # Tray icons
-nm-applet &
+flameshot &
 "$HOME"/.bin/launchers/tray-optimus-manager.sh &
-bitwarden &
+nm-applet &
 
 # Browser
 firefox &
@@ -25,9 +25,6 @@ emacs --daemon &
 
 # Aesthetics
 xrdb "$HOME"/.config/X11/Xresources &
-
-# Screenshot tool
-flameshot &
 
 # Conky
 "$HOME"/.bin/launchers/launch-conky.sh &
