@@ -29,5 +29,8 @@ xrdb "$HOME"/.config/X11/Xresources &
 # Conky
 "$HOME"/.bin/launchers/launch-conky.sh &
 
+# Notification daemon
+dunst &
+
 # Polkit
 polkit-dumb-agent &
