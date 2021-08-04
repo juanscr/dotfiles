@@ -85,27 +85,10 @@ org-format-latex-options :scale 2.0))
 (after! rustic
   (setq rustic-lsp-server 'rls))
 
-; Fix issue with autocompletions
-; https://github.com/hlissner/doom-emacs/issues/5262
-(after! python
-  :init
-  (setq! +lsp-company-backends
-         (if (featurep! :editor snippets)
-             '(:separate company-yasnippet company-capf)
-           'company-capf)))
-
 ;; Julia LSP
 (setq lsp-julia-package-dir nil)
 (setq lsp-julia-default-environment "~/.julia/environments/v1.6/")
 (setq lsp-enable-folding t)
 (setq lsp-julia-flags `("-J/home/juanscr/.julia/environments/languageserver.so"
                         "--startup-file=no"
-                        "--history-file=no")
-      )
-
-(after! julia
-  :init
-  (setq! +lsp-company-backends
-         (if (featurep! :editor snippets)
-             '(:separate company-yasnippet company-capf)
-           'company-capf)))
+                        "--history-file=no"))
