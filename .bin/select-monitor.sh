@@ -3,11 +3,12 @@
 prev_num_monitors=$("$HOME/.config/qtile/check_number_of_monitors.sh")
 layout=$(find "$HOME"/.bin/monitor-layouts/ -type f -printf "%f\n"| \
          dmenu -p 'Select Layout:' )
+if [ "$layout" != "" ]; then
+   "$HOME"/.bin/monitor-layouts/"$layout"
+   num_monitors=$("$HOME/.config/qtile/check_number_of_monitors.sh")
 
-"$HOME"/.bin/monitor-layouts/"$layout"
-num_monitors=$("$HOME/.config/qtile/check_number_of_monitors.sh")
-
-i3-msg restart || qtile cmd-obj -o cmd -f restart
-if [ "$num_monitors" != "$prev_num_monitors" ]; then
-   "$HOME"/.bin/launchers/launch-conky.sh &
+   i3-msg restart || qtile cmd-obj -o cmd -f restart
+   if [ "$num_monitors" != "$prev_num_monitors" ]; then
+      "$HOME"/.bin/launchers/launch-conky.sh &
+   fi
 fi
