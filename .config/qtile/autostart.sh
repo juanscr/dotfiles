@@ -34,3 +34,6 @@ dunst &
 
 # Polkit
 polkit-dumb-agent &
+
+# Launch slack if day of the week
+[[ $(date +"%u") < 6 ]] && slack &
