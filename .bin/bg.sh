@@ -7,4 +7,4 @@ else
 fi
 
 feh --no-fehbg --bg-scale "$photo"
-betterlockscreen -xf ~/.config/X11/Xresources -u "$photo"
+betterlockscreen -u "$photo"
