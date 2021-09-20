@@ -46,6 +46,7 @@
 (add-hook 'prog-mode-hook 'flycheck-mode)
 (add-hook 'prog-mode-hook 'display-fill-column-indicator-mode)
 (add-hook 'prog-mode-hook 'centered-cursor-mode)
+(add-hook 'prog-mode-hook 'flyspell-prog-mode)
 
 ; ==== LaTeX mode ==== ;
 ;; Turn on reftex https://bit.ly/3gIgKHD
