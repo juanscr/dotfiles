@@ -15,7 +15,7 @@ flameshot &
 nm-applet &
 
 # Browser
-firefox &
+brave &
 
 # Terminal
 "$HOME"/.bin/launchers/launch-terminal.sh &
