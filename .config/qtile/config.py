@@ -18,7 +18,7 @@ from my_widgets import MyWidgets
 mod = "mod4"
 
 # Browser
-browser = "firefox"
+browser = "brave"
 
 # ============ Basic Behavior ============
 keys = [
@@ -141,7 +141,7 @@ workspaces = [
 ws = lambda index: workspaces[index - 1][0]
 matches = {
     # Browser
-    ws(1): [Match(wm_class="firefox")],
+    ws(1): [Match(wm_class="firefox"), Match(wm_class="Brave-browser")],
     # Terminal and text editors
     ws(2): [
         Match(wm_class="Emacs"),
@@ -534,6 +534,7 @@ floating_layout = layout.Floating(
         Match(wm_class="Sxiv"),
         Match(wm_class="Thunar"),
         Match(wm_class="Options Editor"),
+        Match(title="Close Firefox"),
     ],
     **layout_theme_float
 )
