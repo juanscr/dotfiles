@@ -293,13 +293,8 @@ keys += [
     Key([mod, "shift"], kp2, lazy.spawn("arandr"), desc="Launch arandr"),
     Key([mod, "shift"], kp3, lazy.spawn("pavucontrol"), desc="Launch pavucontrol"),
     Key([mod, "shift"], kp4, lazy.spawn("bitwarden"), desc="Launch bitwarden"),
-    Key([mod, "shift"], kp5, lazy.spawn("whatsapp"), desc="Launch whatsapp"),
-    Key(
-        [mod, "shift"],
-        kp6,
-        lazy.spawn(eu("~/.bin/launchers/launch-telegram.sh")),
-        desc="Launch telegram",
-    ),
+    Key([mod, "shift"], kp5, lazy.spawn("discord"), desc="Launch discord"),
+    Key([mod, "shift"], kp6, lazy.spawn("telegram-desktop"), desc="Launch telegram"),
     Key(
         [mod, "shift"],
         kp7,
