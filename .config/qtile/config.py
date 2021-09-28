@@ -280,7 +280,6 @@ keys += [
         desc="Launch terminal",
     ),
     Key([mod], "s", lazy.spawn("spotify"), desc="Launch spotify"),
-    Key([mod, "shift"], "s", lazy.spawn("ytmdesktop"), desc="Launch youtube desktop"),
     Key([mod], "i", lazy.spawn(browser), desc="Launch browser"),
     Key(
         [mod],
