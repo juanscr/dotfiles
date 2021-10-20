@@ -7,10 +7,10 @@ from typing import Any, Callable, Optional
 
 from libqtile.widget.base import _Widget
 from libqtile.widget.battery import Battery
-from libqtile.widget.cpu import CPU
 from libqtile.widget.check_updates import CheckUpdates
 from libqtile.widget.chord import Chord
 from libqtile.widget.clock import Clock
+from libqtile.widget.cpu import CPU
 from libqtile.widget.currentlayout import CurrentLayoutIcon
 from libqtile.widget.generic_poll_text import GenPollText
 from libqtile.widget.graph import CPUGraph
