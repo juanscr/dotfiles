@@ -502,7 +502,7 @@ layout_theme_float = {
 
 # Available layouts
 layouts = [layout.MonadTall(**layout_theme_tall), layout.Stack(**layout_theme_stack)]
-
+settings_zoom = Match(wm_class="zoom", title="Settings")
 floating_layout = layout.Floating(
     float_rules=[
         Match(wm_type="confirm"),
@@ -529,6 +529,7 @@ floating_layout = layout.Floating(
         Match(wm_class="Thunar"),
         Match(wm_class="Options Editor"),
         Match(title="Close Firefox"),
+        settings_zoom,
     ],
     **layout_theme_float
 )
@@ -566,6 +567,9 @@ def resize_floating_windows(window):
         window.cmd_enable_floating()
         window.cmd_set_size_floating(900, 700)
         move_to_middle = True
+    elif settings_zoom.compare(window):
+        window.cmd_enable_floating()
+        window.cmd_set_size_floating(900, 700)
 
     if move_to_middle:
         size = window.cmd_get_size()
