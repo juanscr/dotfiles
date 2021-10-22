@@ -21,6 +21,7 @@
 
 ;; Column fitting
 (setq-default fill-column 87)
+(setq-default display-fill-column-indicator-character ?|)
 
 ;; Centered cursor mode settings
 (setq ccm-recenter-at-end-of-file t)
