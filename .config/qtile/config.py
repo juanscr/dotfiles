@@ -8,8 +8,11 @@
 import subprocess
 from os.path import expanduser as eu
 
-from libqtile import bar, hook, layout
+from libqtile import bar, hook
 from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
+from libqtile.layout.floating import Floating
+from libqtile.layout.stack import Stack
+from libqtile.layout.xmonad import MonadTall
 from libqtile.lazy import lazy
 
 from my_widgets import MyWidgets
@@ -407,7 +410,7 @@ def my_bar2():
 # Bar for my only screen
 def my_bar_full():
     widgets_left = [*mw.widget_groups(), *mw.widget_chord()]
-    widgets_center = [*mw.widget_time()]
+    widgets_center = []
     widgets_right = [
         *mw.widget_spotify(max_length=15),
         *mw.widget_brightness(),
@@ -417,6 +420,7 @@ def my_bar_full():
         *mw.widget_battery(),
         *mw.widget_cpu(text=True),
         *mw.widget_ram(),
+        *mw.widget_time(compact=True),
         *mw.widget_tray(),
     ]
     widgets = mw.create_widgets(widgets_left, widgets_center, widgets_right, 1)
@@ -490,7 +494,7 @@ layout_theme_tall = {
     "border_focus": border_focused,
     "border_normal": border_unfocused,
     "border_width": border,
-    "align": layout.MonadTall._right,
+    "align": MonadTall._right,
     "single_border_width": 0,
 }
 layout_theme_stack = {"margin": gaps, "num_stacks": 1, "border_width": 0}
@@ -501,13 +505,13 @@ layout_theme_float = {
 }
 
 # Available layouts
-layouts = [layout.MonadTall(**layout_theme_tall), layout.Stack(**layout_theme_stack)]
+layouts = [MonadTall(**layout_theme_tall), Stack(**layout_theme_stack)]
 zoom_rules = [
     Match(wm_class="zoom", title="Settings"),
     Match(wm_class="zoom", title="Choose ONE of the audio conference options"),
     Match(wm_class="zoom", title=None),
 ]
-floating_layout = layout.Floating(
+floating_layout = Floating(
     float_rules=[
         Match(wm_type="confirm"),
         Match(wm_type="download"),
