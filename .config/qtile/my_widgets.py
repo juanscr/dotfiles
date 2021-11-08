@@ -365,13 +365,16 @@ class MyWidgets:
             The list of widgets to add to the bar.
         """
 
-        # Icon
-        w_clock_icon = TextBox(**self.fonts["Icons2"], text=" ", padding=2)
-
-        # Text
         clock_format = "%a, %d %b   %H:%M"
+        padding = 6
         if compact:
             clock_format = "%d %b %H:%M"
+            padding = 0
+
+        # Icon
+        w_clock_icon = TextBox(**self.fonts["Icons2"], text=" ", padding=padding)
+
+        # Text
         widget_clock = Clock(**self.fonts["Normal"], format=clock_format)
 
         widgets = [w_clock_icon, widget_clock]
