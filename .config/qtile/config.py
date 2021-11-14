@@ -66,12 +66,15 @@ keys += [
     # Brightness control
     # Tested with light 1.2
     Key(
-        [], "XF86MonBrightnessUp", lazy.spawn("light -A 10"), desc="Increase brightness"
+        [],
+        "XF86MonBrightnessUp",
+        lazy.spawn("xbacklight -inc 10"),
+        desc="Increase brightness",
     ),
     Key(
         [],
         "XF86MonBrightnessDown",
-        lazy.spawn("light -U 10"),
+        lazy.spawn("xbacklight -dec 10"),
         desc="Decrease brightness",
     ),
     # Media player controls
@@ -135,9 +138,7 @@ workspaces = [
     ["5", {"label": "", "layout": "stack"}],
     ["6", {"label": "", "layout": "stack"}],
     ["7", {"label": "", "layout": "stack"}],
-    ["8", {"label": "", "layout": "stack"}],
-    ["9", {"label": "", "layout": "stack"}],
-    ["0", {"label": "", "layout": "stack"}],
+    ["8", {"label": "", "layout": "stack"}],
 ]
 
 # Apps default workspace
@@ -201,24 +202,15 @@ matches = {
         Match(wm_class="qt5ct"),
         Match(wm_class="v4l2ucp"),
     ],
-    # Production apps
-    ws(8): [Match(wm_class="Audacity"), Match(wm_class="kdenlive")],
-    # Miscellaneous apps
-    ws(9): [
-        Match(wm_class="VirtualBox Manager"),
-        Match(wm_class="^Steam$"),
-        Match(wm_class="Virt-manager"),
-    ],
     # Background apps
-    ws(10): [Match(wm_class="Spotify"), Match(wm_class="youtube-music-desktop-app")],
+    ws(8): [Match(wm_class="Spotify"), Match(wm_class="youtube-music-desktop-app")],
 }
 
 # _____ Force a match _____ #
 force_match = [
     matches[ws(3)][8],
     matches[ws(3)][9],
-    matches[ws(9)][1],
-    matches[ws(10)][0],
+    matches[ws(8)][0],
 ]
 
 # _____ Add matches to groups _____ #
@@ -331,6 +323,28 @@ keys += [
 ]
 
 # ========== Aesthetics ========= #
+# _____ Function for obtaining the number of monitors _____ #
+def get_number_of_monitors() -> int:
+    """It gets the number of monitors.
+
+    Returns
+    -------
+    int
+        The number of active non-mirrored monitors.
+    """
+
+    try:
+        output = subprocess.check_output(
+            eu("~/.config/qtile/check_number_of_monitors.sh"), shell=True
+        ).decode()[:-1]
+    except subprocess.SubprocessError:
+        return 0
+
+    return int(output)
+
+
+n_monitor = get_number_of_monitors()
+
 # Dracula theme for windows
 border_focused = "#6272A4"
 border_unfocused = "#282A36"
@@ -434,28 +448,7 @@ def my_bar_full():
     return {"widgets": widgets, "size": size, "background": background}
 
 
-# _____ Function for obtaining the number of monitors _____ #
-def get_number_of_monitors() -> int:
-    """It gets the number of monitors.
-
-    Returns
-    -------
-    int
-        The number of active non-mirrored monitors.
-    """
-
-    try:
-        output = subprocess.check_output(
-            eu("~/.config/qtile/check_number_of_monitors.sh"), shell=True
-        ).decode()[:-1]
-    except subprocess.SubprocessError:
-        return 0
-
-    return int(output)
-
-
 # _____ Spawn each bar _____ #
-n_monitor = get_number_of_monitors()
 if n_monitor == 2:
     screens = [Screen(top=bar.Bar(**my_bar1())), Screen(top=bar.Bar(**my_bar2()))]
 else:
