@@ -11,4 +11,5 @@ if [ "$layout" != "" ]; then
    if [ "$num_monitors" != "$prev_num_monitors" ]; then
       "$HOME"/.bin/launchers/launch-conky.sh &
    fi
+   "$HOME"/.bin/bg.sh
 fi
