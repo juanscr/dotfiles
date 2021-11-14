@@ -14,7 +14,8 @@
 
 ; ============ BASE EDITOR ============ ;
 ;; Font size
-(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 12))
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 12)
+      doom-big-font (font-spec :family "JetBrainsMono Nerd Font" :size 16))
 
 ;; Theme selection
 (setq doom-theme 'doom-dracula)
