@@ -1,8 +1,5 @@
 #!/usr/bin/sh
 
-# Nvidia Force full composition
-nvidia-force-comp-pipeline
-
 # Background
 "$HOME"/.bin/bg.sh &
 
@@ -11,7 +8,6 @@ picom &
 
 # Tray icons
 flameshot &
-"$HOME"/.bin/launchers/tray-optimus-manager.sh &
 nm-applet &
 telegram-desktop &
 
@@ -35,6 +31,3 @@ dunst &
 
 # Polkit
 polkit-dumb-agent &
-
-# Launch slack if day of the week
-[[ $(date +"%u") < 6 ]] && slack &
