@@ -353,9 +353,9 @@ colors = {
 
 # Widget settings
 fonts = {
-    "Normal": {"font": "JetBrains Mono", "fontsize": 14},
-    "Icons": {"font": "FontAwesome", "fontsize": 18},
-    "Icons2": {"font": "JetBrainsMono Nerd Font", "fontsize": 18},
+    "Normal": {"font": "JetBrains Mono", "fontsize": 12},
+    "Icons": {"font": "FontAwesome", "fontsize": 16},
+    "Icons2": {"font": "JetBrainsMono Nerd Font", "fontsize": 16},
 }
 
 # Bar sizes
