@@ -15,7 +15,7 @@ from libqtile.layout.stack import Stack
 from libqtile.layout.xmonad import MonadTall
 from libqtile.lazy import lazy
 
-from my_widgets import MyWidgets, add_pipe
+from my_widgets import MyWidgets
 
 # Mod key
 mod = "mod4"
