@@ -354,7 +354,9 @@ class MyWidgets:
         return widgets
 
     @add_mirror
-    def widget_time(self) -> list[_Widget]:
+    @add_separation(space=5)
+    @add_pipe(color="foreground", padding=5)
+    def widget_time(self, compact: bool = False) -> list[_Widget]:
         """Widget for displaying the time.
 
         Returns
@@ -363,11 +365,17 @@ class MyWidgets:
             The list of widgets to add to the bar.
         """
 
+        clock_format = "%a, %d %b   %H:%M"
+        padding = 6
+        if compact:
+            clock_format = "%d %b %H:%M"
+            padding = 0
+
         # Icon
-        w_clock_icon = TextBox(**self.fonts["Icons2"], text=" ", padding=6)
+        w_clock_icon = TextBox(**self.fonts["Icons2"], text=" ", padding=padding)
 
         # Text
-        widget_clock = Clock(**self.fonts["Normal"], format="%a, %d %b   %H:%M")
+        widget_clock = Clock(**self.fonts["Normal"], format=clock_format)
 
         widgets = [w_clock_icon, widget_clock]
         return widgets
