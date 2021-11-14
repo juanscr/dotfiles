@@ -83,15 +83,3 @@ org-format-latex-options :scale 2.0))
 ; ==== Company mode ==== ;
 (setq company-idle-delay 0)
 (setq company-show-numbers t)
-
-; LSP for Rust
-(after! rustic
-  (setq rustic-lsp-server 'rls))
-
-;; Julia LSP
-(setq lsp-julia-package-dir nil)
-(setq lsp-julia-default-environment "~/.julia/environments/v1.6/")
-(setq lsp-enable-folding t)
-(setq lsp-julia-flags `("-J/home/juanscr/.julia/environments/languageserver.so"
-                        "--startup-file=no"
-                        "--history-file=no"))
