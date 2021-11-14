@@ -674,7 +674,7 @@ class MyWidgets:
         widget_brightness = Backlight(
             **self.fonts["Normal"],
             foreground=self.colors["magenta"],
-            backlight_name="intel_backlight"
+            backlight_name="intel_backlight",
         )
         widget_text = TextBox(
             **self.fonts["Icons2"],
