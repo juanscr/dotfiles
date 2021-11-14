@@ -7,6 +7,7 @@ from typing import Any, Callable, Optional
 
 from libqtile.widget.base import _Widget
 from libqtile.widget.battery import Battery
+from libqtile.widget.backlight import Backlight
 from libqtile.widget.check_updates import CheckUpdates
 from libqtile.widget.chord import Chord
 from libqtile.widget.clock import Clock
@@ -670,29 +671,10 @@ class MyWidgets:
             The list of widgets for the brightness module.
         """
 
-        def get_brightness() -> str:
-            """It gets the current brightness.
-
-            Returns
-            -------
-            str
-                The percentage of brightness.
-            """
-
-            try:
-                output = subprocess.check_output(
-                    'light -G | awk \'{split($0, a, "."); print a[1]"%"}\'', shell=True
-                ).decode()[:-1]
-            except subprocess.SubprocessError:
-                return ""
-
-            return output
-
-        widget_brightness = GenPollText(
+        widget_brightness = Backlight(
             **self.fonts["Normal"],
             foreground=self.colors["magenta"],
-            func=get_brightness,
-            update_interval=2,
+            backlight_name="intel_backlight"
         )
         widget_text = TextBox(
             **self.fonts["Icons2"],
