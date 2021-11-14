@@ -15,7 +15,7 @@ from libqtile.layout.stack import Stack
 from libqtile.layout.xmonad import MonadTall
 from libqtile.lazy import lazy
 
-from my_widgets import MyWidgets
+from my_widgets import MyWidgets, add_pipe
 
 # Mod key
 mod = "mod4"
@@ -371,7 +371,7 @@ mw = MyWidgets(colors, fonts, padding_left, padding_right)
 # Bar for my first screen
 def my_bar1():
     widgets_left = [*mw.widget_groups(), *mw.widget_chord()]
-    widgets_center = [*mw.widget_time()]
+    widgets_center = [*mw.widget_time(add_pipe=False)]
     widgets_right = [
         *mw.widget_spotify(),
         *mw.widget_volume(),
@@ -394,7 +394,7 @@ def my_bar1():
 # Bar for my second screen
 def my_bar2():
     widgets_left = [*mw.widget_groups(mirror=False), *mw.widget_chord()]
-    widgets_center = [*mw.widget_time()]
+    widgets_center = [*mw.widget_time(add_pipe=False)]
     widgets_right = [*mw.widget_cpu(), *mw.widget_ram(), *mw.widget_brightness()]
     widgets = mw.create_widgets(widgets_left, widgets_center, widgets_right, 2)
 
