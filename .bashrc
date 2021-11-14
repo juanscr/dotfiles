@@ -71,7 +71,7 @@ alias wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
 # Command for adding all passwords
 alias pwg='eval `ssh-agent` && ssh-add'
 
-alias dfiles='/usr/bin/git --git-dir=$HOME/juanscr/dotfiles --work-tree=$HOME'
+alias dfiles='/usr/bin/git --git-dir=$HOME/programs/dotfiles --work-tree=$HOME'
 
 # Function which calls git, if inside a repository or my dotfiles alias
 # otherwise.
