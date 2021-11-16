@@ -431,7 +431,7 @@ def my_bar_full():
     widgets_left = [*mw.widget_groups(), *mw.widget_chord()]
     widgets_center = []
     widgets_right = [
-        *mw.widget_spotify(max_length=30),
+        *mw.widget_spotify(max_length=20),
         *mw.widget_volume(),
         *mw.widget_layout(),
         *mw.widget_update(),
