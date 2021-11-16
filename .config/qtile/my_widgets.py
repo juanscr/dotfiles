@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import functools
-import subprocess
 from os.path import expanduser as eu
 from typing import Any, Callable, Optional
 
@@ -13,10 +12,10 @@ from libqtile.widget.chord import Chord
 from libqtile.widget.clock import Clock
 from libqtile.widget.cpu import CPU
 from libqtile.widget.currentlayout import CurrentLayoutIcon
-from libqtile.widget.generic_poll_text import GenPollText
 from libqtile.widget.graph import CPUGraph
 from libqtile.widget.groupbox import GroupBox
 from libqtile.widget.memory import Memory
+from libqtile.widget.mpris2widget import Mpris2
 from libqtile.widget.spacer import Spacer
 from libqtile.widget.systray import Systray
 from libqtile.widget.textbox import TextBox
@@ -528,57 +527,23 @@ class MyWidgets:
             The list of widgets to add to the bar.
         """
 
-        def get_func_for_track_name(icon: bool = False) -> Callable[[], str]:
-            """It gets the track name using spotifyctl.
-
-            Parameters
-            ----------
-            icon: bool, optional
-                If the icon will be outputed or the text.
-
-            Returns
-            -------
-            Callable[[], str]
-                The function to obtain the text.
-            """
-
-            def get_track_name() -> str:
-                """It outputs the track name or the icon.
-
-                Returns
-                -------
-                str
-                    The result of the output.
-                """
-
-                try:
-                    output = subprocess.check_output(
-                        "spotifyctl status --format '%title% (%artist%)' "
-                        + f"--max-length {max_length}",
-                        shell=True,
-                    ).decode()[:-1]
-                except subprocess.SubprocessError:
-                    return ""
-
-                return "" if icon else output
-
-            return get_track_name
-
         # Track information
-        widget_spotify = GenPollText(
+        widget_spotify = Mpris2(
             **self.fonts["Normal"],
             foreground=self.colors["foreground"],
-            func=get_func_for_track_name(),
-            update_interval=2,
+            display_metadata=["xesam:title", "xesam:artist"],
+            objname="org.mpris.MediaPlayer2.spotify",
+            scroll_chars=0,
+            max_chars=max_length,
+            stop_pause_text="",
         )
 
         # Icon
-        widget_icon_spotify = GenPollText(
+        widget_icon_spotify = TextBox(
             **self.fonts["Icons2"],
             foreground=self.colors["foreground"],
-            func=get_func_for_track_name(icon=True),
-            update_interval=2,
-            padding=7,
+            text="",
+            padding=8,
         )
 
         widgets: list[_Widget] = [widget_icon_spotify, widget_spotify]
