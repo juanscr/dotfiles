@@ -20,6 +20,7 @@ from libqtile.widget.spacer import Spacer
 from libqtile.widget.systray import Systray
 from libqtile.widget.textbox import TextBox
 from libqtile.widget.volume import Volume
+from libqtile.widget.widgetbox import WidgetBox
 from libqtile.widget.window_count import WindowCount
 
 
@@ -119,8 +120,9 @@ def add_separation(
 
             add_sep = kwargs.pop("add_sep", True)
             widgets = func(self, *args, **kwargs)
+            background = kwargs.get("background", "background")
             if add_sep:
-                widgets += [Spacer(length=space)]
+                widgets += [Spacer(length=space, background=self.colors[background])]
 
             return widgets
 
@@ -185,10 +187,13 @@ def add_pipe(
 
             add_pipe = kwargs.pop("add_pipe", True)
             widgets = func(self, *args, **kwargs)
+            background = kwargs.get("background", "background")
 
             # Add space
             if space is not None:
-                widgets.insert(0, Spacer(length=space))
+                widgets.insert(
+                    0, Spacer(length=space, background=self.colors[background])
+                )
 
             # Add pipe
             if add_pipe:
@@ -199,6 +204,7 @@ def add_pipe(
                         text="|",
                         foreground=self.colors[color],
                         padding=padding,
+                        background=self.colors[background],
                     ),
                 )
 
@@ -552,8 +558,17 @@ class MyWidgets:
     @add_mirror
     @add_separation(space=5)
     @add_pipe(color="red", space=5)
-    def widget_cpu(self, text=False) -> list[_Widget]:
+    def widget_cpu(
+        self, text: bool = False, background: str = "background"
+    ) -> list[_Widget]:
         """Widget for showing CPU usage.
+
+        Parameters
+        ----------
+        background: str, optional
+            The background for the widget.
+        text: bool, optional
+            If the graph is displayed or text.
 
         Requirements
         ------------
@@ -568,14 +583,14 @@ class MyWidgets:
         if text:
             cpu_graph = CPU(
                 **self.fonts["Normal"],
-                background=self.colors["background"],
+                background=self.colors[background],
                 foreground=self.colors["red"],
                 format="{load_percent}%",
             )
         else:
             cpu_graph = CPUGraph(
-                background=self.colors["background"],
-                border_color=self.colors["background"],
+                background=self.colors[background],
+                border_color=self.colors[background],
                 graph_color=self.colors["red"],
                 fill_color=self.colors["red"],
                 type="linefill",
@@ -584,7 +599,7 @@ class MyWidgets:
             **self.fonts["Normal"],
             text="CPU",
             foreground=self.colors["red"],
-            background=self.colors["background"],
+            background=self.colors[background],
         )
 
         return [textbox, cpu_graph]
@@ -592,8 +607,13 @@ class MyWidgets:
     @add_mirror
     @add_separation(space=5)
     @add_pipe(color="blue", space=5)
-    def widget_ram(self) -> list[_Widget]:
+    def widget_ram(self, background: str = "background") -> list[_Widget]:
         """Widget for showing RAM usage.
+
+        Parameters
+        ----------
+        background: str, optional
+            The background for the widget.
 
         Requirements
         ------------
@@ -605,9 +625,9 @@ class MyWidgets:
             A list of the widgets for the RAM module.
         """
 
-        ram_graph = Memory(
+        ram_value = Memory(
             **self.fonts["Normal"],
-            background=self.colors["background"],
+            background=self.colors[background],
             foreground=self.colors["blue"],
             format="{MemPercent}%",
         )
@@ -615,16 +635,21 @@ class MyWidgets:
             **self.fonts["Normal"],
             text="RAM",
             foreground=self.colors["blue"],
-            background=self.colors["background"],
+            background=self.colors[background],
         )
 
-        return [textbox, ram_graph]
+        return [textbox, ram_value]
 
     @add_mirror
     @add_separation(space=5)
     @add_pipe(color="magenta")
-    def widget_brightness(self) -> list[_Widget]:
+    def widget_brightness(self, background: str = "background") -> list[_Widget]:
         """It gets the brightness widgets.
+
+        Parameters
+        ----------
+        background: str, optional
+            The background for the widget.
 
         Requirements
         ------------
@@ -638,16 +663,45 @@ class MyWidgets:
 
         widget_brightness = Backlight(
             **self.fonts["Normal"],
+            background=self.colors[background],
             foreground=self.colors["magenta"],
             backlight_name="intel_backlight",
         )
         widget_text = TextBox(
             **self.fonts["Icons2"],
+            background=self.colors[background],
             foreground=self.colors["magenta"],
             text="",
             padding=8,
         )
         return [widget_text, widget_brightness]
+
+    @add_pipe(color="blue")
+    @add_separation(5)
+    def widget_group(self, widgets: list[_Widget]) -> list[_Widget]:
+        """The widget to group other widgets.
+
+        Parameters
+        ----------
+        list[_Widget]
+            The list of widgets to group.
+
+        Returns
+        -------
+        list[_Widget]
+            The box widget
+        """
+
+        space_first = Spacer(length=8)
+        box = WidgetBox(
+            widgets=widgets,
+            **self.fonts["Icons"],
+            foreground=self.colors["blue"],
+            text_closed="",
+            text_open="  ",
+            padding=8,
+        )
+        return [space_first, box]
 
     def create_widgets(
         self,
