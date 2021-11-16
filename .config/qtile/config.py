@@ -423,17 +423,20 @@ def my_bar2():
 
 # Bar for my only screen
 def my_bar_full():
+    system_info = [
+        *mw.widget_cpu(background="background-alt1"),
+        *mw.widget_ram(background="background-alt1"),
+        *mw.widget_brightness(background="background-alt1"),
+    ]
     widgets_left = [*mw.widget_groups(), *mw.widget_chord()]
     widgets_center = []
     widgets_right = [
         *mw.widget_spotify(max_length=30),
-        *mw.widget_brightness(),
         *mw.widget_volume(),
         *mw.widget_layout(),
         *mw.widget_update(),
         *mw.widget_battery(),
-        *mw.widget_cpu(text=True),
-        *mw.widget_ram(),
+        *mw.widget_group(system_info),
         *mw.widget_time(compact=True),
         *mw.widget_tray(),
     ]
