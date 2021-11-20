@@ -15,7 +15,7 @@ from libqtile.layout.stack import Stack
 from libqtile.layout.xmonad import MonadTall
 from libqtile.lazy import lazy
 
-from my_widgets import MyWidgets, add_pipe
+from my_widgets import MyWidgets
 
 # Mod key
 mod = "mod4"
@@ -79,14 +79,14 @@ keys += [
     Key(
         [],
         "XF86AudioPlay",
-        lazy.spawn("spotifyctl playpause"),
+        lazy.spawn("playerctl play-pause"),
         desc="Play or pause spotify",
     ),
-    Key([], "XF86AudioNext", lazy.spawn("spotifyctl next"), desc="Next song spotify"),
+    Key([], "XF86AudioNext", lazy.spawn("playerctl next"), desc="Next song spotify"),
     Key(
         [],
         "XF86AudioPrev",
-        lazy.spawn("spotifyctl previous"),
+        lazy.spawn("playerctl previous"),
         desc="Previous song spotify",
     ),
 ]
