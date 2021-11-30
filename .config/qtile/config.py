@@ -57,6 +57,7 @@ keys = [
 ]
 
 # ============ Media Controls ============
+playerctl = "playerctl -p spotify,%any"
 keys += [
     # Volume control
     # Tested with pamixer 1.4.5
@@ -82,14 +83,14 @@ keys += [
     Key(
         [],
         "XF86AudioPlay",
-        lazy.spawn("playerctl play-pause"),
+        lazy.spawn(f"{playerctl} play-pause"),
         desc="Play or pause spotify",
     ),
-    Key([], "XF86AudioNext", lazy.spawn("playerctl next"), desc="Next song spotify"),
+    Key([], "XF86AudioNext", lazy.spawn(f"{playerctl} next"), desc="Next song spotify"),
     Key(
         [],
         "XF86AudioPrev",
-        lazy.spawn("playerctl previous"),
+        lazy.spawn(f"{playerctl} previous"),
         desc="Previous song spotify",
     ),
 ]
@@ -535,7 +536,7 @@ floating_layout = Floating(
         Match(title="Close Firefox"),
         *zoom_rules,
     ],
-    **layout_theme_float
+    **layout_theme_float,
 )
 
 # ========== Hooks ========== #
