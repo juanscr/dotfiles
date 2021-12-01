@@ -64,8 +64,8 @@ bindsym XF86AudioMute exec pamixer -t
 
 # Brightness control
 # Tested with light 1.2
-bindsym XF86MonBrightnessUp exec light -A 10
-bindsym XF86MonBrightnessDown exec light -U 10
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10
 
 # Media player controls
 # Used with https://bit.ly/3hAVW5x
