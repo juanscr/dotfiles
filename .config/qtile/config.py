@@ -170,6 +170,7 @@ matches = {
     # IDEs
     ws(4): [
         Match(wm_class="jetbrains-pycharm-ce"),
+        Match(wm_class="jetbrains-idea-ce"),
         Match(wm_class="java-lang-Thread"),
         Match(wm_class="Java"),
         Match(wm_class="Eclipse"),
