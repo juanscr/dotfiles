@@ -166,6 +166,7 @@ matches = {
         Match(wm_class="Gimp"),
         Match(wm_class="Gephi 0.9.2"),
         Match(title="Starting Gephi 0.9.2"),
+        Match(wm_class="Pcmanfm"),
     ],
     # IDEs
     ws(4): [
