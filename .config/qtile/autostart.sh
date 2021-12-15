@@ -31,3 +31,6 @@ dunst &
 
 # Polkit
 polkit-dumb-agent &
+
+# File manager
+pcmanfm &
