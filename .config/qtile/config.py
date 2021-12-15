@@ -205,6 +205,7 @@ matches = {
         Match(wm_class="Bitwarden"),
         Match(wm_class="qt5ct"),
         Match(wm_class="v4l2ucp"),
+        Match(wm_class="DBeaver"),
     ],
     # Background apps
     ws(8): [Match(wm_class="Spotify"), Match(wm_class="youtube-music-desktop-app")],
@@ -514,6 +515,8 @@ zoom_rules = [
 middle_float = [
     Match(wm_type="dialog"),
     Match(title="win0", wm_class="jetbrains-idea-ce"),
+    Match(title="Tip of the day "),
+    Match(title="Exit DBeaver "),
 ]
 floating_layout = Floating(
     float_rules=[
