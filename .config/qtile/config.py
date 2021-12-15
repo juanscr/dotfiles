@@ -175,6 +175,7 @@ matches = {
         Match(wm_class="java-lang-Thread"),
         Match(wm_class="Java"),
         Match(wm_class="Eclipse"),
+        Match(title="win0", wm_class="jetbrains-idea-ce"),
     ],
     # Social
     ws(5): [
@@ -510,6 +511,10 @@ zoom_rules = [
     Match(wm_class="zoom", title="Choose ONE of the audio conference options"),
     Match(wm_class="zoom", title=None),
 ]
+middle_float = [
+    Match(wm_type="dialog"),
+    Match(title="win0", wm_class="jetbrains-idea-ce"),
+]
 floating_layout = Floating(
     float_rules=[
         Match(wm_type="confirm"),
@@ -533,10 +538,10 @@ floating_layout = Floating(
         Match(wm_class="Inkscape", title="Preferences"),
         Match(wm_class="mpv"),
         Match(wm_class="Sxiv"),
-        Match(wm_class="Thunar"),
         Match(wm_class="Options Editor"),
         Match(title="Close Firefox"),
         *zoom_rules,
+        *middle_float,
     ],
     **layout_theme_float,
 )
@@ -568,21 +573,17 @@ def force_match_default_workspace(window):
 # Change size of floating windows
 @hook.subscribe.client_new
 def resize_floating_windows(window):
-    move_to_middle = False
 
     if window.window.get_wm_type() == "dialog":
         window.cmd_enable_floating()
         window.cmd_set_size_floating(900, 700)
-        move_to_middle = True
     elif any(rule.compare(window) for rule in zoom_rules):
-        print(window.cmd_info())
         window.cmd_enable_floating()
         if zoom_rules[0].compare(window):
             window.cmd_set_size_floating(900, 700)
-    else:
-        return
 
-    if move_to_middle:
+    # Move to middle of screen
+    if any(rule.compare(window) for rule in middle_float):
         screen = window.qtile.current_screen
         size = window.cmd_get_size()
         x, y = screen.x, screen.y
