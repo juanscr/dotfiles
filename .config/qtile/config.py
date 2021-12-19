@@ -583,9 +583,13 @@ def resize_floating_windows(window):
             window.cmd_set_size_floating(900, 700)
 
     if move_to_middle:
+        screen = window.qtile.current_screen
         size = window.cmd_get_size()
-        window.cmd_set_position_floating(960 - int(size[0] / 2), 540 - int(size[1] / 2))
-
+        x, y = screen.x, screen.y
+        window.cmd_set_position_floating(
+            x + int((screen.width - size[0]) / 2),
+            y + int((screen.height - size[1]) / 2),
+        )
 
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the
