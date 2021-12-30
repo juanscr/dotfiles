@@ -173,7 +173,6 @@ matches = {
         Match(wm_class="jetbrains-pycharm-ce"),
         Match(wm_class="jetbrains-idea-ce"),
         Match(wm_class="java-lang-Thread"),
-        Match(wm_class="Java"),
         Match(wm_class="Eclipse"),
         Match(title="win0", wm_class="jetbrains-idea-ce"),
     ],
@@ -515,9 +514,12 @@ zoom_rules = [
 middle_float = [
     Match(wm_type="dialog"),
     Match(title="win0", wm_class="jetbrains-idea-ce"),
-    Match(title="Tip of the day "),
-    Match(title="Exit DBeaver "),
 ]
+dbeaver_items = {
+    "class": Match(wm_class="DBeaver"),
+    "title": Match(title="DBeaver 21.3.2 "),
+    "not_resize": [Match(title="Connection changed "), Match(title="Exit DBeaver ")],
+}
 floating_layout = Floating(
     float_rules=[
         Match(wm_type="confirm"),
@@ -577,6 +579,7 @@ def force_match_default_workspace(window):
 @hook.subscribe.client_new
 def resize_floating_windows(window):
 
+    go_to_middle = False
     if window.window.get_wm_type() == "dialog":
         window.cmd_enable_floating()
         window.cmd_set_size_floating(900, 700)
@@ -584,9 +587,18 @@ def resize_floating_windows(window):
         window.cmd_enable_floating()
         if zoom_rules[0].compare(window):
             window.cmd_set_size_floating(900, 700)
+    elif (
+        dbeaver_items["class"].compare(window)
+        and not dbeaver_items["title"].compare(window)
+        and not any(rule.compare(window) for rule in dbeaver_items["not_resize"])
+    ):
+        window.cmd_enable_floating()
+        window.cmd_set_size_floating(900, 700)
+        go_to_middle = True
 
     # Move to middle of screen
-    if any(rule.compare(window) for rule in middle_float):
+    go_to_middle |= any(rule.compare(window) for rule in middle_float)
+    if go_to_middle:
         screen = window.qtile.current_screen
         size = window.cmd_get_size()
         x, y = screen.x, screen.y
