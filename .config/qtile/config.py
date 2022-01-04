@@ -23,6 +23,9 @@ mod = "mod4"
 # Browser
 browser = "brave"
 
+# Terminal
+terminal = eu("~/.bin/launchers/launch-terminal.sh")
+
 # ============ Basic Behavior ============
 keys = [
     # Close window
@@ -144,6 +147,7 @@ workspaces = [
 
 # Apps default workspace
 ws = lambda index: workspaces[index - 1][0]
+OPENFORTIVPN = "OpenfortiVPN"
 matches = {
     # Browser
     ws(1): [Match(wm_class="firefox"), Match(wm_class="Brave-browser")],
@@ -205,6 +209,7 @@ matches = {
         Match(wm_class="qt5ct"),
         Match(wm_class="v4l2ucp"),
         Match(wm_class="DBeaver"),
+        Match(wm_class=OPENFORTIVPN),
     ],
     # Background apps
     ws(8): [Match(wm_class="Spotify"), Match(wm_class="youtube-music-desktop-app")],
@@ -272,12 +277,7 @@ kp9 = "KP_Prior"
 
 keys += [
     # Keybinds
-    Key(
-        [mod],
-        "Return",
-        lazy.spawn(eu("~/.bin/launchers/launch-terminal.sh")),
-        desc="Launch terminal",
-    ),
+    Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     Key([mod], "s", lazy.spawn("spotify"), desc="Launch spotify"),
     Key([mod], "i", lazy.spawn(browser), desc="Launch browser"),
     Key(
@@ -286,7 +286,15 @@ keys += [
         lazy.spawn(eu("~/.bin/launchers/launchchrome.sh")),
         desc="Launch chromium with copied link",
     ),
-    Key([mod, "shift"], kp0, lazy.spawn("teams"), desc="Launch teams"),
+    Key(
+        [mod, "shift"],
+        kp0,
+        lazy.spawn(
+            f"{terminal} --class {OPENFORTIVPN},{OPENFORTIVPN} "
+            + "-e sudo openfortivpn -c /etc/openfortivpn/config"
+        ),
+        desc="Launch teams",
+    ),
     Key([mod, "shift"], kp1, lazy.spawn("slack"), desc="Launch slack"),
     Key([mod, "shift"], kp2, lazy.spawn("arandr"), desc="Launch arandr"),
     Key([mod, "shift"], kp3, lazy.spawn("pavucontrol"), desc="Launch pavucontrol"),
