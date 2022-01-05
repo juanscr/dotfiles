@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-if [ `"$HOME"/.config/qtile/check_number_of_monitors.sh` == 1 ]; then
+script="$HOME"/.config/qtile/check_number_of_monitors.sh
+if [ `$script` == 1 ] && [ xrandr --listactivemonitors | grep -v "HDMI" ]; then
     alacritty -o=font.size=9
 else
     alacritty
