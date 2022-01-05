@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if xrandr | grep "HDMI-0 connected"; then
+if xrandr --listactivemonitors | grep "HDMI"; then
     flameshot screen -r -c -p "$HOME"/pictures/screenshots
 else
     flameshot full -c -p "$HOME"/pictures/screenshots
