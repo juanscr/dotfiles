@@ -1,7 +1,9 @@
 #!/usr/bin/sh
 
 # Nvidia Force full composition
-nvidia-force-comp-pipeline
+if optimus-manager --print-mode | grep "nvidia"; then
+    nvidia-force-comp-pipeline
+fi
 
 # Background
 "$HOME"/.bin/bg.sh &
