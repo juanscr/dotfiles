@@ -512,6 +512,7 @@ zoom_rules = [
     Match(wm_class="zoom", title="Choose ONE of the audio conference options"),
     Match(wm_class="zoom", title=None),
 ]
+middle_rules = [Match(wm_type="dialog")]
 floating_layout = Floating(
     float_rules=[
         Match(wm_type="confirm"),
@@ -570,19 +571,16 @@ def force_match_default_workspace(window):
 # Change size of floating windows
 @hook.subscribe.client_new
 def resize_floating_windows(window):
-    move_to_middle = False
 
     if window.window.get_wm_type() == "dialog":
-        window.cmd_enable_floating()
         window.cmd_set_size_floating(900, 700)
-        move_to_middle = True
     elif any(rule.compare(window) for rule in zoom_rules):
-        print(window.cmd_info())
         window.cmd_enable_floating()
         if zoom_rules[0].compare(window):
             window.cmd_set_size_floating(900, 700)
 
-    if move_to_middle:
+    if any(rule.compare(window) for rule in middle_rules):
+        window.cmd_enable_floating()
         screen = window.qtile.current_screen
         size = window.cmd_get_size()
         x, y = screen.x, screen.y
@@ -590,6 +588,7 @@ def resize_floating_windows(window):
             x + int((screen.width - size[0]) / 2),
             y + int((screen.height - size[1]) / 2),
         )
+
 
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the
