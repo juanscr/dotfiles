@@ -210,6 +210,7 @@ matches = {
         Match(wm_class="v4l2ucp"),
         Match(wm_class="DBeaver"),
         Match(wm_class=OPENFORTIVPN),
+        Match(wm_class="org.remmina.Remmina"),
     ],
     # Background apps
     ws(8): [Match(wm_class="Spotify"), Match(wm_class="youtube-music-desktop-app")],
