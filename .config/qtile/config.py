@@ -296,7 +296,7 @@ keys += [
         ),
         desc="Launch teams",
     ),
-    Key([mod, "shift"], kp1, lazy.spawn("slack"), desc="Launch slack"),
+    Key([mod, "shift"], kp1, lazy.spawn("remmina"), desc="Launch slack"),
     Key([mod, "shift"], kp2, lazy.spawn("arandr"), desc="Launch arandr"),
     Key([mod, "shift"], kp3, lazy.spawn("pavucontrol"), desc="Launch pavucontrol"),
     Key([mod, "shift"], kp4, lazy.spawn("bitwarden-desktop"), desc="Launch bitwarden"),
