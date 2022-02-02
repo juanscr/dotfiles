@@ -148,6 +148,14 @@ workspaces = [
 # Apps default workspace
 ws = lambda index: workspaces[index - 1][0]
 OPENFORTIVPN = "OpenfortiVPN"
+force_match = {
+    "gephi": Match(wm_class="Gephi 0.9.2"),
+    "gephi_start": Match(title="Starting Gephi 0.9.2"),
+    "spotify": Match(wm_class="Spotify"),
+    "spotify_title": Match(title="Spotify"),
+    "dbeaver_start": Match(wm_class="Java", title="Dbeaver"),
+    "dbeaver_start_2": Match(wm_class="Java", title="DBeaver "),
+}
 matches = {
     # Browser
     ws(1): [Match(wm_class="firefox"), Match(wm_class="Brave-browser")],
@@ -168,9 +176,9 @@ matches = {
         Match(wm_class="okular"),
         Match(wm_class="Zathura"),
         Match(wm_class="Gimp"),
-        Match(wm_class="Gephi 0.9.2"),
-        Match(title="Starting Gephi 0.9.2"),
         Match(wm_class="Pcmanfm"),
+        force_match["gephi"],
+        force_match["gephi_start"],
     ],
     # IDEs
     ws(4): [
@@ -209,19 +217,18 @@ matches = {
         Match(wm_class="qt5ct"),
         Match(wm_class="v4l2ucp"),
         Match(wm_class="DBeaver"),
+        force_match["dbeaver_start"],
+        force_match["dbeaver_start_2"],
         Match(wm_class=OPENFORTIVPN),
         Match(wm_class="org.remmina.Remmina"),
     ],
     # Background apps
-    ws(8): [Match(wm_class="Spotify"), Match(wm_class="youtube-music-desktop-app")],
+    ws(8): [
+        force_match["spotify"],
+        force_match["spotify_title"],
+        Match(wm_class="youtube-music-desktop-app"),
+    ],
 }
-
-# _____ Force a match _____ #
-force_match = [
-    matches[ws(3)][8],
-    matches[ws(3)][9],
-    matches[ws(8)][0],
-]
 
 # _____ Add matches to groups _____ #
 for index in range(len(workspaces)):
@@ -300,7 +307,7 @@ keys += [
     Key([mod, "shift"], kp2, lazy.spawn("arandr"), desc="Launch arandr"),
     Key([mod, "shift"], kp3, lazy.spawn("pavucontrol"), desc="Launch pavucontrol"),
     Key([mod, "shift"], kp4, lazy.spawn("bitwarden-desktop"), desc="Launch bitwarden"),
-    Key([mod, "shift"], kp5, lazy.spawn("discord"), desc="Launch discord"),
+    Key([mod, "shift"], kp5, lazy.spawn("dbeaver"), desc="Launch DBeaver"),
     Key([mod, "shift"], kp6, lazy.spawn("telegram-desktop"), desc="Launch telegram"),
     Key(
         [mod, "shift"],
@@ -526,7 +533,7 @@ middle_float = [
 ]
 dbeaver_items = {
     "class": Match(wm_class="DBeaver"),
-    "title": Match(title="DBeaver 21.3.2 "),
+    "title": Match(title="DBeaver 21.3.3 "),
     "not_resize": [Match(title="Connection changed "), Match(title="Exit DBeaver ")],
 }
 floating_layout = Floating(
@@ -580,7 +587,7 @@ def autostart():
 # Force a workspace match
 @hook.subscribe.client_managed
 def force_match_default_workspace(window):
-    if any(match.compare(window) for match in force_match):
+    if any(match.compare(window) for match in force_match.values()):
         default_workspaces(window)
 
 
