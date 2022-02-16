@@ -83,3 +83,7 @@ org-format-latex-options :scale 2.0))
 ; ==== Company mode ==== ;
 (setq company-idle-delay 0)
 (setq company-show-numbers t)
+
+; === Javascript mode === ;
+(add-to-list 'auto-mode-alist '("\\.tsx\\'" . javascript-mode))
+(add-to-list 'auto-mode-alist '("\\.ts\\'" . javascript-mode))
