@@ -5,6 +5,7 @@
 #                                                 #
 # =============================================== #
 
+import re
 import subprocess
 from os.path import expanduser as eu
 
@@ -533,7 +534,7 @@ middle_float = [
 ]
 dbeaver_items = {
     "class": Match(wm_class="DBeaver"),
-    "title": Match(title="DBeaver 21.3.3 "),
+    "title": Match(title=re.compile("DBeaver [0-9.]+ ")),
     "not_resize": [Match(title="Connection changed "), Match(title="Exit DBeaver ")],
 }
 floating_layout = Floating(
