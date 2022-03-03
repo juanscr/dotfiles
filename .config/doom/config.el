@@ -84,6 +84,6 @@ org-format-latex-options :scale 2.0))
 (setq company-idle-delay 0)
 (setq company-show-numbers t)
 
-; === Javascript mode === ;
-(add-to-list 'auto-mode-alist '("\\.tsx\\'" . javascript-mode))
-(add-to-list 'auto-mode-alist '("\\.ts\\'" . javascript-mode))
+; === JSX Syntax Support for Typescript === ;
+(add-to-list 'auto-mode-alist '("\\.tsx\\'" . rjsx-mode))
+(add-to-list 'auto-mode-alist '("\\.ts\\'" . rjsx-mode))
