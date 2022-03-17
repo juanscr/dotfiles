@@ -531,6 +531,7 @@ zoom_rules = [
 middle_float = [
     Match(wm_type="dialog"),
     Match(title="win0", wm_class="jetbrains-idea-ce"),
+    Match(wm_class="pomotroid"),
 ]
 dbeaver_items = {
     "class": Match(wm_class="DBeaver"),

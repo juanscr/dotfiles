@@ -34,3 +34,6 @@ polkit-dumb-agent &
 
 # File manager
 pcmanfm &
+
+# Pomodoro timer
+"$HOME"/.bin/launchers/pomotroid.sh &
