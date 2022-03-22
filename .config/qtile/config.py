@@ -187,6 +187,7 @@ matches = {
         Match(wm_class="jetbrains-idea-ce"),
         Match(wm_class="java-lang-Thread"),
         Match(wm_class="Eclipse"),
+        Match(wm_class="Lunacy"),
         Match(title="win0", wm_class="jetbrains-idea-ce"),
     ],
     # Social
@@ -304,20 +305,13 @@ keys += [
         ),
         desc="Launch teams",
     ),
-    Key([mod, "shift"], kp1, lazy.spawn("remmina"), desc="Launch slack"),
+    Key([mod, "shift"], kp1, lazy.spawn("remmina"), desc="Launch remmina"),
     Key([mod, "shift"], kp2, lazy.spawn("arandr"), desc="Launch arandr"),
     Key([mod, "shift"], kp3, lazy.spawn("pavucontrol"), desc="Launch pavucontrol"),
     Key([mod, "shift"], kp4, lazy.spawn("bitwarden-desktop"), desc="Launch bitwarden"),
     Key([mod, "shift"], kp5, lazy.spawn("dbeaver"), desc="Launch DBeaver"),
     Key([mod, "shift"], kp6, lazy.spawn("telegram-desktop"), desc="Launch telegram"),
-    Key(
-        [mod, "shift"],
-        kp7,
-        lazy.spawn(eu("~/.bin/launchers/settings-nvidia.sh")),
-        desc="Launch nvidia settings",
-    ),
-    Key([mod, "shift"], kp8, lazy.spawn("popcorntime"), desc="Launch Popcorn time"),
-    Key([mod, "shift"], kp9, lazy.spawn("stremio"), desc="Launch stremio"),
+    Key([mod, "shift"], kp7, lazy.spawn("lunacy"), desc="Launch lunacy"),
 ]
 
 # Screenshots manager
