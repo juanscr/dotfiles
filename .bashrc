@@ -111,6 +111,9 @@ flags2='-y -r 60 -f image2pipe -vcodec ppm -i - -vcodec libx264'
 flags3='-preset ultrafast -pix_fmt yuv420p -crf 1 -threads 0 -bf 0'
 alias gitvideo='gource $flags1 -1920x1080 -o - | ffmpeg $flags2 $flags3'
 
+# Renew IP
+alias fixInternet='sudo ip add flush enp0s31f6 && sudo dhclient enp0s31f6'
+
 # ==== Global Variables ==== #
 export BROWSER="/usr/bin/firefox"
 
