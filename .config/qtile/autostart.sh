@@ -37,3 +37,6 @@ pcmanfm &
 
 # Pomodoro timer
 "$HOME"/.bin/launchers/pomotroid.sh &
+
+# Bluetooth applet
+blueman-applet &

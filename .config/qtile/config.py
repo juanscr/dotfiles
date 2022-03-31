@@ -526,6 +526,8 @@ middle_float = [
     Match(wm_type="dialog"),
     Match(title="win0", wm_class="jetbrains-idea-ce"),
     Match(wm_class="pomotroid"),
+    Match(wm_class="Blueman-manager"),
+    Match(wm_class="Blueman-services"),
 ]
 dbeaver_items = {
     "class": Match(wm_class="DBeaver"),
