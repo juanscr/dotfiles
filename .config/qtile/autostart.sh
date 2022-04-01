@@ -39,4 +39,4 @@ pcmanfm &
 "$HOME"/.bin/launchers/pomotroid.sh &
 
 # Bluetooth applet
-blueman-applet &
+blueman-tray &
