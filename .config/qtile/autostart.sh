@@ -37,3 +37,9 @@ dunst &
 
 # Polkit
 polkit-dumb-agent &
+
+# Slack
+slack &
+
+# Blueman
+blueman-applet &
