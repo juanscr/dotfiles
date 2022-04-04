@@ -178,7 +178,7 @@ matches = {
         Match(wm_class="discord"),
         Match(wm_class="Microsoft Teams - Preview"),
         Match(wm_class="Slack"),
-        Match(wm_class="zoom"),
+        Match(wm_class="zoom "),
         Match(wm_class="whatsapp-nativefier-d40211"),
         Match(wm_class="TelegramDesktop"),
         Match(wm_class="Chromium"),
@@ -507,12 +507,17 @@ layout_theme_float = {
 
 # Available layouts
 layouts = [MonadTall(**layout_theme_tall), Stack(**layout_theme_stack)]
-zoom_rules = [
-    Match(wm_class="zoom", title="Settings"),
-    Match(wm_class="zoom", title="Choose ONE of the audio conference options"),
-    Match(wm_class="zoom", title=None),
+zoom_rules = {
+    "not_float": [Match(wm_class="zoom ", title="Zoom - Free Account")],
+    "resize": [Match(wm_class="zoom ", title="Settings")],
+    "base": Match(wm_class="zoom "),
+}
+middle_rules = [
+    Match(wm_type="dialog"),
+    Match(wm_class="Blueman-manager"),
+    Match(wm_class="Blueman-services"),
+    Match(title="win0", wm_class="jetbrains-idea-ce"),
 ]
-middle_rules = [Match(wm_type="dialog")]
 floating_layout = Floating(
     float_rules=[
         Match(wm_type="confirm"),
@@ -539,7 +544,7 @@ floating_layout = Floating(
         Match(wm_class="Thunar"),
         Match(wm_class="Options Editor"),
         Match(title="Close Firefox"),
-        *zoom_rules,
+        *middle_rules,
     ],
     **layout_theme_float,
 )
@@ -572,14 +577,19 @@ def force_match_default_workspace(window):
 @hook.subscribe.client_new
 def resize_floating_windows(window):
 
+    go_to_middle = False
     if window.window.get_wm_type() == "dialog":
         window.cmd_set_size_floating(900, 700)
-    elif any(rule.compare(window) for rule in zoom_rules):
+    elif zoom_rules["base"].compare(window) and not any(
+        rule.compare(window) for rule in zoom_rules["not_float"]
+    ):
         window.cmd_enable_floating()
-        if zoom_rules[0].compare(window):
+        go_to_middle = True
+        if any(rule.compare(window) for rule in zoom_rules["resize"]):
             window.cmd_set_size_floating(900, 700)
 
-    if any(rule.compare(window) for rule in middle_rules):
+    go_to_middle |= any(rule.compare(window) for rule in middle_rules)
+    if go_to_middle:
         window.cmd_enable_floating()
         screen = window.qtile.current_screen
         size = window.cmd_get_size()
