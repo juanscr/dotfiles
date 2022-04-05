@@ -20,7 +20,7 @@ alias rmtrash='find . -maxdepth 1 -type f ! -regex "$files_to_keep" -delete'
 alias sudo="sudo "
 
 # Edit files with sudo privileges
-alias se='SUDO_EDITOR="emacsclient -c" sudoedit'
+alias se='SUDO_EDITOR="emacs" sudoedit'
 
 # Ls with icons
 alias ls='exa --icons --ignore-glob="__pycache__" --group-directories-first'
