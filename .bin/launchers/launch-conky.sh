@@ -8,7 +8,7 @@ coordinate=$(xrandr --query |
              awk -F+ '{ print $1 }')
 
 # Spawn conky according to layout
-if [ "$num_monitors" == 2 ] && [ "$coodinate" == 0 ]; then
+if [ "$num_monitors" == 2 ] && [ "$coordinate" == 0 ]; then
     conky &
 elif [ "$num_monitors" == 2 ]; then
     conky --config="$HOME"/.config/conky/conky-left.conf
