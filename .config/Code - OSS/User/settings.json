@@ -1,0 +1,13 @@
+{
+    "workbench.colorTheme": "Dracula",
+    "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
+    "vscode-neovim.neovimInitVimPaths.linux": "/home/juanscr/.config/nvim/init.vim",
+    "keyboard.dispatch": "keyCode",
+    "editor.fontLigatures": true,
+    "editor.fontFamily": "'JetBrainsMono Nerd Font', 'Droid Sans Mono', 'monospace', monospace",
+    "editor.fontSize": 16,
+    "editor.codeLensFontFamily": "'JetBrainsMono Nerd Font'",
+    "editor.inlayHints.fontFamily": "'JetBrainsMono Nerd Font'",
+    "terminal.integrated.fontFamily": "'JetBrainsMono Nerd Font'",
+    "editor.formatOnSave": true
+}
