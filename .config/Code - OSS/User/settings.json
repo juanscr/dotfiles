@@ -9,5 +9,8 @@
     "editor.codeLensFontFamily": "'JetBrainsMono Nerd Font'",
     "editor.inlayHints.fontFamily": "'JetBrainsMono Nerd Font'",
     "terminal.integrated.fontFamily": "'JetBrainsMono Nerd Font'",
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
 }
