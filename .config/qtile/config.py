@@ -189,6 +189,7 @@ matches = {
         Match(wm_class="Eclipse"),
         Match(wm_class="Lunacy"),
         Match(title="win0", wm_class="jetbrains-idea-ce"),
+        Match(wm_class="code-oss"),
     ],
     # Social
     ws(5): [
