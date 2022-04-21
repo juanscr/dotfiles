@@ -87,3 +87,6 @@ org-format-latex-options :scale 2.0))
 ; === JSX Syntax Support for Typescript === ;
 (add-to-list 'auto-mode-alist '("\\.tsx\\'" . rjsx-mode))
 (add-to-list 'auto-mode-alist '("\\.ts\\'" . rjsx-mode))
+
+; === VueJS support === ;
+(add-to-list 'auto-mode-alist '("\\.vue\\'" . vue-mode))
