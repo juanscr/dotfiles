@@ -116,6 +116,7 @@ alias fixInternet='sudo ip add flush enp0s31f6 && sudo dhclient enp0s31f6'
 
 # ==== Global Variables ==== #
 export BROWSER="/usr/bin/firefox"
+export npm_config_prefix="$HOME/.local"
 
 # ============ BASH Terminal ============ #
 # ==== Minimalist Prompt ==== #
