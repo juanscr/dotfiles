@@ -190,6 +190,7 @@ matches = {
         Match(wm_class="Lunacy"),
         Match(title="win0", wm_class="jetbrains-idea-ce"),
         Match(wm_class="code-oss"),
+        Match(wm_class="com-iscobol-gui-client-Client"),
     ],
     # Social
     ws(5): [
@@ -560,6 +561,7 @@ floating_layout = Floating(
         Match(wm_class="Sxiv"),
         Match(wm_class="Options Editor"),
         Match(title="Close Firefox"),
+        Match(wm_class="com-iscobol-gui-client-Client"),
         *zoom_rules,
         *middle_float,
     ],
