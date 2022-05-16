@@ -1,3 +1,9 @@
+# ISCOBOL
+export ISCOBOL=/home/juanscr/programs/isCOBOL2019R2
+export ISCOBOL_JDK_ROOT=/usr/lib/jvm/java-11-openjdk
+export LD_LIBRARY_PATH=$ISCOBOL/native/lib
+export PATH=$ISCOBOL/bin:$PATH
+
 # ============ PATH CHANGES ============ #
 export PATH=$PATH:/usr/local/bin
 export PATH=$PATH:$HOME/.bin
@@ -172,3 +178,6 @@ if [[ ! "$SSH_AUTH_SOCK" ]]; then
 fi
 ssh-add ~/.ssh/id_rsa1 2>/dev/null
 ssh-add 2>/dev/null
+
+# Secure aliases
+source /home/juanscr/juanscr/.secure_bashrc
