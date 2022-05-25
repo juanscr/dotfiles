@@ -172,6 +172,7 @@ matches = {
         Match(wm_class="java-lang-Thread"),
         Match(wm_class="Java"),
         Match(wm_class="Eclipse"),
+        Match(wm_class="code-oss"),
     ],
     # Social
     ws(5): [
