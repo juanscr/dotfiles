@@ -314,6 +314,7 @@ keys += [
     Key([mod, "shift"], kp5, lazy.spawn("dbeaver"), desc="Launch DBeaver"),
     Key([mod, "shift"], kp6, lazy.spawn("telegram-desktop"), desc="Launch telegram"),
     Key([mod, "shift"], kp7, lazy.spawn("lunacy"), desc="Launch lunacy"),
+    Key([mod, "shift"], kp8, lazy.spawn("discord"), desc="Launch discord"),
 ]
 
 # Screenshots manager
