@@ -9,7 +9,7 @@ picom &
 # Tray icons
 flameshot &
 nm-applet &
-telegram-desktop &
+discord &
 
 # Browser
 brave &
