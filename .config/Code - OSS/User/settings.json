@@ -22,5 +22,8 @@
   },
   "typescript.updateImportsOnFileMove.enabled": "always",
   "python.formatting.provider": "black",
-  "python.languageServer": "Pylance"
+  "python.languageServer": "Pylance",
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }
