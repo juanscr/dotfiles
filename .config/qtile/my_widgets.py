@@ -541,7 +541,6 @@ class MyWidgets:
             objname="org.mpris.MediaPlayer2.spotify",
             scroll_chars=0,
             max_chars=max_length,
-            stop_pause_text="",
         )
 
         # Icon
