@@ -1,0 +1,6 @@
+[include]
+    path = ~/.config/git/config-def
+[includeIf "gitdir:~/projects/fincrime-dynamics/"]
+    path = ~/.config/git/config-ealax
+[includeIf "gitdir:~/projects/hematologico/"]
+    path = ~/.config/git/config-lch
