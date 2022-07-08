@@ -329,7 +329,7 @@ keys += [
     Key(
         [mod],
         "Print",
-        lazy.spawn("flameshot gui -p " + eu("~/pictures/screenshots")),
+        lazy.spawn("flameshot gui"),
         desc="Take screenshot with flameshot's GUI",
     ),
     Key(
