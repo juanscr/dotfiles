@@ -157,6 +157,7 @@ force_match = {
     "spotify_title": Match(title="Spotify"),
     "dbeaver_start": Match(wm_class="Java", title="Dbeaver"),
     "dbeaver_start_2": Match(wm_class="Java", title="DBeaver "),
+    "lis_cobol": Match(wm_class="com-iscobol-gui-client-Client"),
 }
 matches = {
     # Browser
@@ -191,7 +192,7 @@ matches = {
         Match(wm_class="Lunacy"),
         Match(title="win0", wm_class="jetbrains-idea-ce"),
         Match(wm_class="code-oss"),
-        Match(wm_class="com-iscobol-gui-client-Client"),
+        force_match["lis_cobol"],
     ],
     # Social
     ws(5): [
@@ -616,9 +617,16 @@ def resize_floating_windows(window: Window) -> None:
         go_to_middle = True
 
     # Move to middle of screen
-    go_to_middle |= any(rule.compare(window) for rule in middle_float)
-    if go_to_middle:
-        window.cmd_center()
+    if go_to_middle or any(rule.compare(window) for rule in middle_float):
+        screen = window.qtile.current_screen
+        if window.group is not None and window.group.screen is not None:
+            screen = window.group.screen
+        size = window.cmd_get_size()
+        x, y = screen.x, screen.y
+        window.cmd_set_position_floating(
+            x + int((screen.width - size[0]) / 2),
+            y + int((screen.height - size[1]) / 2),
+        )
 
 
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
