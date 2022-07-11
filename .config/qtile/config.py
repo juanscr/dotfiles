@@ -589,7 +589,7 @@ def autostart():
 
 
 # Force a workspace match
-@hook.subscribe.client_managed
+@hook.subscribe.client_name_updated
 def force_match_default_workspace(window):
     if any(match.compare(window) for match in force_match.values()):
         default_workspaces(window)
