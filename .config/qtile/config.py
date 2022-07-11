@@ -5,10 +5,12 @@
 #                                                 #
 # =============================================== #
 
+import re
 import subprocess
 from os.path import expanduser as eu
 
 from libqtile import bar, hook
+from libqtile.backend.base import Window
 from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
 from libqtile.layout.floating import Floating
 from libqtile.layout.stack import Stack
@@ -143,6 +145,14 @@ workspaces = [
 
 # Apps default workspace
 ws = lambda index: workspaces[index - 1][0]
+force_match = {
+    "gephi": Match(wm_class="Gephi 0.9.2"),
+    "gephi_start": Match(title="Starting Gephi 0.9.2"),
+    "spotify": Match(wm_class="Spotify"),
+    "spotify_title": Match(title="Spotify"),
+    "dbeaver_start": Match(wm_class="Java", title="Dbeaver"),
+    "dbeaver_start_2": Match(wm_class="Java", title="DBeaver "),
+}
 matches = {
     # Browser
     ws(1): [Match(wm_class="firefox"), Match(wm_class="Brave-browser")],
@@ -163,16 +173,20 @@ matches = {
         Match(wm_class="okular"),
         Match(wm_class="Zathura"),
         Match(wm_class="Gimp"),
-        Match(wm_class="Gephi 0.9.2"),
-        Match(title="Starting Gephi 0.9.2"),
+        Match(wm_class="Pcmanfm"),
+        force_match["gephi"],
+        force_match["gephi_start"],
     ],
     # IDEs
     ws(4): [
         Match(wm_class="jetbrains-pycharm-ce"),
+        Match(wm_class="jetbrains-idea-ce"),
         Match(wm_class="java-lang-Thread"),
-        Match(wm_class="Java"),
         Match(wm_class="Eclipse"),
+        Match(wm_class="Lunacy"),
+        Match(title="win0", wm_class="jetbrains-idea-ce"),
         Match(wm_class="code-oss"),
+        Match(wm_class="com-iscobol-gui-client-Client"),
     ],
     # Social
     ws(5): [
@@ -202,6 +216,10 @@ matches = {
         Match(wm_class="Bitwarden"),
         Match(wm_class="qt5ct"),
         Match(wm_class="v4l2ucp"),
+        Match(wm_class="DBeaver"),
+        force_match["dbeaver_start"],
+        force_match["dbeaver_start_2"],
+        Match(wm_class="org.remmina.Remmina"),
     ],
     # Production apps
     ws(8): [Match(wm_class="Audacity"), Match(wm_class="kdenlive")],
@@ -212,16 +230,12 @@ matches = {
         Match(wm_class="Virt-manager"),
     ],
     # Background apps
-    ws(10): [Match(wm_class="Spotify"), Match(wm_class="youtube-music-desktop-app")],
+    ws(10): [
+        force_match["spotify"],
+        force_match["spotify_title"],
+        Match(wm_class="youtube-music-desktop-app"),
+    ],
 }
-
-# _____ Force a match _____ #
-force_match = [
-    matches[ws(3)][8],
-    matches[ws(3)][9],
-    matches[ws(9)][1],
-    matches[ws(10)][0],
-]
 
 # _____ Add matches to groups _____ #
 for index in range(len(workspaces)):
@@ -508,17 +522,23 @@ layout_theme_float = {
 
 # Available layouts
 layouts = [MonadTall(**layout_theme_tall), Stack(**layout_theme_stack)]
-zoom_rules = {
-    "not_float": [Match(wm_class="zoom ", title="Zoom - Free Account")],
-    "resize": [Match(wm_class="zoom ", title="Settings")],
-    "base": Match(wm_class="zoom "),
-}
-middle_rules = [
+zoom_rules = [
+    Match(wm_class="zoom", title="Settings"),
+    Match(wm_class="zoom", title="Choose ONE of the audio conference options"),
+    Match(wm_class="zoom", title=None),
+]
+middle_float = [
     Match(wm_type="dialog"),
+    Match(title="win0", wm_class="jetbrains-idea-ce"),
+    Match(wm_class="pomotroid"),
     Match(wm_class="Blueman-manager"),
     Match(wm_class="Blueman-services"),
-    Match(title="win0", wm_class="jetbrains-idea-ce"),
 ]
+dbeaver_items = {
+    "class": Match(wm_class="DBeaver"),
+    "title": Match(title=re.compile("DBeaver [0-9.]+ ")),
+    "not_resize": [Match(title="Connection changed "), Match(title="Exit DBeaver ")],
+}
 floating_layout = Floating(
     float_rules=[
         Match(wm_type="confirm"),
@@ -545,7 +565,8 @@ floating_layout = Floating(
         Match(wm_class="Thunar"),
         Match(wm_class="Options Editor"),
         Match(title="Close Firefox"),
-        *middle_rules,
+        *zoom_rules,
+        *middle_float,
     ],
     **layout_theme_float,
 )
@@ -570,35 +591,34 @@ def autostart():
 # Force a workspace match
 @hook.subscribe.client_managed
 def force_match_default_workspace(window):
-    if any(match.compare(window) for match in force_match):
+    if any(match.compare(window) for match in force_match.values()):
         default_workspaces(window)
 
 
 # Change size of floating windows
 @hook.subscribe.client_new
-def resize_floating_windows(window):
-
+def resize_floating_windows(window: Window):
     go_to_middle = False
-    if window.window.get_wm_type() == "dialog":
+    if window.get_wm_type() == "dialog":
+        window.cmd_enable_floating()
         window.cmd_set_size_floating(900, 700)
-    elif zoom_rules["base"].compare(window) and not any(
-        rule.compare(window) for rule in zoom_rules["not_float"]
+    elif any(rule.compare(window) for rule in zoom_rules):
+        window.cmd_enable_floating()
+        if zoom_rules[0].compare(window):
+            window.cmd_set_size_floating(900, 700)
+    elif (
+        dbeaver_items["class"].compare(window)
+        and not dbeaver_items["title"].compare(window)
+        and not any(rule.compare(window) for rule in dbeaver_items["not_resize"])
     ):
         window.cmd_enable_floating()
+        window.cmd_set_size_floating(900, 700)
         go_to_middle = True
-        if any(rule.compare(window) for rule in zoom_rules["resize"]):
-            window.cmd_set_size_floating(900, 700)
 
-    go_to_middle |= any(rule.compare(window) for rule in middle_rules)
+    # Move to middle of screen
+    go_to_middle |= any(rule.compare(window) for rule in middle_float)
     if go_to_middle:
-        window.cmd_enable_floating()
-        screen = window.qtile.current_screen
-        size = window.cmd_get_size()
-        x, y = screen.x, screen.y
-        window.cmd_set_position_floating(
-            x + int((screen.width - size[0]) / 2),
-            y + int((screen.height - size[1]) / 2),
-        )
+        window.cmd_center()
 
 
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
