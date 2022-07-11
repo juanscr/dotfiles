@@ -10,6 +10,7 @@ import subprocess
 from os.path import expanduser as eu
 
 from libqtile import bar, hook
+from libqtile.backend.base import Window
 from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
 from libqtile.layout.floating import Floating
 from libqtile.layout.stack import Stack
@@ -595,10 +596,10 @@ def force_match_default_workspace(window):
 
 # Change size of floating windows
 @hook.subscribe.client_new
-def resize_floating_windows(window):
+def resize_floating_windows(window: Window) -> None:
 
     go_to_middle = False
-    if window.window.get_wm_type() == "dialog":
+    if window.get_wm_type() == "dialog":
         window.cmd_enable_floating()
         window.cmd_set_size_floating(900, 700)
     elif any(rule.compare(window) for rule in zoom_rules):
@@ -617,13 +618,7 @@ def resize_floating_windows(window):
     # Move to middle of screen
     go_to_middle |= any(rule.compare(window) for rule in middle_float)
     if go_to_middle:
-        screen = window.qtile.current_screen
-        size = window.cmd_get_size()
-        x, y = screen.x, screen.y
-        window.cmd_set_position_floating(
-            x + int((screen.width - size[0]) / 2),
-            y + int((screen.height - size[1]) / 2),
-        )
+        window.cmd_center()
 
 
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
