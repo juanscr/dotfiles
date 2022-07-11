@@ -15,7 +15,6 @@ picom &
 flameshot &
 "$HOME"/.bin/launchers/tray-optimus-manager.sh &
 nm-applet &
-telegram-desktop &
 
 # Browser
 brave &
