@@ -25,5 +25,6 @@
   "python.languageServer": "Pylance",
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "python.analysis.typeCheckingMode": "basic"
 }
