@@ -278,19 +278,41 @@ gaps = 10
 
 # ========== Application behavior ========== #
 # _____ Add keybinds for keypads _____ #
-kp0 = "KP_Insert"
-kp1 = "KP_End"
-kp2 = "KP_Down"
-kp3 = "KP_Next"
-kp4 = "KP_Left"
-kp5 = "KP_Begin"
-kp6 = "KP_Right"
-kp7 = "KP_Home"
-kp8 = "KP_Up"
-kp9 = "KP_Prior"
+keypads = [
+    (
+        "KP_Insert",
+        f"{terminal} --class {OPENFORTIVPN},{OPENFORTIVPN} "
+        + "-e sudo openfortivpn -c /etc/openfortivpn/config",
+        "FortiVPN",
+    ),
+    ("KP_End", "remmina"),
+    ("KP_Down", "arandr"),
+    ("KP_Next", "pavucontrol"),
+    ("KP_Left", "bitwarden-desktop"),
+    ("KP_Begin", "dbeaver"),
+    ("KP_Right",),
+    ("KP_Home",),
+    ("KP_Up", "discord"),
+    ("KP_Prior",),
+]
+keypads_keys = [
+    Key([mod, "shift"], keypad[0], lazy.spawn(keypad[1]))
+    for keypad in keypads
+    if len(keypad) > 1
+]
+keypads_chord = KeyChord(
+    [mod, "shift"],
+    "s",
+    [
+        Key([], str(index), lazy.spawn(keypad[1]))
+        for index, keypad in enumerate(keypads)
+        if len(keypad) > 1
+    ],
+    mode="Use numbers for keypad keybindings.",
+)
 
+# Application openers
 keys += [
-    # Keybinds
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     Key([mod], "s", lazy.spawn("spotify"), desc="Launch spotify"),
     Key([mod], "i", lazy.spawn(browser), desc="Launch browser"),
@@ -300,23 +322,8 @@ keys += [
         lazy.spawn(eu("~/.bin/launchers/launchchrome.sh")),
         desc="Launch chromium with copied link",
     ),
-    Key(
-        [mod, "shift"],
-        kp0,
-        lazy.spawn(
-            f"{terminal} --class {OPENFORTIVPN},{OPENFORTIVPN} "
-            + "-e sudo openfortivpn -c /etc/openfortivpn/config"
-        ),
-        desc="Launch teams",
-    ),
-    Key([mod, "shift"], kp1, lazy.spawn("remmina"), desc="Launch remmina"),
-    Key([mod, "shift"], kp2, lazy.spawn("arandr"), desc="Launch arandr"),
-    Key([mod, "shift"], kp3, lazy.spawn("pavucontrol"), desc="Launch pavucontrol"),
-    Key([mod, "shift"], kp4, lazy.spawn("bitwarden-desktop"), desc="Launch bitwarden"),
-    Key([mod, "shift"], kp5, lazy.spawn("dbeaver"), desc="Launch DBeaver"),
-    Key([mod, "shift"], kp6, lazy.spawn("telegram-desktop"), desc="Launch telegram"),
-    Key([mod, "shift"], kp7, lazy.spawn("lunacy"), desc="Launch lunacy"),
-    Key([mod, "shift"], kp8, lazy.spawn("discord"), desc="Launch discord"),
+    *keypads_keys,
+    keypads_chord,
 ]
 
 # Screenshots manager
