@@ -37,3 +37,4 @@ application/xhtml+xml=firefox.desktop;
 application/x-extension-xhtml=firefox.desktop;
 application/x-extension-xht=firefox.desktop;
 text/markdown=emacs.desktop;
+application/octet-stream=emacs.desktop;
