@@ -335,7 +335,7 @@ keys += [
     Key(
         [mod],
         "Print",
-        lazy.spawn("flameshot gui -p " + eu("~/pictures/screenshots")),
+        lazy.spawn("flameshot gui"),
         desc="Take screenshot with flameshot's GUI",
     ),
     Key(
@@ -589,10 +589,19 @@ def autostart():
 
 
 # Force a workspace match
-@hook.subscribe.client_managed
-def force_match_default_workspace(window):
+def force_match_default_workspace(window: Window):
     if any(match.compare(window) for match in force_match.values()):
         default_workspaces(window)
+
+
+@hook.subscribe.client_managed
+def manage_client(window: Window) -> None:
+    force_match_default_workspace(window)
+
+
+@hook.subscribe.client_name_updated
+def manage_name_update(window: Window) -> None:
+    force_match_default_workspace(window)
 
 
 # Change size of floating windows
