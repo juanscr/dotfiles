@@ -589,7 +589,7 @@ def autostart():
 
 
 # Force a workspace match
-def force_match_default_workspace(window: Window):
+def force_match_default_workspace(window):
     if any(match.compare(window) for match in force_match.values()):
         default_workspaces(window)
 
