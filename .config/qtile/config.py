@@ -203,6 +203,7 @@ matches = {
         Match(wm_class="whatsapp-nativefier-d40211"),
         Match(wm_class="TelegramDesktop"),
         Match(wm_class="Chromium"),
+        Match(wm_class="Signal"),
     ],
     # Media
     ws(6): [
@@ -288,7 +289,7 @@ keypads = [
     ("KP_End", "remmina"),
     ("KP_Down", "arandr"),
     ("KP_Next", "pavucontrol"),
-    ("KP_Left", "bitwarden-desktop"),
+    ("KP_Left", "signal-desktop"),
     ("KP_Begin", "dbeaver"),
     ("KP_Right",),
     ("KP_Home",),
