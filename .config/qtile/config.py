@@ -582,7 +582,7 @@ floating_layout = Floating(
 # ========== Hooks ========== #
 # Automatic workspace for apps
 @hook.subscribe.client_new
-def default_workspaces(window):
+def default_workspaces(window: Window) -> None:
     for group in groups:
         if any(match.compare(window) for match in group.matches):
             window.togroup(group.name)
@@ -591,16 +591,25 @@ def default_workspaces(window):
 
 # Startup all apps
 @hook.subscribe.startup_once
-def autostart():
+def autostart() -> None:
     script = eu("~/.config/qtile/autostart.sh")
     subprocess.call([script])
 
 
 # Force a workspace match
-@hook.subscribe.client_name_updated
-def force_match_default_workspace(window):
+def force_match_default_workspace(window: Window) -> None:
     if any(match.compare(window) for match in force_match.values()):
         default_workspaces(window)
+
+
+@hook.subscribe.client_managed
+def manage_client(window: Window) -> None:
+    force_match_default_workspace(window)
+
+
+@hook.subscribe.client_name_updated
+def manage_name_update(window: Window) -> None:
+    force_match_default_workspace(window)
 
 
 # Change size of floating windows
