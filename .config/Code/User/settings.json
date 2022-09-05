@@ -25,5 +25,7 @@
   "typescript.updateImportsOnFileMove.enabled": "always",
   "python.formatting.provider": "black",
   "python.languageServer": "Pylance",
-  "python.analysis.typeCheckingMode": "basic"
+  "python.analysis.typeCheckingMode": "basic",
+  "files.autoSave": "afterDelay",
+  "files.trimTrailingWhitespace": true
 }
