@@ -47,7 +47,7 @@ keys = [
             Key([], "r", lazy.spawn("systemctl reboot"), desc="Reboot PC"),
             Key([], "p", lazy.spawn("systemctl poweroff"), desc="Shutdown"),
         ],
-        mode="exit: [l]ogout, [r]eboot, [p]oweroff",
+        name="exit: [l]ogout, [r]eboot, [p]oweroff",
     ),
     # Search for app. Customized to use dracula theme.
     # Tested with dmenu 5.0
@@ -309,7 +309,7 @@ keypads_chord = KeyChord(
         for index, keypad in enumerate(keypads)
         if len(keypad) > 1
     ],
-    mode="Use numbers for keypad keybindings.",
+    name="Use numbers for keypad keybindings.",
 )
 
 # Application openers
