@@ -1,6 +1,6 @@
 # ISCOBOL
 export ISCOBOL=/home/juanscr/programs/isCOBOL2019R2
-export ISCOBOL_JDK_ROOT=/usr/lib/jvm/java-11-openjdk
+export ISCOBOL_JDK_ROOT=/usr/lib/jvm/java-8-openjdk
 export LD_LIBRARY_PATH=$ISCOBOL/native/lib
 export PATH=$ISCOBOL/bin:$PATH
 
