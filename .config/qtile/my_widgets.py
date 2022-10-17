@@ -534,8 +534,9 @@ class MyWidgets:
             foreground=self.colors["foreground"],
             display_metadata=["xesam:title", "xesam:artist"],
             objname="org.mpris.MediaPlayer2.spotify",
-            scroll_chars=0,
+            scroll=False,
             max_chars=max_length,
+            paused_text="{track}",
         )
 
         # Icon
