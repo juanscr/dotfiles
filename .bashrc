@@ -120,6 +120,16 @@ alias gitvideo='gource $flags1 -1920x1080 -o - | ffmpeg $flags2 $flags3'
 # Renew IP
 alias fixInternet='sudo ip add flush enp0s31f6 && sudo dhclient enp0s31f6'
 
+# Pacman update
+alias drop-caches='sudo paccache -rk3; yay -Sc --aur --noconfirm'
+alias update-all='export TMPFILE="$(mktemp)"; \
+    sudo true; \
+    rate-mirrors --save=$TMPFILE arch --max-delay=21600 \
+      && sudo mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-backup \
+      && sudo mv $TMPFILE /etc/pacman.d/mirrorlist \
+      && drop-caches \
+      && yay -Syyu --noconfirm'
+
 # ==== Global Variables ==== #
 export BROWSER="/usr/bin/firefox"
 export npm_config_prefix="$HOME/.local"
