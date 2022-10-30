@@ -27,5 +27,6 @@
   "python.languageServer": "Pylance",
   "python.analysis.typeCheckingMode": "basic",
   "files.autoSave": "afterDelay",
-  "files.trimTrailingWhitespace": true
+  "files.trimTrailingWhitespace": true,
+  "diffEditor.ignoreTrimWhitespace": false
 }
