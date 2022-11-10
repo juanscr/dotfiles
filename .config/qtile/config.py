@@ -155,8 +155,6 @@ force_match = {
     "gephi_start": Match(title="Starting Gephi 0.9.2"),
     "spotify": Match(wm_class="Spotify"),
     "spotify_title": Match(title="Spotify"),
-    "dbeaver_start": Match(wm_class="Java", title="Dbeaver"),
-    "dbeaver_start_2": Match(wm_class="Java", title="DBeaver "),
     "lis_cobol": Match(wm_class="com-iscobol-gui-client-Client"),
 }
 matches = {
@@ -223,9 +221,7 @@ matches = {
         Match(wm_class="Bitwarden"),
         Match(wm_class="qt5ct"),
         Match(wm_class="v4l2ucp"),
-        Match(wm_class="DBeaver"),
-        force_match["dbeaver_start"],
-        force_match["dbeaver_start_2"],
+        Match(wm_class="beekeeper-studio"),
         Match(wm_class=OPENFORTIVPN),
         Match(wm_class="org.remmina.Remmina"),
     ],
@@ -290,7 +286,7 @@ keypads = [
     ("KP_Down", "arandr"),
     ("KP_Next", "pavucontrol"),
     ("KP_Left", "signal-desktop"),
-    ("KP_Begin", "dbeaver"),
+    ("KP_Begin", "beekeeper-studio"),
     ("KP_Right",),
     ("KP_Home",),
     ("KP_Up", "discord"),
@@ -542,11 +538,6 @@ middle_float = [
     Match(wm_class="Blueman-manager"),
     Match(wm_class="Blueman-services"),
 ]
-dbeaver_items = {
-    "class": Match(wm_class="DBeaver"),
-    "title": Match(title=re.compile("DBeaver [0-9.]+ ")),
-    "not_resize": [Match(title="Connection changed "), Match(title="Exit DBeaver ")],
-}
 floating_layout = Floating(
     float_rules=[
         Match(wm_type="confirm"),
@@ -624,14 +615,6 @@ def resize_floating_windows(window: Window) -> None:
         window.cmd_enable_floating()
         if zoom_rules[0].compare(window):
             window.cmd_set_size_floating(900, 700)
-    elif (
-        dbeaver_items["class"].compare(window)
-        and not dbeaver_items["title"].compare(window)
-        and not any(rule.compare(window) for rule in dbeaver_items["not_resize"])
-    ):
-        window.cmd_enable_floating()
-        window.cmd_set_size_floating(900, 700)
-        go_to_middle = True
 
     # Move to middle of screen
     if go_to_middle or any(rule.compare(window) for rule in middle_float):
