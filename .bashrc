@@ -111,6 +111,16 @@ flags2='-y -r 60 -f image2pipe -vcodec ppm -i - -vcodec libx264'
 flags3='-preset ultrafast -pix_fmt yuv420p -crf 1 -threads 0 -bf 0'
 alias gitvideo='gource $flags1 -1920x1080 -o - | ffmpeg $flags2 $flags3'
 
+# Pacman update
+alias drop-caches='sudo paccache -rk3; yay -Sc --aur --noconfirm'
+alias update-all='export TMPFILE="$(mktemp)"; \
+    sudo true; \
+    rate-mirrors --save=$TMPFILE arch --max-delay=21600 \
+      && sudo mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-backup \
+      && sudo mv $TMPFILE /etc/pacman.d/mirrorlist \
+      && drop-caches \
+      && yay -Syyu --noconfirm'
+
 # ==== Global Variables ==== #
 export BROWSER="/usr/bin/firefox"
 
