@@ -46,6 +46,7 @@ alias icat='kitty +kitten icat'
 # Compression related commands
 alias comp='arc archive'
 alias unco='arc unarchive'
+alias untar='tar xf'
 
 # Whatsapp
 whatsapp1='nativefier web.whatsapp.com --name whatsapp --single-instance'
