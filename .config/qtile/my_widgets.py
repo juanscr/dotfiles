@@ -373,13 +373,13 @@ class MyWidgets:
         """
 
         clock_format = "%a, %d %b   %H:%M"
-        padding = 6
+        padding = 4
         if compact:
             clock_format = "%d %b %H:%M"
-            padding = 0
+            padding = 4
 
         # Icon
-        w_clock_icon = TextBox(**self.fonts["Icons"], text=" ", padding=padding)
+        w_clock_icon = TextBox(**self.fonts["Icons"], text="", padding=padding)
 
         # Text
         widget_clock = Clock(**self.fonts["Normal"], format=clock_format)
