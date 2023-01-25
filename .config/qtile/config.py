@@ -311,7 +311,7 @@ keypads_chord = KeyChord(
 # Application openers
 keys += [
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
-    Key([mod], "s", lazy.spawn("spotify"), desc="Launch spotify"),
+    Key([mod], "s", lazy.spawn("spotify-launcher"), desc="Launch spotify"),
     Key([mod], "i", lazy.spawn(browser), desc="Launch browser"),
     Key(
         [mod],
@@ -448,7 +448,7 @@ def my_bar2():
 # Bar for my only screen
 def my_bar_full():
     system_info = [
-        *mw.widget_cpu(background="background-alt1"),
+        *mw.widget_cpu(background="background-alt1", text=True),
         *mw.widget_ram(background="background-alt1"),
         *mw.widget_brightness(background="background-alt1"),
     ]
