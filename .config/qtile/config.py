@@ -140,11 +140,11 @@ workspaces = [
     ["1", {"label": "", "layout": "stack"}],
     ["2", {"label": "", "layout": "monadtall"}],
     ["3", {"label": "", "layout": "stack"}],
-    ["4", {"label": "", "layout": "monadtall"}],
-    ["5", {"label": "", "layout": "stack"}],
+    ["4", {"label": "", "layout": "monadtall"}],
+    ["5", {"label": "", "layout": "stack"}],
     ["6", {"label": "", "layout": "stack"}],
-    ["7", {"label": "", "layout": "stack"}],
-    ["8", {"label": "", "layout": "stack"}],
+    ["7", {"label": "", "layout": "stack"}],
+    ["8", {"label": "", "layout": "stack"}],
 ]
 
 # Apps default workspace
@@ -392,7 +392,7 @@ colors = {
 # Widget settings
 fonts = {
     "Normal": {"font": "JetBrains Mono", "fontsize": 12},
-    "Icons": {"font": "FontAwesome", "fontsize": 16},
+    "Icons": {"font": "JetBrainsMono Nerd Font Mono", "fontsize": 24},
     "Icons2": {"font": "JetBrainsMono Nerd Font", "fontsize": 16},
 }
 

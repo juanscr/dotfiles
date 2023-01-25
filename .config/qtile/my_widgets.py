@@ -267,6 +267,7 @@ class MyWidgets:
             # Base configuration
             background=self.colors["background"],
             foreground=self.colors["foreground"],
+            center_aligned=True,
             # Mouse behavior
             disable_drag=True,
             use_mouse_wheel=False,
@@ -338,7 +339,7 @@ class MyWidgets:
 
         # Icon
         w_update_icon = TextBox(
-            **self.fonts["Icons2"],
+            **self.fonts["Icons"],
             text="ﮮ",
             foreground=self.colors["yellow"],
             padding=8,
@@ -378,7 +379,7 @@ class MyWidgets:
             padding = 0
 
         # Icon
-        w_clock_icon = TextBox(**self.fonts["Icons2"], text=" ", padding=padding)
+        w_clock_icon = TextBox(**self.fonts["Icons"], text=" ", padding=padding)
 
         # Text
         widget_clock = Clock(**self.fonts["Normal"], format=clock_format)
@@ -400,17 +401,17 @@ class MyWidgets:
 
         # Widget for icon battery
         config = dict(
-            **self.fonts["Icons2"],
+            **self.fonts["Icons"],
             # Formatting options
             format="{char}",
             show_short_text=False,
             padding=4,
             # Icons for each state
-            charge_char="",
-            full_char="",
-            empty_char="",
-            discharge_char="",
-            unknown_char="",
+            charge_char="󰂐",
+            full_char="󰂏",
+            empty_char="󰂎",
+            discharge_char="󱉝",
+            unknown_char="󰂏",
             # Other options
             update_interval=1,
             low_percentage=0.15,
@@ -508,7 +509,7 @@ class MyWidgets:
 
         # Icon for volume
         icon_volume = TextBox(
-            **self.fonts["Icons2"], foreground=self.colors["cyan"], text="", padding=8
+            **self.fonts["Icons"], foreground=self.colors["cyan"], text="", padding=8
         )
 
         return [icon_volume, widget_volume]
@@ -546,7 +547,7 @@ class MyWidgets:
 
         # Icon
         widget_icon_spotify = TextBox(
-            **self.fonts["Icons2"],
+            **self.fonts["Icons"],
             foreground=self.colors["foreground"],
             text="",
             padding=8,
@@ -668,7 +669,7 @@ class MyWidgets:
             backlight_name="intel_backlight",
         )
         widget_text = TextBox(
-            **self.fonts["Icons2"],
+            **self.fonts["Icons"],
             background=self.colors[background],
             foreground=self.colors["magenta"],
             text="",
@@ -698,7 +699,7 @@ class MyWidgets:
             **self.fonts["Icons"],
             foreground=self.colors["blue"],
             text_closed="",
-            text_open="  ",
+            text_open=" ",
             padding=8,
         )
         return [space_first, box]
