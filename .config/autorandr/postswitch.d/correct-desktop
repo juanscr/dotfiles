@@ -1,0 +1,5 @@
+#!/bin/sh
+
+qtile cmd-obj -o cmd -f restart
+nohup "$HOME"/.bin/launchers/launch-conky.sh >/dev/null 2>&1 &
+"$HOME"/.bin/bg.sh
