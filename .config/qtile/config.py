@@ -23,7 +23,7 @@ from my_widgets import MyWidgets
 mod = "mod4"
 
 # Browser
-browser = "brave"
+browser = "firefox"
 
 # Terminal
 terminal = eu("~/.bin/launchers/launch-terminal.sh")
@@ -537,6 +537,7 @@ middle_float = [
     Match(wm_class="pomotroid"),
     Match(wm_class="Blueman-manager"),
     Match(wm_class="Blueman-services"),
+    Match(wm_class="Nm-connection-editor"),
 ]
 floating_layout = Floating(
     float_rules=[

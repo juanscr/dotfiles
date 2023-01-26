@@ -12,13 +12,10 @@ nm-applet &
 discord &
 
 # Browser
-brave &
+firefox &
 
 # Terminal
 "$HOME"/.bin/launchers/launch-terminal.sh &
-
-# Emacs Daemon
-emacs --daemon &
 
 # Aesthetics
 xrdb "$HOME"/.config/X11/Xresources &
@@ -34,11 +31,3 @@ polkit-dumb-agent &
 
 # File manager
 pcmanfm &
-
-# Pomodoro timer
-"$HOME"/.bin/launchers/pomotroid.sh &
-
-# Bluetooth applet
-blueman-applet &
-sleep 1
-blueman-tray &
