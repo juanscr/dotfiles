@@ -15,5 +15,5 @@ elif [ "$num_monitors" == 2 ]; then
 elif xrandr --listactivemonitors | grep "HDMI" ; then
     conky --config="$HOME"/.config/conky/conky-one-hdmi.conf
 else
-    conky --config="$HOME"/.config/conky/conky-one.conf &
+    conky --config="$HOME"/.config/conky/conky-one.conf
 fi
