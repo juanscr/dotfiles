@@ -13,7 +13,7 @@ export PATH=$PATH:$HOME/.local/share/cargo/bin
 
 # ============ ALIASES ============ #
 # Editor
-alias e="pgrep emacs > /dev/null || emacs --daemon; emacsclient -n -c"
+alias n="nvim"
 
 # Latex
 alias lmk="latexmk -pdf"
@@ -26,7 +26,7 @@ alias rmtrash='find . -maxdepth 1 -type f ! -regex "$files_to_keep" -delete'
 alias sudo="sudo "
 
 # Edit files with sudo privileges
-alias se='SUDO_EDITOR="emacs" sudoedit'
+alias se='SUDO_EDITOR="nvim" sudoedit'
 
 # Ls with icons
 alias ls='exa --icons --ignore-glob="__pycache__" --group-directories-first'
@@ -117,9 +117,6 @@ flags1='--auto-skip-seconds 1 --file-idle-time 0 --seconds-per-day 1'
 flags2='-y -r 60 -f image2pipe -vcodec ppm -i - -vcodec libx264'
 flags3='-preset ultrafast -pix_fmt yuv420p -crf 1 -threads 0 -bf 0'
 alias gitvideo='gource $flags1 -1920x1080 -o - | ffmpeg $flags2 $flags3'
-
-# Renew IP
-alias fixInternet='sudo ip add flush enp0s31f6 && sudo dhclient enp0s31f6'
 
 # Pacman update
 alias drop-caches='sudo paccache -rk3; yay -Sc --aur --noconfirm'
