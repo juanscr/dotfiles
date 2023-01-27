@@ -190,6 +190,7 @@ matches = {
         Match(wm_class="Lunacy"),
         Match(title="win0", wm_class="jetbrains-idea-ce"),
         Match(wm_class="code-oss"),
+        Match(wm_class="DBeaver"),
         force_match["lis_cobol"],
     ],
     # Social
@@ -282,14 +283,14 @@ keypads = [
         + "-e sudo openfortivpn -c /etc/openfortivpn/config",
         "FortiVPN",
     ),
-    ("KP_End", "remmina"),
+    ("KP_End", "discord"),
     ("KP_Down", "arandr"),
     ("KP_Next", "pavucontrol"),
-    ("KP_Left", "signal-desktop"),
-    ("KP_Begin", "beekeeper-studio"),
+    ("KP_Left", "bitwarden-desktop"),
+    ("KP_Begin", "dbeaver"),
     ("KP_Right",),
     ("KP_Home",),
-    ("KP_Up", "discord"),
+    ("KP_Up",),
     ("KP_Prior",),
 ]
 keypads_keys = [
@@ -531,6 +532,7 @@ zoom_rules = [
     Match(wm_class="zoom", title="Choose ONE of the audio conference options"),
     Match(wm_class="zoom", title=None),
 ]
+dbeaver_not_main_window_name = re.compile("(?!DBeaver [0-9.]+ )")
 middle_float = [
     Match(wm_type="dialog"),
     Match(title="win0", wm_class="jetbrains-idea-ce"),
@@ -538,6 +540,7 @@ middle_float = [
     Match(wm_class="Blueman-manager"),
     Match(wm_class="Blueman-services"),
     Match(wm_class="Nm-connection-editor"),
+    Match(wm_class="DBeaver", title=dbeaver_not_main_window_name),
 ]
 floating_layout = Floating(
     float_rules=[
@@ -608,17 +611,7 @@ def manage_name_update(window: Window) -> None:
 @hook.subscribe.client_new
 def resize_floating_windows(window: Window) -> None:
 
-    go_to_middle = False
-    if window.get_wm_type() == "dialog":
-        window.cmd_enable_floating()
-        window.cmd_set_size_floating(900, 700)
-    elif any(rule.compare(window) for rule in zoom_rules):
-        window.cmd_enable_floating()
-        if zoom_rules[0].compare(window):
-            window.cmd_set_size_floating(900, 700)
-
-    # Move to middle of screen
-    if go_to_middle or any(rule.compare(window) for rule in middle_float):
+    if any(rule.compare(window) for rule in middle_float):
         screen = window.qtile.current_screen
         if window.group is not None and window.group.screen is not None:
             screen = window.group.screen
