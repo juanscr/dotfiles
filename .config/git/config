@@ -1,4 +1,5 @@
 [include]
     path = ~/.config/git/config-def
-[includeIf "gitdir:~/src"]
+
+[includeIf "gitdir:~/src/"]
     path = ~/.config/git/config-lch
