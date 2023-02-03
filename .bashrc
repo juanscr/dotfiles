@@ -130,6 +130,7 @@ alias update-all='export TMPFILE="$(mktemp)"; \
 
 # ==== Global Variables ==== #
 export BROWSER="/usr/bin/firefox"
+export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
 export npm_config_prefix="$HOME/.local"
 
 # ============ BASH Terminal ============ #
