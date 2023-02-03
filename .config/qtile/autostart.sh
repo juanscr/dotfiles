@@ -1,7 +1,7 @@
 #!/usr/bin/sh
 
-# Background
-"$HOME"/.bin/bg.sh &
+# Screen, background and conky
+autorandr --change &
 
 # Compositor
 picom &
@@ -20,14 +20,8 @@ firefox &
 # Aesthetics
 xrdb "$HOME"/.config/X11/Xresources &
 
-# Conky
-"$HOME"/.bin/launchers/launch-conky.sh &
-
 # Notification daemon
 dunst &
-
-# Polkit
-polkit-dumb-agent &
 
 # File manager
 pcmanfm &
