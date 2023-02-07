@@ -280,7 +280,7 @@ keypads = [
     (
         "KP_Insert",
         f"{terminal} --class {OPENFORTIVPN},{OPENFORTIVPN} "
-        + "-e ~/.bin/launchers/launch-vpn.sh",
+        + "-e /home/juanscr/.bin/launchers/launch-vpn.sh",
         "FortiVPN",
     ),
     ("KP_End", "discord"),
