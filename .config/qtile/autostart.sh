@@ -1,7 +1,7 @@
 #!/usr/bin/sh
 
 # Screen, background and conky
-autorandr --change &
+autorandr --change --force &
 
 # Compositor
 picom &
