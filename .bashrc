@@ -157,3 +157,4 @@ if [[ ! "$SSH_AUTH_SOCK" ]]; then
 fi
 ssh-add ~/.ssh/id_rsa1 2>/dev/null
 ssh-add 2>/dev/null
+. "/home/juanscr/.local/share/cargo/env"
