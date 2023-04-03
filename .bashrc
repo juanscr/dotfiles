@@ -1,3 +1,9 @@
+# ISCOBOL
+export ISCOBOL=/home/juanscr/programs/isCOBOL2019R2
+export ISCOBOL_JDK_ROOT=/usr/lib/jvm/java-8-openjdk
+export LD_LIBRARY_PATH=$ISCOBOL/native/lib
+export PATH=$ISCOBOL/bin:$PATH
+
 # ============ PATH CHANGES ============ #
 export PATH=$PATH:/usr/local/bin
 export PATH=$PATH:$HOME/.bin
@@ -7,7 +13,7 @@ export PATH=$PATH:$HOME/.local/share/cargo/bin
 
 # ============ ALIASES ============ #
 # Editor
-alias e="pgrep emacs > /dev/null || emacs --daemon; emacsclient -n -c"
+alias n="nvim"
 
 # Latex
 alias lmk="latexmk -pdf"
@@ -20,32 +26,14 @@ alias rmtrash='find . -maxdepth 1 -type f ! -regex "$files_to_keep" -delete'
 alias sudo="sudo "
 
 # Edit files with sudo privileges
-alias se='SUDO_EDITOR="emacsclient -c" sudoedit'
+alias se='SUDO_EDITOR="nvim" sudoedit'
 
 # Ls with icons
 alias ls='exa --icons --ignore-glob="__pycache__" --group-directories-first'
 alias la='exa --icons --group-directories-first -lah'
 
-# Haskell with dynamic linking
-alias ci='cabal install --ghc-options=-dynamic'
-alias gfl='ghc -dynamic -Wall -Wmissing-signatures -Wmissing-local-signatures'
-alias hdoc='haddock --optghc=-dynamic --html -o doc'
-
-# Autoremove equivalent
-alias autoremove='pacman -Qtdq | sudo pacman -Rns -'
-
-# Image display with kittens
-alias icat='kitty +kitten icat'
-
 # Compression related commands
-alias comp='arc archive'
-alias unco='arc unarchive'
-
-# Whatsapp
-whatsapp1='nativefier web.whatsapp.com --name whatsapp --single-instance'
-whatsapp2='--tray --inject whatsapp-assets/whatsapp-nativefier-inject.js'
-whatsapp3='--icon whatsapp-assets/icon.png'
-alias genw='$whatsapp1 $whatsapp2 $whatsapp3'
+alias untar='tar xf'
 
 # Spotify terminal user interface
 alias lspt='$HOME/.bin/launchspt.sh'
@@ -71,7 +59,7 @@ alias wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
 # Command for adding all passwords
 alias pwg='eval `ssh-agent` && ssh-add'
 
-alias dfiles='/usr/bin/git --git-dir=$HOME/juanscr/dotfiles --work-tree=$HOME'
+alias dfiles='/usr/bin/git --git-dir=$HOME/external/dotfiles --work-tree=$HOME'
 
 # Function which calls git, if inside a repository or my dotfiles alias
 # otherwise.
@@ -111,18 +99,9 @@ flags2='-y -r 60 -f image2pipe -vcodec ppm -i - -vcodec libx264'
 flags3='-preset ultrafast -pix_fmt yuv420p -crf 1 -threads 0 -bf 0'
 alias gitvideo='gource $flags1 -1920x1080 -o - | ffmpeg $flags2 $flags3'
 
-# Pacman update
-alias drop-caches='sudo paccache -rk3; yay -Sc --aur --noconfirm'
-alias update-all='export TMPFILE="$(mktemp)"; \
-    sudo true; \
-    rate-mirrors --save=$TMPFILE arch --max-delay=21600 \
-      && sudo mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-backup \
-      && sudo mv $TMPFILE /etc/pacman.d/mirrorlist \
-      && drop-caches \
-      && yay -Syyu --noconfirm'
-
 # ==== Global Variables ==== #
 export BROWSER="/usr/bin/firefox"
+export npm_config_prefix="$HOME/.local"
 
 # ============ BASH Terminal ============ #
 # ==== Minimalist Prompt ==== #
@@ -135,7 +114,7 @@ RESET="\[\e[00m\]"
 PS1="${debian_chroot:+($debian_chroot)}"
 
 # Git branch
-source /usr/share/git/completion/git-prompt.sh
+source /usr/share/git-core/contrib/git-prompt.sh
 PS1+="${GREEN}\$(__git_ps1 '(%s) ')${RESET}"
 
 # Working directory
@@ -169,11 +148,6 @@ HISTCONTROL=ignoreboth
 
 # ==== Resizing ==== #
 shopt -s checkwinsize
-
-
-# BEGIN_KITTY_SHELL_INTEGRATION
-if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
-# END_KITTY_SHELL_INTEGRATION
 
 if ! pgrep -u "$USER" ssh-agent > /dev/null; then
     ssh-agent -t 1h > "$XDG_RUNTIME_DIR/ssh-agent.env"
