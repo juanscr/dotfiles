@@ -67,7 +67,7 @@ font:
     style: Bold Italic
 
   # Point size
-  size: 12
+  size: 10
 
   offset:
     x: 0
@@ -152,9 +152,6 @@ shell:
   program: /bin/bash
   args:
     - -i
-
-alt_send_esc: true
-
 
 mouse:
   hide_when_typing: false
