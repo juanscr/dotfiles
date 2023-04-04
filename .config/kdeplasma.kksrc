@@ -5,6 +5,11 @@ switch-to-activity-8aab553e-6cf7-492d-af84-5430ecb5ca3f=
 New=
 _launch=Meta+Return
 
+[firefox_firefox.desktop][Global Shortcuts]
+NewPrivateWindow=
+NewWindow=
+_launch=Meta+I
+
 [kded5][Global Shortcuts]
 Show System Activity=Ctrl+Esc
 display=
