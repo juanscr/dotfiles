@@ -1,7 +1,7 @@
 -- Leader
 vim.g.mapleader = " "
 
--- File related stuf
+-- File related stuff
 vim.keymap.set("n", "<leader>fe", vim.cmd.Ex)
 
 -- Move files in visual mode
