@@ -4,5 +4,5 @@ vim.keymap.set('n', '<leader>pe', builtin.git_files, {})
 
 -- Depends on ripgrep
 vim.keymap.set('n', '<leader>fs', function()
-	builtin.grep_string({ search = vim.fn.input("Grep > ") });
+    builtin.grep_string({ search = vim.fn.input("Grep > ") });
 end)
