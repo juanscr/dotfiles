@@ -28,5 +28,8 @@
   },
   "python.analysis.typeCheckingMode": "basic",
   "vim.useSystemClipboard": true,
-  "trailing-spaces.trimOnSave": true
+  "trailing-spaces.trimOnSave": true,
+  "[python]": {
+    "editor.formatOnType": true
+  }
 }
