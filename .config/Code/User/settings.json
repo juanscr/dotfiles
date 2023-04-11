@@ -29,5 +29,8 @@
   "files.autoSave": "afterDelay",
   "files.trimTrailingWhitespace": true,
   "diffEditor.ignoreTrimWhitespace": false,
-  "git.enableSmartCommit": true
+  "git.enableSmartCommit": true,
+  "[python]": {
+    "editor.formatOnType": true
+  }
 }
