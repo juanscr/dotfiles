@@ -98,6 +98,16 @@ keys += [
         lazy.spawn(f"{playerctl} previous"),
         desc="Previous song spotify",
     ),
+    Key(
+        [mod], "p", lazy.spawn(f"{playerctl} play-pause"), desc="Play or pause spotify"
+    ),
+    Key([mod], "Right", lazy.spawn(f"{playerctl} next"), desc="Next song spotify"),
+    Key(
+        [mod],
+        "Left",
+        lazy.spawn(f"{playerctl} previous"),
+        desc="Previous song spotify",
+    ),
 ]
 
 # ========== Window movement ========== #
@@ -166,6 +176,7 @@ matches = {
         Match(wm_class="st-256color"),
         Match(wm_class="kitty"),
         Match(wm_class="Alacritty"),
+        Match(title=re.compile("^synthwave"), wm_class="mpv")
     ],
     # Viewers and media editors
     ws(3): [
@@ -313,6 +324,15 @@ keypads_chord = KeyChord(
 keys += [
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     Key([mod], "s", lazy.spawn("spotify-launcher"), desc="Launch spotify"),
+    Key(
+        [mod],
+        "z",
+        lazy.spawn(
+            "mpv --cache=no " +
+            "https://www.youtube.com/watch?v=MVPTGNGiI-4"
+        ),
+        desc="Launch spotify"
+    ),
     Key([mod], "i", lazy.spawn(browser), desc="Launch browser"),
     Key(
         [mod],
@@ -346,6 +366,7 @@ keys += [
         desc="Take screenshot of all screens",
     ),
 ]
+
 
 # ========== Aesthetics ========= #
 # _____ Function for obtaining the number of monitors _____ #
@@ -406,6 +427,7 @@ padding_right = {"bar1": 15, "bar2": 15}
 
 # Widgets class
 mw = MyWidgets(colors, fonts, padding_left, padding_right)
+
 
 # Bar for my first screen
 def my_bar1():
@@ -563,7 +585,7 @@ floating_layout = Floating(
         Match(wm_class="Matplotlib"),
         Match(wm_class="flameshot", title="Configuration"),
         Match(wm_class="Inkscape", title="Preferences"),
-        Match(wm_class="mpv"),
+        Match(wm_class="mpv", title=re.compile("^(?!synthwave)")),
         Match(wm_class="Sxiv"),
         Match(wm_class="Options Editor"),
         Match(title="Close Firefox"),
@@ -573,6 +595,7 @@ floating_layout = Floating(
     ],
     **layout_theme_float,
 )
+
 
 # ========== Hooks ========== #
 # Automatic workspace for apps
@@ -610,7 +633,6 @@ def manage_name_update(window: Window) -> None:
 # Change size of floating windows
 @hook.subscribe.client_new
 def resize_floating_windows(window: Window) -> None:
-
     if any(rule.compare(window) for rule in middle_float):
         screen = window.qtile.current_screen
         if window.group is not None and window.group.screen is not None:
