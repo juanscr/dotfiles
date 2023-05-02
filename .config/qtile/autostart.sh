@@ -25,3 +25,6 @@ dunst &
 
 # File manager
 pcmanfm &
+
+# Applet
+blueman-applet &
