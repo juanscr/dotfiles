@@ -189,4 +189,4 @@ ssh-add ~/.ssh/id_rsa1 2>/dev/null
 ssh-add 2>/dev/null
 
 # Secure aliases
-source /home/juanscr/juanscr/.secure_bashrc
+source $HOME/documents/.secure_bashrc
