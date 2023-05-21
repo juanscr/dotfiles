@@ -12,7 +12,7 @@ nm-applet &
 discord &
 
 # Browser
-firefox &
+chromium &
 
 # Terminal
 "$HOME"/.bin/launchers/launch-terminal.sh &
