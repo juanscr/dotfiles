@@ -143,10 +143,9 @@ HISTCONTROL=ignoreboth
 shopt -s checkwinsize
 
 if ! pgrep -u "$USER" ssh-agent > /dev/null; then
-    ssh-agent -t 1h > "$XDG_RUNTIME_DIR/ssh-agent.env"
+    ssh-agent -t 1h > "$XDG_CACHE_HOME/ssh-agent.env"
 fi
 if [[ ! "$SSH_AUTH_SOCK" ]]; then
-    source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
+    source "$XDG_CACHE_HOME/ssh-agent.env" >/dev/null
 fi
-ssh-add ~/.ssh/id_rsa1 2>/dev/null
 ssh-add 2>/dev/null
