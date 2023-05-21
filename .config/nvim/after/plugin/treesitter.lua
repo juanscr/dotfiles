@@ -16,7 +16,6 @@ require'nvim-treesitter.configs'.setup {
     "yaml",
     "lua",
     "vim",
-    "help",
     "markdown"
   },
 
