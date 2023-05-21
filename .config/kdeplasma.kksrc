@@ -1,5 +1,5 @@
 [ActivityManager][Global Shortcuts]
-switch-to-activity-8aab553e-6cf7-492d-af84-5430ecb5ca3f=
+switch-to-activity-81fea6f5-4a0e-4e23-9cf6-70c71635ce61=
 
 [Alacritty.desktop][Global Shortcuts]
 New=
@@ -20,7 +20,7 @@ BackwardWord=Ctrl+Left
 Begin=Ctrl+Home
 BeginningOfLine=Home
 Clear=
-Close=Ctrl+W; Ctrl+Esc
+Close=Ctrl+Esc; Ctrl+W
 ConfigureNotifications=
 ConfigureToolbars=
 Copy=Ctrl+C; Ctrl+Ins
@@ -42,14 +42,14 @@ FindPrev=Shift+F3
 FitToHeight=
 FitToPage=
 FitToWidth=
-Forward=Forward; Alt+Right
+Forward=Alt+Right; Forward
 ForwardWord=Ctrl+Right
 FullScreen=Ctrl+Shift+F
 Goto=
 GotoLine=Ctrl+G
 GotoPage=
 Help=F1
-Home=Alt+Home; Home Page
+Home=Home Page; Alt+Home
 KeyBindings=Ctrl+Alt+,
 Mail=
 MoveToTrash=Del
@@ -58,7 +58,7 @@ Next=PgDown
 NextCompletion=Ctrl+Down
 Open=Ctrl+O
 OpenRecent=
-Paste=Shift+Ins; Ctrl+V
+Paste=Ctrl+V; Shift+Ins
 Paste Selection=Ctrl+Shift+Ins
 Preferences=Ctrl+Shift+,
 PrevCompletion=Ctrl+Up
@@ -67,7 +67,7 @@ PrintPreview=
 Prior=PgUp
 Quit=Ctrl+Q
 Redo=Ctrl+Shift+Z
-Reload=F5; Refresh
+Reload=Refresh; F5
 RenameFile=F2
 Replace=Ctrl+R
 ReportBug=
@@ -94,16 +94,10 @@ Zoom=
 ZoomIn=Ctrl+=; Ctrl++
 ZoomOut=Ctrl+-
 
-[chromium_chromium.desktop][Global Shortcuts]
-Incognito=
-TempProfile=
+[chromium-browser.desktop][Global Shortcuts]
 _launch=Meta+I
+new-private-window=
 new-window=
-
-[firefox_firefox.desktop][Global Shortcuts]
-NewPrivateWindow=
-NewWindow=
-_launch=Meta+I
 
 [kaccess][Global Shortcuts]
 Toggle Screen Reader On and Off=
@@ -118,7 +112,6 @@ Show System Activity=Ctrl+Esc
 display=
 
 [khotkeys][Global Shortcuts]
-{8c01b666-8052-4df9-a2c1-5a130654993e}=
 {d03619b6-9b3c-48cc-9d9c-a2aadb485550}=
 
 [kmix][Global Shortcuts]
@@ -139,12 +132,14 @@ Reboot Without Confirmation=
 [kwin][Global Shortcuts]
 Activate Window Demanding Attention=
 Decrease Opacity=
+Edit Tiles=Meta+T
 Expose=Ctrl+F9
-ExposeAll=Launch (C); Ctrl+F10
+ExposeAll=Ctrl+F10; Launch (C)
 ExposeClass=Ctrl+F7
+ExposeClassCurrentDesktop=
 Increase Opacity=
-Invert Screen Colors=
 Kill Window=
+Move Tablet to Next Output=
 MoveMouseToCenter=
 MoveMouseToFocus=
 MoveZoomDown=
@@ -196,6 +191,10 @@ Switch to Screen 4=
 Switch to Screen 5=
 Switch to Screen 6=
 Switch to Screen 7=
+Switch to Screen Above=
+Switch to Screen Below=
+Switch to Screen to the Left=
+Switch to Screen to the Right=
 Toggle Night Color=
 Toggle Window Raise/Lower=
 Walk Through Desktop List=
@@ -229,6 +228,10 @@ Window One Desktop Down=
 Window One Desktop Up=
 Window One Desktop to the Left=
 Window One Desktop to the Right=
+Window One Screen Down=
+Window One Screen Up=
+Window One Screen to the Left=
+Window One Screen to the Right=
 Window Operations Menu=
 Window Pack Down=
 Window Pack Left=
@@ -283,16 +286,6 @@ view_actual_size=
 view_zoom_in=Meta+=
 view_zoom_out=Meta+-
 
-[mediacontrol][Global Shortcuts]
-mediavolumedown=
-mediavolumeup=
-nextmedia=Media Next
-pausemedia=Media Pause
-playmedia=
-playpausemedia=Media Play
-previousmedia=Media Previous
-stopmedia=Media Stop
-
 [org.kde.dolphin.desktop][Global Shortcuts]
 _launch=
 
@@ -335,10 +328,10 @@ activate task manager entry 6=
 activate task manager entry 7=
 activate task manager entry 8=
 activate task manager entry 9=
-activate widget 3=Meta+D
-activate widget 32=Alt+F1
+activate widget 4=Alt+F1
 clear-history=
 clipboard_action=
+cycle-panels=Meta+Alt+P
 cycleNextAction=
 cyclePrevAction=
 edit_clipboard=
@@ -354,9 +347,6 @@ switch to next activity=
 switch to previous activity=
 toggle do not disturb=
 
-[spotify_spotify.desktop][Global Shortcuts]
-_launch=Meta+S
-
 [systemsettings.desktop][Global Shortcuts]
 _launch=Tools
 kcm-kscreen=
@@ -364,13 +354,3 @@ kcm-lookandfeel=
 kcm-users=
 powerdevilprofilesconfig=
 screenlocker=
-
-[wacomtablet][Global Shortcuts]
-Map to fullscreen=Meta+Ctrl+F
-Map to screen 1=Meta+Ctrl+1
-Map to screen 2=Meta+Ctrl+2
-Next Profile=Meta+Ctrl+N
-Previous Profile=Meta+Ctrl+P
-Toggle screen map selection=Meta+Ctrl+M
-Toggle stylus mode=Meta+Ctrl+S
-Toggle touch tool=Meta+Ctrl+T
