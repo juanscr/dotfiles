@@ -1,15 +1,8 @@
-# ISCOBOL
-export ISCOBOL=/home/juanscr/programs/isCOBOL2019R2
-export ISCOBOL_JDK_ROOT=/usr/lib/jvm/java-8-openjdk
-export LD_LIBRARY_PATH=$ISCOBOL/native/lib
-export PATH=$ISCOBOL/bin:$PATH
-
 # ============ PATH CHANGES ============ #
 export PATH=$PATH:/usr/local/bin
 export PATH=$PATH:$HOME/.bin
 export PATH=$PATH:$HOME/.cabal/bin
 export PATH=$PATH:$HOME/.local/bin
-export PATH=$PATH:$HOME/.local/share/cargo/bin
 
 # ============ ALIASES ============ #
 # Editor
@@ -114,7 +107,7 @@ RESET="\[\e[00m\]"
 PS1="${debian_chroot:+($debian_chroot)}"
 
 # Git branch
-source /usr/share/git-core/contrib/git-prompt.sh
+source /usr/share/git-core/contrib/completion/git-prompt.sh
 PS1+="${GREEN}\$(__git_ps1 '(%s) ')${RESET}"
 
 # Working directory
@@ -157,4 +150,3 @@ if [[ ! "$SSH_AUTH_SOCK" ]]; then
 fi
 ssh-add ~/.ssh/id_rsa1 2>/dev/null
 ssh-add 2>/dev/null
-. "/home/juanscr/.local/share/cargo/env"
