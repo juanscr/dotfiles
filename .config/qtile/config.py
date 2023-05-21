@@ -23,7 +23,7 @@ from my_widgets import MyWidgets
 mod = "mod4"
 
 # Browser
-browser = "firefox"
+browser = "chromium"
 
 # Terminal
 terminal = eu("~/.bin/launchers/launch-terminal.sh")
@@ -169,7 +169,11 @@ force_match = {
 }
 matches = {
     # Browser
-    ws(1): [Match(wm_class="firefox"), Match(wm_class="Brave-browser")],
+    ws(1): [
+        Match(wm_class="firefox"),
+        Match(wm_class="Brave-browser"),
+        Match(wm_class="Chromium"),
+        ],
     # Terminal and text editors
     ws(2): [
         Match(wm_class="Emacs"),
@@ -212,7 +216,6 @@ matches = {
         Match(wm_class="zoom"),
         Match(wm_class="whatsapp-nativefier-d40211"),
         Match(wm_class="TelegramDesktop"),
-        Match(wm_class="Chromium"),
         Match(wm_class="Signal"),
     ],
     # Media
@@ -334,12 +337,6 @@ keys += [
         desc="Launch spotify"
     ),
     Key([mod], "i", lazy.spawn(browser), desc="Launch browser"),
-    Key(
-        [mod],
-        "u",
-        lazy.spawn(eu("~/.bin/launchers/launchchrome.sh")),
-        desc="Launch chromium with copied link",
-    ),
     *keypads_keys,
     keypads_chord,
 ]
