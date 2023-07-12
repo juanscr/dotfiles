@@ -185,7 +185,7 @@ fi
 if [[ ! "$SSH_AUTH_SOCK" ]]; then
     source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
 fi
-ssh-add ~/.ssh/id_rsa1 2>/dev/null
+ssh-add ~/.ssh/id_ed25519_fcd 2>/dev/null
 ssh-add 2>/dev/null
 
 # Secure aliases
