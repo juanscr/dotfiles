@@ -4,4 +4,4 @@
 	email =
 	name =
 [pull]
-	rebase = false
+	rebase = true

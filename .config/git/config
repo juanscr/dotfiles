@@ -3,3 +3,6 @@
 
 [includeIf "gitdir:~/src/"]
     path = ~/.config/git/config-lch
+
+[includeIf "gitdir:~/documents/fincrime-dynamics/"]
+    path = ~/.config/git/config-fcd
